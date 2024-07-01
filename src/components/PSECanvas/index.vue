@@ -1,44 +1,34 @@
 <template>
-    <canvas ref="canvas" width="600" height="400" class="border"></canvas>
+    <canvas ref="canvas"  height="1000" width="1000" class="canvas"></canvas>
+    <button class="center-button" @click="Init_Analysis">Submit</button>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+    import { onMounted, ref, watch } from 'vue';
 
-const props = defineProps({
-    points: {
-        type: Array,
-        required: true,
-    }
-});
-
-const canvas = ref(null);
-
-const drawPoints = () => {
-    if (!canvas.value) return;
-
-    const ctx = canvas.value.getContext('2d');
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.value.width, canvas.value.height); // Clear the canvas
-
-    if (!props.points) {
-        return;
-    }
-    props.points.forEach(point => {
-        ctx.fillStyle = point.color;
-        ctx.beginPath();
-        ctx.arc(point.cord[0], point.cord[1], 5, 0, 2 * Math.PI);
-        ctx.fill();
-    });
-};
-
-onMounted(drawPoints);
-watch(() => props.points, drawPoints, { deep: true });
+    const canvas = ref(null);
+  
+    onMounted(() => {Init_Canvas(canvas)});
+    // watch(() => Init_Canvas(canvas), { deep: true });
 </script>
 
 <style scoped>
-.canvas {
-    border: 1px solid #000;
-}
+    .canvas {
+        border: 1px solid #000;
+        height: 100%;
+    }
+    .center-button {
+        position: absolute;
+        bottom: 20px; /* Adjust the value as needed */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    
 </style>

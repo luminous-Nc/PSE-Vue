@@ -1,0 +1,80 @@
+.div_background{
+    background-image: url(../images/TAMULogo.jpg);
+    opacity: 0.6
+}
+
+#main_title{
+    text-align: center;
+    position: relative;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+}
+
+.div_row1{
+    display: flex;
+    width: 1000px;
+    border: 3px solid black;
+    position: relative;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+}
+
+.div_row2{
+    display: flex;
+    width: 1000px;
+    height: 700px;
+    border: 3px solid black;
+    position: relative;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+}
+
+.div_row3{
+    display: flex;
+    width: 1000px;
+    position: relative;
+    border: 3px solid black;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+}
+
+/* canvas */
+.div_col1{
+    width: 600px;
+    height: 700px;
+    border: 3px solid black;
+}
+
+/* summary */
+.div_col2{
+    width: 400px;
+    height: 700px;
+    border: 3px solid black;
+}
+
+/* button */
+.div_col3{
+    width: 600px;
+    border: 3px solid black;
+    position: relative;
+    text-align: center;
+}
+
+.div_col4{
+    width: 400px;
+    border: 3px solid black;
+    position: relative;
+}
+
+.table_summary, tr, th, td{
+    border:1px solid black;
+}
+
+#button{
+    font-size: 20px; 
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+}
