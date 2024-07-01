@@ -23,7 +23,7 @@
         left: 50%;
         transform: translateX(-50%);
         padding: 10px 20px;
-        background-color: #007bff;
+        background-color: #1beb53;
         color: white;
         border: none;
         border-radius: 5px;
