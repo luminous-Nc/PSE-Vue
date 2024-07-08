@@ -13,6 +13,7 @@ var AllPortsSet      = [];  // pure ports name set (all practices)
 var AllKeys		     = [];  // practice key (single practice)
 var AllKeysSet       = [];  // practice key set (all practices)
 
+// subline parameters
 var DictSubLineDir   = []; // subline direction-length [x, y] axis dictionary
 var SubLineBaseL;          // base length of subline
 var SubLineAddL;           // additional length of subline
@@ -35,11 +36,47 @@ var LinkAdjustPos    = {}; // adjusted position
 
 var AllModulesPriority = {}; // all modules priority
 
-var AllModules        = [];  // all obstacle name (single practice)
 var AllObjs           = [];  // all obstacle(components)
 var AllModulesSet     = [];  // all obstacle name set (all practices)
-// initialize all paramters and properties
 
+var DictModules = {};  // all connecting module name
+var DictKeys    = {};  // all connecting keys
+var Keys        = [];  // connecting keys
+
+// direction dictionary parameters
+var DictDirN = {}; // normal
+var DircDirD = {}; // diagonal
+
+// prepare static parametesd
+    // connecting modules(objects)
+    DictModules = { "PLC":     ["DI01", "DI02", "DI03", "DO01", "GNDDI"],
+                    "Relay":   ["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"],
+                    "Sensor":  ["LS1",   "LS2"],
+                    "5VDC":    ["5VP", "5VN"],
+                    "24VDC":   ["24VP", "24VN"]};
+
+    // connecting keys
+    DictKeys = {P1: [["5VP", "RLC2"],   ["RLC1", "LS1"], 
+                     ["LS2", "5VN"],    ["GNDDI", "24VN"], 
+                     ["DI01", "RLSW1"], ["RLSW3", "24VP"]],
+                P2: [["120VP", "RLSW3"], ["120VN", "C2"], 
+                     ["RLSW1", "C1"], ["24VP", "24F4"], 
+                     ["24VN", "0V2"], ["DO101", "RLC1"], 
+                     ["0V3", "RLC2"]]};
+    // normal direction
+    DictDirN = [{x : 0,  y : -1}, // up
+                {x : 0,  y : 1},  // down
+                {x : -1, y : 0},  // left
+                {x : 1,  y : 0}]; // right
+    
+    // diagonal direction
+    DictDirD = [{x : -1, y : -1}, // left up
+                {x : 1, y : -1},  // right up
+                {x : 1, y : 1},   // right down
+                {x : -1, y : 1}]  // left down
+
+
+// initialize all paramters and properties
 // initialize pure ports and key
 AllPortsSet[0] = ["LS1",   "LS2",   "RLC1", "RLC2", "RLSW1",
                   "RLSW2", "RLSW3", "5VP",  "5VN",  "24VP", 

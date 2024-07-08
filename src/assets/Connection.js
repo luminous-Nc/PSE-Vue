@@ -29,28 +29,6 @@ var ExtraPorts	 = new Object(); // to check if one port hold multiple connection
 //var DictConnections 	= new Object(); // dictionary used to check correct connection
 //var DictSubConnections	= new Object(); // dictionary used to collect current sub-AllLines
 
-
-// main of 1st frame
-function Init(){ 
-    // initialize general parameters and symbols
-    General_Symbol_Init();
-    
-    // initialize button event by once
-    All_Events_Init(Buttons, "click", Event_Click_Button);
-
-}
-
-// main of description frame
-function Init_Description(){
-    // initialize all settings 
-    Description_Symbols_Hide();
-    Description_Symbols_Remove();
-    Remove_Symbols();
-    Analysis_Symbols_Remove();
-    Description_Symbols_Display();
-}
-
-
 // main of practice frame
 function Init_Practice(){
     // initialize all settings
@@ -95,7 +73,7 @@ function Init_Parameter(){
     MyPortsNum   = 0;
     MyLinesNum   = 0;
     IndexTasks = 1;
-    Init_Properties();
+    // Init_Properties();
 }
 
 // initialize current practice properties
@@ -474,60 +452,52 @@ function Display_Single_Connection(){
 // get subline
 function Get_SubLine(Port){   
     // initialie current point
-    var MySelect     = Port;
-    var StartPt      = {x : MySelect.x, y : MySelect.y};
-    var EndPt        = StartPt;
+    var StartPt = {x : Port.x, y : Port.y};
+    var EndPt   = {};
 
     // find which obstacle does the port belong to
     var ObName = Get_Inside_Obstacle(StartPt, AllObstacles);
 
-    // update subline paramter dictionary
-    if (ObName in DictSubLineL){
-        // update current obstacle subline parameter
-        DictSubLineL[ObName] += 1;
-    }else{
-        // initialize current obstacle subline parameter
-        DictSubLineL[ObName] = 1;
-    }
-
-    var MoveL = SubLineBaseL + DictSubLineL[ObName] * SubLineAddL;
+    // get subline break part
     var BreakPts = StartPt;
-    var SublineDir = {};
-    var SubLineBaseScale = 1;
+    var Dir = {};
+    var Scale = 1;
 
      // find break point and exit the loop
     while (Is_Inside_Obstacles(BreakPts, AllObstacles)) {
         // get subline break point in 4 directions
         for (var i = 0; i < 4; i++){
             // get current subline direction dictionary
-            SublineDir = DictSubLineDir[i];
+            Dir = DictDirN[i];
 
             // get current subline break point
-            BreakPts = {x : StartPt.x + 
-                            SubLineBaseScale * 
-                            SublineDir.x * 
-                            SubLineBreakL,
-                        y : StartPt.y +  
-                            SubLineBaseScale * 
-                            SublineDir.y * 
-                            SubLineBreakL};
+            BreakPts = {x : StartPt.x + SubLineBreakL * Dir.x * Scale,
+                        y : StartPt.y + SubLineBreakL * Dir.y * Scale};
            
             if (!Is_Inside_Obstacles(BreakPts, AllObstacles)) {
                 break;
             }
         }
-        SubLineBaseScale += 1;
+        Scale += 1;
     }
 
-    // get external subline end point and exit the loop
-    EndPt = {x : BreakPts.x + SublineDir.x * MoveL,
-             y : BreakPts.y + SublineDir.y * MoveL};
+    // get subline moving part
+        // update subline paramter dictionary
+        // (various subline length at each module)
+    if (ObName in DictSubLineL){DictSubLineL[ObName] += 1;}
+    else{ DictSubLineL[ObName] = 1;}
+    var MoveL = SubLineBaseL + DictSubLineL[ObName] * SubLineAddL;
+
+
+    // merge two parts: start point -> break point + moving line
+    EndPt = {x : BreakPts.x + Dir.x * MoveL,
+             y : BreakPts.y + Dir.y * MoveL};
        
     // save the end stroke point as line start point
     LineDrawPt = EndPt;
 
     // initialize subline name
-    var MySubLineName = Get_Symbol_Name(TitleSubLine, MySelect.name);
+    var MySubLineName = Get_Symbol_Name(TitleSubLine, Port.name);
 
     // return if the subline exist
     var CurrentSubLine = stage.getChildByName(MySubLineName);
@@ -855,4 +825,24 @@ function Obstacle_Init(){
 // function Display_Symbols(){
 //     Display_Selects();
 //     //Display_Buttons();
+// }
+
+// // main of 1st frame
+// function Init(){ 
+//     // initialize general parameters and symbols
+//     General_Symbol_Init();
+    
+//     // initialize button event by once
+//     All_Events_Init(Buttons, "click", Event_Click_Button);
+
+// }
+
+// // main of description frame
+// function Init_Description(){
+//     // initialize all settings 
+//     Description_Symbols_Hide();
+//     Description_Symbols_Remove();
+//     Remove_Symbols();
+//     Analysis_Symbols_Remove();
+//     Description_Symbols_Display();
 // }

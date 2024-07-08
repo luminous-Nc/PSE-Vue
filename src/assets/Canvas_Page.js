@@ -3,6 +3,9 @@
 // canvas and stage for drawing
 var stage;
 
+// practice name
+var PName;
+
 // objects in the canvas
 var ObjDict =  [{name:"PLC",           x:150, y:100},
                 {name:"Relay",         x:450, y:250},
@@ -53,7 +56,6 @@ function Init_Object(){
     for (var i = 0; i < ObjDict.length; i++){
         ObjDict[i].Port = Ports[i];
     }
-    AllObstacles = ObjDict;
 }
 
 
