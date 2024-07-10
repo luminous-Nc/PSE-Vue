@@ -1,59 +1,52 @@
 // all properties and parameters in the project
-var IndexMyPage;       // current page index
-var IndexMain; 	       // the index of main frames
-var IndexTasks;	       // the index including all tasks
-var Legends;		   // correct and incorrect connection legend
-var Buttons;
-var Hints;
-var MyTaskNum  = 0;    // current task number
-var LineType		   // draw line manually or automatically
+    // modules and keys' dictionary
+    var DictModule      = {}; // all connecting module name
+    var DictPortPos     = []; // all ports' position
+    var DictKeys        = {}; // all connecting keys
+    var Keys            = []; // connecting keys
 
-var AllPorts	     = [];  // pure ports name (single practice)
-var AllPortsSet      = [];  // pure ports name set (all practices)
-var AllKeys		     = [];  // practice key (single practice)
-var AllKeysSet       = [];  // practice key set (all practices)
+    // direction dictionary parameters
+    var DictDirN = {}; // normal
+    var DictDirD = {}; // diagonal
 
-// subline parameters
-var DictSubLineDir   = []; // subline direction-length [x, y] axis dictionary
-var SubLineBaseL;          // base length of subline
-var SubLineAddL;           // additional length of subline
-var DictSubLineL     = {}; // subline parameter dictionary
+    // subline dictionary parameters
+    var DictSubL    = {};   // subline length parameters
+    var DictSubMScl = {}    // subline module scale
 
-var DictDetourDir    = [];
-var DetourBaseL;           // base length of detour point extention
-var DetourAddL;            // additional length of detour point extention
-var DictDetourL      = {}; // detour parameter dictionary
+    // dynamic line dictionary parameters
+    var DictDetourDir = [];
+    var DetourBaseL;        // base length of detour point extention
+    var DetourAddL;         // additional length of detour point extention
+    var DictDetourL   = {}; // detour parameter dictionary
 
-var DictAnalysis     = {}; // the current integrated analysis dictionary
-var DictPorts        = []; // analysis dictionary key set (all practice)
-var DictModules      = []; // analysis dictionary value set (all practices)
-var DictPortsSet     = []; // analysis dictionary key set (all practice)
-var DictModulesSet   = []; // analysis dictionary value set (all practices)
+    // learning module parameters
+    var DictModuleLink  = {}  // all modules' url
+    var DictModuleRank  = {}; // all modules priority
 
-var AllModulesLink   = {}; // all modules' url
-var LinkBasePos      = {}; // the first module module link shifting position
-var LinkAdjustPos    = {}; // adjusted position 
+    // image list
+    var DictImg = {};
+    var Imgs = [];
 
-var AllModulesPriority = {}; // all modules priority
+// -------------------------
+// prepare dynamic parameters  
+// -------------------------
+    // module position
+    DictModule = {P1: {"PLC": {x:150, y:100,
+                        Port: ["DI01", "DI02", "DI03", "DO01", "GNDDI"]},
 
-var AllObjs           = [];  // all obstacle(components)
-var AllModulesSet     = [];  // all obstacle name set (all practices)
+                       "Relay": {x:450, y:250,
+                        Port: ["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"]},
 
-var DictModules = {};  // all connecting module name
-var DictKeys    = {};  // all connecting keys
-var Keys        = [];  // connecting keys
+                       "5VDC": {x:400, y:550,
+                        Port: ["5VP", "5VN"]},
 
-// direction dictionary parameters
-var DictDirN = {}; // normal
-var DircDirD = {}; // diagonal
+                       "24VDC": {x:550, y:500,
+                        Port: ["24VP", "24VN"]},
 
-// prepare static parametesd
-    // connecting modules(objects)
-    DictModules = { "PLC":     ["DI01", "DI02", "DI03", "DO01", "GNDDI"],
-                    "Relay":   ["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"],
-                    "Sensor":  ["LS1",   "LS2"],
-                    "5VDC":    ["5VP", "5VN"],
-                    "24VDC":   ["24VP", "24VN"]};
+                       "LimitedSensor": {x:450, y:100,
+                        Port: ["LS1", "LS2"]}},
+
+                  P2: {}};
 
     // connecting keys
     DictKeys = {P1: [["5VP", "RLC2"],   ["RLC1", "LS1"], 
@@ -63,6 +56,26 @@ var DircDirD = {}; // diagonal
                      ["RLSW1", "C1"], ["24VP", "24F4"], 
                      ["24VN", "0V2"], ["DO101", "RLC1"], 
                      ["0V3", "RLC2"]]};
+
+// -------------------------
+// prepare static parameters
+// -------------------------
+    Imgs =  ["PLC", "Relay", "5VDC", "24VDC", "LimitedSensor"];
+
+    DictPortPos = { "DI01":  {x:11, y:313}, "DI02":  {x:11, y:338},  
+                    "DI03":  {x:11, y:363}, "DO01":  {x:11, y:94},   
+                    "GNDDI": {x:11, y:289}, 
+
+                    "RLC1":  {x:82, y:7}, "RLC2":  {x:82, y:137},
+                    "RLSW1": {x:38, y:7}, "RLSW2": {x:23, y:137},
+                    "RLSW3": {x:53, y:137},
+
+                    "5VP":   {x:24, y:17}, "5VN":   {x:69, y:17},
+
+                    "24VP":  {x:20, y:12}, "24VN":  {x:60, y:12},
+
+                    "LS1":   {x:7, y:30}, "LS2":   {x:65, y:30}};
+
     // normal direction
     DictDirN = [{x : 0,  y : -1}, // up
                 {x : 0,  y : 1},  // down
@@ -75,110 +88,40 @@ var DircDirD = {}; // diagonal
                 {x : 1, y : 1},   // right down
                 {x : -1, y : 1}]  // left down
 
+    // subline parameters
+    DictSubL.Base  = 2;
+    DictSubL.Move  = 4;
+    DictSubL.Break = 2;
 
-// initialize all paramters and properties
-// initialize pure ports and key
-AllPortsSet[0] = ["LS1",   "LS2",   "RLC1", "RLC2", "RLSW1",
-                  "RLSW2", "RLSW3", "5VP",  "5VN",  "24VP", 
-                  "24VN",  "DI01",  "DI02", "DI03", "DO01", 
-                  "GNDDI"];
+    // detour point property
+    DetourBaseL   = 5;
+    DetourAddL    = 5;
 
-AllKeysSet[0] = [["5VP", "RLC2"],   ["RLC1", "LS1"], 
-                 ["LS2", "5VN"],    ["GNDDI", "24VN"], 
-                 ["DI01", "RLSW1"], ["RLSW3", "24VP"]];
+    // initialize modules' hyper link
+    DictModuleLink = { "Inputs"            : "http://128.194.119.24/tutorial?topic=1",
+                        "Outputs"           : "http://128.194.119.24/tutorial?topic=2",
+                        "PLC Input module"  : "http://128.194.119.24/tutorial?topic=3",
+                        "PLC Output module" : "http://128.194.119.24/tutorial?topic=4", 
+                        "Relay"             : "http://128.194.119.24/tutorial?topic=5",
+                        "Sensors"           : "http://128.194.119.24/tutorial?topic=6", 
+                        "ABB Robot"         : "http://128.194.119.24/tutorial?topic=7", 
+                        "COMAU Robot"       : "http://128.194.119.24/tutorial?topic=8", 
+                        "FANUC Robot"       : "http://128.194.119.24/tutorial?topic=9", 
+                        "KUKA Robot"        : "http://128.194.119.24/tutorial?topic=10", 
+                        "OMRON Robot"       : "http://128.194.119.24/tutorial?topic=11"};
 
-AllPortsSet[1] =["C1",    "C2",    "RLC1",  "RLC2",  "RLSW1",
-                 "RLSW2", "RLSW3", "120VP", "120VN", "24VP",
-                 "24VN",  "DI101", "DI102", "DI103", "DO101", 
-                 "0V2",   "0V3",   "24F4"];
-
-AllKeysSet[1] = [["120VP", "RLSW3"], ["120VN", "C2"], 
-                 ["RLSW1", "C1"], ["24VP", "24F4"], 
-                 ["24VN", "0V2"], ["DO101", "RLC1"], 
-                 ["0V3", "RLC2"]];
-
-// initialize port-component dictionary
-DictPortsSet[0] = [["LS1", "LS2"], 
-                   ["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"], 
-                   ["DI01", "DI02", "DI03", "DO01", "GNDDI"]];
-
-DictModulesSet[0] = ["Sensors", "Relay", "ABB Robot"];
-
-DictPortsSet[1] = [["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"], 
-                   ["DI101", "DI102", "DI103", "DO101", "0V3", "0V2", "24F4"]];
-
-DictModulesSet[1] = ["Relay", "FANUC Robot"];
-
-// initialize modules(obstacles)
-AllModulesSet[0] = ["Robot", "Relay", "24VDC", "5VDC", "Sensor"];
-AllModulesSet[1] = ["Robot", "Relay", "24VDC", "120VDC", "Convey"];
-
-// initlaize subline properties
-SubLineBaseL   = 2;
-SubLineAddL    = 4;
-SubLineBreakL  = 2; // to move and find the end point outside of the obstacles
-DictSubLineDir = [{x : 0,  y : -1}, // up
-                  {x : 0,  y : 1},  // down
-                  {x : -1, y : 0},  // left
-                  {x : 1,  y : 0}]; // right
-
-// initialize detour point property
-DetourBaseL   = 5;
-DetourAddL    = 5;
-DictDetourDir = [{x : -1, y : -1}, // left up
-                 {x : 1, y : -1},  // right up
-                 {x : 1, y : 1},   // right down
-                 {x : -1, y : 1}]  // left down
-
-// link position adjustment
-LinkBasePos.x   = -15;
-LinkBasePos.y   = 15;
-LinkAdjustPos.x = 0;
-LinkAdjustPos.y = 25;
-
-// all page index
-IndexMyPage = 0;                  // start up index
-IndexMain   = [0, 1, 2, 3, 4, 5]; // all description + practice index
-IndexTasks  = 1;                  // all practice index 
-
-// initialize modules' hyper link
-AllModulesLink = {"Inputs"            : "http://128.194.119.24/tutorial?topic=1",
-                  "Outputs"           : "http://128.194.119.24/tutorial?topic=2",
-                  "PLC Input module"  : "http://128.194.119.24/tutorial?topic=3",
-                  "PLC Output module" : "http://128.194.119.24/tutorial?topic=4", 
-                  "Relay"             : "http://128.194.119.24/tutorial?topic=5",
-                  "Sensors"           : "http://128.194.119.24/tutorial?topic=6", 
-                  "ABB Robot"         : "http://128.194.119.24/tutorial?topic=7", 
-                  "COMAU Robot"       : "http://128.194.119.24/tutorial?topic=8", 
-                  "FANUC Robot"       : "http://128.194.119.24/tutorial?topic=9", 
-                  "KUKA Robot"        : "http://128.194.119.24/tutorial?topic=10", 
-                  "OMRON Robot"       : "http://128.194.119.24/tutorial?topic=11"};
-
-// initalize modules' priority(0 -> low, 10 -> high,)                  
-AllModulesPriority ={"Inputs"            : 1,
-                     "Outputs"           : 1,
-                     "Sensors"           : 1,
-                     "PLC Input module"  : 2,
-                     "PLC Output module" : 2,                                  
-                     "Relay"             : 3, 
-                     "ABB Robot"         : 4, 
-                     "COMAU Robot"       : 4, 
-                     "FANUC Robot"       : 4, 
-                     "KUKA Robot"        : 4, 
-                     "OMRON Robot"       : 4};
-
-// initialize all general parameters and symbols(subject to change) 
-function General_Symbol_Init(){
-    // all legends
-    Legends = [root.Legend_Correct,  root.Legend_Incorrect,
-               root.Textbox_Correct, root.Textbox_Incorrect,
-               root.MyAnalysisText];
-        
-    // all buttons		
-    Buttons = [root.Button_Previous, root.Button_Next,
-               root.Button_Reset];
-
-}
+    // initalize modules' priority(0 -> low, 10 -> high,)                  
+    DictModuleRank = {  "Inputs"            : 1,
+                        "Outputs"           : 1,
+                        "Sensors"           : 1,
+                        "PLC Input module"  : 2,
+                        "PLC Output module" : 2,                                  
+                        "Relay"             : 3, 
+                        "ABB Robot"         : 4, 
+                        "COMAU Robot"       : 4, 
+                        "FANUC Robot"       : 4, 
+                        "KUKA Robot"        : 4, 
+                        "OMRON Robot"       : 4};
 
 
 //// initialize pure ports
@@ -291,3 +234,30 @@ function General_Symbol_Init(){
                    [root.T1B_LS1,  root.T1B_LS2,  root.T1B_LS3,  root.T1B_LS4],
                    [root.T1B_5V1,  root.T1B_5V2,  root.T1B_5V3,  root.T1B_5V4],
                    [root.T1B_24V1, root.T1B_24V2, root.T1B_24V3, root.T1B_24V4]]; */
+
+// // ports position
+// DictPortPos = {P1: [{name: "DI01",  x:11, y:313},
+//                     {name: "DI02",  x:11, y:338},  
+//                     {name: "DI03",  x:11, y:363},
+//                     {name: "DO01",  x:11, y:94},   
+//                     {name: "GNDDI", x:11, y:289},
+//                     {name: "RLC1",  x:82, y:7},    
+//                     {name: "RLC2",  x:82, y:137},
+//                     {name: "RLSW1", x:38, y:7},   
+//                     {name: "RLSW2", x:23, y:137},
+//                     {name: "RLSW3", x:53, y:137},
+//                     {name: "5VP",   x:24, y:16},
+//                     {name: "5VN",   x:70, y:16},
+//                     {name: "24VP",  x:20, y:12},
+//                     {name: "24VN",  x:60, y:12},
+//                     {name: "LS1",   x:7, y:30},
+//                     {name: "LS2",   x:65, y:30}],
+//                P2: []};
+
+// // connecting modules(objects)
+// DictModule = {P1:{"PLC":     ["DI01", "DI02", "DI03", "DO01", "GNDDI"],
+//     "Relay":   ["RLC1", "RLC2", "RLSW1", "RLSW2", "RLSW3"],
+//     "Sensor":  ["LS1",   "LS2"],
+//     "5VDC":    ["5VP", "5VN"],
+//     "24VDC":   ["24VP", "24VN"]},
+// P2: {}};

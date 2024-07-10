@@ -11,7 +11,7 @@ var MyAnalysis = new Object();
 var LearnModule = [];
 
 // main of anlaysis frame
-function Init_Analysis(){   
+function Init_Analysis(){
     Analysis_Symbols_Remove();
     Analysis_Properties_Init();
     General_Analysis();
@@ -31,7 +31,7 @@ function Analysis_Symbols_Remove(){
 
 // hide existing symbols
 function Analysis_Symbols_Hide(){
-    Hide_Selects();
+    Hide_Ports();
 }
 
 // display existing symbols

@@ -1,9 +1,8 @@
 // preload image src
-var ObjDict =  ["PLC", "Relay", "5VDC", "24VDC", "LimitedSensor"];
-var Imgs = [];
-var ImgFolder = "./src/assets/images";
+const ImgFolder = "./src/assets/images";
 
-for (var i = 0; i < ObjDict.length; i++){
-    Imgs[i] = new Image();
-    Imgs[i].src = ImgFolder + "/"+ ObjDict[i] +".jpg";
+for (const value of Imgs){
+    var Img = new Image();
+    Img.src = ImgFolder + "/"+ value +".jpg";
+    DictImg[value] = Img;
 }

@@ -408,8 +408,8 @@ function Get_Detour_Points(MyRec){
         MyShift[i] = DetourBaseL + DetourAddL * DeFactors[i];
         
         // update the detour point based on shift value and direction
-        MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDetourDir[i].x, 
-                      y : MyDePts[i].y + MyShift[i] * DictDetourDir[i].y};
+        MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDirD[i].x, 
+                      y : MyDePts[i].y + MyShift[i] * DictDirD[i].y};
     }
 
     return MyDePts

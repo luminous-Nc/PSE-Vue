@@ -5,32 +5,7 @@ var stage;
 
 // practice name
 var PName;
-
-// objects in the canvas
-var ObjDict =  [{name:"PLC",           x:150, y:100},
-                {name:"Relay",         x:450, y:250},
-                {name:"5VDC",          x:400, y:550},
-                {name:"24VDC",         x:550, y:500},
-                {name:"LimitedSensor", x:450, y:100}];
-
-// ports in each object
-var PLCPort =           [{name: "DI01",  x:11, y:313},
-                         {name: "DI02",  x:11, y:338},  
-                         {name: "DI03",  x:11, y:363},
-                         {name: "DO01",  x:11, y:94},   
-                         {name: "GNDDI", x:11, y:289}];
-var RelayPort =         [{name: "RLC1",  x:82, y:7},    
-                         {name: "RLC2",  x:82, y:137},
-                         {name: "RLSW1", x:38, y:7},   
-                         {name: "RLSW2", x:23, y:137},
-                         {name: "RLSW3", x:53, y:137}]
-var VDC5Port =          [{name: "5VP",   x:24, y:16},
-                         {name: "5VN",   x:70, y:16}];
-var VDC24Port =         [{name: "24VP",  x:20, y:12},
-                         {name: "24VN",  x:60, y:12}];
-var LimitedSensorPort = [{name: "LS1",   x:7, y:30},
-                         {name: "LS2",   x:65, y:30}];
-
+var ObjDict;
 var ObjPorts = [];
 
 // main
@@ -51,35 +26,44 @@ function Init_Canvas(CanvasRef){
 
 // assign all ports' coordinate set to each object
 function Init_Object(){
-    var Ports = [PLCPort, RelayPort, VDC5Port, 
-                 VDC24Port, LimitedSensorPort];
-    for (var i = 0; i < ObjDict.length; i++){
-        ObjDict[i].Port = Ports[i];
+    // get current module and port
+    ObjDict = DictModule[PName];
+
+    // assign module + position with port + position
+    for (const key in ObjDict){
+        const PortsName = ObjDict[key].Port;
+        ObjDict[key].Port = {};
+        for (const PortName of PortsName){
+            const PortPos  = DictPortPos[PortName];
+            ObjDict[key].Port[PortName] = PortPos;
+        }
     }
 }
 
 
-
 function Draw_Image(){
-    for (var i = 0; i < ObjDict.length; i++){
-        var Btmp = new createjs.Bitmap(Imgs[i]);
-        Btmp.name   = ObjDict[i].name;
-        Btmp.x      = ObjDict[i].x; // Center horizontally
-        Btmp.y      = ObjDict[i].y; // Center vertically
-        ObjDict[i].Obj = Btmp;
+    for (const key in ObjDict){
+        var Btmp = new createjs.Bitmap(DictImg[key]);
+        Btmp.name   = key;
+        Btmp.x      = ObjDict[key].x; // Center horizontally
+        Btmp.y      = ObjDict[key].y; // Center vertically
+        ObjDict[key].img = Btmp;
         stage.addChild(Btmp);
     }
     stage.update();         
 }
 
 function Draw_Connection_Points(){
-    for(var i=0; i< ObjDict.length; i++){
-        for(var j=0; j< ObjDict[i].Port.length; j++){
+    for(const ModuleName in ObjDict){
+        for(const PortName in ObjDict[ModuleName].Port){
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,5);
-            circle.name = ObjDict[i].Port[j].name;
-            circle.x = ObjDict[i].x + ObjDict[i].Port[j].x;
-            circle.y = ObjDict[i].y + ObjDict[i].Port[j].y;
+            circle.module = ModuleName;
+            circle.name = PortName;
+            circle.x = ObjDict[ModuleName].x 
+                        + ObjDict[ModuleName].Port[PortName].x;
+            circle.y = ObjDict[ModuleName].y 
+                        + ObjDict[ModuleName].Port[PortName].y;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
