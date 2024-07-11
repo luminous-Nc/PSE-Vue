@@ -1,58 +1,62 @@
-var MyModulesButton = []; // button used to open links and learn
-var MyTextboxs      = []  // textbox set
-var MyShapes        = []; // shape of textbox
-var MyHints         = []; // hint textbox and arrow
-var MyPts           = []; // line waypoints
-var IndexButtonLink = 0;
-var MyTimeInterval;       // time invertal module
-var MyModules          = []; // current module related to incorrect port set
-
-var MyAnalysis = new Object();
-var LearnModule = [];
+// all properties and parameters in the project
+var MyAnalysis;
+var ImgLegend;
 
 // main of anlaysis frame
-function Init_Analysis(){
-    Analysis_Symbols_Remove();
-    Analysis_Properties_Init();
-    General_Analysis();
-    Analysis_Symbols_Hide();
-    Analysis_Symbols_Display();
+function Init_Analysis(){  
+    Init_Parameter_A();
+    Init_Symbol_A();
+    General_Analysis();  
+    console.log(MyAnalysis);
 }
 
 // initialize current analysis properties
-function Analysis_Properties_Init(){
+function Init_Parameter_A(){
     Keys = DictKeys[PName];
+    Timer.Stop = (new Date() - Timer.Start) / 1000;
+    MyAnalysis = new Object();
 }
 
-// remove existing symbols
-function Analysis_Symbols_Remove(){
-}
-
-
-// hide existing symbols
-function Analysis_Symbols_Hide(){
+// initialize current analysis symbols
+function Init_Symbol_A(){
     Hide_Ports();
+    Init_Legend();
 }
 
-// display existing symbols
-function Analysis_Symbols_Display(){
-    //Display_Buttons();
-    //Display_Legends();
-    // Display_AnalysisText();
+// initialize connection legend
+function Init_Legend(){
+        var key = "Legend";
+        var Btmp = new createjs.Bitmap(DictImg[key]);
+        Btmp.name   = key;
+        Btmp.x      = DictObjPos[key].x; // Center horizontally
+        Btmp.y      = DictObjPos[key].y; // Center vertically
+        ImgLegend   = Btmp;
+           
+        stage.addChild(ImgLegend);
+        stage.update();   
+    
 }
 
+// hide Legend
+function Remove_Legend(){
+    stage.removeChild(ImgLegend);
+    stage.update();
+}
 
 // analyze connections
 function General_Analysis(){
     // <<Statistic Analysis>>
     // get correct and incorrect line
-    ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
+    var ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
     Object.assign(MyAnalysis, ConnectionOut);
-    
+
+    // get time elapse
+    var TimeOut = Get_Time_Elapse();
+    Object.assign(MyAnalysis, TimeOut);
  
     // <<Graphical Analysis>>
     // display all incorrect line as red color
-    Highlight_Incorrect_Connection(MyAnalysis.Incorrect);
+    Highlight_Connection(MyLines);
 
     // <<Feature Analysis>>
     // review all incorrect ports set and get all related module
@@ -62,21 +66,19 @@ function General_Analysis(){
 }
 
 // check the user's current connections
-function Check_Connection(MyPorts, MyLines, AllKeys){
+function Check_Connection(MyPorts, MyLines, MyKeys){
     var LoopSkipMarker   = false;
-    var MyCorrect = [], MyCorrectIndex = [], MyCorrectRate;
-    var MyIncorrect = [], MyIncorrectIndex = [], MyIncorrectRate;
+    var MyCorrect = [], MyIncorrect = [];
+    var MyCorrectRate, MyIncorrectRate;
 
     //check the user's current connections
     for (var i = 0; i < MyPorts.length; i++){
-        for (var j = 0; j < AllKeys.length; j++){
-            // get two ports of the connection
+        for (var j = 0; j < MyKeys.length; j++){
+            // get two ports and keys' bane
             var Port1Name = MyPorts[i][0].name;
             var Port2Name = MyPorts[i][1].name;
-
-            // get two ports of the key
-            var Key1Name = AllKeys[j][0];
-            var Key2Name = AllKeys[j][1];
+            var Key1Name  = MyKeys[j][0];
+            var Key2Name  = MyKeys[j][1];
 
             // check if they are match each other
             if((Port1Name == Key1Name) && (Port2Name == Key2Name) ||
@@ -84,7 +86,10 @@ function Check_Connection(MyPorts, MyLines, AllKeys){
 
                 // append the correct connection
                 MyCorrect.push([...MyPorts[i], MyLines[i]]);
-                MyCorrectIndex.push(i);
+
+                // revise line's correct sign
+                MyLines[i].Correct = true;
+
                 LoopSkipMarker = true;
                 break;
             }
@@ -98,31 +103,64 @@ function Check_Connection(MyPorts, MyLines, AllKeys){
     
         // append incorrect connection if unfound correct one
         MyIncorrect.push([...MyPorts[i], MyLines[i]]);
-        MyIncorrectIndex.push(i);
     }
 
     // correct and incorrect rate
-    MyCorrectRate = MyCorrect.length / AllKeys.length;
-    MyIncorrectRate = 1 - MyCorrectRate;
+    var MyCorrectRate = parseFloat((MyCorrect.length / MyKeys.length).toFixed(2));
+    var MyIncorrectRate = 1 - MyCorrectRate;
 
     // integrate all results and return as an object
-    return {Key: AllKeys,
-            Correct: MyCorrect, 
-            CorrectIndex: MyIncorrectIndex,
-            CorrectRate: MyCorrectRate,
-            Incorrect: MyIncorrect, 
-            IncorretIndex: MyIncorrectIndex,
-            IncorrectRate: MyIncorrectRate,};
+    return {Line:           MyLines,
+            Key:            MyKeys,
+            Correct:        MyCorrect, 
+            CorrectRate:    MyCorrectRate,
+            Incorrect:      MyIncorrect, 
+            IncorrectRate:  MyIncorrectRate,};
 }
 
-// Highlight incorrect connection with red color
-function Highlight_Incorrect_Connection(Incorrect){
-    for (var i = 0; i < Incorrect.length; i++){
-        // Incorrect items' index
-        // Ports: 0, 1, Line: 2.
-        var MyObj = Incorrect[i][2];
-        MyObj.graphics._stroke.style = "#FF0000";
+// Process time elapsed
+function Get_Time_Elapse(){
+    var MyTimers = [], TimeTicker = 0, i = 1;
+    var IdleName, IdleTime, CircleName, CircleTime;
+
+    // process idle and cycle time from all lines
+    for (var Line of MyLines){
+        // update operation data
+        IdleName = "idle" + String(i);
+        IdleTime = Line.Time.Start - TimeTicker;
+        CircleName = "circle" + String(i) +"_" + Line.name;
+        CircleTime = Line.Time.Stop - Line.Time.Start;
+        i += 1;
+
+        // add the operations
+        MyTimers.push([IdleName, parseFloat(IdleTime.toFixed(2))]);
+        MyTimers.push([CircleName, parseFloat(CircleTime.toFixed(2))]);
+        TimeTicker = Line.Time.Stop; 
     }
+
+    // final idle time(start&final line -> submit)
+    IdleName = "idle" + String(i);
+    IdleTime = Timer.Stop - TimeTicker;
+    MyTimers.push([IdleName, parseFloat(IdleTime.toFixed(2))]);
+
+    return {Time: MyTimers};
+
+}
+
+// Highlight connection with red & green color
+function Highlight_Connection(MyLines){
+    for (var i = 0; i < MyLines.length; i++){
+        // setup line width
+        MyLines[i].graphics._strokeStyle.width = 3;
+
+        // setup line color
+        if (MyLines[i].Correct == true){
+            MyLines[i].graphics._stroke.style = "green"
+        }else{
+            MyLines[i].graphics._stroke.style = "red";
+        }          
+    }
+    stage.update();
 }
 
 // check learning modules related to the incorrect connections
@@ -132,7 +170,7 @@ function Get_Learn_Modules(Incorrect){
     // get module name
     for (i = 0; i < Incorrect.length; i++){
         for (j = 0; j < 2; j++){
-            var Module = Incorrect[i][j].Module;
+            var Module = Incorrect[i][j].module;
             
             // add module name
             if (!Modules.includes(Module)){

@@ -1,15 +1,14 @@
 // declare variables
 
-// all objects' prefix
-var Title        = {}; 
-
 // User's operation
 var MyPorts		 = [];  // user's accumulated ports set
+var TempPorts    = [];  // current dual selected ports
 var MySubLines	 = [];	// user's accumulated subLines
 var MyLines		 = [];	// user's accumulated connections(two ports array);
-var MyPortsNum; 		// the number of the current selected ports
-var MyLinesNum; 	    // the number of the current correct connection
+var Timer        = {};  // user's start time
 
+// overall parameters
+var Title = {};     // objects' prefix
 var Obstacles       // all specific obstacle points
 var Ports;	        // selectable ports
 
@@ -22,21 +21,23 @@ function Init_Practice(){
 
 // initialize all parameters
 function Init_Parameter(){	
-    DictSubMScl  = {};
-    DictDetourL  = {};
-    MyPorts	     = [];
-    MySubLines   = [];
-    MyPortsNum   = 0;
-    MyLinesNum   = 0;
-    Title        = Titles_Init(PName);  // objects' general title
+    DictSubMScl = {};
+    DictDetourL = {};
+    MyPorts	    = [];
+    TempPorts   = [];
+    Title       = Titles_Init(PName);  // objects' general title
+    Timer       = {Start: new Date()};
 }
 
 // initialize designated symbols in <practice> frame
 function Init_Symbol(){ 
-    // remove MySubLines and lines if exist
-    Remove_Lines();
+    // remove SubLines and Lines if exist
     Remove_SubLines();
+    Remove_Lines();
 
+    // remove analysis symbols
+    Remove_Legend();
+    
     // generate obstacles
     Obstacles = Init_Obstacles(ObjDict);
 
@@ -59,7 +60,6 @@ function Titles_Init(Title){
             "Obstacle": Obstacle, 
             "Module":   Module};
 }
-
 
 // initialize all obstacles of the current task based on module figure
 function Init_Obstacles(Objs){
@@ -218,79 +218,68 @@ function Event_Click_Connect(e){
     Select_Ports(e.target);
     
     // 2. display connection when two ports have been selected
-    Display_Single_Connection();
+    Display_Connection();
 }
 
 function Select_Ports(target){
-    var Port;
     const StringPort = ["Start Port", "End Port"];
 
     // get current selected port
-    Port = target;
+    var Port = target;
 
     // get and display subline symbol from select symbol   
     var SubLine = Get_SubLine(Port);
 
-    // adda subline end point to the port
+    // add subline end point to the port
     Port.SubLEnd = SubLine.point.end;
     
+    // add time stamp
+    Port.Time = new Date();
+
     // reset current/new ports pair
-    if (MyPortsNum == 0){
-        MyPorts[MyLinesNum] = [];    
-    }
+    TempPorts.push(Port);
+    MySubLines.push(SubLine);
 
     // dispplay in web console for 2nd port
-    console.log("%s -> %s", StringPort[MyPortsNum], Port.name);
-
-    // distribute current port name(start_port or end_port)
-    MyPorts[MyLinesNum][MyPortsNum] = Port;
-    MySubLines[MyPortsNum] 		    = SubLine;
-    MyPortsNum    		           += 1;
-    
+    console.log("%s -> %s", 
+                StringPort[TempPorts.length - 1], 
+                Port.name);
+  
 }
 
-function Display_Single_Connection(){
-    var Line;
-   
+function Display_Connection(){
     // check if the two different ports have been selected
-    if (MyPortsNum == 2){
-        if(MyPorts[MyLinesNum][0].name != 
-           MyPorts[MyLinesNum][1].name){
+    if (TempPorts.length == 2){
+        if(TempPorts[0].name != TempPorts[1].name){
             // generate the connection
-            Line = Get_Line(MyPorts[MyLinesNum]);
+            var Line = Get_Line(TempPorts);
    
             // display the connection and setup other procedure
             if (typeof Line != 'undefined'){
                 // disable the two select ports with successful connection
-                Disable_Select(MyPorts[MyLinesNum]);
+                Disable_Select(TempPorts);
 
-                // accumulate the connection(two ports nested array and line object)
-                MyLines.push(Line);
-
-                // count the number of correct connections
-                MyLinesNum += 1;
-            
+                // add operations
+                MyPorts.push(TempPorts); // ports
+                MyLines.push(Line);      // connections
+                    
                 // notify in the console
                 console.log("connection -> %s", Line.name);
                 console.log("---------");     
             }else{
-                MyPorts.pop();
-                console.log("undefined connection");
-                
+                console.log("undefined connection");            
             }                     
         }else{
-            DictSubMScl[MyPorts[MyLinesNum][0].module] -=2;
-            MyPorts.pop();
+            DictSubMScl[TempPorts[0].module] -=2;
             console.log("connection needs two different ports");
         }
          
-        // hide two active MySubLines
+        // remove active SubLines
         Remove_SubLines();
 
-        // reset both ports and the number of ports after checking connection
-        MyPortsNum 	= 0;  
+        // reset both temperoral ports
+        TempPorts = [];  
     }
-
 }
 
 // get subline
@@ -414,6 +403,13 @@ function Get_Line(MyPortSet){
     // assign the connection module
     Line.Module = [Port1.name, Port2.name];
 
+    // add time elapsed(second)
+    Line.Time = {Start:  (Port1.Time - Timer.Start) / 1000,
+                 Stop:   (Port2.Time - Timer.Start) / 1000};
+
+    // set correct sign of the line(default: false)
+    Line.Correct = false;
+
     return Line;
 }
 
@@ -444,18 +440,15 @@ function Draw_Connection(LineName, Points, DashPattern = false){
     // hide the line(optinal)
     //Line.visible = false;
     
-    // add the line to the stage if new
-    if (MyLines.includes(Line) == false){
-        stage.addChild(Line);
-        stage.update();
-    }
-
+    stage.addChild(Line);
+    stage.update();
+    
     return Line;
 }
 
 // generate current line object
 function Get_Line_Name(Title, Port1Name, Port2Name){
-    return Title + "_" + Port1Name + "_" + Port2Name;
+    return "{" + Title + "_" + Port1Name + "_" + Port2Name + "}";
 }
 
 // generate current select/subline object

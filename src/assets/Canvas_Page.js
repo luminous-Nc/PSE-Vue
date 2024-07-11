@@ -5,7 +5,7 @@ var stage;
 
 // practice name
 var PName;
-var ObjDict;
+var ObjDict  = {};
 var ObjPorts = [];
 
 // main
@@ -28,18 +28,7 @@ function Init_Canvas(CanvasRef){
 function Init_Object(){
     // get current module and port
     ObjDict = DictModule[PName];
-
-    // assign module + position with port + position
-    for (const key in ObjDict){
-        const PortsName = ObjDict[key].Port;
-        ObjDict[key].Port = {};
-        for (const PortName of PortsName){
-            const PortPos  = DictPortPos[PortName];
-            ObjDict[key].Port[PortName] = PortPos;
-        }
-    }
 }
-
 
 function Draw_Image(){
     for (const key in ObjDict){
@@ -55,22 +44,19 @@ function Draw_Image(){
 
 function Draw_Connection_Points(){
     for(const ModuleName in ObjDict){
-        for(const PortName in ObjDict[ModuleName].Port){
+        for(const PortName of ObjDict[ModuleName].Port){
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,5);
             circle.module = ModuleName;
-            circle.name = PortName;
-            circle.x = ObjDict[ModuleName].x 
-                        + ObjDict[ModuleName].Port[PortName].x;
-            circle.y = ObjDict[ModuleName].y 
-                        + ObjDict[ModuleName].Port[PortName].y;
+            circle.name   = PortName;
+            circle.x = ObjDict[ModuleName].x + DictObjPos[PortName].x;
+            circle.y = ObjDict[ModuleName].y + DictObjPos[PortName].y;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
         }
     } 
 }
-
 
 // function Draw_Image(){
 //     var ImagesLoadedNum = 0;

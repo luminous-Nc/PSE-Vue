@@ -1,7 +1,7 @@
 // all properties and parameters in the project
     // modules and keys' dictionary
     var DictModule      = {}; // all connecting module name
-    var DictPortPos     = []; // all ports' position
+    var DictObjPos      = []; // all objects' fixed or relative position
     var DictKeys        = {}; // all connecting keys
     var Keys            = []; // connecting keys
 
@@ -25,7 +25,8 @@
 
     // image list
     var DictImg = {};
-    var Imgs = [];
+    var ImgsJpg = [];
+    var ImgsJpeg = [];
 
 // -------------------------
 // prepare dynamic parameters  
@@ -52,6 +53,7 @@
     DictKeys = {P1: [["5VP", "RLC2"],   ["RLC1", "LS1"], 
                      ["LS2", "5VN"],    ["GNDDI", "24VN"], 
                      ["DI01", "RLSW1"], ["RLSW3", "24VP"]],
+                     
                 P2: [["120VP", "RLSW3"], ["120VN", "C2"], 
                      ["RLSW1", "C1"], ["24VP", "24F4"], 
                      ["24VN", "0V2"], ["DO101", "RLC1"], 
@@ -60,9 +62,10 @@
 // -------------------------
 // prepare static parameters
 // -------------------------
-    Imgs =  ["PLC", "Relay", "5VDC", "24VDC", "LimitedSensor"];
+    ImgsJpg =  ["PLC", "Relay", "5VDC", "24VDC", "LimitedSensor"];
+    ImgsJpeg = ["Legend"];
 
-    DictPortPos = { "DI01":  {x:11, y:313}, "DI02":  {x:11, y:338},  
+    DictObjPos  = { "DI01":  {x:11, y:313}, "DI02":  {x:11, y:338},  
                     "DI03":  {x:11, y:363}, "DO01":  {x:11, y:94},   
                     "GNDDI": {x:11, y:289}, 
 
@@ -74,7 +77,9 @@
 
                     "24VP":  {x:20, y:12}, "24VN":  {x:60, y:12},
 
-                    "LS1":   {x:7, y:30}, "LS2":   {x:65, y:30}};
+                    "LS1":   {x:7, y:30}, "LS2":   {x:65, y:30},
+                    
+                    "Legend": {x:650, y:30}};
 
     // normal direction
     DictDirN = [{x : 0,  y : -1}, // up
