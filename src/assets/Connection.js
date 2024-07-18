@@ -31,11 +31,9 @@ function Init_Parameter(){
 
 // initialize designated symbols in <practice> frame
 function Init_Symbol(){ 
-    // remove SubLines and Lines if exist
+    // remove SubLines, Lines, and Legend
     Remove_SubLines();
     Remove_Lines();
-
-    // remove analysis symbols
     Remove_Legend();
     
     // generate obstacles
@@ -200,7 +198,7 @@ function Event_MouseDown_Connect(e){
     Edit_Connect(e.target, "red", 5);
 }
 
-// mouseover a connection
+// mouseout a connection
 function Event_MouseOut_Connect(e){
     Edit_Connect(e.target, "blue", 5);
 }
@@ -222,8 +220,6 @@ function Event_Click_Connect(e){
 }
 
 function Select_Ports(target){
-    const StringPort = ["Start Port", "End Port"];
-
     // get current selected port
     var Port = target;
 
@@ -241,6 +237,7 @@ function Select_Ports(target){
     MySubLines.push(SubLine);
 
     // dispplay in web console for 2nd port
+    const StringPort = ["Start Port", "End Port"];
     console.log("%s -> %s", 
                 StringPort[TempPorts.length - 1], 
                 Port.name);
@@ -270,6 +267,7 @@ function Display_Connection(){
                 console.log("undefined connection");            
             }                     
         }else{
+            // resume the current subline moving scale
             DictSubMScl[TempPorts[0].module] -=2;
             console.log("connection needs two different ports");
         }
@@ -448,30 +446,17 @@ function Draw_Connection(LineName, Points, DashPattern = false){
 
 // generate current line object
 function Get_Line_Name(Title, Port1Name, Port2Name){
-    return "{" + Title + "_" + Port1Name + "_" + Port2Name + "}";
+    return "{" + Title + ": " + Port1Name + "_" + Port2Name + "}";
 }
 
 // generate current select/subline object
 function Get_Symbol_Name(Title, PortName){
-    return Title + "_" + PortName;
+    return Title + ": " + PortName;
 }
 
-// hide the current select port and remove the eventListener
+// hide the current two select ports
 function Disable_Select(Ports){ 
-    // if (Select.name in ExtraPorts){
-    //         // 1. delete current key and keep the current select listener
-    //         delete ExtraPorts[Select.name]; 
-    //     }else {
-    //         // delete the current select listener
-    //         All_Events_Remove(Select, 'click', Event_Click_Connect);
-    //         Select.visible = false;
-    //     }
-
-    // hide selected ports
     Execute_All(Ports, false);
-
-    // remove port click events
-    //All_Events_Remove(Ports, 'click', Event_Click_Connect);
 }
 
 /* // initialize subline

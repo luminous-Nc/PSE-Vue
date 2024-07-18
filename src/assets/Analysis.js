@@ -25,8 +25,8 @@ function Init_Symbol_A(){
 
 // initialize connection legend
 function Init_Legend(){
-        var key = "Legend";
-        var Btmp = new createjs.Bitmap(DictImg[key]);
+        var key     = "Legend";
+        var Btmp    = new createjs.Bitmap(DictImg[key]);
         Btmp.name   = key;
         Btmp.x      = DictObjPos[key].x; // Center horizontally
         Btmp.y      = DictObjPos[key].y; // Center vertically
@@ -66,29 +66,29 @@ function General_Analysis(){
 }
 
 // check the user's current connections
-function Check_Connection(MyPorts, MyLines, MyKeys){
+function Check_Connection(PortsIn, LinesIn, KeysIn){
     var LoopSkipMarker   = false;
-    var MyCorrect = [], MyIncorrect = [];
-    var MyCorrectRate, MyIncorrectRate;
+    var CorrectOut = [], IncorrectOut = [];
+    var CorrectRateOut, MyIncorrectRateOut;
 
     //check the user's current connections
-    for (var i = 0; i < MyPorts.length; i++){
-        for (var j = 0; j < MyKeys.length; j++){
+    for (var i = 0; i < PortsIn.length; i++){
+        for (var j = 0; j < KeysIn.length; j++){
             // get two ports and keys' bane
-            var Port1Name = MyPorts[i][0].name;
-            var Port2Name = MyPorts[i][1].name;
-            var Key1Name  = MyKeys[j][0];
-            var Key2Name  = MyKeys[j][1];
+            var Port1Name = PortsIn[i][0].name;
+            var Port2Name = PortsIn[i][1].name;
+            var Key1Name  = KeysIn[j][0];
+            var Key2Name  = KeysIn[j][1];
 
             // check if they are match each other
             if((Port1Name == Key1Name) && (Port2Name == Key2Name) ||
                (Port1Name == Key2Name) && (Port2Name == Key1Name)){
 
                 // append the correct connection
-                MyCorrect.push([...MyPorts[i], MyLines[i]]);
+                MyCorrect.push([...PortsIn[i], LinesIn[i]]);
 
                 // revise line's correct sign
-                MyLines[i].Correct = true;
+                LinesIn[i].Correct = true;
 
                 LoopSkipMarker = true;
                 break;
@@ -102,84 +102,88 @@ function Check_Connection(MyPorts, MyLines, MyKeys){
         }
     
         // append incorrect connection if unfound correct one
-        MyIncorrect.push([...MyPorts[i], MyLines[i]]);
+        IncorrectOut.push([...PortsIn[i], LinesIn[i]]);
     }
 
     // correct and incorrect rate
-    var MyCorrectRate = parseFloat((MyCorrect.length / MyKeys.length).toFixed(2));
-    var MyIncorrectRate = 1 - MyCorrectRate;
+    var CorrectRateOut = parseFloat((CorrectOut.length / KeysIn.length).toFixed(2));
+    var IncorrectRateOut = 1 - CorrectRateOut;
 
     // integrate all results and return as an object
-    return {Line:           MyLines,
-            Key:            MyKeys,
-            Correct:        MyCorrect, 
-            CorrectRate:    MyCorrectRate,
-            Incorrect:      MyIncorrect, 
-            IncorrectRate:  MyIncorrectRate,};
+    return {Line:           LinesIn,
+            Key:            KeysIn,
+            Correct:        CorrectOut, 
+            CorrectRate:    CorrectRateOut,
+            Incorrect:      IncorrectOut, 
+            IncorrectRate:  IncorrectRateOut};
 }
 
 // Process time elapsed
 function Get_Time_Elapse(){
-    var MyTimers = [], TimeTicker = 0, i = 1;
+    var MyTimers = [], TimeTicker = 0, i = 0;
     var IdleName, IdleTime, CircleName, CircleTime;
 
     // process idle and cycle time from all lines
     for (var Line of MyLines){
-        // update operation data
-        IdleName = "idle" + String(i);
-        IdleTime = Line.Time.Start - TimeTicker;
-        CircleName = "circle" + String(i) +"_" + Line.name;
-        CircleTime = Line.Time.Stop - Line.Time.Start;
+        // add idle operation
         i += 1;
+        IdleName = "idle";
+        IdleTime = Line.Time.Start - TimeTicker;
+        MyTimers.push([i, IdleName, parseFloat(IdleTime.toFixed(2))]);
 
-        // add the operations
-        MyTimers.push([IdleName, parseFloat(IdleTime.toFixed(2))]);
-        MyTimers.push([CircleName, parseFloat(CircleTime.toFixed(2))]);
+        // add cycle operation
+        i += 1;
+        CircleName = "circle" +": " + Line.name;
+        CircleTime = Line.Time.Stop - Line.Time.Start;
+        MyTimers.push([i, CircleName, parseFloat(CircleTime.toFixed(2))]);
+        
+        // update time ticker using the current line stop time
         TimeTicker = Line.Time.Stop; 
     }
 
     // final idle time(start&final line -> submit)
-    IdleName = "idle" + String(i);
+    i += 1;
+    IdleName = "idle";
     IdleTime = Timer.Stop - TimeTicker;
-    MyTimers.push([IdleName, parseFloat(IdleTime.toFixed(2))]);
+    MyTimers.push([i, IdleName, parseFloat(IdleTime.toFixed(2))]);
 
     return {Time: MyTimers};
 
 }
 
 // Highlight connection with red & green color
-function Highlight_Connection(MyLines){
-    for (var i = 0; i < MyLines.length; i++){
+function Highlight_Connection(LinesIn){
+    for (var i = 0; i < LinesIn.length; i++){
         // setup line width
-        MyLines[i].graphics._strokeStyle.width = 3;
+        LinesIn[i].graphics._strokeStyle.width = 3;
 
         // setup line color
-        if (MyLines[i].Correct == true){
-            MyLines[i].graphics._stroke.style = "green"
+        if (LinesIn[i].Correct == true){
+            LinesIn[i].graphics._stroke.style = "green"
         }else{
-            MyLines[i].graphics._stroke.style = "red";
+            LinesIn[i].graphics._stroke.style = "red";
         }          
     }
     stage.update();
 }
 
 // check learning modules related to the incorrect connections
-function Get_Learn_Modules(Incorrect){
-    var Modules = [];
+function Get_Learn_Modules(IncorrectIn){
+    var ModulesOut = [];
 
     // get module name
-    for (i = 0; i < Incorrect.length; i++){
+    for (i = 0; i < IncorrectIn.length; i++){
         for (j = 0; j < 2; j++){
-            var Module = Incorrect[i][j].module;
+            var Module = IncorrectIn[i][j].module;
             
             // add module name
-            if (!Modules.includes(Module)){
-                Modules.push(Module);
+            if (!ModulesOut.includes(Module)){
+                ModulesOut.push(Module);
             }    
         }
     }
 
-    return {LearnModule: Modules};
+    return {LearnModule: ModulesOut};
 }
 
 // hide all legends
