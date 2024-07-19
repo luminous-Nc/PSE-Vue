@@ -395,7 +395,7 @@ function Get_Line(MyPortSet){
     // draw mutiple waypoints line
     var Line     = Draw_Connection(LineName, WayPts);
  
-    // draw line based on the position of the two Ports
+    // draw direct line based on the position of the two Ports
     //var Line = Draw_Connection(LineName, [StartPt, EndPt]);
     
     // assign the connection module
@@ -446,7 +446,7 @@ function Draw_Connection(LineName, Points, DashPattern = false){
 
 // generate current line object
 function Get_Line_Name(Title, Port1Name, Port2Name){
-    return "{" + Title + ": " + Port1Name + "_" + Port2Name + "}";
+    return "{" + Title + ": " + Port1Name + " <---> " + Port2Name + "}";
 }
 
 // generate current select/subline object

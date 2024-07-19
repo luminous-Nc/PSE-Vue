@@ -116,7 +116,7 @@ function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacle, Obstacles){
 // add detour points between two waypoints
 function Add_Detour_Points(MyWayPts, MyObstacle){
     var Result, MyResult;
-    var ObName, ObIndex;
+    var ObName;
     
     // check if added placid waypoint can be avoid the obstacle
     // MyWayPts = [Point1, Point2]
@@ -148,7 +148,6 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
 
                     // update detour parameters
                     ObName = MyObstacle.name;
-                    ObIndex = i;
 
                     // integrate with the current end point
                     Result = MyResult;
@@ -161,11 +160,11 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
         // (try to avoid overlapped line)
         if (ObName in DictDetourL){
             // update current obstacle parameter
-            DictDetourL[ObName][ObIndex] += 1;
+            DictDetourL[ObName] += 1;
         }else{
             // initialize current obstacle parameter
-            DictDetourL[ObName] = [0, 0, 0, 0];
-            DictDetourL[ObName][ObIndex] = 1;
+            DictDetourL[ObName] = 0;
+            DictDetourL[ObName] = 1;
         }
 
     }else{
@@ -395,7 +394,7 @@ function Get_Detour_Points(MyRec){
     // get detour additional extention factor
     var DeFactors;
     if (typeof DictDetourL[MyRec.name] == "undefined"){
-        DeFactors = [0, 0, 0, 0];
+        DeFactors = 0;
     }else{
         DeFactors = DictDetourL[MyRec.name];
     }
@@ -405,7 +404,7 @@ function Get_Detour_Points(MyRec){
  
     for (var i = 0; i < MyDePts.length; i++){ 
         // generate the current shift value
-        MyShift[i] = DetourBaseL + DetourAddL * DeFactors[i];
+        MyShift[i] = DetourBaseL + DetourAddL * DeFactors;
         
         // update the detour point based on shift value and direction
         MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDirD[i].x, 

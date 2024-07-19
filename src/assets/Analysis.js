@@ -120,35 +120,43 @@ function Check_Connection(PortsIn, LinesIn, KeysIn){
 
 // Process time elapsed
 function Get_Time_Elapse(){
-    var MyTimers = [], TimeTicker = 0, i = 0;
-    var IdleName, IdleTime, CircleName, CircleTime;
+    var MyTimer, MyTimers = [], i = 0;
+    var Name, StartTime, StopTime, TimeUse, TimeTicker = 0;
 
     // process idle and cycle time from all lines
     for (var Line of MyLines){
         // add idle operation
         i += 1;
-        IdleName = "idle";
-        IdleTime = Line.Time.Start - TimeTicker;
-        MyTimers.push([i, IdleName, parseFloat(IdleTime.toFixed(2))]);
+        Name  = "idle";
+        [MyTimer, TimeTicker] = Get_Operation_Timer(i, Name, TimeTicker, Line.Time.Start);
+        MyTimers.push(MyTimer);
 
         // add cycle operation
         i += 1;
-        CircleName = "circle" +": " + Line.name;
-        CircleTime = Line.Time.Stop - Line.Time.Start;
-        MyTimers.push([i, CircleName, parseFloat(CircleTime.toFixed(2))]);
-        
-        // update time ticker using the current line stop time
-        TimeTicker = Line.Time.Stop; 
+        Name = "cycle" +": " + Line.name;
+        [MyTimer, TimeTicker] = Get_Operation_Timer(i, Name, TimeTicker, Line.Time.Stop);
+        MyTimers.push(MyTimer);
     }
 
     // final idle time(start&final line -> submit)
     i += 1;
-    IdleName = "idle";
-    IdleTime = Timer.Stop - TimeTicker;
-    MyTimers.push([i, IdleName, parseFloat(IdleTime.toFixed(2))]);
+    Name = "idle";
+    [MyTimer, TimeTicker] = Get_Operation_Timer(i, Name, TimeTicker, Timer.Stop);
+    MyTimers.push(MyTimer);
 
     return {Time: MyTimers};
 
+}
+
+// Get current operation timer with limited decimal places
+function Get_Operation_Timer(Number, Name, StartTime, StopTime){
+    // keep two decimal places
+    StartTime   = parseFloat(StartTime.toFixed(2));
+    StopTime    = parseFloat(StopTime.toFixed(2));
+    var TimeUse = parseFloat((StopTime - StartTime).toFixed(2));
+
+    // return integrate timer and update the current timeticker
+    return [[Number, Name, StartTime, StopTime, TimeUse], StopTime];
 }
 
 // Highlight connection with red & green color
