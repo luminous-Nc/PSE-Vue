@@ -69,7 +69,7 @@ function General_Analysis(){
 function Check_Connection(PortsIn, LinesIn, KeysIn){
     var LoopSkipMarker   = false;
     var CorrectOut = [], IncorrectOut = [];
-    var CorrectRateOut, MyIncorrectRateOut;
+    var CorrectRateOut,  IncorrectRateOut;
 
     //check the user's current connections
     for (var i = 0; i < PortsIn.length; i++){
@@ -85,7 +85,7 @@ function Check_Connection(PortsIn, LinesIn, KeysIn){
                (Port1Name == Key2Name) && (Port2Name == Key1Name)){
 
                 // append the correct connection
-                MyCorrect.push([...PortsIn[i], LinesIn[i]]);
+                CorrectOut.push([...PortsIn[i], LinesIn[i]]);
 
                 // revise line's correct sign
                 LinesIn[i].Correct = true;

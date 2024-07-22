@@ -28,6 +28,11 @@
     var ImgsJpg = [];
     var ImgsJpeg = [];
 
+    // port list
+    var InputPort  = [];
+    var OutputPort = [];
+    var RndPort = "";
+
 // -------------------------
 // prepare dynamic parameters  
 // -------------------------
@@ -47,28 +52,53 @@
                        "LimitedSensor": {x:450, y:100,
                         Port: ["LS1", "LS2"]}},
 
-                  P2: {}};
+                  P2: {"PLCInput": {x:150, y:100,
+                        Port: [RndPort, "GNDIN"]},
+
+                       "24VDC": {x:650, y:500,
+                        Port: ["24VP", "24VN"]},
+                                              
+                       "Switch": {x:650, y:200,
+                        Port: ["SWL", "SWR"]}},
+                       
+                  P3: {"PLCOutput": {x:150, y:100,
+                       Port: [RndPort, "DC0"]},
+
+                       "24VDC": {x:650, y:500,
+                       Port: ["24VP", "24VN"]},
+
+                       "Motor": {x:650, y:200,
+                       Port: ["MTL", "MTR"]}}};
 
     // connecting keys
     DictKeys = {P1: [["5VP", "RLC2"],   ["RLC1", "LS1"], 
                      ["LS2", "5VN"],    ["GNDDI", "24VN"], 
                      ["DI01", "RLSW1"], ["RLSW3", "24VP"]],
-                     
-                P2: [["120VP", "RLSW3"], ["120VN", "C2"], 
-                     ["RLSW1", "C1"], ["24VP", "24F4"], 
-                     ["24VN", "0V2"], ["DO101", "RLC1"], 
-                     ["0V3", "RLC2"]]};
+                P2: [[RndPort, "SWL"], ["SWR", "24VN"], ["GNDIN", "24VP"]],
+                P3: [[RndPort, "MTL"], ["MTR", "24VN"], ["DC0", "24VP"]]};
 
 // -------------------------
 // prepare static parameters
 // -------------------------
     ImgsJpg =  ["PLC", "Relay", "5VDC", "24VDC", "LimitedSensor"];
-    ImgsJpeg = ["Legend"];
+    ImgsJpeg = ["Legend", "Switch", "Motor", "PLCInput", "PLCOutput"];
+
+    InputPort  = ["IN0", "IN1", "IN2", "IN3", 
+                  "IN4", "IN5", "IN6", "IN7"];
+    OutputPort = ["OUT0", "OUT1", "OUT2", "OUT3", "OUT4"];
 
     DictObjPos  = { "DI01":  {x:11, y:313}, "DI02":  {x:11, y:338},  
-                    "DI03":  {x:11, y:363}, "DO01":  {x:11, y:94},   
+                    "DI03":  {x:11, y:363}, "DI04":  {x:11, y:387},
+                    "DI05":  {x:11, y:411}, "DI06":  {x:11, y:437},
+                    "DI07":  {x:11, y:460}, "DI08":  {x:11, y:484},
                     "GNDDI": {x:11, y:289}, 
 
+                    "DO01":  {x:11, y:94},  "DO02":  {x:11, y:116},
+                    "DO03":  {x:11, y:141}, "DO04":  {x:11, y:166},
+                    "DO05":  {x:11, y:190}, "DO06":  {x:11, y:214},
+                    "DO07":  {x:11, y:240}, "DO08":  {x:11, y:264}, 
+                    "GNDDO": {x:9, y:68}, 
+                    
                     "RLC1":  {x:82, y:7}, "RLC2":  {x:82, y:137},
                     "RLSW1": {x:38, y:7}, "RLSW2": {x:23, y:137},
                     "RLSW3": {x:53, y:137},
@@ -78,6 +108,23 @@
                     "24VP":  {x:20, y:12}, "24VN":  {x:60, y:12},
 
                     "LS1":   {x:7, y:30}, "LS2":   {x:65, y:30},
+
+                    "SWL":   {x:5, y:21}, "SWR":   {x:95, y:21},
+
+                    "MTL":   {x:7, y:28}, "MTR":   {x:97, y:28},
+
+                    "IN0":   {x:133, y:113}, "IN1":   {x:338, y:113},
+                    "IN2":   {x:133, y:200}, "IN3":   {x:338, y:200},
+                    "IN4":   {x:133, y:285}, "IN5":   {x:338, y:285},
+                    "IN6":   {x:133, y:374}, "IN7":   {x:338, y:374},
+                    "GNDIN": {x:133, y:458},
+
+                    "DC0":   {x:133, y:203}, 
+                    "OUT0":  {x:338, y:117},
+                    "OUT1":  {x:338, y:203},
+                    "OUT2":  {x:338, y:288},
+                    "OUT3":  {x:338, y:377},
+                    "OUT4":  {x:338, y:461},
                     
                     "Legend": {x:650, y:30}};
 
@@ -128,7 +175,10 @@
                         "KUKA Robot"        : 4, 
                         "OMRON Robot"       : 4};
 
-
+function Get_Random_Array_Value(ArrayIn){
+    const randomIndex = Math.floor(Math.random() * ArrayIn.length);
+    return ArrayIn[randomIndex];
+}
 //// initialize pure ports
 //			// 0       1     
 //AllPorts    = ["LS1",  "LS2",
@@ -266,3 +316,8 @@
 //     "5VDC":    ["5VP", "5VN"],
 //     "24VDC":   ["24VP", "24VN"]},
 // P2: {}};
+
+// P2: [["120VP", "RLSW3"], ["120VN", "C2"], 
+// ["RLSW1", "C1"], ["24VP", "24F4"], 
+// ["24VN", "0V2"], ["DO101", "RLC1"], 
+// ["0V3", "RLC2"]]

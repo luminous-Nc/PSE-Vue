@@ -310,25 +310,24 @@ function Get_SubLine(Port){
     }
 
     // get subline moving part
-        // find which obstacle does the port belong to
-        var ObName = Get_Inside_Obstacle(StartPt, Obstacles);
+    // find which obstacle does the port belong to
+    var ObName = Get_Inside_Obstacle(StartPt, Obstacles);
 
-        // update subline scake dictionary (various subline length at each module)
-        if (ObName in DictSubMScl){
-            DictSubMScl[ObName] += 1;
-        }
-        else{
-            DictSubMScl[ObName] = 1;
-        }
+    // update subline scake dictionary (various subline length at each module)
+    if (ObName in DictSubMScl){
+        DictSubMScl[ObName] += 1;
+    }
+    else{
+        DictSubMScl[ObName] = 1;
+    }
 
-        // calculate moving length
-        var MoveL = DictSubL.Base + DictSubL.Move * DictSubMScl[ObName] ;
-
+    // calculate moving length
+    var MoveL = DictSubL.Base + DictSubL.Move * DictSubMScl[ObName] ;
 
     // merge two parts: start point -> break point + moving line
     EndPt = {x : BreakPts.x + Dir.x * MoveL,
              y : BreakPts.y + Dir.y * MoveL};
-       
+
     // initialize subline name
     var SubLineName = Get_Symbol_Name(Title.SubLine, Port.name);
 
@@ -343,7 +342,7 @@ function Get_SubLine(Port){
     var SubLine = new createjs.Shape();
 
     // setup properties
-    SubLine.graphics.setStrokeStyle(2); 	 // Line thickness
+    SubLine.graphics.setStrokeStyle(5); 	 // Line thickness
     SubLine.graphics.beginStroke("#000000"); // Line color
     SubLine.name    = SubLineName;           // Name
     SubLine.Module  = ObName;                // parent module name
@@ -351,7 +350,7 @@ function Get_SubLine(Port){
 
     // draw subline
     SubLine.graphics.moveTo(StartPt.x, StartPt.y);
-    SubLine.graphics.lineTo(EndPt.x,   EndPt.y);
+    SubLine.graphics.lineTo(EndPt.x, EndPt.y);
 
     // add start and end points
     SubLine.point = {start: StartPt, end: EndPt}

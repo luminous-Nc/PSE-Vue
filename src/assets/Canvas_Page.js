@@ -28,6 +28,22 @@ function Init_Canvas(CanvasRef){
 function Init_Object(){
     // get current module and port
     ObjDict = DictModule[PName];
+
+    // custom random port
+    Custom_Random_Port();
+}
+
+// custom random port for single practice
+function Custom_Random_Port(){
+    // input module practice
+    RndPort  = Get_Random_Array_Value(InputPort);
+    DictModule["P2"]["PLCInput"]["Port"][0] = RndPort;
+    DictKeys["P2"][0][0] = RndPort;
+
+    // output module practice
+    RndPort = Get_Random_Array_Value(OutputPort);
+    DictModule["P3"]["PLCOutput"]["Port"][0] = RndPort;
+    DictKeys["P3"][0][0] = RndPort;
 }
 
 function Draw_Image(){
