@@ -190,17 +190,17 @@ function All_Events_Remove(objects, event, event_func) {
 
 // mouseover a connection
 function Event_MouseOver_Connect(e){
-    Edit_Connect(e.target, "blue", 10);
+    Edit_Connect(e.target, "blue", PortSize*2);
 }
 
 // mousedown a connection
 function Event_MouseDown_Connect(e){
-    Edit_Connect(e.target, "red", 5);
+    Edit_Connect(e.target, "red", PortSize);
 }
 
 // mouseout a connection
 function Event_MouseOut_Connect(e){
-    Edit_Connect(e.target, "blue", 5);
+    Edit_Connect(e.target, "blue", PortSize);
 }
 
 // change shape's size and color
@@ -254,7 +254,7 @@ function Display_Connection(){
             // display the connection and setup other procedure
             if (typeof Line != 'undefined'){
                 // disable the two select ports with successful connection
-                Disable_Select(TempPorts);
+                //Disable_Select(TempPorts);
 
                 // add operations
                 MyPorts.push(TempPorts); // ports

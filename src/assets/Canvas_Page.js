@@ -35,15 +35,23 @@ function Init_Object(){
 
 // custom random port for single practice
 function Custom_Random_Port(){
-    // input module practice
-    RndPort  = Get_Random_Array_Value(InputPort);
-    DictModule["P2"]["PLCInput"]["Port"][0] = RndPort;
-    DictKeys["P2"][0][0] = RndPort;
+    switch(PName){
+        case "P1":
+        case "P3":
+        case "P4":
+            // input module practice
+            RndPort  = Get_Random_Array_Value(InputPort);
+            DictModule[PName]["PLCInput"]["Port"][0] = RndPort;
+            DictKeys[PName][0][0] = RndPort;
+            break;
+        case "P2":
+            // output module practice
+            RndPort  = Get_Random_Array_Value(OutputPort);
+            DictModule[PName]["PLCOutput"]["Port"][0] = RndPort;
+            DictKeys[PName][0][0] = RndPort;
+            break;
+    }
 
-    // output module practice
-    RndPort = Get_Random_Array_Value(OutputPort);
-    DictModule["P3"]["PLCOutput"]["Port"][0] = RndPort;
-    DictKeys["P3"][0][0] = RndPort;
 }
 
 function Draw_Image(){
@@ -62,7 +70,7 @@ function Draw_Connection_Points(){
     for(const ModuleName in ObjDict){
         for(const PortName of ObjDict[ModuleName].Port){
             var circle = new createjs.Shape();
-            circle.graphics.beginFill("blue").drawCircle(0,0,5);
+            circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
             circle.module = ModuleName;
             circle.name   = PortName;
             circle.x = ObjDict[ModuleName].x + DictObjPos[PortName].x;
