@@ -28,10 +28,18 @@
     var ImgsJpg = [];
     var ImgsJpeg = [];
 
-    // port list
-    var InputPort  = [];
-    var OutputPort = [];
-    var RndPort = "";
+    // random port list
+    var InputPort       = [];
+    var InputGNDPort    = [];
+    var OutputPort      = [];
+    var OutputDCPort    = [];
+    var ABBDIPort       = [];
+    var ABBGNDDIPort    = [];
+    var RndPort     = "";
+    var RndGND      = "";
+    var RndDC       = "";
+    var RndABBDI    = "";
+    var RndABBGNDDI = "";
 
     // others
     var PortSize;
@@ -45,7 +53,7 @@
                             "PLCInput":{
                                             x:150, 
                                             y:100,
-                                            Port: [RndPort, "GNDIN"],
+                                            Port: [RndPort, RndGND],
                                             ShapeSize: 10
                                         },                        
                             "24VDC":{
@@ -62,30 +70,30 @@
                        
                     P2:{
                             "PLCOutput":{
-                                            x:150, 
+                                            x:450, 
                                             y:100,
-                                            Port: [RndPort, "DC0"],
+                                            Port: [RndPort, RndDC],
                                             ShapeSize: 10
                                         },
 
                             "24VDC":{
-                                        x:650, 
-                                        y:500,
+                                        x:250, 
+                                        y:600,
                                         Port: ["24VP", "24VN"]
                                     },
 
                             "Motor":{
-                                        x:650, 
-                                        y:200,
+                                        x:150, 
+                                        y:150,
                                         Port: ["MTL", "MTR"]
                                     }
                         },
 
-                  P3:{
+                    P3:{
                         "PLCInput":{
                                         x:100, 
                                         y:100,
-                                        Port: [RndPort, "GNDIN"]
+                                        Port: [RndPort, RndGND]
                                    },
 
                        "Relay":{
@@ -118,7 +126,7 @@
                         "PLCInput":{
                                         x:100, 
                                         y:100,
-                                        Port: [RndPort, "GNDIN"]
+                                        Port: [RndPort, RndGND]
                                    },
 
                         "Optical":{
@@ -138,67 +146,122 @@
                                     x:700, 
                                     y:550,
                                     Port: ["24VP", "24VN"]}
+                                },
+
+                    P5:{
+                        "ABBRobot":{
+                                        x:100, 
+                                        y:100,
+                                        Port: [RndABBDI, RndABBGNDDI]
+                                    },
+
+                        "Relay":{
+                                    x:400, 
+                                    y:250,
+                                    Port: ["RLCU", "RLCD", 
+                                           "RLSWU", "RLSWDL", "RLSWDR"]
+                                },
+
+                        "Sensor":{
+                                    x:650, 
+                                    y:120,
+                                    Port: ["SL", "SR"]
+                                 },
+    
+                        "5VDC":{
+                                    x:700, 
+                                    y:550,
+                                    Port: ["5VP", "5VN"]
+                                },
+
+                        "24VDC":{
+                                    x:400, 
+                                    y:600,
+                                    Port: ["24VP", "24VN"]}
                                 }
                 };
 
     // connecting keys
     DictKeys = {
-                P1: [[RndPort, "SWL"], ["SWR", "24VP"], ["GNDIN", "24VN"]],
-                P2: [[RndPort, "MTL"], ["MTR", "24VP"], ["DC0", "24VN"]],
-                P3: [[RndPort, "RLSWU"], ["RLSWDR", "24VP"], ["24VN", "GNDIN"], 
-                     ["RLCU", "PNPE"],   ["RLCD", "PNPC"],   ["PNPB", "48VP"],
+                P1: [[RndPort, "SWL"], [RndGND, "24VN"], ["SWR", "24VP"]], 
+                P2: [[RndPort, "MTR"], [RndDC, "24VN"], ["MTL", "24VP"]],
+                P3: [[RndPort, "RLSWU"], [RndGND, "24VN"], ["RLSWDR", "24VP"], 
+                     ["RLCU", "PNPE"], ["RLCD", "PNPC"],   ["PNPB", "48VP"],
                      ["PNPC", "48VN"]],
-                P4: [[RndPort, "OPUR"], ["24VP", "OPDR"], ["24VN", "GNDIN"],
-                     ["5VP", "OPUL"],   ["5VN", "OPDL"]]
+                P4: [[RndPort, "OPUR"], [RndGND, "24VN"], ["24VP", "OPDR"],
+                     ["5VP", "OPUL"], ["5VN", "OPDL"]],
+                P5: [[RndABBDI, "RLSWU"], [RndABBGNDDI, "24VN"], ["24VP", "RLSWDR"], 
+                     ["5VN", "SR"], ["5VP", "RLCD"], ["SL", "RLCU"]],
                 };
 
 // -------------------------
 // prepare static parameters
 // -------------------------
-    ImgsJpg =  ["PLC", "Relay", "5VDC", "24VDC"];
+
+    // image list
+    ImgsJpg =  ["ABBRobot", "Relay", "5VDC", "24VDC"];
     ImgsJpeg = ["Legend", "Switch", "Motor","Sensor", 
                 "PLCInput", "PLCOutput", "PNP", "48VDC",
                 "Optical"];
 
+    // random point list
     InputPort  = ["IN0", "IN1", "IN2", "IN3", 
                   "IN4", "IN5", "IN6", "IN7",
-                  "IN8"];
+                  "IN8", "IN9"];
+
+    InputGNDPort = ["GNDINU", "GNDIND"];
+
     OutputPort = ["OUT0", "OUT1", "OUT2", 
                   "OUT3", "OUT4", "OUT5"];
+    
+    OutputDCPort = ["DC00", "DC01", "DC02", 
+                    "DC03", "DC04", "DC05"];
+    
+    ABBDIPort = ["DI01", "DI02", "DI03", "DI04", 
+                 "DI05", "DI06", "DI07", "DI08", 
+                 "DI09", "DI10", "DI11", "DI12", 
+                 "DI13", "DI14", "DI15", "DI16"];
 
+    ABBGNDDIPort = ["GNDDIL", "GNDDIR"];
+
+    // all modules' ports coordinates
     DictObjPos  = { 
-                    // robot
-                    "DI01":  {x:11, y:313}, "DI02":  {x:11, y:338},  
-                    "DI03":  {x:11, y:363}, "DI04":  {x:11, y:387},
-                    "DI05":  {x:11, y:411}, "DI06":  {x:11, y:437},
-                    "DI07":  {x:11, y:460}, "DI08":  {x:11, y:484},
-                    "GNDDI": {x:11, y:289}, 
+                    // ABB robot
+                    "DI01":  {x:11, y:313},  "DI02":  {x:11, y:338},  
+                    "DI03":  {x:11, y:363},  "DI04":  {x:11, y:387},
+                    "DI05":  {x:11, y:411},  "DI06":  {x:11, y:437},
+                    "DI07":  {x:11, y:460},  "DI08":  {x:11, y:484},
+                    "DI09":  {x:166, y:313}, "DI10":  {x:166, y:338},
+                    "DI11":  {x:166, y:363}, "DI12":  {x:166, y:387},
+                    "DI13":  {x:166, y:411}, "DI14":  {x:166, y:437},
+                    "DI15":  {x:166, y:460}, "DI16":  {x:166, y:484},
+                    "GNDDIL": {x:11, y:289}, "GNDDIR": {x:166, y:289}, 
 
-                    "DO01":  {x:11, y:94},  "DO02":  {x:11, y:116},
-                    "DO03":  {x:11, y:141}, "DO04":  {x:11, y:166},
-                    "DO05":  {x:11, y:190}, "DO06":  {x:11, y:214},
-                    "DO07":  {x:11, y:240}, "DO08":  {x:11, y:264}, 
-                    "GNDDO": {x:9, y:68}, 
+                    "DO01":  {x:11, y:94},   "DO02":  {x:11, y:116},
+                    "DO03":  {x:11, y:141},  "DO04":  {x:11, y:166},
+                    "DO05":  {x:11, y:190},  "DO06":  {x:11, y:214},
+                    "DO07":  {x:11, y:240},  "DO08":  {x:11, y:264}, 
+                    "DO09":  {x:166, y:94},  "DO10":  {x:166, y:116},
+                    "DO11":  {x:166, y:141}, "DO12":  {x:166, y:166},
+                    "DO13":  {x:166, y:190}, "DO14":  {x:166, y:214},
+                    "DO15":  {x:166, y:240}, "DO16":  {x:166, y:264},
+                    "GNDDOL": {x:9, y:68},   "GNDDOR": {x:166, y:68}, 
                     
                     // relay
-                    "RLCU":  {x:144, y:4}, "RLCD":  {x:144, y:203},
+                    "RLCU":  {x:144, y:4}, "RLCD": {x:144, y:203},
                     "RLSWU": {x:46, y:4}, 
                     "RLSWDL": {x:28, y:203},
                     "RLSWDR": {x:72, y:203},
 
                     // power
-                    "5VP": {x:32, y:7}, 
-                    "5VN": {x:78, y:7},
+                    "5VP": {x:32, y:7}, "5VN": {x:78, y:7},
 
-                    "24VP": {x:31, y:7},
-                    "24VN": {x:77, y:7},
+                    "24VP": {x:31, y:7}, "24VN": {x:77, y:7},
 
-                    "48VP": {x:29, y:7},
-                    "48VN": {x:75, y:7},
+                    "48VP": {x:29, y:7}, "48VN": {x:75, y:7},
 
                     // sensor
-                    "SL": {x:6, y:30}, 
-                    "SR": {x:148, y:30},
+                    "SL": {x:6, y:30}, "SR": {x:148, y:30},
 
                     // PNP
                     "PNPB": {x:5, y:69}, 
@@ -206,36 +269,31 @@
                     "PNPC": {x:85, y:133},
 
                     // optical
-                    "OPUL": {x:5, y:9}, 
-                    "OPDL": {x:5, y:127}, 
-                    "OPUR": {x:160, y:8}, 
-                    "OPDR": {x:160, y:128}, 
+                    "OPUL": {x:5, y:9},   "OPDL": {x:5, y:127}, 
+                    "OPUR": {x:160, y:8}, "OPDR": {x:160, y:128}, 
 
                     // switch
-                    "SWL": {x:3, y:23}, 
-                    "SWR": {x:102, y:23},
+                    "SWL": {x:3, y:23}, "SWR": {x:102, y:23},
 
                     // motor
-                    "MTL": {x:6, y:28}, 
-                    "MTR": {x:129, y:28},
+                    "MTL": {x:6, y:28}, "MTR": {x:129, y:28},
 
                     // PLC input
-                    "IN0":   {x:71, y:373},  "IN1": {x:115, y:373},
-                    "IN2":   {x:158, y:373}, "IN3": {x:202, y:373},
-                    "IN4":   {x:245, y:373}, 
-                    "IN5":   {x:71, y:39},
-                    "IN6":   {x:115, y:39},  "IN7": {x:158, y:39},
-                    "IN7":   {x:202, y:39},  "IN8": {x:245, y:39},
-                    "GNDIN": {x:289, y:373},
+                    "IN0": {x:71, y:373},  "IN1": {x:115, y:373},
+                    "IN2": {x:158, y:373}, "IN3": {x:202, y:373},
+                    "IN4": {x:245, y:373}, 
+                    "IN5": {x:71, y:39},   "IN6": {x:115, y:39},  
+                    "IN7": {x:158, y:39},  "IN8": {x:202, y:39},  
+                    "IN9": {x:245, y:39},
+                    "GNDINU": {x:289, y:39}, "GNDIND": {x:289, y:373},
 
                     // PLC output
-                    "DC0":   {x:75, y:374}, 
-                    "OUT0":  {x:75, y:40},
-                    "OUT1":  {x:119, y:40},
-                    "OUT2":  {x:163, y:40},
-                    "OUT3":  {x:205, y:40},
-                    "OUT4":  {x:250, y:40},
-                    "OUT5":  {x:293, y:40},
+                    "DC00": {x:75, y:374},  "DC01": {x:119, y:374},
+                    "DC02": {x:163, y:374}, "DC03": {x:205, y:374},
+                    "DC04": {x:250, y:374}, "DC05": {x:293, y:374}, 
+                    "OUT0":  {x:75, y:40},  "OUT1":  {x:119, y:40},
+                    "OUT2":  {x:163, y:40}, "OUT3":  {x:205, y:40},
+                    "OUT4":  {x:250, y:40}, "OUT5":  {x:293, y:40},
                     
                     // legend
                     "Legend": {x:750, y:10}
@@ -260,7 +318,7 @@
     // subline parameters
     DictSubL.Break = 2;
     DictSubL.Base  = 2;
-    DictSubL.Move  = 4;
+    DictSubL.Move  = 8;
     
     // detour point property
     DetourBaseL   = 5;
@@ -277,7 +335,8 @@
                         "COMAU Robot"       : "http://128.194.119.24/tutorial?topic=8", 
                         "FANUC Robot"       : "http://128.194.119.24/tutorial?topic=9", 
                         "KUKA Robot"        : "http://128.194.119.24/tutorial?topic=10", 
-                        "OMRON Robot"       : "http://128.194.119.24/tutorial?topic=11"};
+                        "OMRON Robot"       : "http://128.194.119.24/tutorial?topic=11"
+                    };
 
     // initalize modules' priority(0 -> low, 10 -> high,)                  
     DictModuleRank = {  "Inputs"            : 1,
@@ -290,7 +349,8 @@
                         "COMAU Robot"       : 4, 
                         "FANUC Robot"       : 4, 
                         "KUKA Robot"        : 4, 
-                        "OMRON Robot"       : 4};
+                        "OMRON Robot"       : 4
+                    };
 
 function Get_Random_Array_Value(ArrayIn){
     const randomIndex = Math.floor(Math.random() * ArrayIn.length);

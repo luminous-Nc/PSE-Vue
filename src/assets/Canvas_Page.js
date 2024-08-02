@@ -35,22 +35,44 @@ function Init_Object(){
 
 // custom random port for single practice
 function Custom_Random_Port(){
+    // random port
     switch(PName){
         case "P1":
         case "P3":
         case "P4":
             // input module practice
             RndPort  = Get_Random_Array_Value(InputPort);
+            RndGND   = Get_Random_Array_Value(InputGNDPort);
             DictModule[PName]["PLCInput"]["Port"][0] = RndPort;
+            DictModule[PName]["PLCInput"]["Port"][1] = RndGND;
             DictKeys[PName][0][0] = RndPort;
+            DictKeys[PName][1][0] = RndGND;
             break;
         case "P2":
             // output module practice
             RndPort  = Get_Random_Array_Value(OutputPort);
+            RndDC    = Get_Random_Array_Value(OutputDCPort);
             DictModule[PName]["PLCOutput"]["Port"][0] = RndPort;
+            DictModule[PName]["PLCOutput"]["Port"][1] = RndDC;
             DictKeys[PName][0][0] = RndPort;
+            DictKeys[PName][1][0] = RndDC;
             break;
+        case "P5":
+            // ABB module practice
+            RndABBDI    = Get_Random_Array_Value(ABBDIPort);
+            RndABBGNDDI = Get_Random_Array_Value(ABBGNDDIPort);
+            DictModule[PName]["ABBRobot"]["Port"][0] = RndABBDI;
+            DictModule[PName]["ABBRobot"]["Port"][1] = RndABBGNDDI;
+            DictKeys[PName][0][0] = RndABBDI;
+            DictKeys[PName][1][0] = RndABBGNDDI;
+            break;
+        case "P6":
+
+            break;
+
     }
+
+    // random ground port
 
 }
 

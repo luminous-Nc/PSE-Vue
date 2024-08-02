@@ -62,8 +62,9 @@ function Titles_Init(Title){
 // initialize all obstacles of the current task based on module figure
 function Init_Obstacles(Objs){
     var Obstacles = []; // modules array
-    const Buf    = 5;   // buffer expand to the object
-
+    const BufHor = 5; // buffer expand to the object
+    const BufVer = 10;
+        
     // get all modules' figure
     for (const key in Objs){
         // initialize the module
@@ -79,10 +80,10 @@ function Init_Obstacles(Objs){
         Obstacle.name = name;
 
         // initialize 4 corner points of the module
-        Obstacle.Port = [{x: x - Buf,     y: y - Buf},      // left up
-                         {x: x + w + Buf, y: y - Buf},      // right up
-                         {x: x + w + Buf, y: y + h + Buf},  // right down
-                         {x: x - Buf,     y: y + h + Buf}]; // left down
+        Obstacle.Port = [{x: x - BufHor,     y: y - BufVer},      // left up
+                         {x: x + w + BufHor, y: y - BufVer},      // right up
+                         {x: x + w + BufHor, y: y + h + BufVer},  // right down
+                         {x: x - BufHor,     y: y + h + BufVer}]; // left down
 
         // initialize 5 drawing points of the module(1->2->3->4->1)
         var MyObPts = [...Obstacle.Port, Obstacle.Port[0]];
@@ -326,7 +327,8 @@ function Get_SubLine(Port){
 
     // merge two parts: start point -> break point + moving line
     EndPt = {x : BreakPts.x + Dir.x * MoveL,
-             y : BreakPts.y + Dir.y * MoveL};
+             y : BreakPts.y + Dir.y * MoveL,
+             Dir: Dir};
 
     // initialize subline name
     var SubLineName = Get_Symbol_Name(Title.SubLine, Port.name);

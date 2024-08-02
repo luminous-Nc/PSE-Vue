@@ -2,18 +2,20 @@
 function Get_Path(StartPt, EndPt, Obstacles){
     // initialize waypoints
     var WayPts = [StartPt, EndPt];
+
+    // adjust obstacles as rectangles
+    var MyObstacles = Distribute_Obstacles_Points(Obstacles);
     
-    for (var i = 0; i < Obstacles.length; i++){
+    for (var i = 0; i < MyObstacles.length; i++){
         for (var j = 0; j < WayPts.length - 1; j++){
             // get current two waypoints
             var MyWayPts = WayPts.slice(j, j + 2);
             
-            // adjust obstacle
-            var MyObstacle = Distribute_Obstacle_Points(Obstacles[i]);
+            // get current obstacle
+            var MyObstacle = MyObstacles[i];
 
             // try to add plaid waypoint
-            MyWayPts = Add_Plaid_Line_Waypoint(MyWayPts, MyObstacle,
-                                               Obstacles);
+            MyWayPts = Add_Plaid_Line_Waypoint(MyWayPts, MyObstacles);
             
             // add detour point after the start point 
             MyWayPts = Add_Detour_Points(MyWayPts, MyObstacle);
@@ -32,6 +34,17 @@ function Get_Path(StartPt, EndPt, Obstacles){
     return WayPts
 }
 
+// re-distribute all obstacles points
+function Distribute_Obstacles_Points(MyRecs){
+    var MyRecsOut = [];
+
+    for (var i = 0; i < MyRecs.length; i++){
+        MyRecsOut[i] = Distribute_Obstacle_Points(MyRecs[i])
+    }
+
+    return MyRecsOut;
+}
+
 // re-distribute obstacle points
 function Distribute_Obstacle_Points(MyRec){
     var Pt1, Pt2, Pt3, Pt4, MyObPts;
@@ -43,25 +56,17 @@ function Distribute_Obstacle_Points(MyRec){
     for (var i = 0; i < MyRec.Port.length; i++){
         var Pt = MyRec.Port[i];
 
-        if(Pt.x < MyBound.MidX && 
-           Pt.y < MyBound.MidY){
-            Pt1 = {x: MyBound.MinX, 
-                   y: MyBound.MinY}; 
+        if(Pt.x < MyBound.MidX && Pt.y < MyBound.MidY){
+            Pt1 = {x: MyBound.MinX, y: MyBound.MinY}; 
 
-        }else if(Pt.x > MyBound.MidX && 
-                 Pt.y < MyBound.MidY){
-            Pt2 = {x: MyBound.MaxX, 
-                   y: MyBound.MinY}; 
+        }else if(Pt.x > MyBound.MidX && Pt.y < MyBound.MidY){
+            Pt2 = {x: MyBound.MaxX, y: MyBound.MinY}; 
 
-        }else if(Pt.x > MyBound.MidX && 
-                 Pt.y > MyBound.MidY){
-            Pt3 = {x: MyBound.MaxX, 
-                   y: MyBound.MaxY}; 
+        }else if(Pt.x > MyBound.MidX && Pt.y > MyBound.MidY){
+            Pt3 = {x: MyBound.MaxX, y: MyBound.MaxY}; 
 
-        }else if(Pt.x < MyBound.MidX && 
-                 Pt.y > MyBound.MidY){
-            Pt4 = {x: MyBound.MinX, 
-                   y: MyBound.MaxY}; 
+        }else if(Pt.x < MyBound.MidX && Pt.y > MyBound.MidY){
+            Pt4 = {x: MyBound.MinX, y: MyBound.MaxY}; 
         }
     }
 
@@ -69,11 +74,11 @@ function Distribute_Obstacle_Points(MyRec){
     MyObPts = {name: MyRec.name, 
                Port: [Pt1, Pt2, Pt3, Pt4]};
 
-    return MyObPts
+    return MyObPts;
 }
 
 // add plaid line waypoint between two waypoints
-function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacle, Obstacles){
+function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacles){
     var Result;
 
     // get start and end points
@@ -82,10 +87,11 @@ function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacle, Obstacles){
 
     // build direct line waypoints
     if (StartPt.x != EndPt.x && StartPt.y != EndPt.y){
-        var MidPt1  = {x : EndPt.x,   y : StartPt.y};
-        var MidPt2  = {x : StartPt.x, y : EndPt.y};
-        var WayPts1 = [StartPt, MidPt1, EndPt];
-        var WayPts2 = [StartPt, MidPt2, EndPt];
+        var MidPt1, MidPt2, WayPts1, WayPts2;
+        [MidPt1, MidPt2] = Get_Placid_Mid_Point(StartPt, EndPt);
+        WayPts1 = [StartPt, MidPt1, EndPt];
+        WayPts2 = [StartPt, MidPt2, EndPt];
+
     }else {
         // no line waypoint needed since they can
         // generate plaid(horizontal or vertial) line
@@ -94,13 +100,13 @@ function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacle, Obstacles){
 
     // check if new waypoints is intersect to the current obstacle
     // check if the plaid waypoints is inside of all obstacles
-    if (!Is_Obstacles_Among(WayPts1, Obstacles) &&
-        !Is_Inside_Obstacles(MidPt1, Obstacles)){
+    if (!Is_Obstacles_Among(WayPts1, MyObstacles) &&
+        !Is_Inside_Obstacles(MidPt1, MyObstacles)){
         // return waypoints inserted via line waypoint 1
         Result = WayPts1;
 
-    }else if(!Is_Obstacles_Among(WayPts2, Obstacles) &&
-             !Is_Inside_Obstacles(MidPt2, Obstacles)){
+    }else if(!Is_Obstacles_Among(WayPts2, MyObstacles) &&
+             !Is_Inside_Obstacles(MidPt2, MyObstacles)){
         // return waypoints inserted via line waypoint 2
         Result = WayPts2;
 
@@ -118,7 +124,6 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
     var Result, MyResult;
     var ObName;
     
-    // check if added placid waypoint can be avoid the obstacle
     // MyWayPts = [Point1, Point2]
     if (Is_Obstacle_Among(MyWayPts, MyObstacle) ){
         // generate 4 detour point outside of each corner of the rectangle
@@ -163,16 +168,30 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
             DictDetourL[ObName] += 1;
         }else{
             // initialize current obstacle parameter
-            DictDetourL[ObName] = 0;
             DictDetourL[ObName] = 1;
         }
 
     }else{
-        // keep placid point
+        // added placid waypoint means no obstacles among,
+        // no need to use detour points
         // MyWayPts = [Point1, Placid Point, Point2]
         Result = MyWayPts;
     }
     return Result
+}
+
+// generate placid line middle point
+function Get_Placid_Mid_Point(Pt1, Pt2){
+    // initialize two mid points
+    var MidPt1 = {x: Pt1.x, y: Pt2.y, Dir: {x: 0, y: -1}};
+    var MidPt2 = {x: Pt2.x, y: Pt1.y, Dir: {x: 1, y: 0}};
+
+    // set middle point 1 priority for two points' direction
+    if (Pt1.Dir.x == 0 || Pt2.Dir.y == 0){
+        return [MidPt1, MidPt2];
+    }else{
+        return [MidPt2, MidPt1];
+    }
 }
 
 // check if the waypoints are placid
@@ -180,7 +199,7 @@ function Is_Placid_Among(MyWayPts){
     for (var i = 0; i < MyWayPts.length - 1; i++){
         if (MyWayPts[i].x != MyWayPts[i+1].x &&
             MyWayPts[i].y != MyWayPts[i+1].y){
-                return false
+            return false;
         }
     }
     return true
@@ -189,11 +208,8 @@ function Is_Placid_Among(MyWayPts){
 // check if the current point is inside of all obstacles
 function Is_Inside_Obstacles(MyPt, MyRecs){
     for (var i = 0; i < MyRecs.length; i++){
-        // adjust the current obstacle points
-        var MyRec = Distribute_Obstacle_Points(MyRecs[i]);
-
         // check if it is inside of the current obstacle
-        if (Is_Inside_Obstacle(MyPt, MyRec)){
+        if (Is_Inside_Obstacle(MyPt, MyRecs[i])){
             return true
         }
     }
@@ -218,12 +234,9 @@ function Is_Inside_Obstacle(MyPt, MyRec){
 // check which obstacle is the point in
 function Get_Inside_Obstacle(MyPt, MyRecs){
     for (var i = 0; i < MyRecs.length; i++){
-        // adjust the current obstacle
-        var MyRec = Distribute_Obstacle_Points(MyRecs[i]);
-
         // check if it is inside of the current obstacle
-        if (Is_Inside_Obstacle(MyPt, MyRec)){
-            return MyRec.name;
+        if (Is_Inside_Obstacle(MyPt, MyRecs[i])){
+            return MyRecs[i].name;
         }
     }
 
@@ -250,8 +263,7 @@ function Is_Obstacle_Among(MyWayPts, MyObstacle){
         if (Is_Obstacle_Between(MyBiWayPts, MyObstacle)){
             // return immediately if intersection at any two waypoints
             return true
-        }
-        
+        } 
     }
 
     // no intersection
@@ -385,7 +397,7 @@ function Get_Detour_Points(MyRec){
     // determin max and min coordinates
     var MyBound = Get_Rec_Bound(MyRec);
 
-    // generate four points
+    // generate four points at the boundary corners
     var MyDePts = [{x : MyBound.MinX, y : MyBound.MinY},
                    {x : MyBound.MaxX, y : MyBound.MinY},
                    {x : MyBound.MaxX, y : MyBound.MaxY},
@@ -399,7 +411,7 @@ function Get_Detour_Points(MyRec){
         DeFactors = DictDetourL[MyRec.name];
     }
 
-    // generate 4 detour points
+    // generate 4 detour points with the recent extention
     var MyShift  = [];
  
     for (var i = 0; i < MyDePts.length; i++){ 
@@ -408,7 +420,8 @@ function Get_Detour_Points(MyRec){
         
         // update the detour point based on shift value and direction
         MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDirD[i].x, 
-                      y : MyDePts[i].y + MyShift[i] * DictDirD[i].y};
+                      y : MyDePts[i].y + MyShift[i] * DictDirD[i].y,
+                      Dir: DictDirD[i]};
     }
 
     return MyDePts
