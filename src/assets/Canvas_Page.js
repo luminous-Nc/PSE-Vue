@@ -95,8 +95,8 @@ function Draw_Connection_Points(){
             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
             circle.module = ModuleName;
             circle.name   = PortName;
-            circle.x = ObjDict[ModuleName].x + DictObjPos[PortName].x;
-            circle.y = ObjDict[ModuleName].y + DictObjPos[PortName].y;
+            circle.x = ObjDict[ModuleName].x + DictObjPos[ModuleName][PortName].x;
+            circle.y = ObjDict[ModuleName].y + DictObjPos[ModuleName][PortName].y;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
