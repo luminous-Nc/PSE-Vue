@@ -35,54 +35,43 @@ function Init_Object(){
 
 // custom random port for single practice
 function Custom_Random_Port(){
-    // random port
-    switch(PName){
-        case "P1":
-        case "P3":
-        case "P4":
-            // input module practice
-            RndPort  = Get_Random_Array_Value(InputPort);
-            RndGND   = Get_Random_Array_Value(InputGNDPort);
-            DictModule[PName]["PLCInput"]["Port"][0] = RndPort;
-            DictModule[PName]["PLCInput"]["Port"][1] = RndGND;
-            DictKeys[PName][0][0] = RndPort;
-            DictKeys[PName][1][0] = RndGND;
-            break;
-        case "P2":
-            // output module practice
-            RndPort  = Get_Random_Array_Value(OutputPort);
-            RndDC    = Get_Random_Array_Value(OutputDCPort);
-            DictModule[PName]["PLCOutput"]["Port"][0] = RndPort;
-            DictModule[PName]["PLCOutput"]["Port"][1] = RndDC;
-            DictKeys[PName][0][0] = RndPort;
-            DictKeys[PName][1][0] = RndDC;
-            break;
-        case "P5":
-            // ABB module practice
-            RndABBDI    = Get_Random_Array_Value(ABBDIPort);
-            RndABBGNDDI = Get_Random_Array_Value(ABBGNDDIPort);
-            DictModule[PName]["ABBRobot"]["Port"][0] = RndABBDI;
-            DictModule[PName]["ABBRobot"]["Port"][1] = RndABBGNDDI;
-            DictKeys[PName][0][0] = RndABBDI;
-            DictKeys[PName][1][0] = RndABBGNDDI;
-            break;
-        case "P6":
+    if (DictRndPort.hasOwnProperty(PName)){
+        var RNDPorts = DictRndPort[PName];
+        for (const RNDPort of RNDPorts){
+            // pick a random port from port pool
+            var RNDPortName = Get_Random_Array_Value(RNDPort["PortPool"]);
 
-            break;
-
+            // assign port
+            DictModule[PName][RNDPort["Module"]]["Port"][RNDPort["PortIndex"]] = RNDPortName;
+            
+            // assign key
+            DictKeys[PName][RNDPort["KeyIndex"][0]][RNDPort["KeyIndex"][1]] = RNDPortName;
+            
+            // assign additional key port (if applicable)   
+            if (RNDPort.hasOwnProperty("KeyIndexEx")){
+                DictKeys[PName][RNDPort["KeyIndexEx"][0]][RNDPort["KeyIndexEx"][1]] = RNDPortName;
+            }
+        }
     }
-
-    // random ground port
-
+    
 }
 
 function Draw_Image(){
-    for (const key in ObjDict){
-        var Btmp = new createjs.Bitmap(DictImg[key]);
-        Btmp.name   = key;
-        Btmp.x      = ObjDict[key].x; // Center horizontally
-        Btmp.y      = ObjDict[key].y; // Center vertically
-        ObjDict[key].img = Btmp;
+    for (const ModuleName in ObjDict){
+        var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
+        Btmp.name   = ModuleName;
+        Btmp.x      = ObjDict[ModuleName].x; // Center horizontally
+        Btmp.y      = ObjDict[ModuleName].y; // Center vertically
+
+        // resize the image if applicable
+        var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
+        Btmp.scaleX = Scale;
+        Btmp.scaleY = Scale;
+        Btmp.image.width  *= Scale;
+        Btmp.image.height *= Scale;
+
+        // integrate the image
+        ObjDict[ModuleName].img = Btmp;
         stage.addChild(Btmp);
     }
     stage.update();         
@@ -91,17 +80,26 @@ function Draw_Image(){
 function Draw_Connection_Points(){
     for(const ModuleName in ObjDict){
         for(const PortName of ObjDict[ModuleName].Port){
+            var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
             circle.module = ModuleName;
-            circle.name   = PortName;
-            circle.x = ObjDict[ModuleName].x + DictObjPos[ModuleName][PortName].x;
-            circle.y = ObjDict[ModuleName].y + DictObjPos[ModuleName][PortName].y;
+            circle.name   = PortName;   
+            circle.x = ObjDict[ModuleName].x + DictObjPos[ModuleName][PortName].x * Scale;
+            circle.y = ObjDict[ModuleName].y + DictObjPos[ModuleName][PortName].y * Scale;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
         }
     } 
+}
+
+function Get_Img_Scale(Module){
+    if (Module.hasOwnProperty("Scale")){
+        return Module["Scale"];
+    }else{
+        return 1;
+    }
 }
 
 // function Draw_Image(){
