@@ -2,6 +2,8 @@
     // modules and keys' dictionary
     var Keys            = []; // connecting keys
 
+    var topicLoaded = false
+
     // direction dictionary parameters
     var DictDirN = {}; // normal
     var DictDirD = {}; // diagonal

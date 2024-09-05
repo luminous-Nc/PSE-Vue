@@ -8,10 +8,12 @@ export const useTopicsStore = defineStore('topics', {
     }),
     actions: {
         async getAllTopics() {
+            console.log('getAllTopics')
             try {
                 const response = await fetch('/assets/database/topic.json');
                 const data = await response.json();
                 this.topics = data.topics;
+                console.log('store topics')
             } catch (error) {
                 console.error('Error loading database:', error);
             }
@@ -21,14 +23,15 @@ export const useTopicsStore = defineStore('topics', {
             const route = useRoute();
             const topicId = route.query.id;
 
-            console.log(topicId)
+            console.log('Find topic ID from route',topicId)
 
             if (!this.topics.length) {
+                console.log('topics not exist')
                 await this.getAllTopics()
             }
 
             const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
-            console.log(topic)
+            console.log('getCurrentTopic',topic)
             this.currentTopic = topic
         }
     }

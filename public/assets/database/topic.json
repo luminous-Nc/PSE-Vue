@@ -2,8 +2,8 @@
   "topics": [
     {
       "id": 1,
-      "name": "Test1",
-      "desc": "desc of Test 1",
+      "name": "PLC Input",
+      "desc": "",
       "phases": [
         {
           "id": 1,
@@ -19,10 +19,52 @@
         }
       ]
     },
+
     {
       "id": 2,
-      "name": "Test2",
-      "desc": "desc of Test 2 Test Git"
+      "name": "PLC Output",
+      "desc": " "
+    },
+
+    {
+      "id": 3,
+      "name": "PLC and PNP",
+      "desc": " "
+    },
+
+    {
+      "id": 4,
+      "name": "PLC and Optical",
+      "desc": " "
+    },
+
+    {
+      "id": 5,
+      "name": "ABB Robot",
+      "desc": " "
+    },
+    
+    {
+      "id": 6,
+      "name": "COMAU Robot",
+      "desc": " "
+    },
+    {
+      "id": 7,
+      "name": "FANUC Robot",
+      "desc": " "
+    },
+
+    {
+      "id": 8,
+      "name": "KUKA Robot",
+      "desc": " "
+    },
+    {
+      "id": 9,
+      "name": "OMRON Robot",
+      "desc": " "
     }
+
   ]
 }

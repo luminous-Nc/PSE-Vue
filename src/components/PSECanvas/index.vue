@@ -9,7 +9,7 @@
 
     const canvas = ref(null);
   
-    PName = "P4";
+    PName = "P8";
     
     onMounted(() => {Init_Canvas(canvas)});
 

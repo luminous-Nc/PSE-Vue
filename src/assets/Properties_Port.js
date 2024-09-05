@@ -93,7 +93,7 @@ var DictObjPos  =   {
                                         "DI6":  {x:5, y:404},  "DI14":  {x:160, y:404},
                                         "DI7":  {x:5, y:428},  "DI15":  {x:160, y:428},
                                         "DI8":  {x:5, y:452},  "DI16":  {x:160, y:452},
-                                        "GNDDIL": {x:7, y:478}, "GNDDIR": {x:170, y:478}
+                                        "GNDDIL": {x:7, y:478}, "GNDDIR": {x:160, y:478}
                         },
 
                         // OMRON robot
