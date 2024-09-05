@@ -5,13 +5,26 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from 'vue';
+    // import { onMounted, ref } from 'vue';
+    import {useTopicsStore} from "@/stores/topic.js";
+    import { computed, ref, watch } from 'vue';
 
     const canvas = ref(null);
-  
-    PName = "P8";
+    const topicStore = useTopicsStore();
+    const currentTopic = computed(()=> topicStore.currentTopic)
+
+    watch(currentTopic, (newTopic) => {
+        // Check if 'newTopic' and 'newTopic.name' are defined
+        if (newTopic && newTopic.id) {
+            PName = "P" + newTopic.id;
+            Init_Canvas(canvas)
+        }else{
+            console.log("currentTopic or currentTopic.name is undefined.");
+        }
+    });
+    // PName = "P8";
     
-    onMounted(() => {Init_Canvas(canvas)});
+    // onMounted(() => {Init_Canvas(canvas)});
 
     function Reset_Canvas(){Init_Practice()};
     
