@@ -17,22 +17,6 @@ export const useQuestionnaireStore = defineStore('questionnaire', {
             } catch (error) {
                 console.error('Error loading database:', error);
             }
-        },
-
-        async getCurrentTopic() {
-            const route = useRoute();
-            const topicId = route.query.id;
-
-            console.log('Find topic ID from route',topicId)
-
-            if (!this.topics.length) {
-                console.log('topics not exist')
-                await this.getAllTopics()
-            }
-
-            const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
-            console.log('getCurrentTopic',topic)
-            this.currentTopic = topic
         }
     }
 });

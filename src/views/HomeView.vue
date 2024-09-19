@@ -30,16 +30,14 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { inject, computed } from 'vue';
 import { useTopicsStore } from '../stores/topic';
 import { useRoute, useRouter } from 'vue-router'
+import {storeToRefs} from "pinia";
 
 
-const topicsStore = useTopicsStore();
-const topics = computed(() => {
-    return topicsStore.topics
-});
-
+const topicsStore = inject('topicStore')
+const { topics } = storeToRefs(topicsStore)
 
 const router = useRouter()
 function goToTopicPage(topic) {
