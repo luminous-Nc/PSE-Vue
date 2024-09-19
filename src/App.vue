@@ -14,6 +14,7 @@ import Navbar from '@/components/Navbar/index.vue'
 const topicsStore = useTopicsStore();
 const questionsStore = useQuestionsStore();
 
+
 onMounted(async () => {
     await topicsStore.getAllTopics()
     await questionsStore.getAllQuestions()
