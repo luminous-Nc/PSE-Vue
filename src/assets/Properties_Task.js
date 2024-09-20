@@ -5,7 +5,9 @@
 // module position
 var P1Port = {
                 "PLCInput":{
-                                x:150, y:100, Port: [RndPort, RndPort]
+                                x:150, y:100, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "PLCInputPort"], 
+                                          [1, [1, 0], "PLCInputGNDPort"]]
                             },  
 
                 "24VDC":    {
@@ -14,12 +16,16 @@ var P1Port = {
 
                 "Switch":   {
                                 x:650, y:200, Port: ["SWL", "SWR"]
-                            }
-            }
+                            },
+                
+                "Key":      [["", "SWL"], ["", "24VN"], ["SWR", "24VP"]]
+            };
 
 var P2Port = {
                 "PLCOutput":{
-                                x:450, y:100, Port: [RndPort, RndPort],
+                                x:450, y:100, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "PLCOutputPort"], 
+                                          [1, [1, 0], "PLCOutputDCPort"]]
                             },
 
                 "24VDC":    {
@@ -28,12 +34,16 @@ var P2Port = {
 
                 "Motor":    {
                                 x:150, y:150, Port: ["MTL", "MTR"]
-                            }
-            }
+                            },
+                
+                "Key":      [["", "MTR"], ["", "24VN"], ["MTL", "24VP"]]
+            };
 
 var P3Port = {
                 "PLCInput": {
-                                x:100, y:100, Port: [RndPort, RndPort]
+                                x:100, y:100, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "PLCInputPort"], 
+                                          [1, [1, 0], "PLCInputGNDPort"]]
                             },
 
                 "Relay":    {
@@ -50,12 +60,18 @@ var P3Port = {
 
                 "48VDC":    {
                                 x:800, y:560, Port: ["48VP", "48VN"]
-                            }
+                            },
+
+                "Key":      [["", "RLSWU"],    ["", "24VN"],     ["RLSWDR", "24VP"], 
+                             ["RLCU", "PNPE"], ["RLCD", "PNPC"], ["PNPB", "48VP"],
+                             ["PNPC", "48VN"]]                
             };
 
 var P4Port = {
                 "PLCInput":{
-                                x:500, y:150, Port: [RndPort, RndPort]
+                                x:500, y:150, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "PLCInputPort"], 
+                                          [1, [1, 0], "PLCInputGNDPort"]]
                             },
 
                 "Optical":  {
@@ -68,12 +84,17 @@ var P4Port = {
 
                 "24VDC":    {
                                 x:700, y:650, Port: ["24VP", "24VN"]
-                            }
+                            },
+
+                "Key":      [["", "OPUR"],    ["", "24VN"], ["24VP", "OPDR"],
+                             ["5VP", "OPUL"], ["5VN", "OPDL"]]                         
             };
 
 var P5Port = {
                 "ABBRobot": {
-                                x:100, y:100, Port: [RndPort, RndPort]
+                                x:100, y:100, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "ABBDIPort"], 
+                                          [1, [1, 0], "ABBGNDDIPort"]]
                             },
 
                 "Relay":    {
@@ -90,12 +111,16 @@ var P5Port = {
 
                 "24VDC":    {
                                 x:400, y:600, Port: ["24VP", "24VN"]
-                            }
+                            },
+
+                "Key":      [["", "RLSWU"], ["", "24VN"],    ["24VP", "RLSWDR"], 
+                             ["5VN", "SR"], ["5VP", "RLCD"], ["SL", "RLCU"]]                           
             };
 
 var P6Port = {
                 "COMAURobot":{
-                                x:100, y:100, Port: [RndPort, "0VDC"]
+                                x:100, y:100, Port: ["", "0VDC"],
+                                RndPort: [[0, [0, 0], "COMAUINPort"]]
                             },
 
                 "Sensor":   {
@@ -104,24 +129,32 @@ var P6Port = {
 
                 "24VDC":    {
                                 x:400, y:600, Port: ["24VP", "24VN"]
-                            }            
-
+                            },
+                            
+                "Key":      [["", "24VP"], ["24VN", "SR"], ["SL", "0VDC"]]    
             };
 
 var P7Port = {
                 "FANUCRobot":{
-                                x:450, y:120, Port: [RndPort, RndPort, RndPort, RndPort]               
+                                x:450, y:120, Port: ["", "", "", ""],
+                                RndPort: [[0, [0, 0], "FANUCDIPort"], 
+                                          [1, [1, 0], "FANUC24FPort"],
+                                          [2, [2, 0], "FANUCSDIPort"], 
+                                          [3, [2, 1], "FANUC0VPort"]]           
                             },
 
                 "Sensor":   {
                                 x:100, y:100, Port: ["SL", "SR"]
-                            }  
-
+                            },
+                            
+                "Key":      [["", "SL"], ["", "SR"], ["", ""]]
             };
 
 var P8Port = {
                 "KUKARobot":{
-                                x:450, y:120, Port: [RndPort, RndPort]
+                                x:450, y:120, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "KUKADIPort"], 
+                                          [1, [2, 1], "KUKAGNDDIPort"]]
                             },
 
                 "Sensor":   {
@@ -130,50 +163,78 @@ var P8Port = {
 
                 "24VDC":    {
                                 x:100, y:600, Port: ["24VP", "24VN"]
-                            }       
+                            },
+                            
+                "Key":      [["", "SR"], ["SL", "24VP"], ["24VN", ""]]
             };
 
 var P9Port = {
                 "OMRONRobot":{
-                                x:350, y:220, Port: [RndPort, RndPort, RndPort, RndPort]               
+                                x:350, y:220, Port: ["", "", "", ""],
+                                RndPort: [[0, [0, 0], "OMRONIN"], 
+                                          [1, [1, 1], "OMRONGND"],
+                                          [2, [2, 0], "OMRON24VDC"], 
+                                          [3, [2, 1], "OMRONCommon"]]                   
                             },
 
                 "Sensor":   {
                                 x:100, y:100, Port: ["SL", "SR"]
-                            }  
+                            },
+                            
+                "Key":      [["", "SL"], ["SR", ""], ["", ""]]
             };
 
 var P10Port = {
                 "ABBRobot":{
-                                x:150, y:120, Scale: 1.2, Port: [RndPort, RndPort, RndPort]                        
+                                x:150, y:120, Scale: 1.2, Port: ["", "", ""],
+                                RndPort: [[0, [0, 0], "ABBDOPort"], 
+                                          [1, [2, 0], "ABBGNDDOPort"], 
+                                          [2, [3, 1], "ABBPWRDOPort"]]                        
                             },
 
                 "PLCInput":{
-                                x:650, y:300, Scale: 0.7, Port: [RndPort, RndPort]                              
+                                x:650, y:300, Scale: 0.7, Port: ["", ""],
+                                RndPort: [[0, [0, 1], "PLCInputPort"], 
+                                          [1, [1, 0], "PLCInputGNDPort"]]                               
                             },
 
                 "24VDC":    {
                                 x:450, y:400, Port: ["24VP", "24VN"]
-                            }  
+                            },
+                            
+                "Key":      [["", ""], ["", "24VN"], ["", "24VN"],
+                             ["24VP", ""]]
             };
 
 var P11Port = {
                 "COMAURobot":{
-                                x:600, y:120, Scale: 1.2, Port: [RndPort, "24VDC", "0VDC"]                 
+                                x:600, y:120, Scale: 1.2, Port: ["", "24VDC", "0VDC"],
+                                RndPort: [[0, [2, 1], "COMAUOUTPort"]]                  
                             },
 
                 "PLCInput":{
-                                x:200, y:200, Scale: 0.7, Port: [RndPort, RndPort]        
-                            }
+                                x:200, y:200, Scale: 0.7, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "PLCInputPort"], 
+                                          [1, [1, 0], "PLCInputGNDPort"], 
+                                           1, [2, 0], "PLCInputGNDPort"]         
+                            },
+
+                "Key":      [["", "24VDC"], ["", "0VDC"], ["", ""]]
             };
 
 var P12Port = {
                 "FANUCRobot":       {
-                                        x:100, y:120, Scale: 1.2, Port: [RndPort, RndPort, RndPort]                     
+                                        x:100, y:120, Scale: 1.2, Port: ["", "", ""],
+                                        RndPort: [[0, [0, 0], "FANUCDOPort"], 
+                                                  [1, [6, 1], "FANUC0VDPort"], 
+                                                  [2, [5, 0], "FANUCDOSRCPort"]]                     
                                     },
 
                 "PLCInput":         {
-                                        x:500, y:300, Scale: 0.5, Port: [RndPort, RndPort, "IN-8", "IN-9"]    
+                                        x:500, y:300, Scale: 0.5, Port: ["", "", "IN-8", "IN-9"],
+                                        RndPort: [[0, [0, 1], "PLCInput0To4Port"], 
+                                                  [1, [7, 1], "PLCInputGNDPort"]],  
+                                        RndPortEx: [[1, [7, 1]]] 
                                     },
 
                 "24VDC":            {
@@ -187,27 +248,44 @@ var P12Port = {
                 "ButtonMotorStop":  {
                                         x:650, y:180, Port: ["BTMSTPL", "BTMSTPR"]
                                     },
+
+                "Key":              [["", ""],  ["IN-8", "BTSTRL"], ["BTSTRR", "24VP"],
+                                     ["IN-9", "BTMSTPL"], ["BTMSTPR", "24VP"], ["", "24VP"],
+                                     ["24VN", ""],   ["24VN", ""]]
             };
 
 var P13Port = {
                 "KUKARobot":{
-                                x:600, y:120, Port: [RndPort, RndPort, RndPort],
-                                Scale: 1.2               
+                                x:600, y:120, Port: ["", "", ""],
+                                Scale: 1.2,
+                                RndPort: [[0, [0, 0], "KUKADOPort"], 
+                                          [1, [1, 0], "KUKAGNDDOPort"], 
+                                          [2, [2, 0], "KUKA24VPort"]]               
                             },
 
                 "PLCInput":{
-                                x:200, y:200, Scale: 0.7, Port: [RndPort, RndPort]
+                                x:200, y:200, Scale: 0.7, Port: ["", ""],
+                                RndPort: [[0, [2, 1], "PLCInputPort"], 
+                                          [1, [0, 1], "PLCInputGNDPort"]],
+                                RndPortEx: [[1, [1, 1]]] 
                                 
                             },
+
+                "Key":      [["", ""], ["", ""], ["", ""]]
             };
 
 var P14Port = {
                 "OMRONRobot":{
-                                x:80, y:220, Scale: 1.2, Port: [RndPort, RndPort]                  
+                                x:80, y:220, Scale: 1.2, Port: ["", ""],
+                                RndPort: [[0, [0, 0], "OMRONOUT"], 
+                                          [1, [1, 0], "OMRONGND"]]                  
                             },
 
                 "PLCInput":{
-                                x:500, y:300, Scale: 0.7, Port: [RndPort, RndPort, RndPort]
+                                x:500, y:300, Scale: 0.7, Port: ["", "", ""],
+                                RndPort: [[0, [0, 1], "PLCInput0To4Port"], 
+                                          [1, [3, 0], "PLCInput5To9Port"], 
+                                          [2, [2, 0], "PLCInputGNDPort"]]
                                 
                             },
 
@@ -218,6 +296,9 @@ var P14Port = {
                 "24VDC":    {
                                 x:800, y:250, Port: ["24VP", "24VN"]
                             },
+
+                "Key":      [["", ""],  ["", "24VN"], ["", "24VN"],
+                             ["", "BTSTRL"], ["BTSTRR", "24VP"]]
             };
 
 
@@ -227,260 +308,3 @@ var DictModule = {
                     P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
                     P13: P13Port, P14: P14Port
                 };
-
-// connecting keys
-var DictKeys = {
-                    P1:  [[RndPort, "SWL"], [RndPort, "24VN"], ["SWR", "24VP"]], 
-                    P2:  [[RndPort, "MTR"], [RndPort, "24VN"], ["MTL", "24VP"]],
-                    P3:  [[RndPort, "RLSWU"], [RndPort, "24VN"], ["RLSWDR", "24VP"], 
-                          ["RLCU", "PNPE"],   ["RLCD", "PNPC"],  ["PNPB", "48VP"],
-                          ["PNPC", "48VN"]],
-                    P4:  [[RndPort, "OPUR"], [RndPort, "24VN"], ["24VP", "OPDR"],
-                          ["5VP", "OPUL"],   ["5VN", "OPDL"]],
-                    P5:  [[RndPort, "RLSWU"], [RndPort, "24VN"], ["24VP", "RLSWDR"], 
-                          ["5VN", "SR"],      ["5VP", "RLCD"],   ["SL", "RLCU"]],
-                    P6:  [[RndPort, "24VP"], ["24VN", "SR"], ["SL", "0VDC"]],
-                    P7:  [[RndPort, "SL"], [RndPort, "SR"], [RndPort, RndPort]],
-                    P8:  [[RndPort, "SR"], ["SL", "24VP"], ["24VN", RndPort]],
-                    P9:  [[RndPort, "SL"], ["SR", RndPort], [RndPort, RndPort]],
-                    P10: [[RndPort, RndPort], [RndPort, "24VN"], [RndPort, "24VN"],
-                          ["24VP", RndPort]],
-                    P11: [[RndPort, "24VDC"], [RndPort, "0VDC"], [RndPort, RndPort]],
-                    P12: [[RndPort, RndPort],  ["IN-8", "BTSTRL"], ["BTSTRR", "24VP"],
-                          ["IN-9", "BTMSTPL"], ["BTMSTPR", "24VP"], [RndPort, "24VP"],
-                          ["24VN", RndPort],   ["24VN", RndPort]],
-                    P13: [[RndPort, RndPort], [RndPort, RndPort], [RndPort, RndPort]],
-                    P14: [[RndPort, RndPort],  [RndPort, "24VN"], [RndPort, "24VN"],
-                          [RndPort, "BTSTRL"], ["BTSTRR", "24VP"]]
-                };
-
-var P134RND =   [ 
-                    {
-                        Module: "PLCInput", PortPool: PLCInputPort, 
-                        PortIndex: 0, KeyIndex: [0, 0]
-                    },
-
-                    {
-                        Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                        PortIndex: 1, KeyIndex: [1, 0]
-                    }
-                ];
-
-var P2RND = [ 
-                {
-                    Module: "PLCOutput", PortPool: PLCOutputPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "PLCOutput", PortPool: PLCOutputDCPort, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                }
-            ];
-
-var P5RND = [ 
-                {
-                    Module: "ABBRobot", PortPool: ABBDIPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "ABBRobot", PortPool: ABBGNDDIPort, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                }
-            ];
-
-var P6RND = [ 
-                {
-                    Module: "COMAURobot", PortPool: COMAUINPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                }
-            ];
-
-var P7RND = [ 
-                {
-                    Module: "FANUCRobot", PortPool: FANUCDIPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "FANUCRobot", PortPool: FANUC24FPort, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                },
-
-                {
-                    Module: "FANUCRobot", PortPool: FANUCSDIPort, 
-                    PortIndex: 2, KeyIndex: [2, 0]
-                },
-
-                {
-                    Module: "FANUCRobot", PortPool: FANUC0VPort, 
-                    PortIndex: 3, KeyIndex: [2, 1]
-                }
-            ];
-
-var P8RND = [ 
-                {
-                    Module: "KUKARobot", PortPool: KUKADIPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "KUKARobot", PortPool: KUKAGNDDIPort, 
-                    PortIndex: 1, KeyIndex: [2, 1]
-                }
-            ];
-
-var P9RND = [ 
-                {
-                    Module: "OMRONRobot", PortPool: OMRONIN, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "OMRONRobot", PortPool: OMRONGND, 
-                    PortIndex: 1, KeyIndex: [1, 1]
-                },
-
-                {
-                    Module: "OMRONRobot", PortPool: OMRON24VDC, 
-                    PortIndex: 2, KeyIndex: [2, 0]
-                },
-
-                {
-                    Module: "OMRONRobot", PortPool: OMRONCommon, 
-                    PortIndex: 3, KeyIndex: [2, 1]
-                }
-            ];
-
-var P10RND = [ 
-                {
-                    Module: "ABBRobot", PortPool: ABBDOPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "ABBRobot", PortPool: ABBGNDDOPort, 
-                    PortIndex: 1, KeyIndex: [2, 0]
-                },
-
-                {
-                    Module: "ABBRobot", PortPool: ABBPWRDOPort, 
-                    PortIndex: 2, KeyIndex: [3, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputPort, 
-                    PortIndex: 0, KeyIndex: [0, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                }
-            ];
-
-var P11RND = [ 
-                {
-                    Module: "COMAURobot", PortPool: COMAUOUTPort, 
-                    PortIndex: 0, KeyIndex: [2, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                    PortIndex: 1, KeyIndex: [1, 0], KeyIndexEx: [2, 0]
-                }
-            ];
-
-var P12RND = [ 
-                {
-                    Module: "FANUCRobot", PortPool: FANUCDOPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "FANUCRobot", PortPool: FANUC0VDPort, 
-                    PortIndex: 1, KeyIndex: [6, 1]
-                },
-
-                {
-                    Module: "FANUCRobot", PortPool: FANUCDOSRCPort, 
-                    PortIndex: 2, KeyIndex: [5, 0]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInput0To4Port, 
-                    PortIndex: 0, KeyIndex: [0, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                    PortIndex: 1, KeyIndex: [7, 1]
-                }
-            ];
-            
-var P13RND = [ 
-                {
-                    Module: "KUKARobot", PortPool: KUKADOPort, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "KUKARobot", PortPool: KUKAGNDDOPort, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                },
-
-                {
-                    Module: "KUKARobot", PortPool: KUKA24VPort, 
-                    PortIndex: 2, KeyIndex: [2, 0]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputPort, 
-                    PortIndex: 0, KeyIndex: [2, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                    PortIndex: 1, KeyIndex: [0, 1], KeyIndexEx: [1, 1]
-                }
-            ]; 
-            
-var P14RND = [ 
-                {
-                    Module: "OMRONRobot", PortPool: OMRONOUT, 
-                    PortIndex: 0, KeyIndex: [0, 0]
-                },
-
-                {
-                    Module: "OMRONRobot", PortPool: OMRONGND, 
-                    PortIndex: 1, KeyIndex: [1, 0]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInput0To4Port, 
-                    PortIndex: 0, KeyIndex: [0, 1]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInput5To9Port, 
-                    PortIndex: 1, KeyIndex: [3, 0]
-                },
-
-                {
-                    Module: "PLCInput", PortPool: PLCInputGNDPort, 
-                    PortIndex: 2, KeyIndex: [2, 0]
-                }
-            ];                                  
-
-var DictRndPort =   {
-                        P1:  P134RND, P2:  P2RND,  P3:  P134RND, P4:  P134RND,
-                        P5:  P5RND,   P6:  P6RND,  P7:  P7RND,   P8:  P8RND, 
-                        P9:  P9RND,   P10: P10RND, P11: P11RND,  P12: P12RND,  
-                        P13: P13RND,  P14: P14RND
-                    }

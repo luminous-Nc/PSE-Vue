@@ -96,3 +96,36 @@ var OMRONGND = ["GNDL", "GNDM"];
 var OMRON24VDC = ["24VDCL", "24VDCM"];
 
 var OMRONCommon = ["Common1", "Common2"];
+
+var ObjRndPool = {
+                    PLCInputPort: PLCInputPort,
+                    PLCInput0To4Port: PLCInput0To4Port,
+                    PLCInput5To9Port: PLCInput5To9Port,
+                    PLCInputGNDPort: PLCInputGNDPort,
+                    PLCOutputPort: PLCOutputPort,
+                    PLCOutputDCPort: PLCOutputDCPort,
+                    ABBDIPort: ABBDIPort,
+                    ABBDOPort: ABBDOPort,
+                    ABBGNDDIPort: ABBGNDDIPort,
+                    ABBGNDDOPort: ABBGNDDOPort,
+                    ABBPWRDOPort: ABBPWRDOPort,
+                    COMAUINPort: COMAUINPort,
+                    COMAUOUTPort: COMAUOUTPort,
+                    FANUCDIPort: FANUCDIPort,
+                    FANUCDOPort: FANUCDOPort,
+                    FANUC0VPort: FANUC0VPort,
+                    FANUC0VDPort: FANUC0VDPort,
+                    FANUC24FPort: FANUC24FPort,
+                    FANUCSDIPort: FANUCSDIPort,
+                    FANUCDOSRCPort: FANUCDOSRCPort,
+                    KUKADIPort: KUKADIPort,
+                    KUKADOPort: KUKADOPort,
+                    KUKAGNDDIPort: KUKAGNDDIPort,
+                    KUKAGNDDOPort: KUKAGNDDOPort,
+                    KUKA24VPort: KUKA24VPort,
+                    OMRONIN: OMRONIN,
+                    OMRONOUT: OMRONOUT,
+                    OMRONGND: OMRONGND,
+                    OMRON24VDC: OMRON24VDC,
+                    OMRONCommon: OMRONCommon
+}

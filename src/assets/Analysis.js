@@ -12,7 +12,6 @@ function Init_Analysis(){
 
 // initialize current analysis properties
 function Init_Parameter_A(){
-    Keys = DictKeys[PName];
     Timer.Stop = (new Date() - Timer.Start) / 1000;
     MyAnalysis = new Object();
 }

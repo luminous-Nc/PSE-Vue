@@ -7,6 +7,7 @@ var stage;
 var PName;
 var ObjDict  = {};
 var ObjPorts = [];
+var ObjRndPorts = {};
 
 // main
 function Init_Canvas(CanvasRef){
@@ -20,36 +21,45 @@ function Init_Canvas(CanvasRef){
     // initialization 
     Init_Object();              
     Draw_Image();               
-    Draw_Connection_Points();
+    Draw_Connection_Ports();
     Init_Practice();
 }
 
 // assign all ports' coordinate set to each object
 function Init_Object(){
+    // get key
+    Keys = DictModule[PName]["Key"];
+    
+
     // get current module and port
-    ObjDict = DictModule[PName];
+    ObjDict = {...DictModule[PName]};
+    delete ObjDict["Key"]
 
     // custom random port
     Custom_Random_Port();
+    
 }
 
 // custom random port for single practice
 function Custom_Random_Port(){
-    if (DictRndPort.hasOwnProperty(PName)){
-        var RNDPorts = DictRndPort[PName];
-        for (const RNDPort of RNDPorts){
-            // pick a random port from port pool
-            var RNDPortName = Get_Random_Array_Value(RNDPort["PortPool"]);
+    for (const ModuleName in ObjDict){
+        if (ObjDict[ModuleName].hasOwnProperty("RndPort")){
+            for (const RNDPort of ObjDict[ModuleName]["RndPort"]){
+                // get current random port
+                const RNDPortIndex    = RNDPort[0];
+                const RNDPortKeyIndex = RNDPort[1];
+                const RNDGeneralName  = RNDPort[2];
+                const RNDPortPool     = ObjRndPool[RNDGeneralName];
+                const RNDPortOut      = Get_Random_Array_Value(RNDPortPool);
 
-            // assign port
-            DictModule[PName][RNDPort["Module"]]["Port"][RNDPort["PortIndex"]] = RNDPortName;
-            
-            // assign key
-            DictKeys[PName][RNDPort["KeyIndex"][0]][RNDPort["KeyIndex"][1]] = RNDPortName;
-            
-            // assign additional key port (if applicable)   
-            if (RNDPort.hasOwnProperty("KeyIndexEx")){
-                DictKeys[PName][RNDPort["KeyIndexEx"][0]][RNDPort["KeyIndexEx"][1]] = RNDPortName;
+                // assign random port
+                ObjDict[ModuleName]["Port"][RNDPortIndex] = RNDPortOut;
+
+                // assign random port general name
+                ObjRndPorts[RNDPortOut] = RNDGeneralName;
+                
+                // assign random port key
+                Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
             }
         }
     }
@@ -77,19 +87,23 @@ function Draw_Image(){
     stage.update();         
 }
 
-function Draw_Connection_Points(){
+function Draw_Connection_Ports(){
     for(const ModuleName in ObjDict){
         for(const PortName of ObjDict[ModuleName].Port){
             var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
             circle.module = ModuleName;
-            circle.name   = PortName;   
+            circle.name   = PortName; 
+            if(ObjRndPorts.hasOwnProperty(PortName)){
+                circle.rndname = ObjRndPorts[PortName];
+            }
             circle.x = ObjDict[ModuleName].x + DictObjPos[ModuleName][PortName].x * Scale;
             circle.y = ObjDict[ModuleName].y + DictObjPos[ModuleName][PortName].y * Scale;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
+        
         }
     } 
 }

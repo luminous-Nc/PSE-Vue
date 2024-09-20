@@ -25,9 +25,6 @@
     // image list
     var DictImg = {};
 
-    // random port
-    var RndPort = "";
-
     // others
     var PortSize;
 
