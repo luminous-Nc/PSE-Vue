@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import PSECanvas from "@/components/PSECanvas/index.vue"
-import {useQuestionsStore} from "@/stores/question.js";
+import {useQuestionsStore} from "@/stores/step.js";
 
 const questionStore = useQuestionsStore();
 const currentQuestion = computed(()=>questionStore.currentQuestion);

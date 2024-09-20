@@ -7,14 +7,14 @@ export const useTopicsStore = defineStore('topics', {
         currentTopic:{}
     }),
     actions: {
-        async getAllTopics() {
+        async downloadTopics() {
             if (!this.topics.length) {
-                console.log('getAllTopics in getAllTopics function')
+                console.log('Downloading topics...')
                 try {
                     const response = await fetch('/assets/database/topic.json');
                     const data = await response.json();
                     this.topics = data.topics;
-                    console.log('downloaded store topics')
+                    console.log('Downloaded store topics')
                 } catch (error) {
                     console.error('Error loading database:', error);
                 }
@@ -23,8 +23,6 @@ export const useTopicsStore = defineStore('topics', {
         },
 
         async getCurrentTopic() {
-
-
             const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
             console.log('getCurrentTopic',topic)
             this.currentTopic = topic
@@ -33,8 +31,8 @@ export const useTopicsStore = defineStore('topics', {
     getters:{
         allLocalTopics(state) {
             if (!state.topics.length) {
-                console.log('Topics are empty, fetching topics...');
-                this.getAllTopics();
+                console.log('[allLocalTopics] Topics are empty, fetching topics...');
+                this.downloadTopics();
             }
             return state.topics;
         },
@@ -42,11 +40,11 @@ export const useTopicsStore = defineStore('topics', {
         localCurrentTopic(state) {
             const route = useRoute();
             const topicId = route.query.id;
-            console.log('Get topic ID from route Id =',topicId)
+            console.log('[localCurrentTopics] Get topic ID from route Id =',topicId)
 
             if (!state.topics.length) {
                 console.log('topics not downloaded')
-                this.getAllTopics()
+                this.downloadTopics()
             }
             // 根据路由中的 topicId 返回对应的 topic
             return state.topics.find(t => t.id === parseInt(topicId, 10)) || {};

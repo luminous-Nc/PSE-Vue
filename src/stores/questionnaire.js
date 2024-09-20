@@ -15,7 +15,7 @@ export const useQuestionnaireStore = defineStore('questionnaire', {
                 this.questions = data.questions;
                 console.log('store topics')
             } catch (error) {
-                console.error('Error loading database:', error);
+                console.error('Error loading learning style database:', error);
             }
         }
     }

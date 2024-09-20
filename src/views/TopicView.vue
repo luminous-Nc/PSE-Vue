@@ -10,15 +10,15 @@ import TopicLeft from "@/components/Topic/TopicLeft.vue";
 import TopicRight from "@/components/Topic/TopicRight.vue";
 import { onMounted,ref } from 'vue';
 import {usePhaseStore } from '@/stores/phase.js';
-import {useQuestionsStore} from "@/stores/question.js";
+import {useQuestionsStore} from "@/stores/step.js";
 
 
-const phaseStore = usePhaseStore();
-const questionStore = useQuestionsStore();
+
+
 
 
 onMounted(() => {
- phaseStore.initPhase();
+ const questionStore = useQuestionsStore();
  questionStore.initQuestion()
 });
 

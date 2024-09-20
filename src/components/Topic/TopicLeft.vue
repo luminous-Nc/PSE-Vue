@@ -14,7 +14,7 @@
 import { computed,onMounted } from 'vue';
 import { usePhaseStore } from '@/stores/phase.js';
 import {useTopicsStore} from "@/stores/topic.js";
-import {useQuestionsStore} from "@/stores/question.js";
+import {useQuestionsStore} from "@/stores/step.js";
 import { defineStore } from 'pinia';
 
 const topicStore = useTopicsStore();

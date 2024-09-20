@@ -1,29 +1,29 @@
 import { defineStore } from 'pinia';
 import {useRoute} from "vue-router";
 
-export const useQuestionsStore = defineStore('questions', {
+export const useStepsStore = defineStore('steps', {
     state: () => ({
-        questions: [],
-        currentQuestion:{}
+        steps: [],
+        currentStep:{}
     }),
     actions: {
-        async getAllQuestions() {
+        async downloadSteps() {
             try {
-                const response = await fetch('/assets/database/question.json');
+                const response = await fetch('/assets/database/steps.json');
                 const data = await response.json();
-                this.questions = data.questions;
+                this.steps = data.questions;
             } catch (error) {
                 console.error('Error loading database:', error);
             }
         },
 
         async initQuestion(){
+            console.log('Init Question')
             if (!this.questions.length) {
                 await this.getAllQuestions()
             }
             const questionId = 1
             const question = this.questions.find(t => t.id === parseInt(questionId, 10));
-            console.log(question)
             this.currentQuestion = question
         },
 
@@ -34,7 +34,7 @@ export const useQuestionsStore = defineStore('questions', {
             console.log(topicId)
 
             if (!this.topics.length) {
-                await this.getAllTopics()
+                await this.downloadTopics()
             }
 
             const topic = this.topics.find(t => t.id === parseInt(topicId, 10));

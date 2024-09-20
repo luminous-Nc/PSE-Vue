@@ -1,0 +1,14 @@
+{
+  "steps": [
+    {"id": 1,
+      "type": "introduction",
+      "text": "Watch the introduction of topic PLC Input",
+      "url": ""
+    },
+    {"id": 2,
+      "type": "introduction",
+      "text": "Watch the introduction of topic PLC Input",
+      "url": ""
+    }
+  ]
+}
