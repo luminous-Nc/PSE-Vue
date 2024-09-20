@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
+import {useStudentStore} from "@/stores/student.js";
 
 export const useTopicsStore = defineStore('topics', {
     state: () => {
@@ -34,6 +35,8 @@ export const useTopicsStore = defineStore('topics', {
             }
             // 根据路由中的 topicId 返回对应的 topic
             this.currentTopic = this.topics.find(t => t.id === parseInt(topicId, 10)) || {};
+            const studentStore = useStudentStore()
+            studentStore.currentTopic = this.currentTopic
         }
     },
     getters: {

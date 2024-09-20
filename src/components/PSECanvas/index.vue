@@ -7,7 +7,7 @@
     </div>
     <div v-if="stepStore.getCurrentStep?.type === 'introduction'">
       <div>Introduction Canvas</div>
-      <button  class="button-83 reset-button" @click="Reset_Canvas">Reset</button>
+      <button class="button-83 reset-button" @click="FinishIntro">Finish</button>
     </div>
 
   </div>
@@ -18,6 +18,7 @@
     import {useTopicsStore} from "@/stores/topic.js";
     import { computed, ref, watch } from 'vue';
     import {useStepsStore} from "@/stores/step.js";
+    import {useStudentStore} from "@/stores/student.js";
 
     const canvas = ref(null);
 
@@ -38,9 +39,15 @@
 
     // onMounted(() => {Init_Canvas(canvas)});
 
+
     function Reset_Canvas(){Init_Practice()};
 
     function Analyze_Canvas(){Init_Analysis()};
+
+    function FinishIntro() {
+        const studentStore = useStudentStore();
+        studentStore.downloadTopics()
+    }
 </script>
 
 <style scoped>

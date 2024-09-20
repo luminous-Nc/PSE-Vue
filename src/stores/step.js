@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
 import {useTopicsStore} from "@/stores/topic.js";
+import {useStudentStore} from "@/stores/student.js";
 
 export const useStepsStore = defineStore('steps', {
     state: () => {
@@ -34,6 +35,9 @@ export const useStepsStore = defineStore('steps', {
 
             console.log('start_step',currentTopic.start_step)
             this.currentStep = this.steps.find(t => t.id === parseInt(currentTopic.start_step, 10));
+
+            const studentStore = useStudentStore()
+            studentStore.currentStep = this.currentStep
         }
     },
 
