@@ -28,13 +28,13 @@
 
     {
       "id": 3,
-      "name": "PLC and PNP",
+      "name": "PLC & PNP",
       "desc": " "
     },
 
     {
       "id": 4,
-      "name": "PLC and Optical",
+      "name": "PLC & Optical",
       "desc": " "
     },
 
@@ -60,11 +60,41 @@
       "name": "KUKA Robot",
       "desc": " "
     },
+
     {
       "id": 9,
       "name": "OMRON Robot",
       "desc": " "
-    }
+    },
 
+    {
+      "id": 10,
+      "name": "ABB Robot & PLC",
+      "desc": " "
+    },
+    
+    {
+      "id": 11,
+      "name": "COMAU Robot & PLC",
+      "desc": " "
+    },
+    
+    {
+      "id": 12,
+      "name": "FANUC Robot & PLC",
+      "desc": " "
+    },
+    
+    {
+      "id": 13,
+      "name": "KUKA Robot & PLC",
+      "desc": " "
+    },
+    
+    {
+      "id": 14,
+      "name": "OMRON Robot & PLC",
+      "desc": " "
+    }
   ]
 }

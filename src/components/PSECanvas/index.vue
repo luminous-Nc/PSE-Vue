@@ -13,8 +13,8 @@
     const topicStore = useTopicsStore();
     const currentTopic = computed(()=> topicStore.currentTopic)
 
+    // watching topic and re-rendering canvas dynamically
     watch(currentTopic, (newTopic) => {
-        // Check if 'newTopic' and 'newTopic.name' are defined
         if (newTopic && newTopic.id) {
             PName = "P" + newTopic.id;
             Init_Canvas(canvas)
