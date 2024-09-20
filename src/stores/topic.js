@@ -1,11 +1,13 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
 
 export const useTopicsStore = defineStore('topics', {
-    state: () => ({
-        topics: [],
-        currentTopic:{}
-    }),
+    state: () => {
+        return {
+            topics: [],
+            currentTopic: undefined
+        }
+    },
     actions: {
         async downloadTopics() {
             if (!this.topics.length) {
@@ -19,35 +21,37 @@ export const useTopicsStore = defineStore('topics', {
                     console.error('Error loading database:', error);
                 }
             }
-            return this.topics
         },
 
-        async getCurrentTopic() {
-            const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
-            console.log('getCurrentTopic',topic)
-            this.currentTopic = topic
+        async decideCurrentTopic() {
+            const {query} = useRoute()
+            const topicId = query.id;
+            console.log('[decideCurrentTopic] Get topic ID from route Id =', topicId)
+
+            if (!this.topics.length) {
+                console.log('topics not downloaded')
+                await this.downloadTopics()
+            }
+            // 根据路由中的 topicId 返回对应的 topic
+            this.currentTopic = this.topics.find(t => t.id === parseInt(topicId, 10)) || {};
         }
     },
-    getters:{
-        allLocalTopics(state) {
+    getters: {
+        getAllTopics(state) {
             if (!state.topics.length) {
                 console.log('[allLocalTopics] Topics are empty, fetching topics...');
-                this.downloadTopics();
+                state.downloadTopics();
             }
             return state.topics;
         },
 
-        localCurrentTopic(state) {
-            const route = useRoute();
-            const topicId = route.query.id;
-            console.log('[localCurrentTopics] Get topic ID from route Id =',topicId)
-
-            if (!state.topics.length) {
-                console.log('topics not downloaded')
-                this.downloadTopics()
+        getCurrentTopic(state) {
+            if (state.currentTopic === undefined) {
+                state.decideCurrentTopic()
+                return state.currentTopic
+            } else {
+                return state.currentTopic
             }
-            // 根据路由中的 topicId 返回对应的 topic
-            return state.topics.find(t => t.id === parseInt(topicId, 10)) || {};
         }
     }
 });

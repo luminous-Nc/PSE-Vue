@@ -1,45 +1,58 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
+import {useTopicsStore} from "@/stores/topic.js";
 
 export const useStepsStore = defineStore('steps', {
-    state: () => ({
-        steps: [],
-        currentStep:{}
-    }),
+    state: () => {
+        return {
+                steps: [],
+                currentStep: undefined
+        }
+    },
     actions: {
         async downloadSteps() {
-            try {
-                const response = await fetch('/assets/database/steps.json');
-                const data = await response.json();
-                this.steps = data.questions;
-            } catch (error) {
-                console.error('Error loading database:', error);
+            if (!this.steps.length) {
+                console.log('Downloading steps')
+                try {
+                    const response = await fetch('/assets/database/steps.json');
+                    const data = await response.json();
+                    this.steps = data.steps;
+                    console.log('Downloaded store steps')
+                } catch (error) {
+                    console.error('Error loading database:', error);
+                }
             }
         },
-
-        async initQuestion(){
-            console.log('Init Question')
-            if (!this.questions.length) {
-                await this.getAllQuestions()
+        async decideCurrentStep() {
+            if (!this.steps.length) {
+                console.log('steps not downloaded')
+                await this.downloadSteps()
             }
-            const questionId = 1
-            const question = this.questions.find(t => t.id === parseInt(questionId, 10));
-            this.currentQuestion = question
+
+            const topicStore = useTopicsStore()
+            const currentTopic = topicStore.getCurrentTopic
+
+            console.log('start_step',currentTopic.start_step)
+            this.currentStep = this.steps.find(t => t.id === parseInt(currentTopic.start_step, 10));
+        }
+    },
+
+    getters: {
+        getAllSteps(state) {
+            if (!state.steps.length) {
+                console.log('[allLocalSteps] Steps are empty, fetching steps...')
+                this.downloadSteps()
+            }
+            return state.steps
         },
 
-        async getCurrentTopic() {
-            const route = useRoute();
-            const topicId = route.query.id;
-
-            console.log(topicId)
-
-            if (!this.topics.length) {
-                await this.downloadTopics()
+        getCurrentStep(state) {
+            if (state.currentStep === undefined) {
+                state.decideCurrentStep()
+                return state.currentStep
+            } else {
+                return state.currentStep
             }
-
-            const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
-            console.log(topic)
-            this.currentTopic = topic
         }
     }
 });

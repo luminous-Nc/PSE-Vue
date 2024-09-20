@@ -9,7 +9,7 @@
 
         <div className="mb-32 grid text-center lg:max-w-7xl lg:w-full lg:mb-0 lg:grid-cols-3 lg:text-left">
             <div
-                v-for="topic in topicsStore.allLocalTopics"
+                v-for="topic in topicsStore.getAllTopics"
                 :key=topic.name
                 @click="goToTopicPage(topic)"
                 class="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 relative"
@@ -31,12 +31,12 @@
 
 <script setup>
 import { inject, computed } from 'vue';
-import { useTopicsStore } from '../stores/topic';
 import { useRoute, useRouter } from 'vue-router'
 import {storeToRefs} from "pinia";
+import {useTopicsStore} from "@/stores/topic.js";
 
 
-const topicsStore = inject('topicStore')
+const topicsStore = useTopicsStore()
 const router = useRouter()
 function goToTopicPage(topic) {
     router.push('/topic?id='+topic.id)
