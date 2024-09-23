@@ -1,0 +1,75 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "I tend to...",
+      "answers": [
+        {
+          "text": "understand details of a subject but may be fuzzy about its overall structure",
+          "points": -1
+        },
+        {
+          "text": "understand the overall structure but may be fuzzy about details",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Once I understand...",
+      "answers": [
+        {
+          "text": "all the parts, I understand the whole thing",
+          "points": -1
+        },
+        {
+          "text": "the whole things, I see how the parts fit",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "When I solve math problems..",
+      "answers": [
+        {
+          "text": "I usually work my way to the solutions one step at a time",
+          "points": -1
+        },
+        {
+          "text": "I often just see the solution but then have to struggle to figure out the steps to get to them",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "It is more important to me that an instructor",
+      "answers": [
+        {
+          "text": "lay out the material in clear sequential steps",
+          "points": -1
+        },
+        {
+          "text": "give me an overall picture and relate the material to other objects",
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "I learn...",
+      "answers": [
+        {
+          "text": "at a fairly regular pace. If I study hard to get it",
+          "points": -1
+        },
+        {
+          "text": "in fits and starts. I'll e totally confused and suddenly it all",
+          "points": 1
+        }
+      ]
+    }
+
+  ]
+}

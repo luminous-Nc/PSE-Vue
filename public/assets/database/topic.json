@@ -4,6 +4,7 @@
       "id": 1,
       "name": "PLC Input",
       "desc": "",
+      "start_step": 1,
       "phases": [
         {
           "id": 1,
@@ -43,7 +44,7 @@
       "name": "ABB Robot",
       "desc": " "
     },
-    
+
     {
       "id": 6,
       "name": "COMAU Robot",
