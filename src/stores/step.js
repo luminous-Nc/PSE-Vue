@@ -24,7 +24,16 @@ export const useStepsStore = defineStore('steps', {
                 }
             }
         },
-        async decideCurrentStep() {
+        async setCurrentStepByID(stepID){
+            if (!this.steps.length) {
+                console.log('steps not downloaded')
+                await this.downloadSteps()
+            }
+            this.currentStep = this.steps.find(t => t.id === parseInt(stepID, 10));
+            return this.currentStep
+        },
+
+        async decideInitStep() {
             if (!this.steps.length) {
                 console.log('steps not downloaded')
                 await this.downloadSteps()
@@ -52,7 +61,7 @@ export const useStepsStore = defineStore('steps', {
 
         getCurrentStep(state) {
             if (state.currentStep === undefined) {
-                state.decideCurrentStep()
+                state.decideInitStep()
                 return state.currentStep
             } else {
                 return state.currentStep

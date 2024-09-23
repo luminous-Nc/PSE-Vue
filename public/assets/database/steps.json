@@ -1,23 +1,35 @@
 {
   "steps": [
     {"id": 1,
+      "number": "1.1",
       "type": "introduction",
       "text": "Watch the introduction of topic PLC Input",
       "url": ""
     },
     {"id": 2,
-      "type": "introduction",
-      "text": "Watch the introduction of topic PLC Input",
+      "number": "2.1",
+      "type": "description",
+      "text": "Learn the description of topic PLC input",
       "url": ""
     },
     {"id": 3,
-      "type": "introduction",
-      "text": "Watch the introduction of topic PLC Input",
-      "url": ""
+      "number": "3.1",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "1"
     },
     {"id": 4,
-      "type": "introduction",
-      "text": "Watch the introduction of topic PLC Input",
+      "number": "3.2",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "8"
+    },
+    {"id": 5,
+      "number": "4.1",
+      "type": "finish",
+      "text": "Congratulation! Learning of topic PLC is finish",
       "url": ""
     }
   ]

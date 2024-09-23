@@ -14,12 +14,12 @@ function Init_Canvas(CanvasRef){
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
     stage = new createjs.Stage(Canvas);
-    stage.removeAllChildren();  
+    stage.removeAllChildren();
     stage.enableMouseOver();
-    
-    // initialization 
-    Init_Object();              
-    Draw_Image();               
+
+    // initialization
+    Init_Object();
+    Draw_Image();
     Draw_Connection_Points();
     Init_Practice();
 }
@@ -43,17 +43,17 @@ function Custom_Random_Port(){
 
             // assign port
             DictModule[PName][RNDPort["Module"]]["Port"][RNDPort["PortIndex"]] = RNDPortName;
-            
+
             // assign key
             DictKeys[PName][RNDPort["KeyIndex"][0]][RNDPort["KeyIndex"][1]] = RNDPortName;
-            
-            // assign additional key port (if applicable)   
+
+            // assign additional key port (if applicable)
             if (RNDPort.hasOwnProperty("KeyIndexEx")){
                 DictKeys[PName][RNDPort["KeyIndexEx"][0]][RNDPort["KeyIndexEx"][1]] = RNDPortName;
             }
         }
     }
-    
+
 }
 
 function Draw_Image(){
@@ -74,7 +74,7 @@ function Draw_Image(){
         ObjDict[ModuleName].img = Btmp;
         stage.addChild(Btmp);
     }
-    stage.update();         
+    stage.update();
 }
 
 function Draw_Connection_Points(){
@@ -84,14 +84,14 @@ function Draw_Connection_Points(){
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
             circle.module = ModuleName;
-            circle.name   = PortName;   
+            circle.name   = PortName;
             circle.x = ObjDict[ModuleName].x + DictObjPos[ModuleName][PortName].x * Scale;
             circle.y = ObjDict[ModuleName].y + DictObjPos[ModuleName][PortName].y * Scale;
             ObjPorts.push(circle);
             stage.addChild(circle);
             stage.update();
         }
-    } 
+    }
 }
 
 function Get_Img_Scale(Module){
@@ -123,9 +123,9 @@ function Get_Img_Scale(Module){
 //             Init_Practice();
 //             IsImgLoaded = true;
 //             }
-          
-   
-//         } 
+
+
+//         }
 //     }
 // }
 
@@ -133,8 +133,8 @@ function Get_Img_Scale(Module){
 //     var shape = new createjs.Shape();
 //     shape.graphics.setStrokeStyle(2); 	   // Line thickness
 //     shape.graphics.beginStroke("#000000"); // Line color
-//     shape.graphics.drawRect(0, 0, 
-//                             MyCanvas.width, 
+//     shape.graphics.drawRect(0, 0,
+//                             MyCanvas.width,
 //                             MyCanvas.height); // coordinate
 //     stage.addChild(shape);
 //     stage.update();
