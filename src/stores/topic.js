@@ -1,38 +1,60 @@
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
+import {useStudentStore} from "@/stores/student.js";
 
 export const useTopicsStore = defineStore('topics', {
-    state: () => ({
-        topics: [],
-        currentTopic:{}
-    }),
+    state: () => {
+        return {
+            topics: [],
+            currentTopic: undefined
+        }
+    },
     actions: {
-        async getAllTopics() {
-            console.log('getAllTopics')
-            try {
-                const response = await fetch('/assets/database/topic.json');
-                const data = await response.json();
-                this.topics = data.topics;
-                console.log('store topics')
-            } catch (error) {
-                console.error('Error loading database:', error);
+        async downloadTopics() {
+            if (!this.topics.length) {
+                console.log('Downloading topics...')
+                try {
+                    const response = await fetch('/assets/database/topic.json');
+                    const data = await response.json();
+                    this.topics = data.topics;
+                    console.log('Downloaded store topics')
+                } catch (error) {
+                    console.error('Error loading database:', error);
+                }
             }
         },
 
-        async getCurrentTopic() {
-            const route = useRoute();
-            const topicId = route.query.id;
-
-            console.log('Find topic ID from route',topicId)
+        async decideCurrentTopic() {
+            const {query} = useRoute()
+            const topicId = query.id;
+            console.log('[decideCurrentTopic] Get topic ID from route Id =', topicId)
 
             if (!this.topics.length) {
-                console.log('topics not exist')
-                await this.getAllTopics()
+                console.log('topics not downloaded')
+                await this.downloadTopics()
             }
+            // 根据路由中的 topicId 返回对应的 topic
+            this.currentTopic = this.topics.find(t => t.id === parseInt(topicId, 10)) || {};
+            const studentStore = useStudentStore()
+            studentStore.currentTopic = this.currentTopic
+        }
+    },
+    getters: {
+        getAllTopics(state) {
+            if (!state.topics.length) {
+                console.log('[allLocalTopics] Topics are empty, fetching topics...');
+                state.downloadTopics();
+            }
+            return state.topics;
+        },
 
-            const topic = this.topics.find(t => t.id === parseInt(topicId, 10));
-            console.log('getCurrentTopic',topic)
-            this.currentTopic = topic
+        getCurrentTopic(state) {
+            if (state.currentTopic === undefined) {
+                state.decideCurrentTopic()
+                return state.currentTopic
+            } else {
+                return state.currentTopic
+            }
         }
     }
 });

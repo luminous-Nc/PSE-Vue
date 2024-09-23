@@ -1,12 +1,13 @@
 // declare variables
 
 // User's operation
+
 var MyPorts		 = [];  // user's accumulated ports set
 var TempPorts    = [];  // current dual selected ports
 var MySubLines	 = [];	// user's accumulated subLines
 var MyLines		 = [];	// user's accumulated connections(two ports array);
 var Timer        = {};  // user's start time
-
+var ImgLegend;
 // overall parameters
 var Title = {};     // objects' prefix
 var Obstacles       // all specific obstacle points
@@ -16,11 +17,11 @@ var Ports;	        // selectable ports
 function Init_Practice(){
     //Analysis_Symbols_Remove();
     Init_Parameter();
-    Init_Symbol();   
+    Init_Symbol();
 }
 
 // initialize all parameters
-function Init_Parameter(){	
+function Init_Parameter(){
     DictSubMScl = {};
     DictDetourL = {};
     MyPorts	    = [];
@@ -28,14 +29,17 @@ function Init_Parameter(){
     Title       = Titles_Init(PName);  // objects' general title
     Timer       = {Start: new Date()};
 }
-
+function Remove_Legend(){
+    stage.removeChild(ImgLegend);
+    stage.update();
+}
 // initialize designated symbols in <practice> frame
-function Init_Symbol(){ 
+function Init_Symbol(){
     // remove SubLines, Lines, and Legend
     Remove_SubLines();
     Remove_Lines();
     Remove_Legend();
-    
+
     // generate obstacles
     Obstacles = Init_Obstacles(ObjDict);
 
@@ -51,11 +55,11 @@ function Titles_Init(Title){
     const Line     = Title + "L"; // line
     const Obstacle = Title + "B"; // obstacle
     const Module   = Title + "M"; // module
-    
+
     return {"Port":     Port,
-            "SubLine":  SubLine, 
-            "Line":     Line, 
-            "Obstacle": Obstacle, 
+            "SubLine":  SubLine,
+            "Line":     Line,
+            "Obstacle": Obstacle,
             "Module":   Module};
 }
 
@@ -64,7 +68,7 @@ function Init_Obstacles(Objs){
     var Obstacles = []; // modules array
     const BufHor = 5; // buffer expand to the object
     const BufVer = 10;
-        
+
     // get all modules' figure
     for (const key in Objs){
         // initialize the module
@@ -72,9 +76,9 @@ function Init_Obstacles(Objs){
         var name = Module.name;         // object name
         var x    = Module.x;            // left coordinate
         var y    = Module.y;            // top coordinate
-        var w    = Module.image.width;  // image width    
+        var w    = Module.image.width;  // image width
         var h    = Module.image.height; // image height
-        
+
         // initialize obstacle
         var Obstacle = {};
         Obstacle.name = name;
@@ -128,7 +132,7 @@ function Hide_Ports(){
 
 // remove all connections
 function Remove_Lines(){
-    Remove_All(MyLines); 
+    Remove_All(MyLines);
     MyLines = [];
 }
 
@@ -144,7 +148,7 @@ function Display_Ports(){
 }
 
 // display or hide all deSignsated items
-function Execute_All(objects, action){ 
+function Execute_All(objects, action){
     for (var i = 0; i < objects.length; i++){
         // <action>: true or false
         objects[i].visible = action;
@@ -163,7 +167,7 @@ function Remove_All(object){
     for (var i = 0; i < object.length; i++){
         if(object[i]){stage.removeChild(object[i]);}
     }
-    stage.update(); 
+    stage.update();
 }
 
 
@@ -174,7 +178,7 @@ function All_Events_Init(objects, event, event_func) {
         if (objects[i].hasEventListener(event) == false){
             objects[i].addEventListener(event, event_func);
         }
-        
+
     }
 }
 
@@ -185,7 +189,7 @@ function All_Events_Remove(objects, event, event_func) {
         if (objects[i].hasEventListener(event) == true){
             objects[i].removeEventListener(event, event_func);
         }
-        
+
     }
 }
 
@@ -215,7 +219,7 @@ function Edit_Connect(shape, color, radius) {
 function Event_Click_Connect(e){
     // 1. setup port based on the selected port
     Select_Ports(e.target);
-    
+
     // 2. display connection when two ports have been selected
     Display_Connection();
 }
@@ -224,12 +228,12 @@ function Select_Ports(target){
     // get current selected port
     var Port = target;
 
-    // get and display subline symbol from select symbol   
+    // get and display subline symbol from select symbol
     var SubLine = Get_SubLine(Port);
 
     // add subline end point to the port
     Port.SubLEnd = SubLine.point.end;
-    
+
     // add time stamp
     Port.Time = new Date();
 
@@ -239,10 +243,10 @@ function Select_Ports(target){
 
     // dispplay in web console for 2nd port
     const StringPort = ["Start Port", "End Port"];
-    console.log("%s -> %s", 
-                StringPort[TempPorts.length - 1], 
+    console.log("%s -> %s",
+                StringPort[TempPorts.length - 1],
                 Port.name);
-  
+
 }
 
 function Display_Connection(){
@@ -251,7 +255,7 @@ function Display_Connection(){
         if(TempPorts[0].name != TempPorts[1].name){
             // generate the connection
             var Line = Get_Line(TempPorts);
-   
+
             // display the connection and setup other procedure
             if (typeof Line != 'undefined'){
                 // disable the two select ports with successful connection
@@ -260,29 +264,29 @@ function Display_Connection(){
                 // add operations
                 MyPorts.push(TempPorts); // ports
                 MyLines.push(Line);      // connections
-                    
+
                 // notify in the console
                 console.log("connection -> %s", Line.name);
-                console.log("---------");     
+                console.log("---------");
             }else{
-                console.log("undefined connection");            
-            }                     
+                console.log("undefined connection");
+            }
         }else{
             // resume the current subline moving scale
             DictSubMScl[TempPorts[0].module] -=2;
             console.log("connection needs two different ports");
         }
-         
+
         // remove active SubLines
         Remove_SubLines();
 
         // reset both temperoral ports
-        TempPorts = [];  
+        TempPorts = [];
     }
 }
 
 // get subline
-function Get_SubLine(Port){   
+function Get_SubLine(Port){
     // initialie current point
     var StartPt = {x : Port.x, y : Port.y};
     var EndPt   = {};
@@ -302,7 +306,7 @@ function Get_SubLine(Port){
             // get current subline break point
             BreakPts = {x : StartPt.x + DictSubL.Break * Dir.x * BrkScale,
                         y : StartPt.y + DictSubL.Break * Dir.y * BrkScale};
-           
+
             if (!Is_Inside_Obstacles(BreakPts, Obstacles)) {
                 break;
             }
@@ -363,7 +367,7 @@ function Get_SubLine(Port){
 
     // add the line to current connection array
     MySubLines.push(SubLine);
-             
+
     return SubLine;
 }
 
@@ -375,8 +379,8 @@ function Get_Line(MyPortSet){
 
     // get the line name
     var LineName = Get_Line_Name(Title.Line, Port1.name, Port2.name);
-    
-    // get original start and end point 
+
+    // get original start and end point
     var StartPt0 = {x: Port1.x, y : Port1.y};
     var EndPt0   = {x: Port2.x, y : Port2.y};
 
@@ -389,16 +393,16 @@ function Get_Line(MyPortSet){
 
     // integrate with orignal start and end points
     WayPts       = [StartPt0, ...WayPts, EndPt0];
-    
+
     // eliminate repated line
     WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
-    
+
     // draw mutiple waypoints line
     var Line     = Draw_Connection(LineName, WayPts);
- 
+
     // draw direct line based on the position of the two Ports
     //var Line = Draw_Connection(LineName, [StartPt, EndPt]);
-    
+
     // assign the connection module
     Line.Module = [Port1.name, Port2.name];
 
@@ -423,25 +427,25 @@ function Draw_Connection(LineName, Points, DashPattern = false){
     if (DashPattern == true) {
         Line.graphics.setStrokeDash([10, 5]); // dash line if required
     }
-    
+
     // start to draw waypoint line
     for(var i = 0; i < Points.length - 1; i++){
         // current draw start point
         Line.graphics.moveTo(Points[i].x, Points[i].y);
-        
+
         // current draw end point
         Line.graphics.lineTo(Points[i+1].x, Points[i+1].y);
     }
-    
+
     // setup line name
     Line.name = LineName;
 
     // hide the line(optinal)
     //Line.visible = false;
-    
+
     stage.addChild(Line);
     stage.update();
-    
+
     return Line;
 }
 
@@ -456,13 +460,13 @@ function Get_Symbol_Name(Title, PortName){
 }
 
 // hide the current two select ports
-function Disable_Select(Ports){ 
+function Disable_Select(Ports){
     Execute_All(Ports, false);
 }
 
 /* // initialize subline
-function SubLine_Init(){   
-    var MySubLines = [], MyDirection, 
+function SubLine_Init(){
+    var MySubLines = [], MyDirection,
         MySelectName,
         StartX, StartY, MoveX, MoveY;
 
@@ -472,7 +476,7 @@ function SubLine_Init(){
         if (DictPractice.hasOwnProperty(AllPorts[i])){
             // get the current subline direction
             MyDirection = DictPractice[AllPorts[i]];
-         
+
             // Get start point and moving direction
             MySelectName = Get_Symbol_Name(TitleSelect, AllPorts[i]);
             StartX = root[MySelectName].x;
@@ -504,8 +508,8 @@ function SubLine_Init(){
             // add the line to an array
             MySubLines.push(MySubLine);
         }
-    
-    }            
+
+    }
     return MySubLines
 } */
 
@@ -519,14 +523,14 @@ function Obstacle_Init(){
     if (MyTaskNum > AllModulesSet.length){
         return [];
     }
-    
+
     for (var i = 0; i < AllModules.length; i++){
         MyObstacle = [];
         for (var j = 0; j < 4; j++){
             // get current obstacle point name
-            MyObstacleName = TitleObstacle + "_" + 
+            MyObstacleName = TitleObstacle + "_" +
                              AllModules[i] + (j+1).toString();
-                             
+
             // generate obstacle object
             var MyObj      = root[MyObstacleName];
 
@@ -534,7 +538,7 @@ function Obstacle_Init(){
             MyObj.visible  = false;
 
             // assign obstacle as dictionary array
-            MyObstacle[j]  = {name : MyObj.name, x : MyObj.x, 
+            MyObstacle[j]  = {name : MyObj.name, x : MyObj.x,
                                                  y : MyObj.y};
         }
 
@@ -552,7 +556,7 @@ function Obstacle_Init(){
 
 //     var n = 0, Symbols = [];
 //     var Line;
-    
+
 //     for (var i = 0; i < AllPorts.length; i++){
 //         for (var j = i + 1; j < AllPorts.length; j++){
 //             // get the current static line
@@ -562,13 +566,13 @@ function Obstacle_Init(){
 //             if (Line !== undefined){
 //                 // setup color of the line
 //                 Line.children[0].graphics._stroke.style = "#00FF00";
-                
+
 //                 // hide the line
 //                 Line.visible = false;
 
 //                 // assigne symbol and symbol name
 //                 Symbols[n] = Line;
-                
+
 //                 // count the number of connections
 //                 n += 1;
 //             }
@@ -581,13 +585,13 @@ function Obstacle_Init(){
 // // get static line
 // function Get_Static_Line(MyPortSet){
 //     var Line, LineName1, LineName2;
-    
+
 //     // integrate two potential lines
 //     LineName1 = Get_Line_Name(TitleSLine, MyPortSet[0],
 //                                           MyPortSet[1]);
-//     LineName2 = Get_Line_Name(TitleSLine, MyPortSet[1], 
+//     LineName2 = Get_Line_Name(TitleSLine, MyPortSet[1],
 //                                           MyPortSet[0]);
-    
+
 //     // comfirm the line
 //     if (root[LineName1]){
 //         Line = root[LineName1];
@@ -601,7 +605,7 @@ function Obstacle_Init(){
 
 //     // hide the line
 //     Line.visible = false;
-    
+
 //     return Line
 // }
 
@@ -621,7 +625,7 @@ function Obstacle_Init(){
 //     // current ports and keys
 //     AllPorts      = AllPortsSet[IndexTasks-1];
 //     AllKeys       = AllKeysSet[IndexTasks-1];
-    
+
 //     // current port-module dictionary
 //     DictPorts     = DictPortsSet[IndexTasks-1];
 //     DictModules   = DictModulesSet[IndexTasks-1];
@@ -629,7 +633,7 @@ function Obstacle_Init(){
 
 //     // current obstacles
 //     AllModules    = AllModulesSet[IndexTasks - 1];
-     
+
 // }
 
 // // initialize designated symbols in <practice> frame
@@ -638,7 +642,7 @@ function Obstacle_Init(){
 //     Ports = ObjPorts;
 //     AllObjs = ObjDict;
 //     Obstacles = Obstacle_Init();
-//     //Extra_Select_Init(); 
+//     //Extra_Select_Init();
 // }
 
 // // hide designsated symbols in the <practice> frame
@@ -655,10 +659,10 @@ function Obstacle_Init(){
 // }
 
 // // main of 1st frame
-// function Init(){ 
+// function Init(){
 //     // initialize general parameters and symbols
 //     General_Symbol_Init();
-    
+
 //     // initialize button event by once
 //     All_Events_Init(Buttons, "click", Event_Click_Button);
 
@@ -666,7 +670,7 @@ function Obstacle_Init(){
 
 // // main of description frame
 // function Init_Description(){
-//     // initialize all settings 
+//     // initialize all settings
 //     Description_Symbols_Hide();
 //     Description_Symbols_Remove();
 //     Remove_Symbols();
@@ -680,11 +684,11 @@ function Obstacle_Init(){
 //     for (var i = 0; i < Keys.length; i++){
 //         for (var j = 0; j < Keys[i].length; j ++){
 //             Dict[Keys[i][j]] = Values[i];
-//         }  
+//         }
 //     }
 
 //     return Dict;
-// } 
+// }
 
 //var DictConnections 	= new Object(); // dictionary used to check correct connection
 //var DictSubConnections	= new Object(); // dictionary used to collect current sub-Lines
@@ -697,21 +701,21 @@ function Obstacle_Init(){
 //     // execute related button function
 //     switch (true){
 //         // next frame
-//         case (MyButtonName.includes("Next") || 
+//         case (MyButtonName.includes("Next") ||
 //                 MyButtonName.includes("next")):
 //                 IndexMyPage += 1;
-//                 root.gotoAndStop(IndexMain[IndexMyPage]); 
+//                 root.gotoAndStop(IndexMain[IndexMyPage]);
 //                 break;
 //         // previous frame
-//         case (MyButtonName.includes("Previous") || 
+//         case (MyButtonName.includes("Previous") ||
 //                 MyButtonName.includes("previous")):
 //                 IndexMyPage -= 1;
-//                 root.gotoAndStop(IndexMain[IndexMyPage]); 
+//                 root.gotoAndStop(IndexMain[IndexMyPage]);
 //                 break;
 //         // reset connections
-//         case (MyButtonName.includes("Reset") || 
+//         case (MyButtonName.includes("Reset") ||
 //                 MyButtonName.includes("reset")):
-//                 Init_Practice(); 
+//                 Init_Practice();
 //                 break;
 //     }
 // }

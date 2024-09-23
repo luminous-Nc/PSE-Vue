@@ -1,12 +1,13 @@
 // all properties and parameters in the project
+
 var MyAnalysis;
 var ImgLegend;
 
 // main of anlaysis frame
-function Init_Analysis(){  
+function Init_Analysis(){
     Init_Parameter_A();
     Init_Symbol_A();
-    General_Analysis();  
+    General_Analysis();
     console.log(MyAnalysis);
 }
 
@@ -22,28 +23,28 @@ function Init_Symbol_A(){
     Init_Legend();
 }
 
-// initialize connection legend
-function Init_Legend(){
-        var key     = "Legend";
-        var Btmp    = new createjs.Bitmap(DictImg[key]);
-        Btmp.name   = key;
-        Btmp.x      = DictObjPos[key].x; // Center horizontally
-        Btmp.y      = DictObjPos[key].y; // Center vertically
-        ImgLegend   = Btmp;
-           
-        stage.addChild(ImgLegend);
-        stage.update();   
-    
-}
-
 // hide Legend
 function Remove_Legend(){
     stage.removeChild(ImgLegend);
     stage.update();
 }
 
+// initialize connection legend
+ function Init_Legend(){
+        var key     = "Legend";
+        var Btmp    = new createjs.Bitmap(DictImg[key]);
+        Btmp.name   = key;
+        Btmp.x      = DictObjPos[key].x; // Center horizontally
+        Btmp.y      = DictObjPos[key].y; // Center vertically
+        ImgLegend   = Btmp;
+
+        stage.addChild(ImgLegend);
+        stage.update();
+
+}
+
 // analyze connections
-function General_Analysis(){
+ function General_Analysis(){
     // <<Statistic Analysis>>
     // get correct and incorrect line
     var ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
@@ -52,7 +53,7 @@ function General_Analysis(){
     // get time elapse
     var TimeOut = Get_Time_Elapse();
     Object.assign(MyAnalysis, TimeOut);
- 
+
     // <<Graphical Analysis>>
     // display all incorrect line as red color
     Highlight_Connection(MyLines);
@@ -65,7 +66,7 @@ function General_Analysis(){
 }
 
 // check the user's current connections
-function Check_Connection(PortsIn, LinesIn, KeysIn){
+ function Check_Connection(PortsIn, LinesIn, KeysIn){
     var LoopSkipMarker   = false;
     var CorrectOut = [], IncorrectOut = [];
     var CorrectRateOut,  IncorrectRateOut;
@@ -93,13 +94,13 @@ function Check_Connection(PortsIn, LinesIn, KeysIn){
                 break;
             }
         }
-        
+
         // skip incorrect accumulation if correct is found
         if (LoopSkipMarker == true){
             LoopSkipMarker = false;
             continue;
         }
-    
+
         // append incorrect connection if unfound correct one
         IncorrectOut.push([...PortsIn[i], LinesIn[i]]);
     }
@@ -111,14 +112,14 @@ function Check_Connection(PortsIn, LinesIn, KeysIn){
     // integrate all results and return as an object
     return {Line:           LinesIn,
             Key:            KeysIn,
-            Correct:        CorrectOut, 
+            Correct:        CorrectOut,
             CorrectRate:    CorrectRateOut,
-            Incorrect:      IncorrectOut, 
+            Incorrect:      IncorrectOut,
             IncorrectRate:  IncorrectRateOut};
 }
 
 // Process time elapsed
-function Get_Time_Elapse(){
+ function Get_Time_Elapse(){
     var MyTimer, MyTimers = [], i = 0;
     var Name, StartTime, StopTime, TimeUse, TimeTicker = 0;
 
@@ -148,7 +149,7 @@ function Get_Time_Elapse(){
 }
 
 // Get current operation timer with limited decimal places
-function Get_Operation_Timer(Number, Name, StartTime, StopTime){
+ function Get_Operation_Timer(Number, Name, StartTime, StopTime){
     // keep two decimal places
     StartTime   = parseFloat(StartTime.toFixed(2));
     StopTime    = parseFloat(StopTime.toFixed(2));
@@ -159,7 +160,7 @@ function Get_Operation_Timer(Number, Name, StartTime, StopTime){
 }
 
 // Highlight connection with red & green color
-function Highlight_Connection(LinesIn){
+ function Highlight_Connection(LinesIn){
     for (var i = 0; i < LinesIn.length; i++){
         // setup line width
         LinesIn[i].graphics._strokeStyle.width = 3;
@@ -169,24 +170,24 @@ function Highlight_Connection(LinesIn){
             LinesIn[i].graphics._stroke.style = "green"
         }else{
             LinesIn[i].graphics._stroke.style = "red";
-        }          
+        }
     }
     stage.update();
 }
 
 // check learning modules related to the incorrect connections
-function Get_Learn_Modules(IncorrectIn){
+ function Get_Learn_Modules(IncorrectIn){
     var ModulesOut = [];
 
     // get module name
-    for (i = 0; i < IncorrectIn.length; i++){
-        for (j = 0; j < 2; j++){
+    for (let i = 0; i < IncorrectIn.length; i++){
+        for (let j = 0; j < 2; j++){
             var Module = IncorrectIn[i][j].module;
-            
+
             // add module name
             if (!ModulesOut.includes(Module)){
                 ModulesOut.push(Module);
-            }    
+            }
         }
     }
 
@@ -194,12 +195,12 @@ function Get_Learn_Modules(IncorrectIn){
 }
 
 // hide all legends
-function Hide_Legends(){
+ function Hide_Legends(){
     Execute_All(Legends, false);
 }
 
 // display all legends
-function Display_Legends(){
+ function Display_Legends(){
     Execute_All(Legends, true);
 }
 
@@ -223,7 +224,7 @@ function Display_Legends(){
 //         // add carrige return before the final line
 //         if (i < MyModules.length - 1){
 //             StringModulesButton += "\n";
-//         }                                                                       
+//         }
 //     }
 //     return StringModulesButton;
 // }
@@ -269,21 +270,21 @@ function Display_Legends(){
 //     var arrow1Y = EndPt[1] - ArrowLength * Math.sin(Angle + Math.PI / 6);
 //     var arrow2X = EndPt[0] - ArrowLength * Math.cos(Angle - Math.PI / 6);
 //     var arrow2Y = EndPt[1] - ArrowLength * Math.sin(Angle - Math.PI / 6);
-    
+
 //     Arrow.graphics.moveTo(EndPt[0], EndPt[1]); // Move to the ending point
 //     Arrow.graphics.lineTo(arrow1X, arrow1Y); // Draw the first arrowhead line
 //     Arrow.graphics.moveTo(EndPt[0], EndPt[1]); // Move to the ending point again
 //     Arrow.graphics.lineTo(arrow2X, arrow2Y); // Draw the second arrowhead line
-    
+
 //     // Update the stage to reflect the changes
 //     Arrow.visible = false;
 //     stage.addChild(Arrow);
 //     stage.update();
-    
+
 //     return Arrow
 // }
 
-// 
+//
 
 
 // // display all analysis Textbox
@@ -302,8 +303,8 @@ function Display_Legends(){
 // Outputs
 // PLC Input module
 // PLC Output module
-// Relay 
-// Sensors 
+// Relay
+// Sensors
 // ABB Robot
 // COMAU Robot
 // FANUC Robot
@@ -313,13 +314,13 @@ function Display_Legends(){
 // generate hint arrow
 /* function Arrow_Init(StartPt, EndPt, ArrowLength){
     var Arrow = new createjs.Shape();
-    
+
     console.log(StartPt); console.log(EndPt);
     Arrow.graphics.setStrokeStyle(2);               // Set the stroke style of the shape
     Arrow.graphics.beginStroke("#000000");          // Set the stroke color of the shape
     Arrow.graphics.moveTo(StartPt[0], StartPt[1]);  // Move to the starting point
     Arrow.graphics.lineTo(EndPt[0], EndPt[1]);      // Draw the line
-    
+
     // Calculate the angle of the line
     var Angle = Math.atan2(StartPt[1] - EndPt[1], EndPt[0] - StartPt[0]);
 
@@ -328,16 +329,16 @@ function Display_Legends(){
     var arrow1Y = EndPt[1] - ArrowLength * Math.sin(Angle + Math.PI / 4);
     var arrow2X = EndPt[0] - ArrowLength * Math.cos(Angle - Math.PI / 4);
     var arrow2Y = EndPt[1] - ArrowLength * Math.sin(Angle - Math.PI / 4);
-    
+
     Arrow.graphics.moveTo(EndPt[0], EndPt[1]); // Move to the ending point
     Arrow.graphics.lineTo(arrow1X, arrow1Y); // Draw the first arrowhead line
     Arrow.graphics.moveTo(EndPt[0], EndPt[1]); // Move to the ending point again
     Arrow.graphics.lineTo(arrow2X, arrow2Y); // Draw the second arrowhead line
-    
+
     // Update the stage to reflect the changes
     stage.addChild(Arrow);
     stage.update();
-    
+
     return Arrow
 } */
 
@@ -372,8 +373,8 @@ function Display_Legends(){
 
 //         // 1st col: connection port
 //         var cell1 = document.createElement("td");
-//         var cell1Text = document.createTextNode(MyModules[i].port[0].name + 
-//                                                                     "<->" + 
+//         var cell1Text = document.createTextNode(MyModules[i].port[0].name +
+//                                                                     "<->" +
 //                                                 MyModules[i].port[1].name);
 //         cell1.appendChild(cell1Text);
 //         row.appendChild(cell1);
@@ -399,16 +400,16 @@ function Display_Legends(){
 //     }
 
 //     tbl.appendChild(tblBody);
-    
+
 // }
 
     // get hint textbox
     // StringHint         = "Click previous button to practise again";
-    // MyHints[0]         = Textbox_Init(MyTextboxs[3], 0, 10);    
+    // MyHints[0]         = Textbox_Init(MyTextboxs[3], 0, 10);
     // MyHints[0].text    = StringHint;
     // MyPts              = Get_Arrow_Point(MyHints[0], Button_Previous);
     // MyHints[1]         = Arrow_Init(MyPts);
-   
+
 
     // setup textbox shape(statistic and learning)
     // MyShapes[0] = Textbox_Shape_Init(MyTextboxs[1]); // statistic report
@@ -417,13 +418,13 @@ function Display_Legends(){
     // flashing learning textbox shape
     // MyTimeInterval = setInterval(ChangeColor, 1000);
 
-    // get button link list    
+    // get button link list
     // for (i = 0; i < MyModules.length; i++){
     //     // assign current button link
     //     var MyButtonLinkX = MyTextboxs[3].x + LinkBasePos.x + LinkAdjustPos.x;
     //     var MyButtonLinkY = MyTextboxs[3].y + LinkBasePos.y + LinkAdjustPos.y * i;
     //     MyModulesButton[i] = Button_Init(MyButtonLinkX, MyButtonLinkY, MyModules[i]);
-                                                                            
+
     // }
 
     // // add button link click event
@@ -435,7 +436,7 @@ function Display_Legends(){
     // }
 
         // var Table = document.getElementById("MySummary");
-    // //Init_Table(Table, TableData);                                 
+    // //Init_Table(Table, TableData);
     // Init_Summary_Table();
 
     // // remove the module button
@@ -445,7 +446,7 @@ function Display_Legends(){
 
 //     // remove module button
 //     Remove_All(MyModulesButton);
-   
+
 //     // reset module button array
 //     MyModulesButton = [];
 // }
@@ -456,13 +457,13 @@ function Display_Legends(){
 //     MyShapes = [];
 // }
 
-// // remove textbox 
+// // remove textbox
 // function Remove_Textbox(){
 //     Remove_All(MyTextboxs);
 //     MyTextboxs = [];
 // }
 
-// // remove textbox 
+// // remove textbox
 // function Remove_Hints(){
 //     Remove_All(MyHints);
 //     MyHints = [];
@@ -474,18 +475,18 @@ function Display_Legends(){
     // // initialize learning report text
     // StringConnectionTitle = "Read the following content to learn each module:";
 
-    // // get module list text 
+    // // get module list text
     // if (MyModules.length != 0){
     //     StringModulesButton = Get_ModulesButton_Text(MyModules);
-    // } 
-    
+    // }
+
     // // ------------------------
     // // 4. <<Report Analysis>>
     // // ------------------------
     // // integrate analysis text
     // StringAnalysisTitle = "Statistic Report:";
     // if (MyPorts != 0){
-    //     StringAnalysis = Get_Analysis_Text(StringConnection, StringCorrect, 
+    //     StringAnalysis = Get_Analysis_Text(StringConnection, StringCorrect,
     //                                        MyPorts, MyCorrect, MyPrecision);
     // }
 
@@ -506,7 +507,7 @@ function Display_Legends(){
     // }
 
     // get the arrow start and end point
-// function Get_Arrow_Point(MyTextbox, MySymbol){ 
+// function Get_Arrow_Point(MyTextbox, MySymbol){
 //     MyTextbox.getBounds();
 //     MySymbol.getBounds();
 //     MySymbol.shape.getBounds();
@@ -514,11 +515,11 @@ function Display_Legends(){
 
 //     // get all waypoints
 //     // partial points are manually generated, optimization is needed soon!!!
-//     MyPts[0] = [MyTextbox.x + MyTextbox._rectangle.width / 2, 
+//     MyPts[0] = [MyTextbox.x + MyTextbox._rectangle.width / 2,
 //                 MyTextbox.y + MyTextbox._rectangle.height];
-//     MyPts[1] = [MyPts[0][0], 
-//                 MySymbol.y + MySymbol.shape.y / 2];            
-//     MyPts[2] = [MySymbol.x  + MySymbol.shape.x + 15, 
+//     MyPts[1] = [MyPts[0][0],
+//                 MySymbol.y + MySymbol.shape.y / 2];
+//     MyPts[2] = [MySymbol.x  + MySymbol.shape.x + 15,
 //                 MyPts[1][1]];
 
 //     return MyPts
@@ -540,9 +541,9 @@ function Display_Legends(){
 //     var BorderWidth     = MyTextbox.maxWidth;
 //     var BorderHeight    = MyTextboxBounds.height;
 
-//     // draw 
+//     // draw
 //     MyShape.graphics.drawRect(BaseX, BaseY, BorderWidth, BorderHeight); // Draw rectangle
-    
+
 //     // add border shape
 //     MyShape.visible = false;
 //     root.stage.addChild(MyShape);
@@ -564,12 +565,12 @@ function Display_Legends(){
 //     }else {
 //         MyColor = "#FDEBD0";
 //     }
-    
+
 //     // update color
 //     MyShapes[1].graphics._fill.style = MyColor;
 //     root.stage.update();
 
- 
+
 // }
 
 // // Sort all selected modules baed on their priority
@@ -579,7 +580,7 @@ function Display_Legends(){
 //     for (var i = 0; i < Modules.length; i++){
 //         MyModulesPriority[i] = AllModulesPriority[Modules[i].name];
 //     }
-    
+
 //     // sort them
 //     Modules.sort(function(a, b){
 //         var indexA = MyModulesPriority[Modules.indexOf(a)];
@@ -642,7 +643,6 @@ function Display_Legends(){
 
 //        // display hints
 //        Display_Hints();
-//     }  
+//     }
 // }
 
-    
