@@ -48,8 +48,9 @@ function Custom_Random_Port(){
                 // get current random port
                 const RNDPortIndex    = RNDPort[0];
                 const RNDPortKeyIndex = RNDPort[1];
-                const RNDGeneralName  = RNDPort[2];
-                const RNDPortPool     = ObjRndPool[RNDGeneralName];
+                const RNDPortPoolName = RNDPort[2];
+                const RNDGeneralName  = ObjRndPoolName[RNDPortPoolName];
+                const RNDPortPool     = ObjRndPool[RNDPortPoolName];
                 const RNDPortOut      = Get_Random_Array_Value(RNDPortPool);
 
                 // assign random port
