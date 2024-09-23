@@ -24,6 +24,7 @@ export const useStepsStore = defineStore('steps', {
                 }
             }
         },
+
         async setCurrentStepByID(stepID){
             if (!this.steps.length) {
                 console.log('steps not downloaded')
@@ -65,6 +66,13 @@ export const useStepsStore = defineStore('steps', {
                 return state.currentStep
             } else {
                 return state.currentStep
+            }
+        },
+
+        getStepById: (state) => {
+            return function (id) {
+               let targetStep = state.steps.find(step => step.id === parseInt(id, 10));
+               return targetStep;
             }
         }
     }

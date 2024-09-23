@@ -7,7 +7,7 @@ export const useStudentStore = defineStore('student', {
             currentTopic: undefined,
             currentStep: undefined,
             currentStepFinished:false,
-            learningPath:[1,2,3,4,5],
+            learningPath:[1,2,3,4,5,6,7],
             learningRecord:{},
             responseMessage:''
         }
