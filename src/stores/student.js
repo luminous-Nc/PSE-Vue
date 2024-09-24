@@ -19,7 +19,10 @@ export const useStudentStore = defineStore('student', {
         initStudent() {
           const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
           this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
-          this.learningPath = [1,2,3,4,5,6,7]
+        },
+        setLearningStyle(learning_style){
+            this.learningStyle = learning_style
+            const cookieValue = useCookies(['learning_style']).set('learning_style', learning_style) // 默认值为 'null'
         },
         finishCurrentStep() {
           this.currentStepFinished = true
