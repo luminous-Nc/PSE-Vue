@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^11.1.0",
+    "@vueuse/integrations": "^11.1.0",
     "pinia": "^2.1.7",
+    "universal-cookie": "7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },

@@ -1,5 +1,11 @@
 {
   "steps": [
+    {"id": 0,
+      "menu_text": "",
+      "type": "",
+      "text": "",
+      "url": ""
+    },
     {"id": 1,
       "menu_text": "1.1 Introduction",
       "type": "introduction",

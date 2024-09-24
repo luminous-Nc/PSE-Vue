@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div v-show="stepStore.getCurrentStep?.type === 'introduction'">
+    <div v-show="studentStore.getCurrentStep?.type === 'introduction'">
       <div>Introduction Canvas</div>
       <button class="button-83 reset-button" @click="finishIntro">Finish</button>
     </div>
 
-    <div v-show="stepStore.getCurrentStep?.type === 'description'">
+    <div v-show="studentStore.getCurrentStep?.type === 'description'">
       <div>Description Canvas</div>
       <button class="button-83 reset-button" @click="finishDescription">Finish</button>
     </div>
 
-    <div v-show="stepStore.getCurrentStep?.type === 'interactive'">
+    <div v-show="studentStore.getCurrentStep?.type === 'interactive'">
       <canvas ref="canvas" height="1000" width="1000" class="canvas"></canvas>
       <button  class="button-83 reset-button" @click="Reset_Canvas">Reset</button>
       <button class="button-83 submit-button" @click="Analyze_Canvas">Submit</button>
     </div>
 
-    <div v-show="stepStore.getCurrentStep?.type === 'finish'">
+    <div v-show="studentStore.getCurrentStep?.type === 'finish'">
       <div>Finish Canvas</div>
     </div>
 
@@ -24,16 +24,13 @@
 </template>
 
 <script setup>
-    // import { onMounted, ref } from 'vue';
-    import {useTopicsStore} from "@/stores/topic.js";
     import { computed, ref, watch } from 'vue';
-    import {useStepsStore} from "@/stores/step.js";
     import {useStudentStore} from "@/stores/student.js";
 
     const canvas = ref(null);
 
-    const stepStore = useStepsStore()
-    const currentStepLocal = computed(()=>stepStore.currentStep)
+    const studentStore = useStudentStore()
+    const currentStepLocal = computed(()=>studentStore.currentStep)
 
     watch(currentStepLocal, (newStep) => {
         // Check if 'newStep' and 'newStep.id' are defined
@@ -47,10 +44,6 @@
             console.log("currentStep or currentTopic.id is undefined.");
         }
     });
-    // PName = "P8";
-
-    // onMounted(() => {Init_Canvas(canvas)});
-
 
     function Reset_Canvas(){Init_Practice()};
 

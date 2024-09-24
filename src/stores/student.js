@@ -1,5 +1,7 @@
 import {defineStore} from 'pinia';
 import {useStepsStore} from "@/stores/step.js";
+import { useCookies } from '@vueuse/integrations/useCookies';
+import {useTopicsStore} from "@/stores/topic.js";
 
 export const useStudentStore = defineStore('student', {
     state: () => {
@@ -7,12 +9,18 @@ export const useStudentStore = defineStore('student', {
             currentTopic: undefined,
             currentStep: undefined,
             currentStepFinished:false,
-            learningPath:[1,2,3,4,5,6,7],
+            learningPath:[0],
+            learningStyle:"",
             learningRecord:{},
             responseMessage:''
         }
     },
     actions: {
+        initStudent() {
+          const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
+          this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
+          this.learningPath = [1,2,3,4,5,6,7]
+        },
         finishCurrentStep() {
           this.currentStepFinished = true
         },
@@ -20,11 +28,8 @@ export const useStudentStore = defineStore('student', {
         async nextStep() {
             const stepsStore = useStepsStore()
             const currentIndex = this.learningPath.indexOf(this.currentStep.id)
-            console.log('currentIndex',currentIndex)
             const nextStepID = this.learningPath[currentIndex + 1]
-            console.log('nextStepID',nextStepID)
-            await stepsStore.setCurrentStepByID(nextStepID)
-            this.currentStep = stepsStore.getCurrentStep
+            this.currentStep = stepsStore.getStepById(nextStepID)
             this.currentStepFinished = false
             this.responseMessage = ""
         },
@@ -48,6 +53,33 @@ export const useStudentStore = defineStore('student', {
                this.responseMessage = "You are correct! You use time" + analysis.Time
             } else {
                this.responseMessage = analysis.Key
+            }
+        },
+    },
+    getters: {
+        getCurrentStep(state) {
+            if (state.currentStep === undefined) {
+                const stepsStore = useStepsStore()
+                this.currentStep = stepsStore.getStepById(state.learningPath[0])
+                this.currentStepFinished = false
+                this.responseMessage = ""
+                return state.currentStep
+            } else {
+                return state.currentStep
+            }
+        },
+
+        getCurrentTopic(state) {
+            console.log(state.currentTopic)
+            if (state.currentTopic === undefined) {
+                console.log('decide in student topic')
+                const topicStore = useTopicsStore()
+                topicStore.decideCurrentTopic().then((res)=>{
+                    state.currentTopic = res
+                })
+                return state.currentTopic
+            } else {
+                return state.currentTopic
             }
         }
     }

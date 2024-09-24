@@ -7,7 +7,6 @@ export const useStepsStore = defineStore('steps', {
     state: () => {
         return {
                 steps: [],
-                currentStep: undefined
         }
     },
     actions: {
@@ -24,31 +23,6 @@ export const useStepsStore = defineStore('steps', {
                 }
             }
         },
-
-        async setCurrentStepByID(stepID){
-            if (!this.steps.length) {
-                console.log('steps not downloaded')
-                await this.downloadSteps()
-            }
-            this.currentStep = this.steps.find(t => t.id === parseInt(stepID, 10));
-            return this.currentStep
-        },
-
-        async decideInitStep() {
-            if (!this.steps.length) {
-                console.log('steps not downloaded')
-                await this.downloadSteps()
-            }
-
-            const topicStore = useTopicsStore()
-            const currentTopic = topicStore.getCurrentTopic
-
-            console.log('start_step',currentTopic.start_step)
-            this.currentStep = this.steps.find(t => t.id === parseInt(currentTopic.start_step, 10));
-
-            const studentStore = useStudentStore()
-            studentStore.currentStep = this.currentStep
-        }
     },
 
     getters: {
@@ -60,19 +34,14 @@ export const useStepsStore = defineStore('steps', {
             return state.steps
         },
 
-        getCurrentStep(state) {
-            if (state.currentStep === undefined) {
-                state.decideInitStep()
-                return state.currentStep
-            } else {
-                return state.currentStep
-            }
-        },
-
         getStepById: (state) => {
             return function (id) {
-               let targetStep = state.steps.find(step => step.id === parseInt(id, 10));
-               return targetStep;
+                if (!state.steps.length) {
+                    console.log('[allLocalTopics] Topics are empty, fetching topics...');
+                    state.downloadSteps();
+                }
+                let targetStep = state.steps.find(step => step.id === parseInt(id, 10));
+                return targetStep;
             }
         }
     }

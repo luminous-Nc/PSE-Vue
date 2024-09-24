@@ -13,7 +13,7 @@
                     </li>
                     <li>
                         <a href="/about"
-                              class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">About</a>
+                              class="block py-2 px-3 text-gray-900 rounded hover:bg-transparent border-0 hover:text-blue-700 p-0 dark:hover:text-blue-500 dark:hover:bg-transparent">My Learning Style</a>
                     </li>
                 </ul>
             </div>
