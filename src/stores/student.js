@@ -1,48 +1,56 @@
 import {defineStore} from 'pinia';
 import {useStepsStore} from "@/stores/step.js";
-import { useCookies } from '@vueuse/integrations/useCookies';
+import {useCookies} from '@vueuse/integrations/useCookies';
 import {useTopicsStore} from "@/stores/topic.js";
+
+function insertAfter(arr, target, newElement) {
+
+
+}
 
 export const useStudentStore = defineStore('student', {
     state: () => {
         return {
             currentTopic: undefined,
             currentStep: undefined,
-            currentStepFinished:false,
-            learningPath:[0],
-            learningStyle:"",
-            learningRecord:{},
-            responseMessage:''
+            currentStepFinished: false,
+            learningPath: ["0"],
+            learningStyle: "",
+            learningRecord: {},
+            responseMessage: '',
+            direction: 'next'
         }
     },
     actions: {
+        addNewSteps(newStepIdArray) {
+            const index = this.learningPath.indexOf(this.currentStep.id);
+            this.learningPath.splice(index + 1, 0, ...newStepIdArray);
+        },
         initStudent() {
             console.log("init Student")
-          const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
-          this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
+            const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
+            this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
         },
         initLearningPath() {
             console.log("init Learning Path")
             if (this.learningStyle === "Global") {
-                this.learningPath = [2, -99]
-            }
-            else if (this.learningStyle === "Sequential") {
-                this.learningPath = [1, 3, 4, 5, 6, -99]
-            }
-            else {
+                this.learningPath = ["1.2", "-99"]
+            } else if (this.learningStyle === "Sequential") {
+                this.learningPath = ["1.1", "2.1", "2.2", "3.1", "3.2", "4.1", "4.2", "-99"]
+            } else {
                 console.log(this.learningStyle)
             }
         }
         ,
-        setLearningStyle(learning_style){
+        setLearningStyle(learning_style) {
             this.learningStyle = learning_style
             const cookieValue = useCookies(['learning_style']).set('learning_style', learning_style) // 默认值为 'null'
         },
         finishCurrentStep() {
-          this.currentStepFinished = true
+            this.currentStepFinished = true
         },
 
-        async nextStep() {
+        nextStep() {
             const stepsStore = useStepsStore()
             const currentIndex = this.learningPath.indexOf(this.currentStep.id)
             const nextStepID = this.learningPath[currentIndex + 1]
@@ -51,7 +59,7 @@ export const useStudentStore = defineStore('student', {
             this.responseMessage = ""
         },
 
-        async lastStep() {
+        lastStep() {
             const stepsStore = useStepsStore()
             const currentIndex = this.learningPath.indexOf(this.currentStep.id)
             const lastStepID = this.learningPath[currentIndex - 1]
@@ -59,20 +67,49 @@ export const useStudentStore = defineStore('student', {
             this.currentStepFinished = false
             this.responseMessage = ""
         },
+        continue() {
+            if (this.currentStep.type !== "interactive") {
+                this.direction = 'next'
+            }
+            if (this.direction === 'next') {
+                this.nextStep()
+            } else if (this.direction === 'previous') {
+                this.lastStep()
+            }
+        },
 
-        async finishComprehensiveTest() {
-
+        finishComprehensiveTest(knowledgeLevel) {
+            console.log("add")
+            let newSteps = []
+            switch (knowledgeLevel) {
+                case "plc":
+                    newSteps = ["2.1", "2.2", "3.1", "3.2", "4.1", "4.2"]
+                    break
+                case "robot":
+                    newSteps = ["3.1", "3.2", "4.1", "4.2"]
+                    break
+                case "plcrobot":
+                    newSteps = ["4.1", "4.2"]
+                    break
+            }
+            this.addNewSteps(newSteps)
+            this.finishCurrentStep()
         },
 
         addLearningRecord(analysis) {
             console.log('From store student.js')
             console.log(analysis)
 
-            if (analysis.CorrectRate == 1) {
-               this.finishCurrentStep()
-               this.responseMessage = "You are correct! You use time" + analysis.Time
+            if (analysis.CorrectRate === 0) {
+                this.direction = 'previous'
+                this.finishCurrentStep()
+                this.responseMessage = "Incorrect. Learn again"
+                //todo define new steps to be added based on current level
             } else {
-               this.responseMessage = analysis.Key
+                // this.responseMessage = analysis.Key
+                this.direction = 'next'
+                this.finishCurrentStep()
+                this.responseMessage = "You are correct! You use time" + analysis.Time
             }
         },
     },
@@ -95,7 +132,7 @@ export const useStudentStore = defineStore('student', {
             if (state.currentTopic === undefined) {
                 console.log('decide in student topic')
                 const topicStore = useTopicsStore()
-                topicStore.decideCurrentTopic().then((res)=>{
+                topicStore.decideCurrentTopic().then((res) => {
                     state.currentTopic = res
                 })
                 return state.currentTopic

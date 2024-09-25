@@ -40,7 +40,7 @@ export const useStepsStore = defineStore('steps', {
                     console.log('[allLocalTopics] Topics are empty, fetching topics...');
                     state.downloadSteps();
                 }
-                let targetStep = state.steps.find(step => step.id === parseInt(id, 10));
+                let targetStep = state.steps.find(step => step.id === id);
                 return targetStep;
             }
         }

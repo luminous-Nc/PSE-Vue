@@ -21,7 +21,7 @@
         {{studentStore.responseMessage}}</h3>
         <div class="justify-center flex mb-3 flex-shrink-0 basis-1/12 text-2xl">
               <button v-show="studentStore.currentStepFinished && studentStore.currentStep.type!=='finished'" @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  Next
+                  Continue
               </button>
           </div>
     </div>
@@ -41,7 +41,7 @@ const studentStore = useStudentStore();
 
 
 function nextButton() {
-    studentStore.nextStep()
+    studentStore.continue()
 }
 </script>
 

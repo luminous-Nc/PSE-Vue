@@ -10,7 +10,7 @@ var ObjPorts = [];
 var ObjRndPorts = {};
 
 // main
-function Init_Canvas(CanvasRef){
+function Init_Canvas(CanvasRef, studentStore){
     // generate canvas and stage
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
