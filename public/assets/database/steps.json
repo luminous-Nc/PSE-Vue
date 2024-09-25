@@ -1,5 +1,11 @@
 {
   "steps": [
+    {"id": -99,
+      "menu_text": "",
+      "type": "finish",
+      "text": "Congratulation! You completed all learning tasks",
+      "url": ""
+    },
     {"id": 0,
       "menu_text": "",
       "type": "",
@@ -19,21 +25,22 @@
       "url": ""
     },
     {"id": 3,
-      "menu_text": "2.2 Description 2",
+      "menu_text": "2.1 PLC Interface",
       "type": "description",
       "text": "Learn the description of topic PLC input",
       "url": ""
     },
     {"id": 4,
-      "menu_text": "2.3 Description 3",
-      "type": "description",
-      "text": "Learn the description of topic PLC input",
-      "url": ""
+      "menu_text": "2.2 PLC Interface Test",
+      "type": "interactive",
+      "text": "Completed the description of topic PLC input",
+      "url": "",
+      "pnameID": "1"
     },
     {"id": 5,
-      "menu_text": "3.1 Practice 1",
-      "type": "interactive",
-      "text": "Finish the interactive practice",
+      "menu_text": "3.1 Robot Interface",
+      "type": "description",
+      "text": "Learn the interactive practice",
       "url": "",
       "pnameID": "1"
     },
@@ -42,13 +49,8 @@
       "type": "interactive",
       "text": "Finish the interactive practice",
       "url": "",
-      "pnameID": "8"
-    },
-    {"id": 7,
-      "menu_text": "4.1 Ending",
-      "type": "finish",
-      "text": "Congratulation! Learning of topic PLC is finish",
-      "url": ""
+      "nameID": "8"
     }
+
   ]
 }

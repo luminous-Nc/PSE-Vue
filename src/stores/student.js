@@ -17,16 +17,23 @@ export const useStudentStore = defineStore('student', {
     },
     actions: {
         initStudent() {
+            console.log("init Student")
           const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
           this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
         },
-        initLearningPath(){
-            if (this.learningStyle == "Global") {
-                this.learningPath = [2]
-            } else {
-                this.learningPath = [1]
+        initLearningPath() {
+            console.log("init Learning Path")
+            if (this.learningStyle === "Global") {
+                this.learningPath = [2, -99]
             }
-        },
+            else if (this.learningStyle === "Sequential") {
+                this.learningPath = [1, 3, 4, 5, 6, -99]
+            }
+            else {
+                console.log(this.learningStyle)
+            }
+        }
+        ,
         setLearningStyle(learning_style){
             this.learningStyle = learning_style
             const cookieValue = useCookies(['learning_style']).set('learning_style', learning_style) // 默认值为 'null'
@@ -47,11 +54,14 @@ export const useStudentStore = defineStore('student', {
         async lastStep() {
             const stepsStore = useStepsStore()
             const currentIndex = this.learningPath.indexOf(this.currentStep.id)
-            const nextStepID = learningPath[currentIndex + 1]
-            await stepsStore.setCurrentStepByID(nextStepID)
-            const studentStore = useStudentStore()
-            studentStore.currentStep = this.currentStep
-            studentStore.responseMessage = ""
+            const lastStepID = this.learningPath[currentIndex - 1]
+            this.currentStep = stepsStore.getStepById(lastStepID)
+            this.currentStepFinished = false
+            this.responseMessage = ""
+        },
+
+        async finishComprehensiveTest() {
+
         },
 
         addLearningRecord(analysis) {

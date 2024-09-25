@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <div v-show="studentStore.getCurrentStep?.type === 'introduction'">
-      <div>Introduction Canvas</div>
-      <button class="button-83 reset-button" @click="finishIntro">Finish</button>
+  <div class="w-full h-full">
+    <div class="h-full flex justify-center" v-show="studentStore.getCurrentStep?.type === 'introduction'">
+      <canvas ref="canvasForIntroduction"  height="1000" width="1000" class="canvas"></canvas>
     </div>
 
     <div v-show="studentStore.getCurrentStep?.type === 'description'">
@@ -10,8 +9,8 @@
       <button class="button-83 reset-button" @click="finishDescription">Finish</button>
     </div>
 
-    <div v-show="studentStore.getCurrentStep?.type === 'interactive'">
-      <canvas ref="canvas" height="1000" width="1000" class="canvas"></canvas>
+    <div v-show="studentStore.getCurrentStep?.type === 'interactive'" class="h-full flex justify-center">
+      <canvas ref="canvasForInteractive" height="1000" width="1000" class="canvas"></canvas>
       <button  class="button-83 reset-button" @click="Reset_Canvas">Reset</button>
       <button class="button-83 submit-button" @click="Analyze_Canvas">Submit</button>
     </div>
@@ -24,25 +23,30 @@
 </template>
 
 <script setup>
-    import { computed, ref, watch } from 'vue';
+import {computed, nextTick, ref, watch} from 'vue';
     import {useStudentStore} from "@/stores/student.js";
 
-    const canvas = ref(null);
+    const canvasForIntroduction = ref(null);
+    const canvasForInteractive = ref(null);
 
     const studentStore = useStudentStore()
     const currentStepLocal = computed(()=>studentStore.currentStep)
 
-    watch(currentStepLocal, (newStep) => {
-        // Check if 'newStep' and 'newStep.id' are defined
-        if (newStep && newStep.id) {
-            if (newStep.type == "interactive") {
-              PName = "P" + newStep.pnameID;
-              console.log('PName',PName)
-              Init_Canvas(canvas)
-            }
-        }else{
-            console.log("currentStep or currentTopic.id is undefined.");
+    watch(currentStepLocal, async (newStep) => {
+      // Check if 'newStep' and 'newStep.id' are defined
+      if (newStep && newStep.id) {
+        if (newStep.type === "interactive") {
+          await nextTick()
+          PName = "P" + newStep.pnameID;
+          console.log('PName', PName)
+          Init_Canvas(canvasForInteractive)
         }
+        if (newStep.type === "introduction") {
+          initCanvasWithCountdown(canvasForIntroduction.value, studentStore); // 调用独立文件中的初始化倒计时函数
+        }
+      } else {
+        console.log("currentStep or currentTopic.id is undefined.");
+      }
     });
 
     function Reset_Canvas(){Init_Practice()};
@@ -70,6 +74,7 @@
         border: 1px solid #000;
         display: flex;
         height: 100%;
+        width: auto;
     }
 
     .reset-button {

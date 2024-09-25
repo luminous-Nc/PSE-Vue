@@ -14,7 +14,9 @@ import { useStudentStore } from '@/stores/student.js';
 const studentStore = useStudentStore()
 
 onMounted(()=> {
-    studentStore.initLearningPath()
+  //
+  studentStore.initStudent()
+  studentStore.initLearningPath()
 })
 
 </script>
