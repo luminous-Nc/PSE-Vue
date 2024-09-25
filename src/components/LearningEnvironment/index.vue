@@ -13,6 +13,9 @@ import { computed, onMounted } from 'vue';
 import { useStudentStore } from '@/stores/student.js';
 const studentStore = useStudentStore()
 
+onMounted(()=> {
+    studentStore.initLearningPath()
+})
 
 </script>
 

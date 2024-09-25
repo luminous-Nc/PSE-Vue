@@ -20,6 +20,13 @@ export const useStudentStore = defineStore('student', {
           const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
           this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
         },
+        initLearningPath(){
+            if (this.learningStyle == "Global") {
+                this.learningPath = [2]
+            } else {
+                this.learningPath = [1]
+            }
+        },
         setLearningStyle(learning_style){
             this.learningStyle = learning_style
             const cookieValue = useCookies(['learning_style']).set('learning_style', learning_style) // 默认值为 'null'
@@ -62,6 +69,7 @@ export const useStudentStore = defineStore('student', {
     getters: {
         getCurrentStep(state) {
             if (state.currentStep === undefined) {
+                console.log('getCurrentStep')
                 const stepsStore = useStepsStore()
                 this.currentStep = stepsStore.getStepById(state.learningPath[0])
                 this.currentStepFinished = false

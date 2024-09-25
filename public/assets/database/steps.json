@@ -7,15 +7,15 @@
       "url": ""
     },
     {"id": 1,
-      "menu_text": "1.1 Introduction",
+      "menu_text": "1. Introduction",
       "type": "introduction",
-      "text": "Watch the introduction of topic PLC Input",
+      "text": "Watch the introduction of topic PLC integration",
       "url": ""
     },
     {"id": 2,
-      "menu_text": "2.1 Description 1",
-      "type": "description",
-      "text": "Learn the description of topic PLC input",
+      "menu_text": "1. Comprehensive Test",
+      "type": "interactive",
+      "text": "Complete the comprehensive test",
       "url": ""
     },
     {"id": 3,

@@ -1,9 +1,9 @@
 <template>
 
     <div class="flex flex-col justify-between w-1/3 p-6 bg-white border border-gray-300 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
-        <h3 class="flex-shrink-0 basis-1/12 mb-2  text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {{ studentStore.getCurrentTopic?.name }}</h3>
-        <div class="flex-shrink-0 overflow-y-scroll basis-1/6 text-lg flex-col flex w-full pl-4">
+<!--        <h3 class="flex-shrink-0 basis-1/12 mb-2  text-3xl font-bold tracking-tight text-gray-900 dark:text-white">-->
+<!--            {{ studentStore.getCurrentTopic?.name }}</h3>-->
+        <div class="flex-shrink-0 overflow-y-auto basis-1/6 text-lg flex-col flex w-full">
           <div v-for="id in studentStore.learningPath" :key="id" class=""
                :class="{
             'text-black': id < studentStore.currentStep?.id,

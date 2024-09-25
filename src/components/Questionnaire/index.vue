@@ -1,5 +1,5 @@
 <template>
-    <div class="m-2 mt-16  w-[calc(100%-1rem)] h-[calc(100%-4.5rem)] bg-white border border-gray-300 rounded-lg shadow flex flex-col items-center">
+    <div class="m-2 mt-16  w-[calc(100%-1rem)] h-[calc(100%-4.5rem)] bg-white border border-gray-300 rounded-lg shadow-lg flex flex-col items-center">
         <div class="text-center pt-8">
             <h1 class="text-5xl font-bold mb-6">The Learning Styles Quiz</h1>
             <div class="border-t-4 border-blue-600 w-6/12 mx-auto mb-6"></div>
