@@ -1,6 +1,7 @@
+import { Dict_Txt, Dict_Audio } from './text/Properties_Description.js';
+
 // initialize description page in Canvas
 var stageDes;
-var TB;
 var AudioBarBg;
 var AudioBar;
 var MyAudio;
@@ -9,7 +10,7 @@ var AudioToggle;
 var SpeakerToggle;
 
 // main
-function Init_Description(CanvasRef){
+export function Init_Description(CanvasRef){
     // generate canvas and stage
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
@@ -17,74 +18,42 @@ function Init_Description(CanvasRef){
     stageDes.removeAllChildren();  
 
     // initialize modules
-    ABB_Robot_Txt();
-    Init_Voice();
-}
-
-function Draw_Textbox(){
-    TxtBox = new createjs.Text();
-
-    // textbox properties
-    TxtBox.font         = "bold 20px Arial";
-    TxtBox.color        = "#000";
-    TxtBox.lineWidth    = 900;
-    TxtBox.textAlign    = "left";
-
-    stageDes.addChild(TxtBox);
-
-    return TxtBox;
-}
-
-function ABB_Robot_Txt(){
-    // textbox content
-    const txtT = "Interfacing the Robot Controller Input Terminal with Input Device";
-
-    const txt1 =    "1. The ABB Robot IRC5 Controller input terminal needs a 10 to 30 VDC power"
-                    + "supply for input devices such as switches, push buttons, and sensors.";
     
-    const txt2 =    "2. An external power supply is needed to power the input devices.";
+    Init_Textbox(Dict_Txt[PName]());
+    Init_Voice(Dict_Audio[PName]);
+}
 
-    const txt3 =    "3. DI XX should be connected to the +24 VDC and the GND DI should be connected to the -24 VDC";
 
-    const txt4 =    "4. Input devices should be placed in  the closed circuitry loop. It can be on the positive or negative sides of the loop.";
+function Init_Textbox(TxtIn){
+    var ObjTxt = [];
 
-    const txt5 =    "5. If the input devices is rated for a different power supply than 24VDC, a relay should be used between the input device and the robot controller";
+    for(const txtIn of TxtIn){
+        // generate a blank textbox
+        var objTxt = new createjs.Text();
 
-    const txt = [txtT, txt1, txt2, txt3, txt4, txt5];
+        // set properties
+        objTxt.text       = txtIn.text; 
+        objTxt.x          = txtIn.x;
+        objTxt.y          = txtIn.y;   
+        objTxt.font       = txtIn.font;
+        objTxt.color      = txtIn.color;
+        objTxt.lineWidth  = txtIn.lineWidth;
+        objTxt.textAlign  = txtIn.textAlign;
 
-    // textbox coordinate
-    const posT = [500, 100];
-    const pos1 = [50, 200];
-    const pos2 = [50, 270];
-    const pos3 = [50, 300];
-    const pos4 = [50, 350];
-    const pos5 = [50, 400];
-
-    const pos = [posT, pos1, pos2, pos3, pos4, pos5];
-
-    // initialization
-    TB = [];
-
-    for(var i = 0; i < txt.length; i++){
-        var myTB = Draw_Textbox();
-        myTB.text = txt[i];
-        myTB.x = pos[i][0];
-        myTB.y = pos[i][1];   
-
-        TB.push(myTB);
+        stageDes.addChild(objTxt);
+        ObjTxt.push(objTxt);
     }
 
-    // customization
-    TB[0].color = "red";
-    TB[0].font = "bold 30px Times New Roman";
-    TB[0].textAlign = "center";
-
     stageDes.update();
+    return ObjTxt;
+    
 }
 
-function Init_Voice(){
+function Init_Voice(Path){
     // generate audio
-    MyAudio = new Audio("./src/assets/audio/ABB Robot-intro.mp3");
+    if (Path == ""){ return };
+
+    MyAudio = new Audio(Path);
     MyAudio.controls = true;
 
     // generate audio progress bar background
@@ -97,7 +66,7 @@ function Init_Voice(){
     AudioBar = Draw_ProgressBar(AudioBar);
     stageDes.addChild(AudioBar);
 
-    // generate pause/play toggle
+    // generate play/pause toggle
     AudioToggle = new createjs.Shape();
     Draw_Pause_Toggle(AudioToggle);
     stageDes.addChild(AudioToggle);

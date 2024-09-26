@@ -30,6 +30,8 @@
     import {useStepsStore} from "@/stores/step.js";
     import {useStudentStore} from "@/stores/student.js";
     import { stringify } from "postcss";
+    import { Init_Description } from "@/assets/Canvas_Description.js";
+
 
     const canvas = ref(null);
 
@@ -44,6 +46,7 @@
               PName = "P14";
               console.log('PName',PName)
               // Init_Canvas(canvas);
+              PName = "2-2";
               Init_Description(canvas);
             }
         }else{
