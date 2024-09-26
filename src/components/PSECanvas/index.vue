@@ -29,6 +29,7 @@
     import { computed, ref, watch } from 'vue';
     import {useStepsStore} from "@/stores/step.js";
     import {useStudentStore} from "@/stores/student.js";
+    import { stringify } from "postcss";
 
     const canvas = ref(null);
 
@@ -39,9 +40,11 @@
         // Check if 'newStep' and 'newStep.id' are defined
         if (newStep && newStep.id) {
             if (newStep.type == "interactive") {
-              PName = "P" + newStep.pnameID;
+              // PName = "P" + newStep.id;
+              PName = "P14";
               console.log('PName',PName)
-              Init_Canvas(canvas)
+              // Init_Canvas(canvas);
+              Init_Description(canvas);
             }
         }else{
             console.log("currentStep or currentTopic.id is undefined.");

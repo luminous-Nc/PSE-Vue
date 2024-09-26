@@ -1,6 +1,6 @@
 {
   "steps": [
-    {"id": 1,
+    {"id": 5,
       "menu_text": "1.1 Introduction",
       "type": "introduction",
       "text": "Watch the introduction of topic PLC Input",
@@ -24,7 +24,7 @@
       "text": "Learn the description of topic PLC input",
       "url": ""
     },
-    {"id": 5,
+    {"id": 1,
       "menu_text": "3.1 Practice 1",
       "type": "interactive",
       "text": "Finish the interactive practice",

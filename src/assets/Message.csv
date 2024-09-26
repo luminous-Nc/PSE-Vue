@@ -1,0 +1,46 @@
+Port 1 Name,Port 2 Name,Message,Color,Notes,All Port Names
+IN-RND,GNDRND,"The input and ground form the circuit, they should not be connected directly together",Red,,IN-RND
+IN-RND,24VP,The input should not connect directly to a voltage source,Red,,GNDRND
+IN-RND,24VN,The input should not connect directly to a voltage source,Red,,24VP
+IN-RND,5VP,The 5V battery is not for the PLC,Red,,24VN
+IN-RND,5VN,The 5V battery is not for the PLC,Red,,5VP
+IN-RND,OPUL,The input should not connect to the left side of the oprical sensor,Red,,5VN
+IN-RND,OPDL,The input should not connect to the left side of the oprical sensor,Red,,OPUL
+IN-RND,OPUR,The input is connected to therightside of the optical sensor,Green,,OPDL
+IN-RND,OPDR,"The input is connected to the right side of the optical sensor, but connecting it on the bottom reverses the polarity",Yellow,,OPUR
+GNDRND,24VP,"The ground can be connected to the positive terminal, but it reverses the polarity of the circuit",Yellow,,OPDR
+GNDRND,24VN,The ground is connected to the negative terminal,Green,,
+GNDRND,5VP,The 5V battery is not for the PLC,Red,,
+GNDRND,5VN,The 5V battery is not for the PLC,Red,,
+GNDRND,OPUL,The ground should not connect to the opticcal sensor,Red,,
+GNDRND,OPDL,The ground should not connect to the opticcal sensor,Red,,
+GNDRND,OPUR,The ground should not connect to the opticcal sensor,Red,,
+GNDRND,OPDR,The ground should not connect to the opticcal sensor,Red,,
+24VP,24VN,The battery should not be connected to itself,Red,,
+24VP,5VP,The two batteries do not connect together,Red,,
+24VP,5VN,The two batteries do not connect together,Red,,
+24VP,OPUL,The 24V battery should not connect to the left side of the optical sensor,Red,,
+24VP,OPDL,The 24V battery should not connect to the left side of the optical sensor,Red,,
+24VP,OPUR,"The positive terminal can connecct to the upper right side of the optical sensor, but it reverses the polarity",Yellow,,
+24VP,OPDR,The positive terminal connects to the bottom right side of the optical sensor,Green,,
+24VN,5VP,The two batteries do not connect together,Red,,
+24VN,5VN,The two batteries do not connect together,Red,,
+24VN,OPUL,The negative terminal should not connect to the optical sensor,Red,,
+24VN,OPDL,The negative terminal should not connect to the optical sensor,Red,,
+24VN,OPUR,The negative terminal should not connect to the optical sensor,Red,,
+24VN,OPDR,The negative terminal should not connect to the optical sensor,Red,,
+5VP,5VN,The battery should not be connected to itself,Red,,
+5VP,OPUL,The positve terminal connects to the upper left side of the optical sensor,Green,,
+5VP,OPDL,"The positive terminal can connecct to the lower left side of the optical sensor, but it reverses the polarity",Yellow,,
+5VP,OPUR,The 5V battery does not connect to the right side of the optical sensor,Red,,
+5VP,OPDR,The 5V battery does not connect to the right side of the optical sensor,Red,,
+5VN,OPUL,"The positive terminal can connecct to the upper left side of the optical sensor, but it reverses the polarity",Yellow,,
+5VN,OPDL,The positve terminal connects to the lower left side of the optical sensor,Green,,
+5VN,OPUR,The 5V battery does not connect to the right side of the optical sensor,Red,,
+5VN,OPDR,The 5V battery does not connect to the right side of the optical sensor,Red,,
+OPUL,OPDL,The optical sensor should not connect to itself,Red,,
+OPUL,OPUR,The optical sensor should not connect to itself,Red,,
+OPUL,OPDR,The optical sensor should not connect to itself,Red,,
+OPDL,OPUR,The optical sensor should not connect to itself,Red,,
+OPDL,OPDR,The optical sensor should not connect to itself,Red,,
+OPUR,OPDR,The optical sensor should not connect to itself,Red,,

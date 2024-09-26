@@ -5,9 +5,12 @@ var stage;
 
 // practice name
 var PName;
+
+// rendering objects
 var ObjDict  = {};
 var ObjPorts = [];
 var ObjRndPorts = {};
+var MsgBox;
 
 // main
 function Init_Canvas(CanvasRef){
@@ -22,7 +25,24 @@ function Init_Canvas(CanvasRef){
     Init_Object();              
     Draw_Image();               
     Draw_Connection_Ports();
+    Draw_Msg_Box();
     Init_Practice();
+
+    // read message csv
+    // const fs = require('fs');
+    // const { parse } = require("csv-parse");
+    // fs.createReadStream("./Message.csv");
+    // fs.createReadStream("./example.csv")
+    //     .pipe(parse({ delimiter: ",", from_line: 2 }))
+    //     .on("data", function (row) {
+    //         console.log(row);
+    //     })
+    //     .on("error", function (error) {
+    //         console.log(error.message);
+    //     })
+    //     .on("end", function () {
+    //         console.log("finished");
+    //     });
 }
 
 // assign all ports' coordinate set to each object
@@ -117,40 +137,13 @@ function Get_Img_Scale(Module){
     }
 }
 
-// function Draw_Image(){
-//     var ImagesLoadedNum = 0;
-//     for (var i = 0; i < ObjDict.length; i++){
-//         Imgs[i] = new Image();
-//         Imgs[i].src = ImgFolder + "/"+ ObjDict[i].name +".jpg";
-//         Imgs[i].onload = function(){
-//             ImagesLoadedNum++;
-//             if (ImagesLoadedNum == ObjDict.length){
-//                 for (var i = 0; i < ObjDict.length; i++){
-//                     var Btmp = new createjs.Bitmap(Imgs[i]);
-//                     Btmp.name = ObjDict[i].name;
-//                     Btmp.x = ObjDict[i].x; // Center horizontally
-//                     Btmp.y = ObjDict[i].y; // Center vertically
-//                     ObjDict[i].Obj = Btmp;
-//                     stage.addChild(Btmp);
-//                     stage.update();
-//                 }
-//             Draw_Connection_Point();
-//             Init_Practice();
-//             IsImgLoaded = true;
-//             }
-          
-   
-//         } 
-//     }
-// }
-
-// function Draw_Canvas_Border(){
-//     var shape = new createjs.Shape();
-//     shape.graphics.setStrokeStyle(2); 	   // Line thickness
-//     shape.graphics.beginStroke("#000000"); // Line color
-//     shape.graphics.drawRect(0, 0, 
-//                             MyCanvas.width, 
-//                             MyCanvas.height); // coordinate
-//     stage.addChild(shape);
-//     stage.update();
-// }
+function Draw_Msg_Box(){
+    MsgBox = new createjs.Text();
+    MsgBox.font = "bold 30px Arial";
+    MsgBox.color = "#000";
+    MsgBox.textAlign = "center";
+    MsgBox.x = 500;
+    MsgBox.y = 700;
+    stage.addChild(MsgBox);
+    stage.update();
+}

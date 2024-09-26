@@ -45,6 +45,10 @@ function Init_Symbol(){
 
     // generate ports and event listeners
     Reset_Ports();
+
+    // reset dynamic message box
+    Reset_MsgBox();
+    
 }
 
 // generate titles of the current task
@@ -130,6 +134,12 @@ function Hide_Ports(){
     Execute_All(Ports, false);
 }
 
+// hide message box
+function Reset_MsgBox(){
+    MsgBox.text = "";
+    Updage_Stage();
+}
+
 // remove all connections
 function Remove_Lines(){
     Remove_All(MyLines);
@@ -145,6 +155,12 @@ function Remove_SubLines(){
 // display all select ports initially
 function Display_Ports(){
     Execute_All(Ports, true);
+}
+
+// display message box
+function Display_MsgBox(){
+    MsgBox.visible = true;
+    Updage_Stage();
 }
 
 // display or hide all deSignsated items
@@ -268,6 +284,11 @@ function Display_Connection(){
                 // notify in the console
                 console.log("connection -> %s", Line.name);
                 console.log("---------");
+
+                // notify in message box
+                MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
+                              + ": error message(display)";
+                stage.update();
             }else{
                 console.log("undefined connection");
             }
