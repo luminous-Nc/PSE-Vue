@@ -3,7 +3,7 @@
     {
       "id": 1,
       "question": "I tend to...",
-      "answers": [
+      "options": [
         {
           "text": "understand details of a subject but may be fuzzy about its overall structure",
           "points": -1
@@ -17,7 +17,7 @@
     {
       "id": 2,
       "question": "Once I understand...",
-      "answers": [
+      "options": [
         {
           "text": "all the parts, I understand the whole thing",
           "points": -1
@@ -31,7 +31,7 @@
     {
       "id": 3,
       "question": "When I solve math problems..",
-      "answers": [
+      "options": [
         {
           "text": "I usually work my way to the solutions one step at a time",
           "points": -1
@@ -45,7 +45,7 @@
     {
       "id": 4,
       "question": "It is more important to me that an instructor",
-      "answers": [
+      "options": [
         {
           "text": "lay out the material in clear sequential steps",
           "points": -1
@@ -59,7 +59,7 @@
     {
       "id": 5,
       "question": "I learn...",
-      "answers": [
+      "options": [
         {
           "text": "at a fairly regular pace. If I study hard to get it",
           "points": -1
