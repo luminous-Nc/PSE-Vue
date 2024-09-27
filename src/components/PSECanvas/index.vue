@@ -15,69 +15,65 @@
 
 <script setup>
 
-
-// import { onMounted, ref } from 'vue';
-import {useTopicsStore} from "@/stores/topic.js";
-import {computed, ref, watch} from 'vue';
-import {useStepsStore} from "@/stores/step.js";
-import {useStudentStore} from "@/stores/student.js";
-import {stringify} from "postcss";
-import {Init_Canvas} from "@/assets/Canvas_Page.js";
-import {Init_Test} from "@/assets/Canvas_Test.js";
-import {Init_Analysis} from "@/assets/Analysis";
-import {initCanvasWithCountdown} from "@/assets/CanvasEventandSizeTest.js";
-
-// import { Init_Description } from "@/assets/Canvas_Description.js";
+  // import { onMounted, ref } from 'vue';
+  import {useTopicsStore} from "@/stores/topic.js";
+  import {computed, ref, watch} from 'vue';
+  import {useStepsStore} from "@/stores/step.js";
+  import {useStudentStore} from "@/stores/student.js";
+  import {stringify} from "postcss";
+  import {Init_Canvas} from "@/assets/Canvas_Page.js";
+  import {Init_Test} from "@/assets/Canvas_Test.js";
+  import {Init_Analysis} from "@/assets/Analysis";
+  import {initCanvasWithCountdown} from "@/assets/CanvasEventandSizeTest.js";
 
 
-const canvas = ref(null);
-const showResetButton = ref(false)
-const showSubmitButton = ref(false)
+  const canvas = ref(null);
+  // const showResetButton = ref(false);
+  // const showSubmitButton = ref(false);
+  const showResetButton = ref(true);
+  const showSubmitButton = ref(true);
 
-const studentStore = useStudentStore()
-const currentStepLocal = computed(() => studentStore.currentStep)
-
-    watch(currentStepLocal, (newStep) => {
-        // Check if 'newStep' and 'newStep.id' are defined
-        if (newStep && newStep.id) {
-            if (newStep.type == "interactive") {
-              // PName = "P" + newStep.id;
-              PName = "P4";
-              // PName = "2-1";
-              console.log('PName', PName)
-              Init_Canvas(canvas);
-            }
-        }else{
-            console.log("currentStep or currentTopic.id is undefined.");
-        }
-    });
-
-function Reset_Canvas() {
-  Init_Practice()
-};
-
-const myAnalysisForVue = ref(0)
-
-function Analyze_Canvas() {
-  Init_Analysis()
   const studentStore = useStudentStore()
-  if (studentStore.currentStep.id === '1.2') {
-    studentStore.finishComprehensiveTest("plcrobot")
-    return
+  const currentStepLocal = computed(() => studentStore.currentStep)
+
+  watch(currentStepLocal, (newStep) => {
+      // Check if 'newStep' and 'newStep.id' are defined
+      if (newStep && newStep.id) {
+            PName = newStep.pnameID;
+            console.log('PName', PName)
+            Init_Canvas(canvas);  
+      }else{
+          console.log("currentStep or currentTopic.id is undefined.");
+      }
+  });
+
+  function Reset_Canvas() {
+    Init_Practice()
+  };
+
+
+  const myAnalysisForVue = ref(0)
+
+  function Analyze_Canvas() {
+    Init_Analysis()
+    const studentStore = useStudentStore()
+    if (studentStore.currentStep.id === '1.2') {
+      studentStore.finishComprehensiveTest("plcrobot")
+      return
+    }
+    studentStore.addLearningRecord(MyAnalysis)
+
+  };
+
+  function finishIntro() {
+    const studentStore = useStudentStore();
+    studentStore.finishCurrentStep()
   }
-  studentStore.addLearningRecord(MyAnalysis)
 
-};
-
-function finishIntro() {
-  const studentStore = useStudentStore();
-  studentStore.finishCurrentStep()
-}
-
-function finishDescription() {
-  const studentStore = useStudentStore();
-  studentStore.finishCurrentStep()
-}
+  function finishDescription() {
+    const studentStore = useStudentStore();
+    studentStore.finishCurrentStep()
+  }
 </script>
 
 <style scoped>

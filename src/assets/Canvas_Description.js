@@ -1,4 +1,4 @@
-import { Dict_Txt, Dict_Audio } from './text/Properties_Description.js';
+import { Dict_Txt, Dict_Audio, AudioFolder } from './text/Properties_Description.js';
 import {useStudentStore} from "@/stores/student.js";
 
 // initialize description page in Canvas
@@ -43,10 +43,11 @@ function Init_Textbox(TxtIn){
 
 }
 
-function Init_Voice(Path){
+function Init_Voice(AudioFile){
     // generate audio
-    if (Path == ""){ return };
+    if (AudioFile == "" || AudioFile == null){ return };
 
+    const Path = AudioFolder + AudioFile;
     MyAudio = new Audio(Path);
     MyAudio.controls = true;
 

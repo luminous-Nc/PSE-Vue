@@ -31,7 +31,9 @@ export const useStudentStore = defineStore('student', {
             if (this.learningStyle === "Global") {
                 this.learningPath = ["1.2", "-99"]
             } else if (this.learningStyle === "Sequential") {
-                this.learningPath = ["1.1", "2.1", "2.2","2.3","2.4", "3.1", "3.2","3.3","3.4", "4.1", "4.2","4.3","4.4", "-99"]
+                this.learningPath = ["1.1", "2.1", "2.2", "2.3", "2.4", "3.1", 
+                                     "3.2", "3.3", "3.4", "4.1", "4.2", "4.3", 
+                                     "4.4", "-99"];
             } else {
                 console.log(this.learningStyle)
             }
