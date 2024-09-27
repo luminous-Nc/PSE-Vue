@@ -4,15 +4,15 @@ import { Init_Test } from "./Canvas_Test.js";
 import { DePage, TPage } from "./Properties_Page.js";
 
 // main
-export function Init_Canvas(CanvasRef){
+export function Init_Canvas(CanvasRef, studentStore){
     // generate canvas and stage
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
     stage = new createjs.Stage(Canvas);
-    stage.removeAllChildren();  
+    stage.removeAllChildren();
     stage.enableMouseOver();
-    
-    // initialization 
+
+    // initialization
     switch(true){
         case DePage.includes(PName):
             Init_Description();
@@ -21,9 +21,9 @@ export function Init_Canvas(CanvasRef){
             Init_Test();
             break;
     }
-    
-    // Init_Object();              
-    // Draw_Image();               
+
+    // Init_Object();
+    // Draw_Image();
     // Draw_Connection_Ports();
     // Draw_Msg_Box();
     // Init_Practice();
@@ -49,7 +49,7 @@ export function Init_Canvas(CanvasRef){
 // function Init_Object(){
 //     // get key
 //     Keys = DictModule[PName]["Key"];
-    
+
 
 //     // get current module and port
 //     ObjDict = {...DictModule[PName]};
@@ -57,7 +57,7 @@ export function Init_Canvas(CanvasRef){
 
 //     // custom random port
 //     Custom_Random_Port();
-    
+
 // }
 
 // // custom random port for single practice
@@ -78,13 +78,13 @@ export function Init_Canvas(CanvasRef){
 
 //                 // assign random port general name
 //                 ObjRndPorts[RNDPortOut] = RNDGeneralName;
-                
+
 //                 // assign random port key
 //                 Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
 //             }
 //         }
 //     }
-    
+
 // }
 
 // function Draw_Image(){
@@ -105,7 +105,7 @@ export function Init_Canvas(CanvasRef){
 //         ObjDict[ModuleName].img = Btmp;
 //         stage.addChild(Btmp);
 //     }
-//     stage.update();         
+//     stage.update();
 // }
 
 // function Draw_Connection_Ports(){
@@ -115,7 +115,7 @@ export function Init_Canvas(CanvasRef){
 //             var circle = new createjs.Shape();
 //             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
 //             circle.module = ModuleName;
-//             circle.name   = PortName; 
+//             circle.name   = PortName;
 //             if(ObjRndPorts.hasOwnProperty(PortName)){
 //                 circle.rndname = ObjRndPorts[PortName];
 //             }
@@ -124,9 +124,9 @@ export function Init_Canvas(CanvasRef){
 //             ObjPorts.push(circle);
 //             stage.addChild(circle);
 //             stage.update();
-        
+
 //         }
-//     } 
+//     }
 // }
 
 // function Get_Img_Scale(Module){

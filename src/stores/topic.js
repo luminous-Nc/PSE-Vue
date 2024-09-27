@@ -6,7 +6,6 @@ export const useTopicsStore = defineStore('topics', {
     state: () => {
         return {
             topics: [],
-            currentTopic: undefined
         }
     },
     actions: {
@@ -33,10 +32,7 @@ export const useTopicsStore = defineStore('topics', {
                 console.log('topics not downloaded')
                 await this.downloadTopics()
             }
-            // 根据路由中的 topicId 返回对应的 topic
-            this.currentTopic = this.topics.find(t => t.id === parseInt(topicId, 10)) || {};
-            const studentStore = useStudentStore()
-            studentStore.currentTopic = this.currentTopic
+            return this.topics.find(t => t.id === parseInt(topicId, 10)) || {};
         }
     },
     getters: {
@@ -47,14 +43,5 @@ export const useTopicsStore = defineStore('topics', {
             }
             return state.topics;
         },
-
-        getCurrentTopic(state) {
-            if (state.currentTopic === undefined) {
-                state.decideCurrentTopic()
-                return state.currentTopic
-            } else {
-                return state.currentTopic
-            }
-        }
     }
 });
