@@ -193,13 +193,13 @@ const P10Port = {
                             },
 
                 "PLCInput":{
-                                x:650, y:300, Scale: 0.7, Port: ["", ""],
+                                x:600, y:300, Scale: 1, Port: ["", ""],
                                 RndPort: [[0, [0, 1], "PLCInputPort"], 
                                           [1, [1, 0], "PLCInputGNDPort"]]                               
                             },
 
                 "24VDC":    {
-                                x:450, y:400, Port: ["24VP", "24VN"]
+                                x:420, y:400, Port: ["24VP", "24VN"]
                             },
                             
                 "Key":      [["", ""], ["", "24VN"], ["", "24VN"],
@@ -213,7 +213,7 @@ const P11Port = {
                             },
 
                 "PLCInput":{
-                                x:200, y:200, Scale: 0.7, Port: ["", ""],
+                                x:200, y:200, Scale: 1, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCInputPort"], 
                                           [1, [1, 0], "PLCInputGNDPort"], 
                                            1, [2, 0], "PLCInputGNDPort"]         

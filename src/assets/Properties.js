@@ -39,12 +39,13 @@
     // image list
     var ImgsJpg =  ["ABBRobot", "COMAURobot", "FANUCRobot",
                     "KUKARobot", "OMRONRobot", 
+                    "PLCInput", "PLCOutput",
                     "Relay", "5VDC", "24VDC", 
                     "ButtonStart", "ButtonMotorStop"];
 
     var ImgsJpeg = ["Legend", "Switch", "Motor", "Sensor", 
-                    "PLCInput", "PLCOutput", "PNP", "48VDC",
-                    "Optical"];
+                    "PLCInput(New)", "PLCOutput(New)", 
+                    "PNP", "48VDC", "Optical"];
 
     // default connection port size
     PortSize = 5;

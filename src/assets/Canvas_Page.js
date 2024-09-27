@@ -17,7 +17,7 @@ export function Init_Canvas(CanvasRef, studentStore){
         case DePage.includes(PName):
             Init_Description();
             break;
-        case TPage.hasOwnProperty(PName):
+        case STPage.hasOwnProperty(PName):
             PName = STPage[PName] // map customed test
             Init_Test();
             break;
