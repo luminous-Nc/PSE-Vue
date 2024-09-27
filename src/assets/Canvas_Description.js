@@ -1,4 +1,5 @@
 import { Dict_Txt, Dict_Audio } from './text/Properties_Description.js';
+import {useStudentStore} from "@/stores/student.js";
 
 // initialize description page in Canvas
 var AudioBarBg;
@@ -11,7 +12,7 @@ var SpeakerToggle;
 // main
 export function Init_Description(){
     // initialize modules
-    stage.removeAllChildren(); 
+    stage.removeAllChildren();
     Init_Textbox(Dict_Txt[PName]());
     Init_Voice(Dict_Audio[PName]);
 }
@@ -25,9 +26,9 @@ function Init_Textbox(TxtIn){
         var objTxt = new createjs.Text();
 
         // set properties
-        objTxt.text       = txtIn.text; 
+        objTxt.text       = txtIn.text;
         objTxt.x          = txtIn.x;
-        objTxt.y          = txtIn.y;   
+        objTxt.y          = txtIn.y;
         objTxt.font       = txtIn.font;
         objTxt.color      = txtIn.color;
         objTxt.lineWidth  = txtIn.lineWidth;
@@ -39,7 +40,7 @@ function Init_Textbox(TxtIn){
 
     stage.update();
     return ObjTxt;
-    
+
 }
 
 function Init_Voice(Path){
@@ -54,7 +55,7 @@ function Init_Voice(Path){
     AudioBarBg = Draw_ProgressBar_Background(AudioBarBg);
     stage.addChild(AudioBarBg);
 
-    // generate audio progress bar 
+    // generate audio progress bar
     AudioBar = new createjs.Shape();
     AudioBar = Draw_ProgressBar(AudioBar);
     stage.addChild(AudioBar);
@@ -69,7 +70,7 @@ function Init_Voice(Path){
     Draw_Speaker(SpeakerToggle);
     stage.addChild(SpeakerToggle);
 
-    // Event listener to 
+    // Event listener to
     MyAudio.addEventListener("timeupdate", Update_Bar); // update the progress bar as audio plays
     AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
@@ -81,11 +82,16 @@ function Init_Voice(Path){
 function Update_Bar(){
     const progress = (MyAudio.currentTime / MyAudio.duration) * 600; // Scale to canvas width
     Draw_ProgressBar(AudioBar, progress);
-   
+
     stage.update();
+
+    const studentStore = useStudentStore();
 
     // check if the audio is end
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
+    if (!IsAudioEnd) {
+        studentStore.finishCurrentStep()
+    }
   }
 
 function Pause_Audio(){
@@ -110,7 +116,7 @@ function Mute_Audio(){
     }
 
     stage.update();
-    
+
 }
 
 function Draw_ProgressBar_Background(MyShape){
@@ -131,7 +137,7 @@ function Draw_ProgressBar(MyShape, MyProgress){
 
 function Draw_Play_Toggle(MyShape){
     MyShape.graphics.clear();
-    
+
     MyShape.graphics.beginFill("#FFFFFF"); // while color
     MyShape.graphics.drawRect(160, 800, 15, 20); // background
 

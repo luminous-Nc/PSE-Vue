@@ -16,27 +16,43 @@
       "menu_text": "1. Introduction",
       "type": "introduction",
       "text": "Watch the introduction of entire module",
-      "url": ""
+      "url": "",
+      "pnameID": "2-2"
     },
     {"id": "1.2",
       "menu_text": "1. Comprehensive Test",
       "type": "interactive",
       "text": "Complete the comprehensive test",
       "url": "",
-      "pnameID": "14"
+      "pnameID": "P14"
     },
     {"id": "2.1",
       "menu_text": "2.1 PLC Interface",
       "type": "description",
       "text": "Learn the description of topic PLC input",
-      "url": ""
+      "url": "",
+      "pnameID": "2-2"
     },
     {"id": "2.2",
       "menu_text": "2.2 PLC Interface Test",
       "type": "interactive",
       "text": "Completed the description of topic PLC input",
       "url": "",
-      "pnameID": "4"
+      "pnameID": "P4"
+    },
+    {"id": "2.3",
+      "menu_text": "2.2 PLC Interface Test",
+      "type": "interactive",
+      "text": "Completed the description of topic PLC input",
+      "url": "",
+      "pnameID": "P4"
+    },
+    {"id": "2.4",
+      "menu_text": "2.2 PLC Interface Test",
+      "type": "analysis",
+      "text": "Completed the description of topic PLC input",
+      "url": "",
+      "pnameID": "P4"
     },
     {"id": "3.1",
       "menu_text": "3.1 Robot Interface",
@@ -50,7 +66,21 @@
       "type": "interactive",
       "text": "Finish the interactive practice",
       "url": "",
-      "nameID": "8"
+      "pnameID": "8"
+    },
+    {"id": "3.3",
+      "menu_text": "3.2 Robot Interface Test",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "8"
+    },
+    {"id": "3.4",
+      "menu_text": "3.2 Robot Interface Test",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "8"
     },
     {"id": "4.1",
       "menu_text": "4.1 PLC and Robot Interface",
@@ -60,6 +90,20 @@
       "pnameID": "1"
     },
     {"id": "4.2",
+      "menu_text": "4.2 PLC & Robot Interface Test",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "2"
+    },
+    {"id": "4.3",
+      "menu_text": "4.2 PLC & Robot Interface Test",
+      "type": "interactive",
+      "text": "Finish the interactive practice",
+      "url": "",
+      "pnameID": "2"
+    },
+    {"id": "4.4",
       "menu_text": "4.2 PLC & Robot Interface Test",
       "type": "interactive",
       "text": "Finish the interactive practice",

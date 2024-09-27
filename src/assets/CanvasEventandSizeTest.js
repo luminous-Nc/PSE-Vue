@@ -3,7 +3,7 @@ var canvas = null;
 var countdownInterval = null;
 
 // 初始化 canvas 并显示倒计时
-function initCanvasWithCountdown(canvasElement, studentStore) {
+export function initCanvasWithCountdown(canvasElement, studentStore) {
     console.log(canvasElement)
     console.log("init Canvas")
     canvas = canvasElement;
@@ -39,7 +39,7 @@ function initCanvasWithCountdown(canvasElement, studentStore) {
 }
 
 // 清除倒计时，若需要清理时调用
-function clearCanvasCountdown() {
+export function clearCanvasCountdown() {
     if (countdownInterval) {
         clearInterval(countdownInterval);
         countdownInterval = null;
