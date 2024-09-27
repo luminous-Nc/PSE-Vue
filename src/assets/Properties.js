@@ -1,6 +1,10 @@
 // all properties and parameters in the project
+    var PName;
+    var stage;
+
     // modules and keys' dictionary
-    var Keys            = []; // connecting keys
+    var Keys        = []; // connecting keys
+    var Analysis    = Object();
 
     var topicLoaded = false
 

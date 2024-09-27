@@ -1,20 +1,21 @@
-// all properties and parameters in the project
+import { DictObjPort } from "./Properties_Port.js"
 
-var MyAnalysis;
+// all properties and parameters in the project
 var ImgLegend;
 
 // main of anlaysis frame
-function Init_Analysis(){
-    Init_Parameter_A();
-    Init_Symbol_A();
-    General_Analysis();
-    console.log(MyAnalysis);
+export function Init_Analysis(){
+        Init_Parameter_A();
+        Init_Symbol_A();
+        General_Analysis();
+        console.log(Analysis);
+
 }
 
 // initialize current analysis properties
 function Init_Parameter_A(){
     Timer.Stop = (new Date() - Timer.Start) / 1000;
-    MyAnalysis = new Object();
+    Analysis = new Object();
 }
 
 // initialize current analysis symbols
@@ -34,8 +35,8 @@ function Remove_Legend(){
         var key     = "Legend";
         var Btmp    = new createjs.Bitmap(DictImg[key]);
         Btmp.name   = key;
-        Btmp.x      = DictObjPos[key].x; // Center horizontally
-        Btmp.y      = DictObjPos[key].y; // Center vertically
+        Btmp.x      = DictObjPort[key].x; // Center horizontally
+        Btmp.y      = DictObjPort[key].y; // Center vertically
         ImgLegend   = Btmp;
 
         stage.addChild(ImgLegend);
@@ -48,11 +49,11 @@ function Remove_Legend(){
     // <<Statistic Analysis>>
     // get correct and incorrect line
     var ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
-    Object.assign(MyAnalysis, ConnectionOut);
+    Object.assign(Analysis, ConnectionOut);
 
     // get time elapse
     var TimeOut = Get_Time_Elapse();
-    Object.assign(MyAnalysis, TimeOut);
+    Object.assign(Analysis, TimeOut);
 
     // <<Graphical Analysis>>
     // display all incorrect line as red color
@@ -61,7 +62,7 @@ function Remove_Legend(){
     // <<Feature Analysis>>
     // review all incorrect ports set and get all related module
     var LearnModule = Get_Learn_Modules(ConnectionOut.Incorrect);
-    Object.assign(MyAnalysis, LearnModule);
+    Object.assign(Analysis, LearnModule);
 
 }
 

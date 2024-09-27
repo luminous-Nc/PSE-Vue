@@ -1,7 +1,12 @@
 // declare variables
 
-// User's operation
+// rendering objects
+var ObjDict  = {};
+var ObjPorts = [];
+var ObjRndPorts = {};
+var MsgBox;
 
+// User's operation
 var MyPorts		 = [];  // user's accumulated ports set
 var TempPorts    = [];  // current dual selected ports
 var MySubLines	 = [];	// user's accumulated subLines

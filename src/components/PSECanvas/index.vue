@@ -30,11 +30,13 @@
     import {useStepsStore} from "@/stores/step.js";
     import {useStudentStore} from "@/stores/student.js";
     import { stringify } from "postcss";
-    import { Init_Description } from "@/assets/Canvas_Description.js";
+    import { Init_Canvas } from "@/assets/Canvas_Page.js";
+    import { Init_Test } from "@/assets/Canvas_Test.js";
+    import { Init_Analysis } from "@/assets/Analysis";
 
+    // import { Init_Description } from "@/assets/Canvas_Description.js";
 
     const canvas = ref(null);
-
     const stepStore = useStepsStore()
     const currentStepLocal = computed(()=>stepStore.currentStep)
 
@@ -43,22 +45,17 @@
         if (newStep && newStep.id) {
             if (newStep.type == "interactive") {
               // PName = "P" + newStep.id;
-              PName = "P14";
-              console.log('PName',PName)
-              // Init_Canvas(canvas);
-              PName = "2-2";
-              Init_Description(canvas);
+              PName = "P4";
+              // PName = "2-1";
+              console.log('PName', PName)
+              Init_Canvas(canvas);
             }
         }else{
             console.log("currentStep or currentTopic.id is undefined.");
         }
     });
-    // PName = "P8";
 
-    // onMounted(() => {Init_Canvas(canvas)});
-
-
-    function Reset_Canvas(){Init_Practice()};
+    function Reset_Canvas(){Init_Test()};
 
     const myAnalysisForVue = ref(0)
     function Analyze_Canvas(){

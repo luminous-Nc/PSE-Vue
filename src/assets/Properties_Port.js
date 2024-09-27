@@ -1,5 +1,5 @@
 // all modules' ports relative coordinates
-var DictObjPos  =   { 
+export const DictObjPort = { 
                         // ABB robot
                         "ABBRobot": {              
                                         "PWRDOL": {x:7, y:33},   "PWRDOR": {x:170, y:33},

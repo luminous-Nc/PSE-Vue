@@ -1,7 +1,6 @@
 import { Dict_Txt, Dict_Audio } from './text/Properties_Description.js';
 
 // initialize description page in Canvas
-var stageDes;
 var AudioBarBg;
 var AudioBar;
 var MyAudio;
@@ -10,15 +9,9 @@ var AudioToggle;
 var SpeakerToggle;
 
 // main
-export function Init_Description(CanvasRef){
-    // generate canvas and stage
-    if (!CanvasRef.value) return;
-    const Canvas = CanvasRef.value;
-    stageDes = new createjs.Stage(Canvas);
-    stageDes.removeAllChildren();  
-
+export function Init_Description(){
     // initialize modules
-    
+    stage.removeAllChildren(); 
     Init_Textbox(Dict_Txt[PName]());
     Init_Voice(Dict_Audio[PName]);
 }
@@ -40,11 +33,11 @@ function Init_Textbox(TxtIn){
         objTxt.lineWidth  = txtIn.lineWidth;
         objTxt.textAlign  = txtIn.textAlign;
 
-        stageDes.addChild(objTxt);
+        stage.addChild(objTxt);
         ObjTxt.push(objTxt);
     }
 
-    stageDes.update();
+    stage.update();
     return ObjTxt;
     
 }
@@ -59,22 +52,22 @@ function Init_Voice(Path){
     // generate audio progress bar background
     AudioBarBg = new createjs.Shape();
     AudioBarBg = Draw_ProgressBar_Background(AudioBarBg);
-    stageDes.addChild(AudioBarBg);
+    stage.addChild(AudioBarBg);
 
     // generate audio progress bar 
     AudioBar = new createjs.Shape();
     AudioBar = Draw_ProgressBar(AudioBar);
-    stageDes.addChild(AudioBar);
+    stage.addChild(AudioBar);
 
     // generate play/pause toggle
     AudioToggle = new createjs.Shape();
     Draw_Pause_Toggle(AudioToggle);
-    stageDes.addChild(AudioToggle);
+    stage.addChild(AudioToggle);
 
     // generate speaker toggle
     SpeakerToggle = new createjs.Shape();
     Draw_Speaker(SpeakerToggle);
-    stageDes.addChild(SpeakerToggle);
+    stage.addChild(SpeakerToggle);
 
     // Event listener to 
     MyAudio.addEventListener("timeupdate", Update_Bar); // update the progress bar as audio plays
@@ -82,14 +75,14 @@ function Init_Voice(Path){
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
     MyAudio.play();
 
-    stageDes.update();
+    stage.update();
 }
 
 function Update_Bar(){
     const progress = (MyAudio.currentTime / MyAudio.duration) * 600; // Scale to canvas width
     Draw_ProgressBar(AudioBar, progress);
    
-    stageDes.update();
+    stage.update();
 
     // check if the audio is end
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
@@ -104,7 +97,7 @@ function Pause_Audio(){
         MyAudio.pause();
     }
 
-    stageDes.update();
+    stage.update();
 }
 
 function Mute_Audio(){
@@ -116,7 +109,7 @@ function Mute_Audio(){
         MyAudio.muted = true;
     }
 
-    stageDes.update();
+    stage.update();
     
 }
 

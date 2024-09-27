@@ -3,7 +3,7 @@
 // -------------------------
     
 // module position
-var P1Port = {
+const P1Port = {
                 "PLCInput":{
                                 x:150, y:100, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCInputPort"], 
@@ -21,7 +21,7 @@ var P1Port = {
                 "Key":      [["", "SWL"], ["", "24VN"], ["SWR", "24VP"]]
             };
 
-var P2Port = {
+const P2Port = {
                 "PLCOutput":{
                                 x:450, y:100, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCOutputPort"], 
@@ -39,7 +39,7 @@ var P2Port = {
                 "Key":      [["", "MTR"], ["", "24VN"], ["MTL", "24VP"]]
             };
 
-var P3Port = {
+const P3Port = {
                 "PLCInput": {
                                 x:100, y:100, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCInputPort"], 
@@ -67,7 +67,7 @@ var P3Port = {
                              ["PNPC", "48VN"]]                
             };
 
-var P4Port = {
+const P4Port = {
                 "PLCInput":{
                                 x:500, y:150, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCInputPort"], 
@@ -90,7 +90,7 @@ var P4Port = {
                              ["5VP", "OPUL"], ["5VN", "OPDL"]]                         
             };
 
-var P5Port = {
+const P5Port = {
                 "ABBRobot": {
                                 x:100, y:100, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "ABBDIPort"], 
@@ -117,7 +117,7 @@ var P5Port = {
                              ["5VN", "SR"], ["5VP", "RLCD"], ["SL", "RLCU"]]                           
             };
 
-var P6Port = {
+const P6Port = {
                 "COMAURobot":{
                                 x:100, y:100, Port: ["", "0VDC"],
                                 RndPort: [[0, [0, 0], "COMAUINPort"]]
@@ -134,7 +134,7 @@ var P6Port = {
                 "Key":      [["", "24VP"], ["24VN", "SR"], ["SL", "0VDC"]]    
             };
 
-var P7Port = {
+const P7Port = {
                 "FANUCRobot":{
                                 x:450, y:120, Port: ["", "", "", ""],
                                 RndPort: [[0, [0, 0], "FANUCDIPort"], 
@@ -150,7 +150,7 @@ var P7Port = {
                 "Key":      [["", "SL"], ["", "SR"], ["", ""]]
             };
 
-var P8Port = {
+const P8Port = {
                 "KUKARobot":{
                                 x:450, y:120, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "KUKADIPort"], 
@@ -168,7 +168,7 @@ var P8Port = {
                 "Key":      [["", "SR"], ["SL", "24VP"], ["24VN", ""]]
             };
 
-var P9Port = {
+const P9Port = {
                 "OMRONRobot":{
                                 x:350, y:220, Port: ["", "", "", ""],
                                 RndPort: [[0, [0, 0], "OMRONIN"], 
@@ -184,7 +184,7 @@ var P9Port = {
                 "Key":      [["", "SL"], ["SR", ""], ["", ""]]
             };
 
-var P10Port = {
+const P10Port = {
                 "ABBRobot":{
                                 x:150, y:120, Scale: 1.2, Port: ["", "", ""],
                                 RndPort: [[0, [0, 0], "ABBDOPort"], 
@@ -206,7 +206,7 @@ var P10Port = {
                              ["24VP", ""]]
             };
 
-var P11Port = {
+const P11Port = {
                 "COMAURobot":{
                                 x:600, y:120, Scale: 1.2, Port: ["", "24VDC", "0VDC"],
                                 RndPort: [[0, [2, 1], "COMAUOUTPort"]]                  
@@ -222,7 +222,7 @@ var P11Port = {
                 "Key":      [["", "24VDC"], ["", "0VDC"], ["", ""]]
             };
 
-var P12Port = {
+const P12Port = {
                 "FANUCRobot":       {
                                         x:100, y:120, Scale: 1.2, Port: ["", "", ""],
                                         RndPort: [[0, [0, 0], "FANUCDOPort"], 
@@ -254,7 +254,7 @@ var P12Port = {
                                      ["24VN", ""],   ["24VN", ""]]
             };
 
-var P13Port = {
+const P13Port = {
                 "KUKARobot":{
                                 x:600, y:120, Port: ["", "", ""],
                                 Scale: 1.2,
@@ -274,7 +274,7 @@ var P13Port = {
                 "Key":      [["", ""], ["", ""], ["", ""]]
             };
 
-var P14Port = {
+const P14Port = {
                 "OMRONRobot":{
                                 x:80, y:220, Scale: 1.2, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "OMRONOUT"], 
@@ -302,9 +302,9 @@ var P14Port = {
             };
 
 
-var DictModule = {
-                    P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
-                    P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
-                    P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
-                    P13: P13Port, P14: P14Port
-                };
+export const DictModule = {
+                            P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
+                            P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
+                            P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
+                            P13: P13Port, P14: P14Port
+                        };
