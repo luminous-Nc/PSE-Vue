@@ -1,24 +1,36 @@
 // random port list
 
 // PLC Input
-var PLCInputPort  = ["IN-0", "IN-1", "IN-2", "IN-3", 
-                     "IN-4", "IN-5", "IN-6", "IN-7",
-                     "IN-8", "IN-9"];
+var PLCInputPort    = ["IN-0", "IN-1", "IN-2", "IN-3", 
+                       "IN-4", "IN-5", "IN-6", "IN-7"];
+    
+
+var PLCInputGNDPort = ["GNDPLCL", "GNDPLCR"];
+
+// var PLCInputNewGNDPort = ["GNDINU", "GNDIND"];
+
+// var PLCInputNewPortN  = ["IN-0", "IN-1", "IN-2", "IN-3", 
+//                      "IN-4", "IN-5", "IN-6", "IN-7",
+//                      "IN-8", "IN-9"];
                      
-var PLCInput0To4Port  = ["IN-0", "IN-1", "IN-2", "IN-3", 
-                         "IN-4"];
+var PLCInput0To4Port  = ["IN-0", "IN-1", "IN-2", "IN-3", "IN-4"];
 
-var PLCInput5To9Port  = ["IN-5", "IN-6", "IN-7", "IN-8", 
-                         "IN-9"];
+var PLCInput5To7Port  = ["IN-5", "IN-6", "IN-7"];
 
-var PLCInputGNDPort = ["GNDINU", "GNDIND"];
+var PLCInput5To9Port  = ["IN-5", "IN-6", "IN-7", "IN-8", "IN-9"];
+
+// var PLCInputNewGNDPort = ["GNDINU", "GNDIND"];
 
 // PLC Output
-var PLCOutputPort = ["OUT-0", "OUT-1", "OUT-2", 
-                     "OUT-3", "OUT-4", "OUT-5"];
+var PLCOutputPort   = ["OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"];
 
-var PLCOutputDCPort = ["DC-00", "DC-01", "DC-02", 
-                       "DC-03", "DC-04", "DC-05"];
+var PLCOutputDCPort = ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4"];
+
+// var PLCOutputNewPort = ["OUT-0", "OUT-1", "OUT-2", 
+//                         "OUT-3", "OUT-4", "OUT-5"];
+
+// var PLCOutputNewDCPort = ["DC-00", "DC-01", "DC-02", 
+//                        "DC-03", "DC-04", "DC-05"];
 
 // ABB Robot                       
 var ABBDIPort = ["DI01", "DI02", "DI03", "DI04", 
