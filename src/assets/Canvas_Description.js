@@ -1,4 +1,4 @@
-import { Dict_Txt, Dict_Audio, AudioFolder } from './text/Properties_Description.js';
+import { Dict_Func_Txt, Dict_Audio, AudioFolder } from './text/Properties_Description.js';
 import {useStudentStore} from "@/stores/student.js";
 
 // initialize description page in Canvas
@@ -13,34 +13,14 @@ var SpeakerToggle;
 export function Init_Description(){
     // initialize modules
     stage.removeAllChildren();
-    Init_Textbox(Dict_Txt[PName]());
+    Init_Textbox();
     Init_Voice(Dict_Audio[PName]);
 }
 
 
-function Init_Textbox(TxtIn){
-    var ObjTxt = [];
-
-    for(const txtIn of TxtIn){
-        // generate a blank textbox
-        var objTxt = new createjs.Text();
-
-        // set properties
-        objTxt.text       = txtIn.text;
-        objTxt.x          = txtIn.x;
-        objTxt.y          = txtIn.y;
-        objTxt.font       = txtIn.font;
-        objTxt.color      = txtIn.color;
-        objTxt.lineWidth  = txtIn.lineWidth;
-        objTxt.textAlign  = txtIn.textAlign;
-
-        stage.addChild(objTxt);
-        ObjTxt.push(objTxt);
-    }
-
+function Init_Textbox(){
+    Dict_Func_Txt[PName]();
     stage.update();
-    return ObjTxt;
-
 }
 
 function Init_Voice(AudioFile){

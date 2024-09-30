@@ -302,9 +302,111 @@ const P14Port = {
             };
 
 
+const P15Port = {
+                "FANUCRobot":       {
+                                        x:50, y:300, Port: ["0VUR", "0VDR", "24FDR", "DI102", "DO102", "DOSRC1R", "SDICOM2"]                  
+                                    },
+
+                "PLCInput":         {
+                                        x:170, y:50, Scale: 0.7, Port: ["GNDPLCR", "IN-0", "IN-2", "IN-6", "IN-7"]
+                                    },
+
+                "PLCOutput":        {
+                                        x:700, y:50, Scale: 0.7, Port: ["DC-0", "DC-1", "OUT-0", "OUT-1"],
+                                    },   
+
+                "Relay":            {
+                                        x:650, y:350, Scale: 0.5, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+                                    },
+
+                "24VDC":            {
+                                        x:450, y:700, Scale: 0.7, Port: ["24VP", "24VN"]
+                                    },
+
+                "240VDC":           {
+                                        x:700, y:700, Scale: 0.9, Port: ["240VP", "240VN"]
+                                    },
+                            
+                "LSensor":          {
+                                        x:400, y:300, Port: ["LSL", "LSR"]
+                                    },
+
+                "Convey":           {
+                                        x:750, y:550, Port: ["CVL", "CVR"]
+                                    },
+
+                "ButtonStart":      {
+                                        x:500, y:40, Port: ["BTSTRL", "BTSTRR"]
+                                    },
+
+                "ButtonMotorStop":  {
+                                        x:500, y:140, Port: ["BTMSTPL", "BTMSTPR"]
+                                    },
+
+                "Key":              [
+                                     ["SDICOM2", "0VUR"], ["24FDR", "DC-1"], ["DI102", "OUT-1"], 
+                                     ["DO102", "IN-7"], ["0VDR", "24VN"], ["DOSRC1R", "24VP"],
+                                     ["IN-0", "BTSTRL"], ["IN-2", "BTMSTPL"], ["IN-6", "LSL"], 
+                                     ["GNDPLCR", "24VN"], ["BTSTRR", "DC-0"], ["BTSTRR", "24VP"], 
+                                     ["BTMSTPR", "24VP"], ["LSR", "24VP"], ["RLCU", "OUT-0"], 
+                                     ["RLCD", "24VN"], ["RLSWU", "240VP"], ["RLSWDR", "CVL"],
+                                     ["CVR", "240VN"]
+                                    ]              
+            };
+
+const P16Port = {
+                "ABBRobot":       {
+                                        x:50, y:300, Port: ["DO02", "DI02", "GNDDOL", "GNDDIL", "PWRDOL"]                  
+                                    },
+
+                "PLCInput":         {
+                                        x:170, y:50, Scale: 0.7, Port: ["GNDPLCR", "IN-0", "IN-2", "IN-6", "IN-7"]
+                                    },
+
+                "PLCOutput":        {
+                                        x:700, y:50, Scale: 0.7, Port: ["DC-0", "DC-1", "OUT-0", "OUT-1"],
+                                    },   
+
+                "Relay":            {
+                                        x:650, y:350, Scale: 0.5, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+                                    },
+
+                "24VDC":            {
+                                        x:450, y:700, Scale: 0.7, Port: ["24VP", "24VN"]
+                                    },
+
+                "240VDC":           {
+                                        x:700, y:700, Scale: 0.9, Port: ["240VP", "240VN"]
+                                    },
+                            
+                "LSensor":          {
+                                        x:400, y:300, Port: ["LSL", "LSR"]
+                                    },
+
+                "Convey":           {
+                                        x:750, y:550, Port: ["CVL", "CVR"]
+                                    },
+
+                "ButtonStart":      {
+                                        x:500, y:40, Port: ["BTSTRL", "BTSTRR"]
+                                    },
+
+                "ButtonMotorStop":  {
+                                        x:500, y:140, Port: ["BTMSTPL", "BTMSTPR"]
+                                    },
+
+                "Key":              [
+                                     ["PWRDOL", "24VP"], ["GNDDOL", "24VN"], ["GNDDIL", "24VN"],
+                                     ["DO02", "IN-7"], ["DI02", "OUT-1"], ["IN-0", "BTSTRL"], 
+                                     ["IN-2", "BTMSTPL"], ["IN-6", "LSL"], ["GNDPLCR", "24VN"], 
+                                     ["BTSTRR", "DC-0"], ["BTSTRR", "24VP"], ["BTMSTPR", "24VP"], 
+                                     ["LSR", "24VP"], ["RLCU", "OUT-0"], ["RLCD", "24VN"], 
+                                     ["RLSWU", "240VP"], ["RLSWDR", "CVL"], ["CVR", "240VN"]
+                                    ]              
+            };
 export const DictModule = {
                             P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
                             P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
                             P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
-                            P13: P13Port, P14: P14Port
+                            P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port
                         };

@@ -19,6 +19,10 @@ var PLCInput5To7Port  = ["IN-5", "IN-6", "IN-7"];
 
 var PLCInput5To9Port  = ["IN-5", "IN-6", "IN-7", "IN-8", "IN-9"];
 
+var PLCInput1357Port  = ["IN-1", "IN-3", "IN-5", "IN-7"];
+
+var PLCInput0246Port  = ["IN-0", "IN-2", "IN-4", "IN-6"];
+
 // var PLCInputNewGNDPort = ["GNDINU", "GNDIND"];
 
 // PLC Output
@@ -113,6 +117,8 @@ var ObjRndPool = {
                     PLCInputPort:       PLCInputPort,
                     PLCInput0To4Port:   PLCInput0To4Port,
                     PLCInput5To9Port:   PLCInput5To9Port,
+                    PLCInput1357Port:   PLCInput1357Port,
+                    PLCInput0246Port:   PLCInput0246Port,
                     PLCInputGNDPort:    PLCInputGNDPort,
                     PLCOutputPort:      PLCOutputPort,
                     PLCOutputDCPort:    PLCOutputDCPort,

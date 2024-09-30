@@ -134,11 +134,20 @@ export const DictObjPort = {
                                     "48VN": {x:75, y:7}
                         },
                         
+                        "240VDC": {
+                                    "240VP": {x:22, y:4}, 
+                                    "240VN": {x:60, y:4}
+                        },
 
                         // sensor
                         "Sensor": {
                                     "SL": {x:6, y:30}, 
                                     "SR": {x:148, y:30}
+                        },
+
+                        "LSensor": {
+                                    "LSL": {x:4, y:23}, 
+                                    "LSR": {x:106, y:23}
                         },
                         
                         // PNP
@@ -168,6 +177,11 @@ export const DictObjPort = {
                                     "MTR": {x:129, y:28}
                         },
 
+                        "Convey": {
+                                    "CVL": {x:4, y:23}, 
+                                    "CVR": {x:106, y:23}
+                        },
+
                         // button
                         "ButtonStart":{
                                         "BTSTRL": {x:1, y:53}, 
@@ -181,10 +195,10 @@ export const DictObjPort = {
                         
                         // PLC input
                         "PLCInput": {
-                                        "IN-0": {x:150, y:65},    "IN-1": {x:228, y:65},
-                                        "IN-2": {x:150, y:115},   "IN-3": {x:228, y:115},
-                                        "IN-4": {x:150, y:165},   "IN-5": {x:228, y:165},
-                                        "IN-6": {x:150, y:213},   "IN-7": {x:228, y:213},
+                                        "IN-1": {x:150, y:65},    "IN-0": {x:228, y:65},
+                                        "IN-3": {x:150, y:115},   "IN-2": {x:228, y:115},
+                                        "IN-5": {x:150, y:165},   "IN-4": {x:228, y:165},
+                                        "IN-7": {x:150, y:213},   "IN-6": {x:228, y:213},
                                         "GNDPLCL": {x:150, y:263}, "GNDPLCR": {x:228, y:263},
                         },
 

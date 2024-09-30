@@ -40,7 +40,8 @@
     var ImgsJpg =  ["ABBRobot", "COMAURobot", "FANUCRobot",
                     "KUKARobot", "OMRONRobot", 
                     "PLCInput", "PLCOutput",
-                    "Relay", "5VDC", "24VDC", 
+                    "Relay", "5VDC", "24VDC", "240VDC",
+                    "LSensor", "Convey", 
                     "ButtonStart", "ButtonMotorStop"];
 
     var ImgsJpeg = ["Legend", "Switch", "Motor", "Sensor", 

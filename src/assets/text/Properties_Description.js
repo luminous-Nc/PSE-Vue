@@ -1,12 +1,12 @@
 
-export var Dict_Txt = {
-                        "1-1": Intro_Txt,
-                        "2-1": PLC_Txt1,
-                        "2-2": PLC_Txt2,
-                        "3-1": ABB_Robot_Txt1,
-                        "3-2": ABB_Robot_Txt2,
-                        "4-1": PLC_and_ABB_Robot_Txt1,
-                        "4-2": PLC_and_ABB_Robot_Txt2,
+export var Dict_Func_Txt = {
+                            "1-1": Intro_Txt,
+                            "2-1": PLC_Txt1,
+                            "2-2": PLC_Txt2,
+                            "3-1": ABB_Robot_Txt1,
+                            "3-2": ABB_Robot_Txt2,
+                            "4-1": PLC_and_ABB_Robot_Txt1,
+                            "4-2": PLC_and_ABB_Robot_Txt2,
 };
 
 export var Dict_Audio = {
@@ -21,35 +21,75 @@ export var Dict_Audio = {
 
 export const AudioFolder = "./src/assets/audio/";
 
-function Title_Txt(){
-    var myTxt = {};
+function Init_Title1(){
+    // title1
+    var TxtT        = new createjs.Text();
+    TxtT.text       = "N/A";
+    TxtT.color      = "red";
+    TxtT.font       = "bold 70px Arial";
+    TxtT.lineWidth  = 900;
+    TxtT.color      = "#000";
+    TxtT.textAlign  = "left";
 
-    myTxt.text       = "N/A"; 
-    myTxt.font       = "bold 50px Arial";
-    myTxt.x          = 200;
-    myTxt.y          = 300;
-    myTxt.lineWidth  = 900;
-    myTxt.color      = "#7A0000FF";
-    myTxt.textAlign  = "left";
+    return TxtT;
+}
 
-    return myTxt;
+function Init_Title2(){
+    // title2
+    var TxtT        = new createjs.Text();
+    TxtT.text       = "N/A";
+    TxtT.color      = "#7A0000FF";
+    TxtT.font       = "bold 30px Times New Roman";
+    TxtT.lineWidth  = 900;
+    TxtT.color      = "#000";
+    TxtT.textAlign  = "left";
+
+    return TxtT;
+}
+
+function Init_SubTitle(){
+    // subtitle
+    var TxtST        = new createjs.Text();
+    TxtST.text       = "N/A";
+    TxtST.color      = "#7A0000FF";
+    TxtST.font       = "bold 20px Times New Roman";
+    TxtST.lineWidth  = 900;
+    TxtST.color      = "#000";
+    TxtST.textAlign  = "left";
+
+    return TxtST;
+}
+
+function Init_Content(){
+    // subtitle
+    var TxtC        = new createjs.Text();
+    TxtC.text       = "N/A";
+    TxtC.color      = "#7A0000FF";
+    TxtC.font       = "20px Arial";
+    TxtC.lineWidth  = 900;
+    TxtC.color      = "#000";
+    TxtC.textAlign  = "left";
+
+    return TxtC;
 }
 
 function Intro_Txt(){
-    var IntroTxt = Title_Txt();
+    var IntroTxt  = Init_Title1();
     IntroTxt.text = "ASI Tutor";
     IntroTxt.font = "bold 70px Arial";
     IntroTxt.x = 300;
     IntroTxt.y = 300;
-    return [IntroTxt];
+
+    stage.addChild(IntroTxt);
 }
 
 function PLC_Txt1(){
-    var PLCTxt1 = Title_Txt();
+    var PLCTxt1  = Init_Title1();
     PLCTxt1.text = "PLC - I/O Interface";
-    PLCTxt1.x = 300;
-    PLCTxt1.y = 300;
-    return [PLCTxt1];
+    PLCTxt1.x    = 300;
+    PLCTxt1.y    = 300;
+
+    stage.addChild(PLCTxt1);
 }
 
 function PLC_Txt2(){
@@ -73,66 +113,50 @@ function PLC_Txt2(){
     const posC  = [50, 210]; // content start position
 
     // integrate all texbotx
-    var TxtOut = [];
 
     // title
-    var myTxt = {};
-    myTxt.text       = txtT;
-    myTxt.color      = "red";
-    myTxt.font       = "bold 30px Times New Roman";
-    myTxt.x          = posT[0];
-    myTxt.y          = posT[1];
-    myTxt.textAlign  = "center";
-    myTxt.lineWidth  = 900;
-    myTxt.color      = "#000";
-    myTxt.textAlign  = "left";
+    var TxtT        = Init_Title2();
+    TxtT.text       = txtT;
+    TxtT.x          = posT[0];
+    TxtT.y          = posT[1];
 
-    TxtOut.push(myTxt);
+    stage.addChild(TxtT);
 
     // sub title
-    var myTxt = {};
-    myTxt.text       = txtST;
-    myTxt.color      = "red";
-    myTxt.font       = "bold 20px Times New Roman";
-    myTxt.x          = posST[0];
-    myTxt.y          = posST[1];
-    myTxt.textAlign  = "center";
-    myTxt.lineWidth  = 900;
-    myTxt.color      = "#000";
-    myTxt.textAlign  = "left";
+    var TxtST        = Init_SubTitle();
+    TxtST.text       = txtST;
+    TxtST.x          = posST[0];
+    TxtST.y          = posST[1];
 
-    TxtOut.push(myTxt);
+    stage.addChild(TxtST);
 
     // contents
     const txt = [txt1, txt2, txt3, txt4];
     var   posX    = posC[0];
     var   posY    = posC[1];
-    const posYAdd = 80;
+    const posYAdd = 20;
 
     for(var i = 0; i < txt.length; i++){
-        myTxt = {};
-        
-        myTxt.text       = txt[i];
-        myTxt.x          = posX;
-        myTxt.y          = posY;  
-        myTxt.font       = "20px Arial";
-        myTxt.lineWidth  = 900;
-        myTxt.color      = "#000";
-        myTxt.textAlign  = "left";
+        var Txt        = Init_Content();
+        Txt.text       = txt[i];
+        Txt.x          = posX;
+        Txt.y          = posY;  
 
-        posY += posYAdd;
-        TxtOut.push(myTxt);
+        stage.addChild(Txt);
+
+        // update the Y coodinate for the next text
+        posY += Txt.getBounds().height + posYAdd; 
     }
 
-    return TxtOut;
 }
 
 function ABB_Robot_Txt1(){
-    var ABBRobotTxt1 = Title_Txt();
+    var ABBRobotTxt1  = Init_Title1();
     ABBRobotTxt1.text = "ABB Robot - I/O Interface";
     ABBRobotTxt1.x    = 200;
     ABBRobotTxt1.y    = 300;
-    return [ABBRobotTxt1];
+
+    stage.addChild(ABBRobotTxt1);
 }
 
 function ABB_Robot_Txt2(){
@@ -155,52 +179,42 @@ function ABB_Robot_Txt2(){
     const posC = [50, 200]; // content start position
 
     // integrate all texbotx
-    var TxtOut = [];
 
     // title
-    var myTxt = {};
-    myTxt.text       = txtT;
-    myTxt.color      = "red";
-    myTxt.font       = "bold 30px Times New Roman";
-    myTxt.x          = posT[0];
-    myTxt.y          = posT[1];
-    myTxt.textAlign  = "center";
-    myTxt.lineWidth  = 900;
-    myTxt.color      = "#000";
-    myTxt.textAlign  = "left";
+    var TxtT        = Init_Title2();
+    TxtT.text       = txtT;
+    TxtT.x          = posT[0];
+    TxtT.y          = posT[1];
 
-    TxtOut.push(myTxt);
+    stage.addChild(TxtT);
 
     // contents
     const txt = [txt1, txt2, txt3, txt4, txt5];
     var   posX    = posC[0];
     var   posY    = posC[1];
-    const posYAdd = 80;
+    const posYAdd = 20;
 
     for(var i = 0; i < txt.length; i++){
-        myTxt = {};
-        
-        myTxt.text       = txt[i];
-        myTxt.x          = posX;
-        myTxt.y          = posY;  
-        myTxt.font       = "20px Arial";
-        myTxt.lineWidth  = 900;
-        myTxt.color      = "#000";
-        myTxt.textAlign  = "left";
+        var Txt         = Init_Content();    
+        Txt.text       = txt[i];
+        Txt.x          = posX;
+        Txt.y          = posY;  
 
-        posY += posYAdd;
-        TxtOut.push(myTxt);
+        stage.addChild(Txt);
+
+        // update the Y coodinate for the next text
+        posY += Txt.getBounds().height + posYAdd; 
+
     }
 
-    return TxtOut;
 }
 
 function PLC_and_ABB_Robot_Txt1(){
-    var PLCABBTxt1 = Title_Txt();
+    var PLCABBTxt1  = Init_Title1();
     PLCABBTxt1.text = "ABB Robot - PLC I/O Modules Interface";
     PLCABBTxt1.x    = 150;
     PLCABBTxt1.y    = 300;
-    return [PLCABBTxt1];
+    stage.addChild(PLCABBTxt1);
 }
 
 function PLC_and_ABB_Robot_Txt2(){
@@ -225,42 +239,32 @@ function PLC_and_ABB_Robot_Txt2(){
     const posC = [50, 200]; // content start position
 
     // integrate all texbotx
-    var TxtOut = [];
 
     // title
-    var myTxt = {};
-    myTxt.text       = txtT;
-    myTxt.color      = "red";
-    myTxt.font       = "bold 30px Times New Roman";
-    myTxt.x          = posT[0];
-    myTxt.y          = posT[1];
-    myTxt.textAlign  = "center";
-    myTxt.lineWidth  = 900;
-    myTxt.color      = "#000";
-    myTxt.textAlign  = "left";
+    var TxtT        = Init_Title2();
+    TxtT.text       = txtT;
+    TxtT.x          = posT[0];
+    TxtT.y          = posT[1];
 
-    TxtOut.push(myTxt);
+    stage.addChild(TxtT);
 
     // contents
     const txt = [txt1, txt2, txt3, txt4, txt5];
     var   posX    = posC[0];
     var   posY    = posC[1];
-    const posYAdd = 80;
+    const posYAdd = 20;
 
     for(var i = 0; i < txt.length; i++){
-        myTxt = {};
-        
-        myTxt.text       = txt[i];
-        myTxt.x          = posX;
-        myTxt.y          = posY;  
-        myTxt.font       = "20px Arial";
-        myTxt.lineWidth  = 900;
-        myTxt.color      = "#000";
-        myTxt.textAlign  = "left";
+        var Txt         = Init_Content();    
+        Txt.text       = txt[i];
+        Txt.x          = posX;
+        Txt.y          = posY;
 
-        posY += posYAdd;
-        TxtOut.push(myTxt);
+        stage.addChild(Txt);
+
+        // update the Y coodinate for the next text
+        posY += Txt.getBounds().height + posYAdd; 
+
     }
 
-    return TxtOut;
 }

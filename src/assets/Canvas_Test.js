@@ -88,6 +88,7 @@ function Draw_Connection_Ports(){
             if(ObjRndPorts.hasOwnProperty(PortName)){
                 circle.rndname = ObjRndPorts[PortName];
             }
+            console.log(ModuleName + "->" + PortName);
             circle.x = ObjDict[ModuleName].x + DictObjPort[ModuleName][PortName].x * Scale;
             circle.y = ObjDict[ModuleName].y + DictObjPort[ModuleName][PortName].y * Scale;
             ObjPorts.push(circle);

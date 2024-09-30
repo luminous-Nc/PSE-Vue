@@ -1,8 +1,5 @@
 import { DictObjPort } from "./Properties_Port.js"
 
-// all properties and parameters in the project
-var ImgLegend;
-
 // main of anlaysis frame
 export function Init_Analysis(){
         Init_Parameter_A();
@@ -10,6 +7,7 @@ export function Init_Analysis(){
         General_Analysis();
         console.log(Analysis);
 
+        return Analysis;
 }
 
 // initialize current analysis properties

@@ -55,7 +55,7 @@
   const myAnalysisForVue = ref(0)
 
   function Analyze_Canvas() {
-    Init_Analysis()
+    var MyAnalysis = Init_Analysis();
     const studentStore = useStudentStore()
     if (studentStore.currentStep.id === '1.2') {
       studentStore.finishComprehensiveTest("plcrobot")

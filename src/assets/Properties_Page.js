@@ -8,7 +8,7 @@ export const DePage = ["1-1", "1-2",
 
 
 export const STPage = {
-                        "2-3": "P1",
+                        "2-3": "P15",
                         "3-3": "P5",
                         "4-3": "P10"
                         }  

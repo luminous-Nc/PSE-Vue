@@ -291,8 +291,8 @@ function Display_Connection(){
                 console.log("---------");
 
                 // notify in message box
-                MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
-                              + ": error message(display)";
+                // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
+                //               + ": error message(display)";
                 stage.update();
             }else{
                 console.log("undefined connection");
@@ -424,7 +424,7 @@ function Get_Line(MyPortSet){
     WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
 
     // draw mutiple waypoints line
-    var Line     = Draw_Connection(LineName, WayPts);
+    var Line     = Draw_Connection(LineName, WayPts, false, true);
 
     // draw direct line based on the position of the two Ports
     //var Line = Draw_Connection(LineName, [StartPt, EndPt]);
@@ -443,13 +443,17 @@ function Get_Line(MyPortSet){
 }
 
 // draw waypoint connection
-function Draw_Connection(LineName, Points, DashPattern = false){
+function Draw_Connection(LineName, Points, DashPattern = false, IsRndColor = false){
     // define a new line
     var Line = new createjs.Shape();
 
     // setup properties
     Line.graphics.setStrokeStyle(2); 	  // Line thickness
-    Line.graphics.beginStroke("#000000"); // Line color
+
+    var Color;
+    if (IsRndColor == true){Color = Get_Rnd_Color()}else{Color = "#000000"};
+    Line.graphics.beginStroke(Color); // Line color
+    
     if (DashPattern == true) {
         Line.graphics.setStrokeDash([10, 5]); // dash line if required
     }
@@ -473,6 +477,17 @@ function Draw_Connection(LineName, Points, DashPattern = false){
     stage.update();
 
     return Line;
+}
+
+// generate random stroke color
+function Get_Rnd_Color(){
+        // Generate a random hex color
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
 }
 
 // generate current line object
