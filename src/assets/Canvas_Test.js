@@ -10,6 +10,7 @@ export function Init_Test(){
     Draw_Image();               
     Draw_Connection_Ports();
     Draw_Msg_Box();
+    Draw_Anlys_Box();
     Init_Practice();
 }
 
@@ -184,5 +185,20 @@ function Draw_Msg_Box(){
     MsgBox.x = 500;
     MsgBox.y = 700;
     stage.addChild(MsgBox);
+    stage.update();
+}
+
+
+
+function Draw_Anlys_Box(){
+    AnlysBox = new createjs.Text();
+    AnlysBox.font = "bold 20px Arial";
+    AnlysBox.color = "#000";
+    AnlysBox.textAlign = "left";
+    AnlysBox.lineWidth  = 400;
+    // AnlysBox.lineHeight = 300;
+    AnlysBox.x = 400;
+    AnlysBox.y = 800;
+    stage.addChild(AnlysBox);
     stage.update();
 }

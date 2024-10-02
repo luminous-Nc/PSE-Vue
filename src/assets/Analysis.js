@@ -5,6 +5,7 @@ export function Init_Analysis(){
         Init_Parameter_A();
         Init_Symbol_A();
         General_Analysis();
+        Display_Analysis();
         console.log(Analysis);
 
         return Analysis;
@@ -20,12 +21,6 @@ function Init_Parameter_A(){
 function Init_Symbol_A(){
     Hide_Ports();
     Init_Legend();
-}
-
-// hide Legend
-function Remove_Legend(){
-    stage.removeChild(ImgLegend);
-    stage.update();
 }
 
 // initialize connection legend
@@ -191,6 +186,22 @@ function Remove_Legend(){
     }
 
     return {LearnModule: ModulesOut};
+}
+
+// display analysis on the textbox
+function Display_Analysis(){
+    const Attempt = Analysis.Line.length;
+    const Correct = Analysis.Correct.length;
+    const CorrectRate = (Analysis.CorrectRate * 100).toFixed(1);
+    
+    const Str1 = `Total attemps: ${Attempt}\n`;
+    const Str2 = `Correct: ${Correct}\n`;
+    const Str3 = `Accuracy: ${CorrectRate}%`;
+
+    const Str = Str1 + Str2 + Str3;
+    AnlysBox.text = Str;
+
+    stage.update();
 }
 
 // hide all legends

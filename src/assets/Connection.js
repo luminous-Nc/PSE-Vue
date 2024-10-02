@@ -5,6 +5,7 @@ var ObjDict  = {};
 var ObjPorts = [];
 var ObjRndPorts = {};
 var MsgBox;
+var AnlysBox;
 
 // User's operation
 var MyPorts		 = [];  // user's accumulated ports set
@@ -53,6 +54,9 @@ function Init_Symbol(){
 
     // reset dynamic message box
     Reset_MsgBox();
+
+    // reset dynamic analysis box
+    Reset_AnlysBox();
     
 }
 
@@ -139,9 +143,15 @@ function Hide_Ports(){
     Execute_All(Ports, false);
 }
 
-// hide message box
+// reset message box
 function Reset_MsgBox(){
     MsgBox.text = "";
+    Updage_Stage();
+}
+
+// reset analyis box
+function Reset_AnlysBox(){
+    AnlysBox.text = "";
     Updage_Stage();
 }
 
@@ -293,7 +303,7 @@ function Display_Connection(){
                 // notify in message box
                 // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
                 //               + ": error message(display)";
-                stage.update();
+                // stage.update();
             }else{
                 console.log("undefined connection");
             }
