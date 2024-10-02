@@ -194,6 +194,48 @@ function Get_Placid_Mid_Point(Pt1, Pt2){
     }
 }
 
+// generate break and extened point
+function Get_Break_Extend_Point(PtIn, Obstacles){
+    // get subline break part
+    var BreakPts = PtIn;
+    var BrkScale = 1;
+    var Dir = {};
+
+    // find break point and exit the loop
+    while (Is_Inside_Obstacles(BreakPts, Obstacles)) {
+        // get subline break point in 4 directions
+        for (var i = 0; i < 4; i++){
+            // get current subline direction dictionary
+            Dir = DictDirN[i];
+
+            // get current subline break point
+            BreakPts = {x : PtIn.x + DictSubL.Break * Dir.x * BrkScale,
+                        y : PtIn.y + DictSubL.Break * Dir.y * BrkScale};
+
+            if (!Is_Inside_Obstacles(BreakPts, Obstacles)) {
+                break;
+            }
+        }
+        BrkScale += 1;
+    }
+
+    // get subline moving part
+    // find which obstacle does the port belong to
+    var ObName = Get_Inside_Obstacle(PtIn, Obstacles);
+
+    // update subline scake dictionary (various subline length at each module)
+    if (ObName in DictSubMScl){DictSubMScl[ObName] += 1;}
+    else{DictSubMScl[ObName] = 1;}
+
+    // calculate moving length
+    var MoveL = DictSubL.Base + DictSubL.Move * DictSubMScl[ObName] ;
+
+    // merge two parts: start point -> break point + moving line
+    return {x : BreakPts.x + Dir.x * MoveL,
+            y : BreakPts.y + Dir.y * MoveL,
+            Dir: Dir};
+}
+
 // check if the waypoints are placid
 function Is_Placid_Among(MyWayPts){
     for (var i = 0; i < MyWayPts.length - 1; i++){
@@ -386,10 +428,7 @@ function Get_Distance_Among(Points) {
 }
 // get distance between two points
 function Get_Distance_Between(A, B) {
-    var DeltaX   = B.x - A.x;
-    var DeltaY   = B.y - A.y;
-    var Distance = Math.sqrt(DeltaX * DeltaX + DeltaY * DeltaY);
-    return Distance;
+    return Math.sqrt((A.x - B.x) ** 2 + (A.y - B.y) ** 2);
 }
 
 // get the 4 detour points around the rectangle
@@ -426,6 +465,43 @@ function Get_Detour_Points(MyRec){
 
     return MyDePts
 }
+
+// get the closest point on the polyline
+function Get_Closest_Polyline_Point(Pt, WayPts){
+    let PtOut = null;
+    let MinDis = Infinity;
+
+    for (let i = 1; i < WayPts.length - 1; i++) {
+        let WayPt = WayPts[i];
+        let d = Get_Distance_Between(Pt, WayPt);
+        
+        if (d < MinDis) {
+            MinDis = d;
+            PtOut = WayPt;
+        }
+    }
+
+    return PtOut;
+}
+
+// // get the closest point to the line
+// function Get_Closest_Line_Point(p, a, b) {
+//     let ap = { x: p.x - a.x, y: p.y - a.y };
+//     let ab = { x: b.x - a.x, y: b.y - a.y };
+
+//     let abSquared = ab.x * ab.x + ab.y * ab.y;
+//     let ap_dot_ab = ap.x * ab.x + ap.y * ab.y;
+//     let t = ap_dot_ab / abSquared;
+
+//     // Clamp t to [0, 1] to keep the point on the segment
+//     t = Math.max(0, Math.min(1, t));
+
+//     // Compute the closest point
+//     return {
+//         x: a.x + t * ab.x,
+//         y: a.y + t * ab.y
+//     };
+// }
 
 // get boundary paramters of the rectangle
 function Get_Rec_Bound(MyRec){

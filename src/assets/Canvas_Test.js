@@ -57,6 +57,8 @@ function Custom_Random_Port(){
 }
 
 function Draw_Image(){
+    Obstacles = [];
+
     for (const ModuleName in ObjDict){
         var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
         Btmp.name   = ModuleName;
@@ -64,18 +66,27 @@ function Draw_Image(){
         Btmp.y      = ObjDict[ModuleName].y; // Center vertically
 
         // resize the image if applicable
-        var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
-        Btmp.scaleX = Scale;
-        Btmp.scaleY = Scale;
+        const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
+        Btmp.scaleX        = Scale;
+        Btmp.scaleY        = Scale;
         Btmp.image.width  *= Scale;
         Btmp.image.height *= Scale;
 
         // integrate the image
         ObjDict[ModuleName].img = Btmp;
         stage.addChild(Btmp);
+
+        // draw image bound(obstacle) 
+        const Bound = Get_Img_Bound(DictObjPort[ModuleName]);
+        var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
+        Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
+        Obstacles.push(Obstacle);
+        stage.addChild(Obstacle.obj);                                
+
     }
     stage.update();         
 }
+
 
 function Draw_Connection_Ports(){
     for(const ModuleName in ObjDict){
@@ -106,6 +117,63 @@ function Get_Img_Scale(Module){
     }else{
         return 1;
     }
+}
+
+function Get_Img_Bound(Module){
+    if (Module.hasOwnProperty("Bound")){
+        return Module["Bound"];
+    }else{
+        return {wl: 0, wr: 0, hu: 0, hd: 0};
+    }
+}
+
+function Init_Rec_Obstacle(Img, b, s){
+    // buffer expand to the object
+    const BufH = 5;  // horizontal
+    const BufV = 10; // vertical
+
+    const x = Img.x;
+    const y = Img.y;
+    const w = Img.image.width;
+    const h = Img.image.height;
+    
+    var Obstacle = {};
+
+    Obstacle.name = Img.name;
+
+    Obstacle.Port = [{x: x - BufH + b.wl * s,
+                      y: y - BufV + b.hu * s},      // left up
+                     {x: x + w + BufH - b.wr * s, 
+                      y: y - BufV + b.hu * s},      // right up
+                     {x: x + w + BufH - b.wr * s, 
+                      y: y + h + BufV - b.hd * s},  // right down
+                     {x: x - BufH + b.wl * s,    
+                      y: y + h + BufV - b.hd * s}]; // left down
+               
+    return Obstacle;
+}
+
+function Draw_Closed_Shape(Points){
+    var Shape = new createjs.Shape();
+    Shape.graphics.setStrokeStyle(2); 	   // Line thickness
+    Shape.graphics.setStrokeDash([10, 5]); // dash point
+    Shape.graphics.beginStroke("#000000");  // color
+
+    // start to draw waypoint line
+    for(var i = 0; i < Points.length - 1; i++){
+        // current draw start point
+        Shape.graphics.moveTo(Points[i].x, Points[i].y);
+
+        // current draw end point
+        Shape.graphics.lineTo(Points[i+1].x, Points[i+1].y);
+    }
+
+    // last draw to close the shape
+    Shape.graphics.moveTo(Points[Points.length - 1].x, 
+                          Points[Points.length - 1].y);
+    Shape.graphics.lineTo(Points[0].x, Points[0].y);
+
+    return Shape;
 }
 
 function Draw_Msg_Box(){
