@@ -61,7 +61,7 @@
       studentStore.finishComprehensiveTest("plcrobot")
       return
     }
-    studentStore.addLearningRecord(MyAnalysis)
+    studentStore.addLearningRecord(Analysis)
 
   };
 

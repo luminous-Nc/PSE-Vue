@@ -16,7 +16,7 @@ let needStyleQuiz = ref(false)
 const studentStore = useStudentStore()
 
 onMounted(()=> {
-    console.log(studentStore.learningStyle)
+    console.log('learning style:', studentStore.learningStyle)
     if (studentStore.learningStyle==='null') {
         needStyleQuiz.value = true
     }
