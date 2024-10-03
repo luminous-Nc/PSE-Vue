@@ -5,6 +5,7 @@ var ObjDict  = {};
 var ObjPorts = [];
 var ObjRndPorts = {};
 var MsgBox;
+var AnlysBox;
 
 // User's operation
 var MyPorts		 = [];  // user's accumulated ports set
@@ -46,13 +47,16 @@ function Init_Symbol(){
     Remove_Legend();
 
     // generate obstacles
-    Obstacles = Init_Obstacles(ObjDict);
+    // Obstacles = Init_Obstacles(ObjDict);
 
     // generate ports and event listeners
     Reset_Ports();
 
     // reset dynamic message box
     Reset_MsgBox();
+
+    // reset dynamic analysis box
+    Reset_AnlysBox();
     
 }
 
@@ -139,9 +143,15 @@ function Hide_Ports(){
     Execute_All(Ports, false);
 }
 
-// hide message box
+// reset message box
 function Reset_MsgBox(){
     MsgBox.text = "";
+    Updage_Stage();
+}
+
+// reset analyis box
+function Reset_AnlysBox(){
+    AnlysBox.text = "";
     Updage_Stage();
 }
 
@@ -290,10 +300,11 @@ function Display_Connection(){
                 console.log("connection -> %s", Line.name);
                 console.log("---------");
 
-                // notify in message box
+                // notify in message box(if applicable)
+                Show_Msg(TempPorts[0], TempPorts[1]);
                 // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
                 //               + ": error message(display)";
-                stage.update();
+                // stage.update();
             }else{
                 console.log("undefined connection");
             }
@@ -311,55 +322,38 @@ function Display_Connection(){
     }
 }
 
+// display feedback message
+function Show_Msg(Port1, Port2){
+    // get original port name
+    var Port1Name = Port1.name;
+    var Port2Name = Port2.name;
+
+    // assign general random name(if applicable)
+    if (Port1.hasOwnProperty("rndname")){Port1Name = Port1["rndname"]};
+
+    if (Port2.hasOwnProperty("rndname")){Port2Name = Port2["rndname"];}
+
+    // check message dictionary
+    const PortName = [Port1Name, Port2Name];
+
+    for (const Msg of Msgs){
+        const MsgPort = Msg["Ports"];
+        if (MsgPort.includes(PortName[0]) && MsgPort.includes(PortName[1])){
+            MsgBox.text = Msg["Message"];
+            stage.update();
+            return;
+        }
+    } 
+    MsgBox.text = "";
+    stage.update();
+}
+
 // get subline
 function Get_SubLine(Port){
     // initialie current point
     var StartPt = {x : Port.x, y : Port.y};
-    var EndPt   = {};
-
-    // get subline break part
-    var BreakPts = StartPt;
-    var BrkScale = 1;
-    var Dir = {};
-
-    // find break point and exit the loop
-    while (Is_Inside_Obstacles(BreakPts, Obstacles)) {
-        // get subline break point in 4 directions
-        for (var i = 0; i < 4; i++){
-            // get current subline direction dictionary
-            Dir = DictDirN[i];
-
-            // get current subline break point
-            BreakPts = {x : StartPt.x + DictSubL.Break * Dir.x * BrkScale,
-                        y : StartPt.y + DictSubL.Break * Dir.y * BrkScale};
-
-            if (!Is_Inside_Obstacles(BreakPts, Obstacles)) {
-                break;
-            }
-        }
-        BrkScale += 1;
-    }
-
-    // get subline moving part
-    // find which obstacle does the port belong to
-    var ObName = Get_Inside_Obstacle(StartPt, Obstacles);
-
-    // update subline scake dictionary (various subline length at each module)
-    if (ObName in DictSubMScl){
-        DictSubMScl[ObName] += 1;
-    }
-    else{
-        DictSubMScl[ObName] = 1;
-    }
-
-    // calculate moving length
-    var MoveL = DictSubL.Base + DictSubL.Move * DictSubMScl[ObName] ;
-
-    // merge two parts: start point -> break point + moving line
-    EndPt = {x : BreakPts.x + Dir.x * MoveL,
-             y : BreakPts.y + Dir.y * MoveL,
-             Dir: Dir};
-
+    var EndPt = Get_Break_Extend_Point(StartPt, Obstacles);
+ 
     // initialize subline name
     var SubLineName = Get_Symbol_Name(Title.SubLine, Port.name);
 
@@ -377,7 +371,7 @@ function Get_SubLine(Port){
     SubLine.graphics.setStrokeStyle(5); 	 // Line thickness
     SubLine.graphics.beginStroke("#000000"); // Line color
     SubLine.name    = SubLineName;           // Name
-    SubLine.Module  = ObName;                // parent module name
+    SubLine.Module  = Port.Module;           // parent module name
     SubLine.visible = true;                  // visibility
 
     // draw subline
@@ -402,23 +396,34 @@ function Get_Line(MyPortSet){
     // get two Ports
     var Port1 = MyPortSet[0];
     var Port2 = MyPortSet[1];
-
+    
     // get the line name
     var LineName = Get_Line_Name(Title.Line, Port1.name, Port2.name);
 
     // get original start and end point
-    var StartPt0 = {x: Port1.x, y : Port1.y};
-    var EndPt0   = {x: Port2.x, y : Port2.y};
+    var StartPt0 = [{x: Port1.x, y : Port1.y}];
+    var EndPt0   = [{x: Port2.x, y : Port2.y}];
 
     // get new start and end point
     var StartPt  = Port1.SubLEnd;
     var EndPt    = Port2.SubLEnd;
 
+    // update original and new point with skip waypoints(if applicable)
+    // [Port1, Port2] = Skip_Waypoints(Port1, Port2, MyLines);
+
+    // if (Port1.hasOwnProperty("SkipPts")){
+    //     StartPt0 = Port1["SkipPts"].slice(0, Port1["SkipPts"].length - 1);
+    //     StartPt  = Port1["SkipPts"].slice(-1)[0];
+    // }else if (Port2.hasOwnProperty("SkipPts")){
+    //     EndPt0 = Port2["SkipPts"].slice(1, Port2["SkipPts"].length);
+    //     EndPt  = Port2["SkipPts"][0];
+    // }
+
     // get detouring waypoints
     var WayPts   = Get_Path(StartPt, EndPt, Obstacles);
 
     // integrate with orignal start and end points
-    WayPts       = [StartPt0, ...WayPts, EndPt0];
+    WayPts       = [...StartPt0, ...WayPts, ...EndPt0];
 
     // eliminate repated line
     WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
@@ -432,6 +437,9 @@ function Get_Line(MyPortSet){
     // assign the connection module
     Line.Module = [Port1.name, Port2.name];
 
+    // assign waypoints
+    Line.WayPts = WayPts;
+
     // add time elapsed(second)
     Line.Time = {Start:  (Port1.Time - Timer.Start) / 1000,
                  Stop:   (Port2.Time - Timer.Start) / 1000};
@@ -441,6 +449,26 @@ function Get_Line(MyPortSet){
 
     return Line;
 }
+
+// ***skip partial waypoints for the same start/end point
+function Skip_Waypoints(Port1, Port2, MyLines){
+    for (const MyLine of MyLines){
+        const WayPts = MyLine.WayPts;
+        if (MyLine.Module.includes(Port1.name)){
+            let SkipPt = Get_Closest_Polyline_Point(Port2.SubLEnd, WayPts);
+            let Index  = WayPts.indexOf(SkipPt);
+            Port1.SkipPts = WayPts.slice(0, Index);
+            return [Port1, Port2];
+        } else if ((MyLine.Module.includes(Port2.name))){
+            let SkipPt = Get_Closest_Polyline_Point(Port1.SubLEnd, WayPts);
+            let Index  = WayPts.indexOf(SkipPt);
+            Port2.SkipPts = WayPts.slice(Index, WayPts.length);
+            return [Port1, Port2];
+        }
+    }
+    return [Port1, Port2];
+}
+
 
 // draw waypoint connection
 function Draw_Connection(LineName, Points, DashPattern = false, IsRndColor = false){

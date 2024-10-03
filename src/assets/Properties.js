@@ -3,6 +3,7 @@
     var stage;
 
     // modules and keys' dictionary
+    var Msgs        = {}; // feedback message
     var Keys        = []; // connecting keys
     var Analysis    = Object();
 

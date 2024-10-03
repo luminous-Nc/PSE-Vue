@@ -200,6 +200,8 @@ export const DictObjPort = {
                                         "IN-5": {x:150, y:165},   "IN-4": {x:228, y:165},
                                         "IN-7": {x:150, y:213},   "IN-6": {x:228, y:213},
                                         "GNDPLCL": {x:150, y:263}, "GNDPLCR": {x:228, y:263},
+                       
+                                        "Bound": {wl: 80, wr: 70, hu: 5, hd: 5}
                         },
 
                         // "PLCInput(New)": {
@@ -219,6 +221,8 @@ export const DictObjPort = {
                                         "DC-2": {x:156, y:165}, "OUT-2": {x:235, y:165},
                                         "DC-3": {x:156, y:213}, "OUT-3": {x:235, y:213},
                                         "DC-4": {x:156, y:263}, "OUT-4": {x:235, y:263},
+                        
+                                        "Bound": {wl: 85, wr: 70, hu: 5, hd: 5}
                         },
 
                         // "PLCOutput(New)" :{

@@ -149,10 +149,10 @@ var ObjRndPool = {
 }
 
 var ObjRndPoolName = {
-                        PLCInputPort:       "",
-                        PLCInput0To4Port:   "",
-                        PLCInput5To9Port:   "",
-                        PLCInputGNDPort:    "",
+                        PLCInputPort:       "IN-RND",
+                        PLCInput0To4Port:   "IN-RND0TO4",
+                        PLCInput5To9Port:   "IN-RND5TO9",
+                        PLCInputGNDPort:    "GNDRND",
                         PLCOutputPort:      "",
                         PLCOutputDCPort:    "",
                         ABBDIPort:          "",
