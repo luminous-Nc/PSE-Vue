@@ -32,8 +32,8 @@ export const useStudentStore = defineStore('student', {
             if (this.learningStyle === "Global") {
                 this.learningPath = ["1.2", "-99"]
             } else if (this.learningStyle === "Sequential") {
-                this.learningPath = ["2.1", "2.2", "2.3", "3.1",
-                    "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"
+                this.learningPath = ["2.1", "2.2", "2.3", "2.4","2.5","3.1",
+                    "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5",
                     , "-99"];
             } else {
                 console.log(this.learningStyle)
@@ -149,15 +149,15 @@ export const useStudentStore = defineStore('student', {
             let newSteps = []
             switch (knowledgeLevel) {
                 case "plc":
-                    newSteps = ["2.1", "2.2", "2.3", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    newSteps = ["2.1", "2.2", "2.3","2.4","2.5", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5"]
                     this.responseMessage = "Your knowledge level is estimated to 'PLC'"
                     break
                 case "robot":
-                    newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5"]
                     this.responseMessage = "Your knowledge level is estimated to 'Robot'"
                     break
                 case "plcrobot":
-                    newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5"]
                     this.responseMessage = "Your knowledge level is estimated to 'PLC and Robot'"
                     break
                 case 'finish':
@@ -179,7 +179,7 @@ export const useStudentStore = defineStore('student', {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
                 this.finishCurrentStep()
-                this.responseMessage = "You are correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
+                this.responseMessage = "Correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
             }
         },
     },
