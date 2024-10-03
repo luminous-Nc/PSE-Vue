@@ -1,22 +1,26 @@
 
 export var Dict_Func_Txt = {
                             "1-1": Intro_Txt,
-                            "2-1": PLC_Txt1,
-                            "2-2": PLC_Txt2,
-                            "3-1": ABB_Robot_Txt1,
-                            "3-2": ABB_Robot_Txt2,
-                            "4-1": PLC_and_ABB_Robot_Txt1,
-                            "4-2": PLC_and_ABB_Robot_Txt2,
+                            "2-1": PLC_Title_Txt,
+                            "2-2": PLC_Input_Txt,
+                            "2-4": PLC_Output_Txt,
+                            "3-1": ABB_Robot_Title_Txt,
+                            "3-2": ABB_Robot_Txt,
+                            "4-1": PLC_and_Robot_Title_Txt,
+                            "4-2": PLC_and_ABB_Robot_Txt,
+                            "4-4": PLC_and_FANUC_Robot_Txt,
 };
 
 export var Dict_Audio = {
                             "1-1": null,
                             "2-1": null,
-                            "2-2": "ob8 intro.mp3",
+                            "2-2": "ib16 intro-basic wiring.mp3",
+                            "2-4": "ob8 intro.mp3",
                             "3-1": null,
                             "3-2": "ABB Robot-intro.mp3",
                             "4-1": null,
-                            "4-2": "Interfacingg the PLC output module ABB Robot.mp3"
+                            "4-2": "Interfacingg the PLC output module ABB Robot.mp3",
+                            "4-4": "FANUC interfacing  PLC input module.mp3"
                         };
 
 export const AudioFolder = "./src/assets/audio/";
@@ -83,7 +87,7 @@ function Intro_Txt(){
     stage.addChild(IntroTxt);
 }
 
-function PLC_Txt1(){
+function PLC_Title_Txt(){
     var PLCTxt1  = Init_Title1();
     PLCTxt1.text = "PLC - I/O Interface";
     PLCTxt1.x    = 300;
@@ -92,7 +96,7 @@ function PLC_Txt1(){
     stage.addChild(PLCTxt1);
 }
 
-function PLC_Txt2(){
+function PLC_Input_Txt(){
     // set textbox content
     const txtT =   "In this lesson, you will practice interfacing I/O modules with a switch and battery";
     
@@ -150,7 +154,65 @@ function PLC_Txt2(){
 
 }
 
-function ABB_Robot_Txt1(){
+function PLC_Output_Txt(){
+    // set textbox content
+    const txtT =   "In this lesson, you will practice interfacing I/O modules with external devices such as a motor";
+    
+    const txtST =   "(OB8 output module)";
+
+    const txt1 =    "\u2022 Need a power supply of a 10 to 30 VDC power supply for the output devices such as motor, relay, solenid, and light";
+    
+    const txt2 =    "\u2022 Output device, power supply(PS), and module forms a close-loop circuitry";    
+
+    const txt3 =    "\u2022 DC(+) should be connected to the positive side of the circuiry and OUT-X should be connected to the negative side of the circuitry";
+    
+    const txt4 =    "\u2022 Output devices should be placed in the circuitry loop, it can be on the positive side or negative side of the loop";
+    
+
+    // set textbox coordinate
+    const posT  = [50, 100]; // title
+    const posST = [50, 180]; // sub title
+    const posC  = [50, 210]; // content start position
+
+    // integrate all texbotx
+
+    // title
+    var TxtT        = Init_Title2();
+    TxtT.text       = txtT;
+    TxtT.x          = posT[0];
+    TxtT.y          = posT[1];
+
+    stage.addChild(TxtT);
+
+    // sub title
+    var TxtST        = Init_SubTitle();
+    TxtST.text       = txtST;
+    TxtST.x          = posST[0];
+    TxtST.y          = posST[1];
+
+    stage.addChild(TxtST);
+
+    // contents
+    const txt = [txt1, txt2, txt3, txt4];
+    var   posX    = posC[0];
+    var   posY    = posC[1];
+    const posYAdd = 20;
+
+    for(var i = 0; i < txt.length; i++){
+        var Txt        = Init_Content();
+        Txt.text       = txt[i];
+        Txt.x          = posX;
+        Txt.y          = posY;  
+
+        stage.addChild(Txt);
+
+        // update the Y coodinate for the next text
+        posY += Txt.getBounds().height + posYAdd; 
+    }
+
+}
+
+function ABB_Robot_Title_Txt(){
     var ABBRobotTxt1  = Init_Title1();
     ABBRobotTxt1.text = "ABB Robot - I/O Interface";
     ABBRobotTxt1.x    = 200;
@@ -159,7 +221,7 @@ function ABB_Robot_Txt1(){
     stage.addChild(ABBRobotTxt1);
 }
 
-function ABB_Robot_Txt2(){
+function ABB_Robot_Txt(){
     // set textbox content
     const txtT =    "Interfacing the Robot Controller Input Terminal with Input Device";
 
@@ -209,15 +271,15 @@ function ABB_Robot_Txt2(){
 
 }
 
-function PLC_and_ABB_Robot_Txt1(){
+function PLC_and_Robot_Title_Txt(){
     var PLCABBTxt1  = Init_Title1();
-    PLCABBTxt1.text = "ABB Robot - PLC I/O Modules Interface";
+    PLCABBTxt1.text = "PLC & Robot - Interface";
     PLCABBTxt1.x    = 150;
     PLCABBTxt1.y    = 300;
     stage.addChild(PLCABBTxt1);
 }
 
-function PLC_and_ABB_Robot_Txt2(){
+function PLC_and_ABB_Robot_Txt(){
     // set textbox content
     const txtT =    "Interfacing the PLC Input Module(1756 IB16) with the Robot Controller Scalable I/O Module";
 
@@ -268,3 +330,55 @@ function PLC_and_ABB_Robot_Txt2(){
     }
 
 }
+
+    function PLC_and_FANUC_Robot_Txt(){
+        // set textbox content
+        const txtT =    "Interfacing the PLC Input Module(IB16) with the Robot Controller Peripheral Device Module";
+    
+        const txt1 =    "1. The PLC input module operates on a 10 to 30 VDC power supply. Also, the robot controller"
+                        + " scalable I/O module needs a 24V power supply to communicate with PLC."
+        
+        const txt2 =    "2. So, an external power supply should be used with the robot controller output terminal";
+    
+        const txt3 =    "3. The robot controller peripheral device module and PLC input module form a closed-loop circuit.";
+    
+        const txt4 =    "4. DO-XXX(101-108) of the robot controller peripheral device should be connected to the PLC input module's IN-X(0-7),"
+                        + "and 0V(0 VDC) should be connected to the GND-0 of the PLC input module.";
+    
+        const txt5 =    "5. Also, the DOSRC X(1-2) of the robot controller peripheral device module should be connected to the positive side of the"
+                        + "external power supply, and 0V(0 VDC) of the robot controller should be connected to the negative side of external the power supply.";
+    
+        // set textbox coordinate
+        const posT = [50, 100]; // title
+        const posC = [50, 200]; // content start position
+    
+        // integrate all texbotx
+    
+        // title
+        var TxtT        = Init_Title2();
+        TxtT.text       = txtT;
+        TxtT.x          = posT[0];
+        TxtT.y          = posT[1];
+    
+        stage.addChild(TxtT);
+    
+        // contents
+        const txt = [txt1, txt2, txt3, txt4, txt5];
+        var   posX    = posC[0];
+        var   posY    = posC[1];
+        const posYAdd = 20;
+    
+        for(var i = 0; i < txt.length; i++){
+            var Txt         = Init_Content();    
+            Txt.text       = txt[i];
+            Txt.x          = posX;
+            Txt.y          = posY;
+    
+            stage.addChild(Txt);
+    
+            // update the Y coodinate for the next text
+            posY += Txt.getBounds().height + posYAdd; 
+    
+        }
+    }
+

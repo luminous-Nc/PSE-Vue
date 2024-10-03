@@ -17,7 +17,7 @@
       "type": "introduction",
       "text": "Watch the introduction of entire module",
       "url": "",
-      "pnameID": "9-9"
+      "pnameID": "1-1"
     },
     {"id": "1.2",
       "menu_text": "1. Comprehensive Test",
@@ -60,7 +60,7 @@
       "type": "interactive",
       "text": "Complete the test of PLC I/O interface",
       "url": "",
-      "pnameID": "2-3"
+      "pnameID": "2-5"
     },
     {"id": "3.1",
       "menu_text": "3.1 Robot Interface",
@@ -106,14 +106,14 @@
       "pnameID": "4-3"
     },
     {"id": "4.4",
-      "menu_text": "4.5 PLC & FANUC Robot Interface",
+      "menu_text": "4.4 PLC & FANUC Robot Interface",
       "type": "description",
       "text": "Watch the description",
       "url": "",
       "pnameID": "4-4"
     },
     {"id": "4.5",
-      "menu_text": "4.6 PLC & FANUC Robot Interface Practice ",
+      "menu_text": "4.5 PLC & FANUC Robot Interface Practice ",
       "type": "interactive",
       "text": "Complete the interactive practice",
       "url": "",
