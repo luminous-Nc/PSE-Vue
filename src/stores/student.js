@@ -1,13 +1,13 @@
 import {defineStore} from 'pinia';
 import {useStepsStore} from "@/stores/step.js";
 import {useCookies} from '@vueuse/integrations/useCookies';
-import {useTopicsStore} from "@/stores/topic.js";
+
 
 
 export const useStudentStore = defineStore('student', {
     state: () => {
         return {
-            currentTopic: undefined,
+
             currentStep: undefined,
             currentStepFinished: false,
             learningPath: ["0"],
@@ -15,18 +15,18 @@ export const useStudentStore = defineStore('student', {
             learningRecord: {},
             responseMessage: '',
             direction: 'next',
+            repeatMode: true
         }
+    },
+    persist: {
+      enabled:true,
     },
     actions: {
         addNewSteps(newStepIdArray) {
             const index = this.learningPath.indexOf(this.currentStep.id);
             this.learningPath.splice(index + 1, 0, ...newStepIdArray);
         },
-        initStudent() {
-            console.log("init Student")
-            const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
-            this.learningStyle = cookieValue; // 更新 store 中的 learningStyle
-        },
+
         initLearningPath() {
             console.log("init Learning Path")
             if (this.learningStyle === "Global") {
@@ -38,8 +38,8 @@ export const useStudentStore = defineStore('student', {
             } else {
                 console.error('learning style it not matching:', this.learningStyle)
             }
-            if (this.currentStep===undefined || this.currentStep?.id === 0) {
-                console.log('getCurrentStep')
+            if (this.currentStep=== undefined || this.currentStep.id === '0' || this.currentStep.id === 0) {
+                console.log('stepId = 0')
                 const stepsStore = useStepsStore()
                 this.currentStep = stepsStore.getStepById(this.learningPath[0])
                 this.currentStepFinished = false
@@ -50,7 +50,8 @@ export const useStudentStore = defineStore('student', {
         ,
         setLearningStyle(learning_style) {
             this.learningStyle = learning_style
-            useCookies(['learning_style']).set('learning_style', learning_style) // 默认值为 'null'
+            useCookies(['learning_style']).set('learning_style', learning_style)
+            this.initLearningPath()
         },
         finishCurrentStep() {
             this.currentStepFinished = true
@@ -181,11 +182,13 @@ export const useStudentStore = defineStore('student', {
         addLearningRecord(analysis) {
             if (analysis.CorrectRate !== 1) {
                 this.direction = 'previous'
+                this.repeatMode = true
                 this.finishCurrentStep()
                 this.responseMessage = "Incorrect. Learn again"
             } else {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
+                this.repeatMode = false
                 this.finishCurrentStep()
                 this.responseMessage = "Correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
             }
@@ -204,18 +207,6 @@ export const useStudentStore = defineStore('student', {
             }
         },
 
-        getCurrentTopic(state) {
-            console.log(state.currentTopic)
-            if (state.currentTopic === undefined) {
-                const topicStore = useTopicsStore()
-                topicStore.decideCurrentTopic().then((res) => {
-                    state.currentTopic = res
-                })
-                return state.currentTopic
-            } else {
-                return state.currentTopic
-            }
-        },
         getLearningStyle(state) {
             if (state.learningStyle === '') {
                 const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'

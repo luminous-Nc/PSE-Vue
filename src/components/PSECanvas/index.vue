@@ -15,16 +15,12 @@
 
 <script setup>
 
-// import { onMounted, ref } from 'vue';
-import {useTopicsStore} from "@/stores/topic.js";
-import {computed, ref, watch} from 'vue';
-import {useStepsStore} from "@/stores/step.js";
+
+import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
 import {Destroy_Canvas, Init_Canvas} from "@/assets/Canvas_Page.js";
-import {Init_Test} from "@/assets/Canvas_Test.js";
 import {Init_Analysis} from "@/assets/Analysis";
-import {initCanvasWithCountdown} from "@/assets/CanvasEventandSizeTest.js";
 import {Next_Step_Stop_Audio} from "@/assets/Canvas_Description.js";
 
 
@@ -34,10 +30,43 @@ const showSubmitButton = ref(false);
 
 const studentStore = useStudentStore()
 const currentStepLocal = computed(() => studentStore.currentStep)
+const currentStepId = computed(()=> studentStore.currentStep.id)
 
-watch(currentStepLocal, (newStep, oldStep) => {
+onMounted(()=> {
+    checkId();
+})
+
+const checkId = () => {
+    const interval = setInterval(() => {
+        if (studentStore.currentStep !== undefined && studentStore.currentStep.id !== 0) {
+
+            initPSECanvas();
+            clearInterval(interval); // 一旦检测到 ID 已存在，停止检测
+        }
+        console.log('check',studentStore.currentStep)
+    }, 50); // 每100ms检测一次
+};
+const initPSECanvas = () => {
+    showResetButton.value = false
+    showSubmitButton.value = false
+    if (studentStore.currentStep.type === "introduction") {
+        studentStore.currentStepFinished = true
+    }
+
+    if (studentStore.currentStep.type === "interactive") {
+        showResetButton.value = true
+        showSubmitButton.value = true
+        studentStore.currentStepFinished = false
+    }
+
+    PName = studentStore.currentStep.pnameID;
+    console.log('PName', PName)
+
+    Init_Canvas(canvas);
+}
+watch(currentStepLocal,
+    (newStep, oldStep) => {
     // Check if 'newStep' and 'newStep.id' are defined
-
     if (oldStep && oldStep.id) {
         // Destroy_Canvas();
         if (oldStep.type === "description") {
@@ -45,6 +74,9 @@ watch(currentStepLocal, (newStep, oldStep) => {
         }
     }
     if (newStep && newStep.id) {
+        nextTick(()=> {
+
+        })
         showResetButton.value = false
         showSubmitButton.value = false
         if (newStep.type === "introduction") {
@@ -66,14 +98,15 @@ watch(currentStepLocal, (newStep, oldStep) => {
     } else {
         console.log("currentStep or currentTopic.id is undefined.");
     }
-});
+},
+{deep:true},
+    { immediate: true }
+);
 
 function Reset_Canvas() {
     Init_Practice()
 };
 
-
-const myAnalysisForVue = ref(0)
 
 function Analyze_Canvas() {
     let MyAnalysis = Init_Analysis();
@@ -109,14 +142,14 @@ function finishDescription() {
 
 .reset-button {
     position: absolute;
-    bottom: 10px;
+    bottom: 1rem;
     left: 40%;
     transform: translateX(-50%); /* Adjust this value as needed to position correctly */
 }
 
 .submit-button {
     position: absolute;
-    bottom: 10px;
+    bottom: 1rem;
     left: 60%;
     transform: translateX(-50%); /* Adjust this value as needed to position correctly */
 }

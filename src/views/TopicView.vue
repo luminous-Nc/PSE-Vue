@@ -19,10 +19,9 @@ const showQuestionnaire = computed(() => {
 });
 
 const studentStore = useStudentStore()
-onMounted(() => {
-
- studentStore.initStudent(); //
-});
+// onMounted(() => {
+//  studentStore.initStudent(); //
+// });
 
 </script>
 

@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "csv-parse": "^5.5.6",
     "@vueuse/core": "^11.1.0",
     "@vueuse/integrations": "^11.1.0",
+    "csv-parse": "^5.5.6",
     "pinia": "^2.1.7",
+    "pinia-plugin-persist": "^1.0.0",
     "universal-cookie": "7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"

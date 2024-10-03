@@ -94,9 +94,10 @@
 </template>
 
 <script setup>
-import {reactive, ref, defineEmits} from 'vue'
+import {reactive, ref, defineEmits, inject} from 'vue'
 import {useQuestionnaireStore} from "@/stores/questionnaire.js";
 import {useStudentStore} from "@/stores/student.js";
+import {useRouter} from'vue-router'
 
 const questionnaireStore = useQuestionnaireStore()
 const studentStore = useStudentStore()
@@ -142,9 +143,13 @@ const analyseLearningStyle = () => {
 };
 
 const emit = defineEmits(['closeQuizWindow'])
+const reload =  inject("reload");
+const router = useRouter()
 const startLearning = () => {
     studentStore.setLearningStyle(result.value)
+    studentStore.initLearningPath()
     emit('closeQuizWindow')
+    // router.go()
 }
 
 </script>

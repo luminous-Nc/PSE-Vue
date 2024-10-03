@@ -12,14 +12,14 @@ export const useStepsStore = defineStore('steps', {
     actions: {
         async downloadSteps() {
             if (!this.steps.length) {
-                console.log('Downloading steps')
+                // console.log('Downloading steps')
                 try {
                     const response = await fetch('/assets/database/steps.json');
                     const data = await response.json();
                     this.steps = data.steps;
-                    console.log('Downloaded store steps')
+                    // console.log('Downloaded store steps')
                 } catch (error) {
-                    console.error('Error loading database:', error);
+                    // console.error('Error loading database:', error);
                 }
             }
         },
@@ -37,7 +37,7 @@ export const useStepsStore = defineStore('steps', {
         getStepById: (state) => {
             return function (id) {
                 if (!state.steps.length) {
-                    console.log('[allLocalTopics] Topics are empty, fetching topics...');
+                    // console.log('[allLocalTopics] Topics are empty, fetching topics...');
                     state.downloadSteps();
                 }
                 let targetStep = state.steps.find(step => step.id === id);
