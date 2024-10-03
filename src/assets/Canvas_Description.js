@@ -60,6 +60,22 @@ function Init_Voice(AudioFile){
     stage.update();
 }
 
+export function Next_Step_Stop_Audio() {
+    if (MyAudio) {
+        MyAudio.pause();  // Stop the audio
+        MyAudio.currentTime = 0;  // Reset the audio to the beginning
+
+        // Remove the 'timeupdate' event listener
+        MyAudio.removeEventListener("timeupdate", Update_Bar);
+
+        // Optionally, clear the progress bar and reset visuals
+        Draw_ProgressBar(AudioBar, 0);
+        Draw_Play_Toggle(AudioToggle); // Switch to the play button visuals
+
+        stage.update();
+    }
+}
+
 function Update_Bar(){
     const progress = (MyAudio.currentTime / MyAudio.duration) * 600; // Scale to canvas width
     Draw_ProgressBar(AudioBar, progress);
@@ -70,8 +86,10 @@ function Update_Bar(){
 
     // check if the audio is end
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
-    if (!IsAudioEnd) {
+    let IsAudioHalf = (MyAudio.currentTime >= 0.1*MyAudio.duration)
+    if (IsAudioHalf) {
         studentStore.finishCurrentStep()
+        console.log('持续触发')
     }
   }
 

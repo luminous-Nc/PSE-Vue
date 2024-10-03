@@ -32,9 +32,9 @@ export const useStudentStore = defineStore('student', {
             if (this.learningStyle === "Global") {
                 this.learningPath = ["1.2", "-99"]
             } else if (this.learningStyle === "Sequential") {
-                this.learningPath = ["1.1", "2.1", "2.2", "2.3", "2.4", "3.1",
-                    "3.2", "3.3", "3.4", "4.1", "4.2", "4.3",
-                    "4.4", "-99"];
+                this.learningPath = ["2.1", "2.2", "2.3", "3.1",
+                    "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"
+                    , "-99"];
             } else {
                 console.log(this.learningStyle)
             }
@@ -76,18 +76,93 @@ export const useStudentStore = defineStore('student', {
             }
         },
 
-        finishComprehensiveTest(knowledgeLevel) {
-            console.log("add")
+        finishComprehensiveTest(analysis) {
+            let knowledgeLevel = ''
+            let learnModule = analysis.LearnModule
+            let modulesToCheckPLC = ['PLCInput', 'PLCOutput', 'ButtonStart', 'ButtonMotorStop']
+            let modulesToCheckRobot = ['ABBRobot', '240VDC', '24VDC']
+            let modulesToCheckPLCRobot = ['LSensor', 'Relay']
+
+            let modulesToCheckPLCV2 =  [
+                ["IN-2", "BTMSTPL"], ["IN-6", "LSL"], ["GNDPLCR", "24VN"],
+                ["BTSTRR", "DC-0"], ["BTSTRR", "24VP"], ["BTMSTPR", "24VP"],
+                ["LSR", "24VP"]
+            ]
+
+            let modulesToCheckRobotV2 = [["RLCU", "OUT-0"], ["RLCD", "24VN"],
+                ["RLSWU", "240VP"], ["RLSWDR", "CVL"], ["CVR", "240VN"]
+            ]
+
+            let modulesToCheckPLCRobotV2 = [
+                ["PWRDOL", "24VP"], ["GNDDOL", "24VN"], ["GNDDIL", "24VN"],
+                ["DO02", "IN-7"], ["DI02", "OUT-1"]
+              ]
+
+            let modulesAlreadyPass = []
+
+            let correctConnections = analysis.Correct
+            for (let oneCorrect of correctConnections) {
+                console.log(oneCorrect)
+                modulesAlreadyPass.push(oneCorrect[2].Module)
+            }
+
+            function arraysContainSameElements(arr1, arr2) {
+                return arr1.length === arr2.length && arr1.every(item => arr2.includes(item));
+            }
+
+            // 删除匹配的子数组
+            function removeMatchingElements(arrayToCheck, targetArray) {
+                // 遍历arrayToCheck中的每一个元素
+                arrayToCheck.forEach(checkItem => {
+                    // 查找并删除匹配的子数组
+                    let index = targetArray.findIndex(item => arraysContainSameElements(item, checkItem));
+                    if (index !== -1) {
+                        targetArray.splice(index, 1); // 删除匹配的元素
+                    }
+                });
+            }
+
+            removeMatchingElements(modulesAlreadyPass, modulesToCheckPLCV2);
+            removeMatchingElements(modulesAlreadyPass, modulesToCheckRobotV2);
+            removeMatchingElements(modulesAlreadyPass, modulesToCheckPLCRobotV2);
+
+
+
+            console.log(modulesToCheckPLCV2.length)
+            console.log(modulesToCheckRobotV2.length)
+            console.log(modulesToCheckPLCRobotV2.length)
+
+            // const containsAnyPLC = modulesToCheckPLC.some(module => learnModule.includes(module));
+            // const containsAnyRobot = modulesToCheckRobot.some(module => learnModule.includes(module));
+            // const containsAnyPLCRobot = modulesToCheckPLCRobot.some(module => learnModule.includes(module));
+
+            if (modulesToCheckPLCV2.length) {
+                knowledgeLevel = 'plc'
+            } else if (modulesToCheckRobotV2.length) {
+                knowledgeLevel = 'robot'
+            } else if (modulesToCheckPLCRobotV2.length) {
+                knowledgeLevel = 'plcrobot'
+            } else {
+                knowledgeLevel = 'finish'
+            }
+
             let newSteps = []
             switch (knowledgeLevel) {
                 case "plc":
-                    newSteps = ["2.1", "2.2", "2.3", "2.4", "3.1", "3.2", "3.3", "3.4", "4.1", "4.2", "4.3", "4.4"]
+                    newSteps = ["2.1", "2.2", "2.3", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    this.responseMessage = "Your knowledge level is estimated to 'PLC'"
                     break
                 case "robot":
-                    newSteps = ["3.1", "3.2", "3.3", "3.4", "4.1", "4.2", "4.3", "4.4"]
+                    newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    this.responseMessage = "Your knowledge level is estimated to 'Robot'"
                     break
                 case "plcrobot":
-                    newSteps = ["4.1", "4.2", "4.3", "4.4"]
+                    newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5", "4.6"]
+                    this.responseMessage = "Your knowledge level is estimated to 'PLC and Robot'"
+                    break
+                case 'finish':
+                    newSteps = []
+                    this.responseMessage = "Your knowledge level is estimated to 'Finish"
                     break
             }
             this.addNewSteps(newSteps)
@@ -95,12 +170,8 @@ export const useStudentStore = defineStore('student', {
         },
 
 
-
         addLearningRecord(analysis) {
-            console.log('From store student.js')
-            console.log(analysis)
-
-            if (analysis.CorrectRate === 0) {
+            if (analysis.CorrectRate !== 1) {
                 this.direction = 'previous'
                 this.finishCurrentStep()
                 this.responseMessage = "Incorrect. Learn again"
@@ -108,7 +179,7 @@ export const useStudentStore = defineStore('student', {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
                 this.finishCurrentStep()
-                this.responseMessage = "You are correct! You use time" + calculateUseTime(analysis.Time) + "seconds"
+                this.responseMessage = "You are correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
             }
         },
     },
@@ -142,14 +213,15 @@ export const useStudentStore = defineStore('student', {
     }
 });
 
-export const calculateUseTime = timeArray=> {
+export const calculateUseTime = (timeArray) => {
     console.log(timeArray)
     let totalTime = 0
-    for (let oneTime of timeArray){
-        if (oneTime.include('idle')!==0) {
+    for (let oneTime of timeArray) {
+        console.log(oneTime)
+        if (oneTime.indexOf('idle') !== -1) {
             totalTime += oneTime[4]
         }
     }
-    return totalTime
+    return totalTime.toFixed(2)
 }
 

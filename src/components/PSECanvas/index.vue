@@ -25,23 +25,39 @@
   import {Init_Test} from "@/assets/Canvas_Test.js";
   import {Init_Analysis} from "@/assets/Analysis";
   import {initCanvasWithCountdown} from "@/assets/CanvasEventandSizeTest.js";
+  import {Next_Step_Stop_Audio} from "@/assets/Canvas_Description.js";
 
 
   const canvas = ref(null);
-  // const showResetButton = ref(false);
-  // const showSubmitButton = ref(false);
-  const showResetButton = ref(true);
-  const showSubmitButton = ref(true);
+  const showResetButton = ref(false);
+  const showSubmitButton = ref(false);
 
   const studentStore = useStudentStore()
   const currentStepLocal = computed(() => studentStore.currentStep)
 
-  watch(currentStepLocal, (newStep) => {
+  watch(currentStepLocal, (newStep,oldStep) => {
       // Check if 'newStep' and 'newStep.id' are defined
+      if (oldStep && oldStep.id) {
+          if (oldStep.type ==="description") {
+              Next_Step_Stop_Audio()
+          }
+      }
       if (newStep && newStep.id) {
-            PName = newStep.pnameID;
-            console.log('PName', PName)
-            Init_Canvas(canvas);  
+          showResetButton.value = false
+          showSubmitButton.value = false
+          if (newStep.type ==="introduction") {
+              studentStore.currentStepFinished = true
+          }
+
+          if (newStep.type ==="interactive") {
+              showResetButton.value = true
+              showSubmitButton.value = true
+              studentStore.currentStepFinished = false
+          }
+
+          PName = newStep.pnameID;
+          console.log('PName', PName)
+          Init_Canvas(canvas);
       }else{
           console.log("currentStep or currentTopic.id is undefined.");
       }
@@ -55,13 +71,13 @@
   const myAnalysisForVue = ref(0)
 
   function Analyze_Canvas() {
-    var MyAnalysis = Init_Analysis();
+    let MyAnalysis = Init_Analysis();
     const studentStore = useStudentStore()
     if (studentStore.currentStep.id === '1.2') {
-      studentStore.finishComprehensiveTest("plcrobot")
+      studentStore.finishComprehensiveTest(MyAnalysis)
       return
     }
-    studentStore.addLearningRecord(Analysis)
+    studentStore.addLearningRecord(MyAnalysis)
 
   };
 
