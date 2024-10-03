@@ -93,6 +93,7 @@ function Draw_Image(){
 
 
 function Draw_Connection_Ports(){
+    ObjPorts = []
     for(const ModuleName in ObjDict){
         for(const PortName of ObjDict[ModuleName].Port){
             var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
