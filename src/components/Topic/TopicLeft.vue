@@ -20,13 +20,12 @@
         <h3 class="flex-grow mb-2 text-2xl text-gray-900 dark:text-white mt-3">
         {{studentStore.responseMessage}}</h3>
         <div class="justify-center flex mb-3 flex-shrink-0 basis-1/12 text-2xl">
-<!--              <button v-show="studentStore.currentStepFinished && studentStore.currentStep.type!=='finished'" @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-->
-<!--                  Continue-->
-<!--              </button>-->
-            <button  @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                ContinueDebug
-            </button>
-            <div>{{studentStore.repeatMode}}</div>
+              <button v-show="studentStore.currentStepFinished && studentStore.currentStep.type!=='finished'" @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  Continue
+              </button>
+<!--            <button  @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-->
+<!--                ContinueDebug-->
+<!--            </button>-->
           </div>
     </div>
 

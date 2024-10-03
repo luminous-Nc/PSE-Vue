@@ -4,12 +4,10 @@ import { Init_Test } from "./Canvas_Test.js";
 import { DePage, STPage } from "./Properties_Page.js";
 
 // main
-export function Init_Canvas(CanvasRef, repeatMode){
+export function Init_Canvas(CanvasRef){
     // generate canvas and stage
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
-
-    ReEnterFlag = repeatMode
 
     stage = new createjs.Stage(Canvas);
     stage.removeAllChildren();

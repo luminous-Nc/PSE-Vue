@@ -15,7 +15,6 @@ export const useStudentStore = defineStore('student', {
             learningRecord: {},
             responseMessage: '',
             direction: 'next',
-            repeatMode:false,
         }
     },
     actions: {
@@ -182,13 +181,11 @@ export const useStudentStore = defineStore('student', {
         addLearningRecord(analysis) {
             if (analysis.CorrectRate !== 1) {
                 this.direction = 'previous'
-                this.repeatMode = true
                 this.finishCurrentStep()
                 this.responseMessage = "Incorrect. Learn again"
             } else {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
-                this.repeatMode = false
                 this.finishCurrentStep()
                 this.responseMessage = "Correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
             }
@@ -197,7 +194,6 @@ export const useStudentStore = defineStore('student', {
     getters: {
         getCurrentStep(state) {
             if (state.currentStep === undefined) {
-                console.log('getCurrentStep')
                 const stepsStore = useStepsStore()
                 this.currentStep = stepsStore.getStepById(state.learningPath[0])
                 this.currentStepFinished = false
@@ -211,7 +207,6 @@ export const useStudentStore = defineStore('student', {
         getCurrentTopic(state) {
             console.log(state.currentTopic)
             if (state.currentTopic === undefined) {
-                console.log('decide in student topic')
                 const topicStore = useTopicsStore()
                 topicStore.decideCurrentTopic().then((res) => {
                     state.currentTopic = res

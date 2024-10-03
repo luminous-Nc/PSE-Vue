@@ -24,8 +24,15 @@ function Init_Textbox(){
 }
 
 function Init_Voice(AudioFile){
+    console.error(MyAudio)
+    console.error(AudioToggle)
     // generate audio
-    if (AudioFile == "" || AudioFile == null){ return };
+    if (AudioFile === "" || AudioFile == null){ return };
+    if (MyAudio !== undefined || AudioToggle !== undefined || SpeakerToggle !== undefined) {
+        MyAudio.removeEventListener("timeupdate", Update_Bar);
+        AudioToggle.removeEventListener("click",Pause_Audio)
+        SpeakerToggle.removeEventListener("click",Mute_Audio)
+    }
 
     const Path = AudioFolder + AudioFile;
     MyAudio = new Audio(Path);
@@ -51,12 +58,12 @@ function Init_Voice(AudioFile){
     Draw_Speaker(SpeakerToggle);
     stage.addChild(SpeakerToggle);
 
+
     MyAudio.addEventListener("timeupdate", Update_Bar); // update the progress bar as audio plays
-    if(!ReEnterFlag) {
-        // Event listener to
-        AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
-        SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
-    }
+
+    // Event listener to
+    AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
+    SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
 
     MyAudio.play();
 
