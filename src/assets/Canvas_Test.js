@@ -1,7 +1,7 @@
 // display practice connection page on Canvas
 import { DictModule } from "./Properties_Task.js"
 import { DictObjPort } from "./Properties_Port.js"
-
+import { DictMsg }  from "./Properties_Message.js"
 
 export function Init_Test(){
     // initialization 
@@ -18,6 +18,9 @@ export function Init_Test(){
 
 // assign all ports' coordinate set to each object
 function Init_Object(){
+    // get dynamic message
+    Msgs = DictMsg[PName];
+
     // get key
     Keys = DictModule[PName]["Key"];
     
@@ -182,6 +185,7 @@ function Draw_Msg_Box(){
     MsgBox.font = "bold 30px Arial";
     MsgBox.color = "#000";
     MsgBox.textAlign = "center";
+    MsgBox.lineWidth = 400;
     MsgBox.x = 500;
     MsgBox.y = 700;
     stage.addChild(MsgBox);

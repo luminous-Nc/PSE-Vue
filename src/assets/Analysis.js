@@ -20,6 +20,7 @@ function Init_Parameter_A(){
 // initialize current analysis symbols
 function Init_Symbol_A(){
     Hide_Ports();
+    Reset_MsgBox();
     Init_Legend();
 }
 

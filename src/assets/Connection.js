@@ -300,7 +300,8 @@ function Display_Connection(){
                 console.log("connection -> %s", Line.name);
                 console.log("---------");
 
-                // notify in message box
+                // notify in message box(if applicable)
+                Show_Msg(TempPorts[0], TempPorts[1]);
                 // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
                 //               + ": error message(display)";
                 // stage.update();
@@ -319,6 +320,32 @@ function Display_Connection(){
         // reset both temperoral ports
         TempPorts = [];
     }
+}
+
+// display feedback message
+function Show_Msg(Port1, Port2){
+    // get original port name
+    var Port1Name = Port1.name;
+    var Port2Name = Port2.name;
+
+    // assign general random name(if applicable)
+    if (Port1.hasOwnProperty("rndname")){Port1Name = Port1["rndname"]};
+
+    if (Port2.hasOwnProperty("rndname")){Port2Name = Port2["rndname"];}
+
+    // check message dictionary
+    const PortName = [Port1Name, Port2Name];
+
+    for (const Msg of Msgs){
+        const MsgPort = Msg["Ports"];
+        if (MsgPort.includes(PortName[0]) && MsgPort.includes(PortName[1])){
+            MsgBox.text = Msg["Message"];
+            stage.update();
+            return;
+        }
+    } 
+    MsgBox.text = "";
+    stage.update();
 }
 
 // get subline
