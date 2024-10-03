@@ -21,7 +21,7 @@
   import {useStepsStore} from "@/stores/step.js";
   import {useStudentStore} from "@/stores/student.js";
   import {stringify} from "postcss";
-  import {Init_Canvas} from "@/assets/Canvas_Page.js";
+  import {Destroy_Canvas, Init_Canvas} from "@/assets/Canvas_Page.js";
   import {Init_Test} from "@/assets/Canvas_Test.js";
   import {Init_Analysis} from "@/assets/Analysis";
   import {initCanvasWithCountdown} from "@/assets/CanvasEventandSizeTest.js";
@@ -37,7 +37,9 @@
 
   watch(currentStepLocal, (newStep,oldStep) => {
       // Check if 'newStep' and 'newStep.id' are defined
+
       if (oldStep && oldStep.id) {
+          // Destroy_Canvas();
           if (oldStep.type ==="description") {
               Next_Step_Stop_Audio()
           }
@@ -57,7 +59,10 @@
 
           PName = newStep.pnameID;
           console.log('PName', PName)
-          Init_Canvas(canvas);
+
+          Init_Canvas(canvas,studentStore.repeatMode);
+
+
       }else{
           console.log("currentStep or currentTopic.id is undefined.");
       }

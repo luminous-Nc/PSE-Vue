@@ -14,7 +14,8 @@ export const useStudentStore = defineStore('student', {
             learningStyle: "",
             learningRecord: {},
             responseMessage: '',
-            direction: 'next'
+            direction: 'next',
+            repeatMode:false,
         }
     },
     actions: {
@@ -173,11 +174,13 @@ export const useStudentStore = defineStore('student', {
         addLearningRecord(analysis) {
             if (analysis.CorrectRate !== 1) {
                 this.direction = 'previous'
+                this.repeatMode = true
                 this.finishCurrentStep()
                 this.responseMessage = "Incorrect. Learn again"
             } else {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
+                this.repeatMode = false
                 this.finishCurrentStep()
                 this.responseMessage = "Correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
             }

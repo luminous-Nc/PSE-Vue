@@ -121,11 +121,15 @@ function Reset_Ports(){
     Ports = ObjPorts;
     Display_Ports();
 
-    // initialize all select mouseover/out and click events
-    All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
-    All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
-    All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
-    All_Events_Init(Ports, "click", Event_Click_Connect);
+    if (!ReEnterFlag) {
+        console.error('init events')
+        // initialize all select mouseover/out and click events
+        All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
+        All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
+        All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
+        All_Events_Init(Ports, "click", Event_Click_Connect);
+    }
+
 }
 
 // hide all sub-line
@@ -335,7 +339,9 @@ function Show_Msg(Port1, Port2){
 
     // check message dictionary
     const PortName = [Port1Name, Port2Name];
-
+    if (Msgs === undefined) {
+        Msgs = []
+    }
     for (const Msg of Msgs){
         const MsgPort = Msg["Ports"];
         if (MsgPort.includes(PortName[0]) && MsgPort.includes(PortName[1])){

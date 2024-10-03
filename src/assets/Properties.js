@@ -33,6 +33,8 @@
     // others
     var PortSize;
 
+    var ReEnterFlag = false;
+
 // -------------------------
 // static parameters
 // -------------------------

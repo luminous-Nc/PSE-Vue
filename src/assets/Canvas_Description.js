@@ -51,10 +51,13 @@ function Init_Voice(AudioFile){
     Draw_Speaker(SpeakerToggle);
     stage.addChild(SpeakerToggle);
 
-    // Event listener to
     MyAudio.addEventListener("timeupdate", Update_Bar); // update the progress bar as audio plays
-    AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
-    SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
+    if(!ReEnterFlag) {
+        // Event listener to
+        AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
+        SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
+    }
+
     MyAudio.play();
 
     stage.update();
@@ -86,10 +89,9 @@ function Update_Bar(){
 
     // check if the audio is end
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
-    let IsAudioHalf = (MyAudio.currentTime >= 0.1*MyAudio.duration)
+    let IsAudioHalf = (MyAudio.currentTime >= 0*MyAudio.duration)
     if (IsAudioHalf) {
         studentStore.finishCurrentStep()
-        console.log('持续触发')
     }
   }
 
