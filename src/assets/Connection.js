@@ -16,8 +16,8 @@ var Timer        = {};  // user's start time
 var ImgLegend;
 // overall parameters
 var Title = {};     // objects' prefix
-var Obstacles       // all specific obstacle points
-var Ports;	        // selectable ports
+var Obstacles = []  // all specific obstacle points
+var Ports = [];	    // selectable ports
 
 // main of practice frame
 function Init_Practice(){
@@ -117,18 +117,31 @@ function Init_Obstacles(Objs){
 
 // initialize ports: display them and reset event listeners
 function Reset_Ports(){
+    // remove old events
+    All_Events_Remove(Ports, "mouseover", Event_MouseOver_Connect);
+    All_Events_Remove(Ports, "mousedown", Event_MouseDown_Connect);
+    All_Events_Remove(Ports, "mouseout", Event_MouseOut_Connect);
+    All_Events_Remove(Ports, "click", Event_Click_Connect);
+
     // get and display ports
     Ports = ObjPorts;
     Display_Ports();
 
-    if (!ReEnterFlag) {
-        console.error('init events')
-        // initialize all select mouseover/out and click events
-        All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
-        All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
-        All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
-        All_Events_Init(Ports, "click", Event_Click_Connect);
-    }
+    // if (!ReEnterFlag) {
+    //     console.error('init events')
+    //     // initialize all select mouseover/out and click events
+    //     All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
+    //     All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
+    //     All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
+    //     All_Events_Init(Ports, "click", Event_Click_Connect);
+    // }
+
+    // initialize all select mouseover/out and click events
+    All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
+    All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
+    All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
+    All_Events_Init(Ports, "click", Event_Click_Connect);
+        
 
 }
 

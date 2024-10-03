@@ -5,7 +5,7 @@
 // module position
 const P1Port = {
                 "PLCInput":{
-                                x:150, y:100, Port: ["", ""],
+                                x:150, y:100, Scale: 1.2, Port: ["", ""],
                                 RndPort: [[0, [0, 0], "PLCInputPort"], 
                                           [1, [1, 0], "PLCInputGNDPort"]]
                             },  

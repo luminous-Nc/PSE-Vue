@@ -73,8 +73,9 @@ function Draw_Image(){
         const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
         Btmp.scaleX        = Scale;
         Btmp.scaleY        = Scale;
-        Btmp.image.width  *= Scale;
-        Btmp.image.height *= Scale;
+        Btmp.bound  = {"width": Btmp.image.width * Scale,
+                       "height": Btmp.image.height * Scale
+                    };
 
         // integrate the image
         ObjDict[ModuleName].img = Btmp;
@@ -139,8 +140,8 @@ function Init_Rec_Obstacle(Img, b, s){
 
     const x = Img.x;
     const y = Img.y;
-    const w = Img.image.width;
-    const h = Img.image.height;
+    const w = Img.bound.width;
+    const h = Img.bound.height;
     
     var Obstacle = {};
 
