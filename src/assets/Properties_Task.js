@@ -231,8 +231,8 @@ const P12Port = {
                                     },
 
                 "PLCInput":         {
-                                        x:500, y:300, Scale: 0.5, Port: ["", "", "IN-8", "IN-9"],
-                                        RndPort: [[0, [0, 1], "PLCInput0To4Port"], 
+                                        x:500, y:300, Scale: 0.5, Port: ["", "", "IN-0", "IN-2"],
+                                        RndPort: [[0, [0, 1], "PLCInput1357Port"], 
                                                   [1, [7, 1], "PLCInputGNDPort"]],  
                                         RndPortEx: [[1, [7, 1]]] 
                                     },
@@ -242,15 +242,15 @@ const P12Port = {
                                     },
 
                 "ButtonStart":      {
-                                        x:650, y:80, Port: ["BTSTRL", "BTSTRR"]
+                                        x:700, y:80, Port: ["BTSTRL", "BTSTRR"]
                                     },
 
                 "ButtonMotorStop":  {
-                                        x:650, y:180, Port: ["BTMSTPL", "BTMSTPR"]
+                                        x:700, y:180, Port: ["BTMSTPL", "BTMSTPR"]
                                     },
 
-                "Key":              [["", ""],  ["IN-8", "BTSTRL"], ["BTSTRR", "24VP"],
-                                     ["IN-9", "BTMSTPL"], ["BTMSTPR", "24VP"], ["", "24VP"],
+                "Key":              [["", ""],  ["IN-0", "BTSTRL"], ["BTSTRR", "24VP"],
+                                     ["IN-2", "BTMSTPL"], ["BTMSTPR", "24VP"], ["", "24VP"],
                                      ["24VN", ""],   ["24VN", ""]]
             };
 
