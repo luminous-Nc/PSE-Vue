@@ -37,7 +37,15 @@ export const useStudentStore = defineStore('student', {
                     "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5",
                     , "-99"];
             } else {
-                console.log(this.learningStyle)
+                console.error('learning style it not matching:', this.learningStyle)
+            }
+            if (this.currentStep===undefined || this.currentStep?.id === 0) {
+                console.log('getCurrentStep')
+                const stepsStore = useStepsStore()
+                this.currentStep = stepsStore.getStepById(this.learningPath[0])
+                this.currentStepFinished = false
+                this.responseMessage = ""
+            } else {
             }
         }
         ,
@@ -212,6 +220,13 @@ export const useStudentStore = defineStore('student', {
             } else {
                 return state.currentTopic
             }
+        },
+        getLearningStyle(state) {
+            if (state.learningStyle === '') {
+                const cookieValue = useCookies(['learning_style']).get('learning_style') || 'null'; // 默认值为 'null'
+                state.learningStyle = cookieValue; // 更新 store 中的 learningStyle
+            }
+            return state.learningStyle
         }
     }
 });

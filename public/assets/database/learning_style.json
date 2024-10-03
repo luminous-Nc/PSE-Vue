@@ -19,12 +19,12 @@
       "question": "Once I understand...",
       "options": [
         {
-          "text": "all the parts, I understand the whole thing",
-          "points": -1
-        },
-        {
           "text": "the whole things, I see how the parts fit",
           "points": 1
+        },
+        {
+          "text": "all the parts, I understand the whole thing",
+          "points": -1
         }
       ]
     },
@@ -33,12 +33,12 @@
       "question": "When I solve math problems..",
       "options": [
         {
-          "text": "I usually work my way to the solutions one step at a time",
-          "points": -1
-        },
-        {
           "text": "I often just see the solution but then have to struggle to figure out the steps to get to them",
           "points": 1
+        },
+        {
+          "text": "I usually work my way to the solutions one step at a time",
+          "points": -1
         }
       ]
     },
@@ -61,12 +61,12 @@
       "question": "I learn...",
       "options": [
         {
-          "text": "at a fairly regular pace. If I study hard to get it",
-          "points": -1
-        },
-        {
           "text": "in fits and starts. I'll e totally confused and suddenly it all",
           "points": 1
+        },
+        {
+          "text": "at a fairly regular pace. If I study hard to get it",
+          "points": -1
         }
       ]
     }

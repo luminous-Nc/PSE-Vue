@@ -143,7 +143,6 @@ const analyseLearningStyle = () => {
 
 const emit = defineEmits(['closeQuizWindow'])
 const startLearning = () => {
-    console.log('he')
     studentStore.setLearningStyle(result.value)
     emit('closeQuizWindow')
 }

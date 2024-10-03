@@ -9,15 +9,25 @@
 import TopicLeft from "@/components/Topic/TopicLeft.vue";
 import TopicRight from "@/components/Topic/TopicRight.vue";
 
-import { computed, onMounted } from 'vue';
+import {computed, onMounted, watch} from 'vue';
 import { useStudentStore } from '@/stores/student.js';
+import {Next_Step_Stop_Audio} from "@/assets/Canvas_Description.js";
+import {Init_Canvas} from "@/assets/Canvas_Page.js";
 const studentStore = useStudentStore()
 
 onMounted(()=> {
   //
   studentStore.initStudent()
-  studentStore.initLearningPath()
 })
+
+const currentLearningStyle = computed(() => studentStore.learningStyle)
+
+watch(currentLearningStyle, (newStyle,oldStyle) => {
+
+    if (newStyle) {
+        studentStore.initLearningPath()
+        }
+    })
 
 </script>
 
