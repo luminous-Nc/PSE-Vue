@@ -14,7 +14,7 @@ export const STPage = {
                         "3-3": "P5",
                         "4-3": "P10",
                         "4-5": "P12",
-                        "9-9": "P12" // test
+                        "9-9": "P10" // test
                         }  
 
 export const ATPage =   ["P1", "P2", "P3", "P4",

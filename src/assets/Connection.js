@@ -346,15 +346,14 @@ function Show_Msg(Port1, Port2){
     var Port2Name = Port2.name;
 
     // assign general random name(if applicable)
-    if (Port1.hasOwnProperty("rndname")){Port1Name = Port1["rndname"]};
+    if (Port1.hasOwnProperty("rndname")){Port1Name = Port1["rndname"];}
 
     if (Port2.hasOwnProperty("rndname")){Port2Name = Port2["rndname"];}
 
     // check message dictionary
     const PortName = [Port1Name, Port2Name];
-    if (Msgs === undefined) {
-        Msgs = []
-    }
+    if (Msgs === undefined) { Msgs = [];}
+    
     for (const Msg of Msgs){
         const MsgPort = Msg["Ports"];
         if (MsgPort.includes(PortName[0]) && MsgPort.includes(PortName[1])){

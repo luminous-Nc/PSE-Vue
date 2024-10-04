@@ -1,102 +1,31 @@
-const P1Msg = [
-                {
-                    Ports: ["IN-RND", "GNDRND"],
-                	Message: "The input and ground form the circuit, they should not be connected directly together",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["IN-RND", "24VP"],
-                	Message: "The input should not be connected directly to the battery",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["IN-RND", "24VP"],
-                	Message: "The input should not be connected directly to the battery",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["IN-RND", "24VN"],
-                	Message: "The input should not be connected directly to the battery",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["IN-RND", "SWL"],
-                	Message: "The input is connected to the switch",
-                    Color: "Green"
-                },
-
-                {
-                    Ports: ["IN-RND", "SWR"],
-                	Message: "The input is connected to the switch",
-                    Color: "Yellow"
-                },
-
-                {
-                    Ports: ["GNDRND", "24VP"],
-                	Message: "The ground can be connected to the positive terminal, but it reverses the polarity of the circuit",
-                    Color: "Yellow"
-                },
-
-                {
-                    Ports: ["GNDRND", "24VN"],
-                	Message: "The ground is connected to the negative terminal",
-                    Color: "Green"
-                },
-
-                {
-                    Ports: ["GNDRND", "SWL"],
-                	Message: "The ground cannot be connected to a switch",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["GNDRND", "SWR"],
-                	Message: "The ground cannot be connected to a switch",
-                    Color: "Red"
-                },
-       
-                {
-                    Ports: ["24VP", "24VN"],
-                	Message: "The battery should not be connected to itself",
-                    Color: "Red"
-                },
-
-                {
-                    Ports: ["24VP", "SWL"],
-                	Message: "The positive terminal is connected to the switch, but should be connected on the opposite side to reduce clutter on the diagram",
-                    Color: "Yellow"
-                },
-
-                {
-                    Ports: ["24VP", "SWR"],
-                	Message: "The positive terminal is connected to the switch",
-                    Color: "Green"
-                },
-
-                {
-                    Ports: ["24VN", "SWL"],
-                	Message: "The negative terminal can be connected to the switch, but it reverses the polarity of the circuit",
-                    Color: "Yellow"
-                },
-
-                {
-                    Ports: ["24VN", "SWR"],
-                	Message: "The negative terminal can be connected to the switch, but it reverses the polarity of the circuit",
-                    Color: "Yellow"
-                },
-
-                {
-                    Ports: ["SWL", "SWR"],
-                	Message: "The switch cannot be connected to itself",
-                    Color: "Red"
-                },
-]
-
+import {P1Msg} from "./message/P1Msg.js";
+import {P2Msg} from "./message/P2Msg.js";
+import {P3Msg} from "./message/P3Msg.js";
+import {P4Msg} from "./message/P4Msg.js";
+import {P5Msg} from "./message/P5Msg.js";
+import {P6Msg} from "./message/P6Msg.js";
+import {P7Msg} from "./message/P7Msg.js";
+import {P8Msg} from "./message/P8Msg.js";
+import {P9Msg} from "./message/P9Msg.js";
+import {P10Msg} from "./message/P10Msg.js";
+import {P11Msg} from "./message/P11Msg.js";
+import {P12Msg} from "./message/P12Msg.js";
+import {P13Msg} from "./message/P13Msg.js";
+import {P14Msg} from "./message/P14Msg.js";
 
 export const DictMsg = {
-                        "P1": P1Msg
+                        "P1":  P1Msg,
+                        "P2":  P2Msg,
+                        "P3":  P3Msg,
+                        "P4":  P4Msg,
+                        "P5":  P5Msg,
+                        "P6":  P6Msg,
+                        "P7":  P7Msg,
+                        "P8":  P8Msg,
+                        "P9":  P9Msg,
+                        "P10": P10Msg,
+                        "P11": P11Msg,
+                        "P12": P12Msg,
+                        "P13": P13Msg,
+                        "P14": P14Msg,
                     }
