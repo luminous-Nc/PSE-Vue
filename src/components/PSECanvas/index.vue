@@ -7,7 +7,7 @@
         </div>
 
         <div v-show="studentStore.getCurrentStep?.type === 'finish'">
-            <div>Finish Canvas</div>
+            <div>Congratulations! You completed all tasks.</div>
         </div>
 
     </div>
@@ -43,8 +43,8 @@ const checkId = () => {
             initPSECanvas();
             clearInterval(interval); // 一旦检测到 ID 已存在，停止检测
         }
-        console.log('check',studentStore.currentStep)
-    }, 50); // 每100ms检测一次
+        // console.log('check',studentStore.currentStep)
+    }, 100); // 每100ms检测一次
 };
 const initPSECanvas = () => {
     showResetButton.value = false

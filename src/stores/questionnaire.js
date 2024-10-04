@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import {useRoute} from "vue-router";
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH;
 export const useQuestionnaireStore = defineStore('questionnaire', {
     state: () => ({
         questions: [],
@@ -11,7 +11,7 @@ export const useQuestionnaireStore = defineStore('questionnaire', {
             if (!this.questions.length) {
                 console.log('Downloading questions')
                 try {
-                    const response = await fetch(`/assets/database/learning_style.json`);
+                    const response = await fetch(`${apiBaseUrl}/assets/database/learning_style.json`);
                     const data = await response.json();
                     this.questions = data.questions;
                     console.log('Downloaded store questions')

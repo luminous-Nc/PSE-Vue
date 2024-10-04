@@ -1,6 +1,6 @@
 <template>
     <main class="overflow-y-auto h-screen bg-gray-300">
-        <questionnaire @close-quiz-window="closeWindow"v-if="needStyleQuiz"></questionnaire>
+        <questionnaire @close-quiz-window="closeWindow" v-if="needStyleQuiz"></questionnaire>
         <left-right-window v-else></left-right-window>
     </main>
 </template>
@@ -16,7 +16,7 @@ let needStyleQuiz = ref(false)
 const studentStore = useStudentStore()
 
 onMounted(()=> {
-    if (studentStore.learningStyle==='' || studentStore.learningStyle === null) {
+    if (studentStore.learningStyle=== '' || studentStore.learningStyle === null || studentStore.learningStyle === 'null') {
         needStyleQuiz.value = true
     }
 })
