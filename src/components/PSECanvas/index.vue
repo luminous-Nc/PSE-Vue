@@ -1,14 +1,15 @@
 <template>
     <div class="w-full h-full">
         <div class="h-full flex justify-center">
-            <canvas ref="canvas" height="1000" width="1000" class="canvas"></canvas>
+            <canvas v-show="showCanvas" ref="canvas" height="1000" width="1000" class="canvas"></canvas>
+          <div class="h-full flex flex-col justify-center" v-show="studentStore.getCurrentStep?.type === 'finish'">
+           <img src="/assets/images/Right_Panel_Image.jpg">
+          </div>
             <button v-if="showResetButton" class="button-83 reset-button" @click="Reset_Canvas">Reset</button>
             <button v-if="showSubmitButton" class="button-83 submit-button" @click="Analyze_Canvas">Submit</button>
         </div>
 
-        <div v-show="studentStore.getCurrentStep?.type === 'finish'">
-            <div>Congratulations! You completed all tasks.</div>
-        </div>
+
 
     </div>
 </template>
@@ -27,10 +28,12 @@ import {Next_Step_Stop_Audio} from "../../../public/assets/Canvas_Description.js
 const canvas = ref(null);
 const showResetButton = ref(false);
 const showSubmitButton = ref(false);
+const showCanvas = ref(true);
 
 const studentStore = useStudentStore()
 const currentStepLocal = computed(() => studentStore.currentStep)
-const currentStepId = computed(()=> studentStore.currentStep.id)
+
+
 
 onMounted(()=> {
     checkId();
@@ -74,9 +77,6 @@ watch(currentStepLocal,
         }
     }
     if (newStep && newStep.id) {
-        nextTick(()=> {
-
-        })
         showResetButton.value = false
         showSubmitButton.value = false
         if (newStep.type === "introduction") {
@@ -87,6 +87,10 @@ watch(currentStepLocal,
             showResetButton.value = true
             showSubmitButton.value = true
             studentStore.currentStepFinished = false
+        }
+
+        if (newStep.type === "finish") {
+          showCanvas.value = false
         }
 
         PName = newStep.pnameID;
