@@ -33,8 +33,8 @@
                     <span class="font-bold text-blue-500">HOW TO IMPROVE HOW YOUR LEARN</span> If you are a global learner, you have to work to get an overall sense of the full topic you are studying. Relate the subject to things you already know. For example, if you are a good cook, you know that a recipe has multiple ingredients needed in a particular order to produce the best results. If you are learning to build a digital marketing plan, know that they work similar to recipes; where the right channel in a specific order will lead to amazing results. These sorts of associations will help you learn faster.
                 </p>
                 <div class="w-1/3 mt-4 flex justify-center">
-                    <img v-if="studentStore.getLearningStyle=='Global'" src='@/assets/images/global.jpeg'>
-                    <img v-if="studentStore.getLearningStyle=='Sequential'" src='@/assets/images/sequential.jpeg'>
+                    <img v-if="studentStore.getLearningStyle=='Global'" src='/assets/images/global.jpeg'>
+                    <img v-if="studentStore.getLearningStyle=='Sequential'" src='/assets/images/sequential.jpeg'>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@ const router = useRouter();
 onMounted(() => {
     // 检查值是否为null，如果是则跳转
     if (studentStore.getLearningStyle === 'null') {
-        router.push('/');  // 跳转到根路径
+        router.push({name:'learning'});  // 跳转到根路径
     }
 });
 const studentStore = useStudentStore()

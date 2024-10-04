@@ -19,9 +19,9 @@
 import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
-import {Destroy_Canvas, Init_Canvas} from "@/assets/Canvas_Page.js";
-import {Init_Analysis} from "@/assets/Analysis";
-import {Next_Step_Stop_Audio} from "@/assets/Canvas_Description.js";
+import {Destroy_Canvas, Init_Canvas} from "../../../public/assets/Canvas_Page.js";
+import {Init_Analysis} from "../../../public/assets/Analysis.js";
+import {Next_Step_Stop_Audio} from "../../../public/assets/Canvas_Description.js";
 
 
 const canvas = ref(null);

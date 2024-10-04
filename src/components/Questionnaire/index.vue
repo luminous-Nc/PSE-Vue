@@ -72,8 +72,8 @@
                         </div>
                         <div class="flex justify-center items-center flex-col w-full">
                             <div class="w-1/3 mt-4 flex justify-center">
-                                <img v-if="result=='Global'" src='@/assets/images/global.jpeg'>
-                                <img v-if="result=='Sequential'" src='@/assets/images/sequential.jpeg'>
+                                <img v-if="result=='Global'" src='/assets/images/global.jpeg'>
+                                <img v-if="result=='Sequential'" src='/assets/images/sequential.jpeg'>
                             </div>
 
                             <button

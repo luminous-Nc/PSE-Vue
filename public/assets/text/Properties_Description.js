@@ -23,7 +23,7 @@ export var Dict_Audio = {
                             "4-4": "FANUC interfacing  PLC input module.mp3"
                         };
 
-export const AudioFolder = "./src/assets/audio/";
+
 
 function Init_Title1(){
     // title1
