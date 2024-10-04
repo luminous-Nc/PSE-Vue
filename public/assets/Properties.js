@@ -1,3 +1,7 @@
+// preload image src
+const ImgFolder = "./assets/images";
+const AudioFolder = "./assets/audio/";
+
 // all properties and parameters in the project
     var PName;
     var stage;

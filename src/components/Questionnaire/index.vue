@@ -72,8 +72,8 @@
                         </div>
                         <div class="flex justify-center items-center flex-col w-full">
                             <div class="w-1/3 mt-4 flex justify-center">
-                                <img v-if="result=='Global'" src='@/assets/images/global.jpeg'>
-                                <img v-if="result=='Sequential'" src='@/assets/images/sequential.jpeg'>
+                                <img v-if="result=='Global'" src='/assets/images/global.jpeg'>
+                                <img v-if="result=='Sequential'" src='/assets/images/sequential.jpeg'>
                             </div>
 
                             <button
@@ -94,9 +94,10 @@
 </template>
 
 <script setup>
-import {reactive, ref, defineEmits} from 'vue'
+import {reactive, ref, defineEmits, inject} from 'vue'
 import {useQuestionnaireStore} from "@/stores/questionnaire.js";
 import {useStudentStore} from "@/stores/student.js";
+import {useRouter} from'vue-router'
 
 const questionnaireStore = useQuestionnaireStore()
 const studentStore = useStudentStore()
@@ -142,9 +143,13 @@ const analyseLearningStyle = () => {
 };
 
 const emit = defineEmits(['closeQuizWindow'])
+const reload =  inject("reload");
+const router = useRouter()
 const startLearning = () => {
     studentStore.setLearningStyle(result.value)
+    studentStore.initLearningPath()
     emit('closeQuizWindow')
+    // router.go()
 }
 
 </script>

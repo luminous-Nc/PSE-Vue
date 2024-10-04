@@ -1,6 +1,3 @@
-// preload image src
-const ImgFolder = "./src/assets/images";
-
 // load jpg
 for (const value of ImgsJpg){
     var Img = new Image();

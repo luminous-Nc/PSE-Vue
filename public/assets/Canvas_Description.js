@@ -1,4 +1,4 @@
-import { Dict_Func_Txt, Dict_Audio, AudioFolder } from './text/Properties_Description.js';
+import {Dict_Func_Txt, Dict_Audio} from './text/Properties_Description.js';
 import {useStudentStore} from "@/stores/student.js";
 
 // initialize description page in Canvas
@@ -10,7 +10,7 @@ var AudioToggle;
 var SpeakerToggle;
 
 // main
-export function Init_Description(){
+export function Init_Description() {
     // initialize modules
     stage.removeAllChildren();
     Init_Textbox();
@@ -18,20 +18,23 @@ export function Init_Description(){
 }
 
 
-function Init_Textbox(){
+function Init_Textbox() {
     Dict_Func_Txt[PName]();
     stage.update();
 }
 
-function Init_Voice(AudioFile){
+function Init_Voice(AudioFile) {
     console.error(MyAudio)
     console.error(AudioToggle)
     // generate audio
-    if (AudioFile === "" || AudioFile == null){ return };
+    if (AudioFile === "" || AudioFile == null) {
+        return
+    }
+    ;
     if (MyAudio !== undefined || AudioToggle !== undefined || SpeakerToggle !== undefined) {
         MyAudio.removeEventListener("timeupdate", Update_Bar);
-        AudioToggle.removeEventListener("click",Pause_Audio)
-        SpeakerToggle.removeEventListener("click",Mute_Audio)
+        AudioToggle.removeEventListener("click", Pause_Audio)
+        SpeakerToggle.removeEventListener("click", Mute_Audio)
     }
 
     const Path = AudioFolder + AudioFile;
@@ -86,7 +89,7 @@ export function Next_Step_Stop_Audio() {
     }
 }
 
-function Update_Bar(){
+function Update_Bar() {
     const progress = (MyAudio.currentTime / MyAudio.duration) * 600; // Scale to canvas width
     Draw_ProgressBar(AudioBar, progress);
 
@@ -95,18 +98,22 @@ function Update_Bar(){
     const studentStore = useStudentStore();
 
     // check if the audio is end
+    let threshold = 0.2
+    if (studentStore.repeatMode) {
+        threshold = 0
+    }
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
-    let IsAudioHalf = (MyAudio.currentTime >= 0*MyAudio.duration)
+    let IsAudioHalf = (MyAudio.currentTime >= threshold * MyAudio.duration)
     if (IsAudioHalf) {
         studentStore.finishCurrentStep()
     }
-  }
+}
 
-function Pause_Audio(){
-    if (MyAudio.paused){
+function Pause_Audio() {
+    if (MyAudio.paused) {
         Draw_Pause_Toggle(AudioToggle);
         MyAudio.play();
-    }else{
+    } else {
         Draw_Play_Toggle(AudioToggle);
         MyAudio.pause();
     }
@@ -114,11 +121,11 @@ function Pause_Audio(){
     stage.update();
 }
 
-function Mute_Audio(){
-    if (MyAudio.muted){
+function Mute_Audio() {
+    if (MyAudio.muted) {
         Draw_Speaker(SpeakerToggle)
         MyAudio.muted = false;
-    }else{
+    } else {
         Draw_Speaker_Muted(SpeakerToggle);
         MyAudio.muted = true;
     }
@@ -127,7 +134,7 @@ function Mute_Audio(){
 
 }
 
-function Draw_ProgressBar_Background(MyShape){
+function Draw_ProgressBar_Background(MyShape) {
     MyShape.graphics.clear();
 
     MyShape.graphics.beginFill("#d3d3d3").drawRect(200, 800, 600, 20);
@@ -135,7 +142,7 @@ function Draw_ProgressBar_Background(MyShape){
     return MyShape;
 }
 
-function Draw_ProgressBar(MyShape, MyProgress){
+function Draw_ProgressBar(MyShape, MyProgress) {
     MyShape.graphics.clear();
 
     MyShape.graphics.beginFill("#4caf50").drawRect(200, 800, MyProgress, 20);
@@ -143,7 +150,7 @@ function Draw_ProgressBar(MyShape, MyProgress){
     return MyShape;
 }
 
-function Draw_Play_Toggle(MyShape){
+function Draw_Play_Toggle(MyShape) {
     MyShape.graphics.clear();
 
     MyShape.graphics.beginFill("#FFFFFF"); // while color
@@ -160,7 +167,7 @@ function Draw_Play_Toggle(MyShape){
     return MyShape;
 }
 
-function Draw_Pause_Toggle(MyShape){
+function Draw_Pause_Toggle(MyShape) {
     MyShape.graphics.clear();
 
     MyShape.graphics.beginFill("#FFFFFF"); // while color
@@ -175,23 +182,23 @@ function Draw_Pause_Toggle(MyShape){
     return MyShape;
 }
 
-function Draw_Speaker(MyShape){
+function Draw_Speaker(MyShape) {
     MyShape.graphics.clear();
 
     // set size
     var Point = [820, 800];
-    const PointStroke = [[15,0], [10,-10], [0, 40], [-10,-10], [-15,0]];
+    const PointStroke = [[15, 0], [10, -10], [0, 40], [-10, -10], [-15, 0]];
     Draw_Speaker_Shape(MyShape, Point, PointStroke);
 
     return MyShape;
 }
 
-function Draw_Speaker_Muted(MyShape){
+function Draw_Speaker_Muted(MyShape) {
     MyShape.graphics.clear();
 
     // draw speaker
     var Point = [820, 800];
-    const PointStroke = [[15,0], [10,-10], [0, 40], [-10,-10], [-15,0]];
+    const PointStroke = [[15, 0], [10, -10], [0, 40], [-10, -10], [-15, 0]];
     Draw_Speaker_Shape(MyShape, Point, PointStroke);
 
 
@@ -203,12 +210,12 @@ function Draw_Speaker_Muted(MyShape){
     return MyShape;
 }
 
-function Draw_Speaker_Shape(MyShape, Point, WayPoints){
+function Draw_Speaker_Shape(MyShape, Point, WayPoints) {
     const ColorSpeaker = "#2196f3";
     MyShape.graphics.beginFill(ColorSpeaker); // Blue color
 
     MyShape.graphics.moveTo(Point[0], Point[1]);
-    for(var i = 0; i < WayPoints.length; i++){
+    for (var i = 0; i < WayPoints.length; i++) {
         Point[0] += WayPoints[i][0];
         Point[1] += WayPoints[i][1];
         MyShape.graphics.lineTo(Point[0], Point[1]);
@@ -220,7 +227,7 @@ function Draw_Speaker_Shape(MyShape, Point, WayPoints){
     return MyShape;
 }
 
-function Draw_Speaker_Muted_Line(MyShape, Point1, Point2){
+function Draw_Speaker_Muted_Line(MyShape, Point1, Point2) {
     const ColorMuted = "#000000";
     MyShape.graphics.setStrokeStyle(5).beginStroke(ColorMuted);
     MyShape.graphics.moveTo(Point1[0], Point1[1]);
