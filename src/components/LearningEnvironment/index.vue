@@ -11,8 +11,8 @@ import TopicRight from "@/components/Topic/TopicRight.vue";
 
 import {computed, onMounted, watch} from 'vue';
 import {useStudentStore} from '@/stores/student.js';
-import {Next_Step_Stop_Audio} from "../../../public/assets/Canvas_Description.js";
-import {Init_Canvas} from "../../../public/assets/Canvas_Page.js";
+import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
+import {Init_Canvas} from "../../../public/assets/canvas/Canvas_Page.js";
 
 
 const studentStore = useStudentStore()

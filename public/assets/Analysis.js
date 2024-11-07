@@ -1,4 +1,4 @@
-import { DictObjPort } from "./Properties_Port.js"
+import { DictObjPort } from "./properties/Properties_Port.js"
 
 // main of anlaysis frame
 export function Init_Analysis(){

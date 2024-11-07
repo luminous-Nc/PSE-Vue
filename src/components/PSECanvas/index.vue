@@ -21,11 +21,11 @@ import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
 
-import {Destroy_Canvas, Init_Canvas} from "../../../public/assets/Canvas_Page.js";
-import {Init_Test} from "../../../public/assets/Canvas_Test.js";
+import {Destroy_Canvas, Init_Canvas} from "../../../public/assets/canvas/Canvas_Page.js";
+import {Init_Test} from "../../../public/assets/canvas/Canvas_Test.js";
 import {Init_Analysis} from "../../../public/assets/Analysis";
-import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSizeTest.js";
-import {Next_Step_Stop_Audio} from "../../../public/assets/Canvas_Description.js";
+import {initCanvasWithCountdown} from "../../../public/assets/canvas/CanvasEventandSizeTest.js";
+import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
 
 //
 const canvas = ref(null);
@@ -101,7 +101,7 @@ watch(currentStepLocal,
 
         Init_Canvas(canvas);
 
-
+        studentStore.currentStepFinished = true
     } else {
         console.log("currentStep or currentTopic.id is undefined.");
     }

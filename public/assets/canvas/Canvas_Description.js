@@ -1,4 +1,4 @@
-import {Dict_Func_Txt, Dict_Audio} from './text/Properties_Description.js';
+import {Dict_Func_Txt, Dict_Audio} from '../text/Properties_Description.js';
 import {useStudentStore} from "@/stores/student.js";
 
 // initialize description page in Canvas

@@ -1,7 +1,8 @@
 // display practice connection page on Canvas
-import { DictModule } from "./Properties_Task.js"
-import { DictObjPort } from "./Properties_Port.js"
-import { DictMsg }  from "./Properties_Message.js"
+import { DictModule } from "../properties/Properties_Task.js"
+import { DictObjPort } from "../properties/Properties_Port.js"
+import { DictMsg }  from "../properties/Properties_Message.js"
+import { ObjRndPool, ObjRndPoolName } from '../properties/Properties_Random_Port_Pool.js';
 
 export function Init_Test(){
     // initialization 

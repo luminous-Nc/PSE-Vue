@@ -1,7 +1,7 @@
 // display Canvas
 import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
-import { DePage, STPage } from "./Properties_Page.js";
+import { DePage, STPage } from "../properties/Properties_Page.js";
 
 // main
 export function Init_Canvas(CanvasRef){
