@@ -3,7 +3,6 @@ import {useStepsStore} from "@/stores/step.js";
 import {useCookies} from '@vueuse/integrations/useCookies';
 
 
-
 export const useStudentStore = defineStore('student', {
     state: () => {
         return {
@@ -15,13 +14,24 @@ export const useStudentStore = defineStore('student', {
             learningRecord: {},
             responseMessage: '',
             direction: 'next',
-            repeatMode: true
+            repeatMode: false
         }
     },
     persist: {
-      enabled:true,
+        enabled: true,
     },
     actions: {
+        resetLearning() {
+            this.currentStep = undefined
+            this.currentStepFinished = false
+            this.learningPath = ["0"]
+            this.learningStyle = "null"
+            this.learningRecord = {}
+            this.responseMessage = ''
+            this.direction = 'next'
+            this.repeatMode = false
+            useCookies(['learning_style']).remove('learning_style')
+        },
         addNewSteps(newStepIdArray) {
             const index = this.learningPath.indexOf(this.currentStep.id);
             this.learningPath.splice(index + 1, 0, ...newStepIdArray);
@@ -30,15 +40,14 @@ export const useStudentStore = defineStore('student', {
         initLearningPath() {
             console.log("init Learning Path")
             if (this.learningStyle === "Global") {
-                this.learningPath = ["1.2", "-99"]
+                this.learningPath = ["1.2", "99"]
             } else if (this.learningStyle === "Sequential") {
-                this.learningPath = ["2.1", "2.2", "2.3", "2.4","2.5","3.1",
-                    "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5",
-                    , "-99"];
+                this.learningPath = ["2.1", "2.2", "2.3", "2.4", "2.5", "3.1",
+                    "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "99"];
             } else {
                 console.error('learning style it not matching:', this.learningStyle)
             }
-            if (this.currentStep=== undefined || this.currentStep.id === '0' || this.currentStep.id === 0) {
+            if (this.currentStep === undefined || this.currentStep.id === '0' || this.currentStep.id === 0) {
                 console.log('stepId = 0')
                 const stepsStore = useStepsStore()
                 this.currentStep = stepsStore.getStepById(this.learningPath[0])
@@ -92,7 +101,7 @@ export const useStudentStore = defineStore('student', {
             let modulesToCheckRobot = ['ABBRobot', '240VDC', '24VDC']
             let modulesToCheckPLCRobot = ['LSensor', 'Relay']
 
-            let modulesToCheckPLCV2 =  [
+            let modulesToCheckPLCV2 = [
                 ["IN-2", "BTMSTPL"], ["IN-6", "LSL"], ["GNDPLCR", "24VN"],
                 ["BTSTRR", "DC-0"], ["BTSTRR", "24VP"], ["BTMSTPR", "24VP"],
                 ["LSR", "24VP"]
@@ -105,7 +114,7 @@ export const useStudentStore = defineStore('student', {
             let modulesToCheckPLCRobotV2 = [
                 ["PWRDOL", "24VP"], ["GNDDOL", "24VN"], ["GNDDIL", "24VN"],
                 ["DO02", "IN-7"], ["DI02", "OUT-1"]
-              ]
+            ]
 
             let modulesAlreadyPass = []
 
@@ -136,7 +145,6 @@ export const useStudentStore = defineStore('student', {
             removeMatchingElements(modulesAlreadyPass, modulesToCheckPLCRobotV2);
 
 
-
             console.log(modulesToCheckPLCV2.length)
             console.log(modulesToCheckRobotV2.length)
             console.log(modulesToCheckPLCRobotV2.length)
@@ -158,15 +166,15 @@ export const useStudentStore = defineStore('student', {
             let newSteps = []
             switch (knowledgeLevel) {
                 case "plc":
-                    newSteps = ["2.1", "2.2", "2.3","2.4","2.5", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5"]
+                    newSteps = ["2.1", "2.2", "2.3", "2.4", "2.5", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "99"]
                     this.responseMessage = "Your knowledge level is estimated to 'PLC'"
                     break
                 case "robot":
-                    newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5"]
+                    newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "99"]
                     this.responseMessage = "Your knowledge level is estimated to 'Robot'"
                     break
                 case "plcrobot":
-                    newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5"]
+                    newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5", "99"]
                     this.responseMessage = "Your knowledge level is estimated to 'PLC and Robot'"
                     break
                 case 'finish':

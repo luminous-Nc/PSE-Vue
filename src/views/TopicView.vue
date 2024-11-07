@@ -15,7 +15,11 @@ import { useStudentStore } from '@/stores/student.js';
 
 
 const showQuestionnaire = computed(() => {
- return studentStore.learningStyle !== 'null';
+    if (studentStore.learningStyle === 'null' || studentStore.learningStyle === null) {
+      return true
+    } else {
+      return false
+    }
 });
 
 const studentStore = useStudentStore()

@@ -49,11 +49,12 @@ import {useStudentStore} from "@/stores/student.js";
 import {onMounted} from "vue";
 import {useRouter} from "vue-router";
 const router = useRouter();
+const studentStore = useStudentStore()
 onMounted(() => {
     // 检查值是否为null，如果是则跳转
-    if (studentStore.getLearningStyle === 'null') {
+    if (studentStore.learningStyle === '' || studentStore.getLearningStyle === 'null' || studentStore.learningStyle === null) {
         router.push({name:'learning'});  // 跳转到根路径
     }
 });
-const studentStore = useStudentStore()
+
 </script>

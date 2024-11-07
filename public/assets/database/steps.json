@@ -1,6 +1,6 @@
 {
   "steps": [
-    {"id": "-99",
+    {"id": "99",
       "menu_text": "",
       "type": "finish",
       "text": "Congratulation! You completed all learning tasks",
