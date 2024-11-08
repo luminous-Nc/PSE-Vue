@@ -10,7 +10,6 @@
         </div>
 
 
-
     </div>
 </template>
 
@@ -23,20 +22,24 @@ import {stringify} from "postcss";
 
 import {Destroy_Canvas, Init_Canvas} from "../../../public/assets/canvas/Canvas_Page.js";
 import {Init_Test} from "../../../public/assets/canvas/Canvas_Test.js";
+import {Init_Practice} from "../../../public/assets/Connection.js"
 import {Init_Analysis} from "../../../public/assets/Analysis";
-import {initCanvasWithCountdown} from "../../../public/assets/canvas/CanvasEventandSizeTest.js";
+import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSizeTest.js";
 import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
+import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
+// import { PName } from '../../../public/assets/canvas/Canvas_Page.js';
 
-//
 const canvas = ref(null);
 const showResetButton = ref(false);
 const showSubmitButton = ref(false);
 const showCanvas = ref(true);
 
-const studentStore = useStudentStore()
-const currentStepLocal = computed(() => studentStore.currentStep)
+const studentStore = useStudentStore();
+const currentStepLocal = computed(() => studentStore.currentStep);
 
 
+
+Load_Img(); // preload all images
 
 onMounted(()=> {
     checkId();
@@ -52,6 +55,7 @@ const checkId = () => {
         // console.log('check',studentStore.currentStep)
     }, 100); // 每100ms检测一次
 };
+
 const initPSECanvas = () => {
     showResetButton.value = false
     showSubmitButton.value = false

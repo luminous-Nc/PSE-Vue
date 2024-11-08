@@ -1,7 +1,14 @@
-import { DictObjPort } from "./properties/Properties_Port.js"
+import { OtherPos } from "./properties/Properties_Position.js"
+import { AnlysBox, ImgLegend, Keys } from "./canvas/Canvas_Test.js"
+import { Hide_Ports, Display_Legend, Reset_MsgBox, MyPorts, MyLines, Timer } from "./Connection.js"
+import { Init_Table } from "./Table_Create.js";
+
+var Analysis = Object(); // numerical analysis report
+
+export { Init_Analysis };
 
 // main of anlaysis frame
-export function Init_Analysis(){
+function Init_Analysis(){
         Init_Parameter_A();
         Init_Symbol_A();
         General_Analysis();
@@ -21,16 +28,16 @@ function Init_Parameter_A(){
 function Init_Symbol_A(){
     Hide_Ports();
     Reset_MsgBox();
-    Init_Legend();
+    Display_Legend();
 }
 
 // initialize connection legend
- function Init_Legend(){
+function Init_Legend(){
         var key     = "Legend";
         var Btmp    = new createjs.Bitmap(DictImg[key]);
         Btmp.name   = key;
-        Btmp.x      = DictObjPort[key].x; // Center horizontally
-        Btmp.y      = DictObjPort[key].y; // Center vertically
+        Btmp.x      = OtherPos[key].x; // Center horizontally
+        Btmp.y      = OtherPos[key].y; // Center vertically
         ImgLegend   = Btmp;
 
         stage.addChild(ImgLegend);

@@ -1,4 +1,8 @@
 // generate table
+
+export { Init_Table };
+
+// main
 function Init_Table(Table, Data){
   /*   Data: n by m data with header and body
         - Data.Header

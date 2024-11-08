@@ -3,6 +3,11 @@ import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
 import { DePage, STPage } from "../properties/Properties_Page.js";
 
+// var PName;
+// var stage;
+
+// export { PName, stage };
+
 // main
 export function Init_Canvas(CanvasRef){
     // generate canvas and stage

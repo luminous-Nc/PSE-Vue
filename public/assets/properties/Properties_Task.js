@@ -2,6 +2,9 @@
 // dynamic parameters  
 // -------------------------
     
+
+export { DictModule };
+
 // module position
 const P1Port = {
                 "PLCInput":{
@@ -404,9 +407,10 @@ const P16Port = {
                                      ["RLSWU", "240VP"], ["RLSWDR", "CVL"], ["CVR", "240VN"]
                                     ]              
             };
-export const DictModule = {
-                            P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
-                            P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
-                            P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
-                            P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port
-                        };
+const DictModule = {
+                        P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
+                        P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
+                        P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
+                        P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port
+                    };
+

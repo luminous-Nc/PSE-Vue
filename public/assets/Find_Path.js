@@ -1,5 +1,44 @@
-// get path waypoints between two points
+ // get path waypoints between two points
+
+// subline breakpoint parameters
+const DictSubL  = {
+                    "Break":    2, // break length base
+                    "Base":     2, // move length base(at breakpoint)
+                    "Add":      8  // move length(at breakpoint)
+                };  
+
+var DictSubLScale = {}; // subline extension scale parameter    
+
+// detour line parameters
+const DictDetL = {
+                    "Base": 5, // move length base
+                    "Add":  5 // move length
+                };  
+
+var DictDetLScale   = {}; // detour extension scale parameter   
+       
+// normal direction(for subline breakpoint)
+const DictDirN = [
+                    {x : 0,  y : -1},   // up
+                    {x : 0,  y : 1},    // down
+                    {x : -1, y : 0},    // left
+                    {x : 1,  y : 0}     // right
+                ]; 
+
+// diagonal direction(for rectangle detour points)
+const DictDirD = [
+                    {x : -1, y : -1},   // left up
+                    {x : 1, y : -1},    // right up
+                    {x : 1, y : 1},     // right down
+                    {x : -1, y : 1}     // left down
+                ]  
+
+export { Get_Path, Get_Break_Extend_Point, 
+         Remove_Repeated_Line_Waypoints, Reset_Dict_Scale };
+
+// main
 function Get_Path(StartPt, EndPt, Obstacles){
+   
     // initialize waypoints
     var WayPts = [StartPt, EndPt];
 
@@ -151,9 +190,6 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
                     // update distance
                     Distance = MyDistance;
 
-                    // update detour parameters
-                    ObName = MyObstacle.name;
-
                     // integrate with the current end point
                     Result = MyResult;
                 }
@@ -161,20 +197,9 @@ function Add_Detour_Points(MyWayPts, MyObstacle){
             
         }
         
-        // update detour paramter dictionary
-        // (try to avoid overlapped line)
-        if (ObName in DictDetourL){
-            // update current obstacle parameter
-            DictDetourL[ObName] += 1;
-        }else{
-            // initialize current obstacle parameter
-            DictDetourL[ObName] = 1;
-        }
-
     }else{
         // added placid waypoint means no obstacles among,
         // no need to use detour points
-        // MyWayPts = [Point1, Placid Point, Point2]
         Result = MyWayPts;
     }
     return Result
@@ -194,7 +219,7 @@ function Get_Placid_Mid_Point(Pt1, Pt2){
     }
 }
 
-// generate break and extened point
+// generate break and extened point(subline)
 function Get_Break_Extend_Point(PtIn, Obstacles){
     // get subline break part
     var BreakPts = PtIn;
@@ -223,12 +248,16 @@ function Get_Break_Extend_Point(PtIn, Obstacles){
     // find which obstacle does the port belong to
     var ObName = Get_Inside_Obstacle(PtIn, Obstacles);
 
-    // update subline scake dictionary (various subline length at each module)
-    if (ObName in DictSubMScl){DictSubMScl[ObName] += 1;}
-    else{DictSubMScl[ObName] = 1;}
+    // update subline scale dictionary (various subline length at each module)
+    if (ObName in DictSubLScale){
+        DictSubLScale[ObName] += 1;
+    }
+    else{
+        DictSubLScale[ObName] = 0;
+    }
 
     // calculate moving length
-    var MoveL = DictSubL.Base + DictSubL.Move * DictSubMScl[ObName] ;
+    var MoveL = DictSubL.Base + DictSubL.Add * DictSubLScale[ObName] ;
 
     // merge two parts: start point -> break point + moving line
     return {x : BreakPts.x + Dir.x * MoveL,
@@ -419,7 +448,7 @@ function Get_Distance_Among(Points) {
     var Distance = 0, StartPt, EndPt;
 
     // append each distance
-    for (i = 0; i < Points.length - 1; i++){  
+    for (var i = 0; i < Points.length - 1; i++){  
         StartPt = Points[i];
         EndPt   = Points[i + 1];
         Distance += Get_Distance_Between(StartPt, EndPt);
@@ -443,19 +472,31 @@ function Get_Detour_Points(MyRec){
                    {x : MyBound.MinX, y : MyBound.MaxY}];
 
     // get detour additional extention factor
-    var DeFactors;
-    if (typeof DictDetourL[MyRec.name] == "undefined"){
-        DeFactors = 0;
+
+    // update detour paramter dictionary(try to avoid overlapped line)
+    const ObjName = MyRec.name;
+    if (ObjName in DictDetLScale){
+        // update current obstacle parameter
+        DictDetLScale[ObjName] += 1;
     }else{
-        DeFactors = DictDetourL[MyRec.name];
+        // initialize current obstacle parameter
+        DictDetLScale[ObjName] = 0;
     }
+
+    var DeFactors = DictDetLScale[MyRec.name];
+
+    // if (typeof DictDetLScale[MyRec.name] == "undefined"){
+    //     DeFactors = 0;
+    // }else{
+    //     DeFactors = DictDetLScale[MyRec.name];
+    // }
 
     // generate 4 detour points with the recent extention
     var MyShift  = [];
  
     for (var i = 0; i < MyDePts.length; i++){ 
         // generate the current shift value
-        MyShift[i] = DetourBaseL + DetourAddL * DeFactors;
+        MyShift[i] = DictDetL.Base + DictDetL.Add * DeFactors;
         
         // update the detour point based on shift value and direction
         MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDirD[i].x, 
@@ -594,6 +635,13 @@ function Get_Linear_Line2(Pt, k){
     return {A : A, B : B, C : C}
 }
 
+// reset scale dictionary
+function Reset_Dict_Scale(){
+    DictSubLScale = {};
+    DictDetLScale = {};
+}
+
+
 // // pick up one point the farest to the line
 /* function Pick_Detour_Point(MyWayPts, MyDePts, MyObstacle){
     var WayPtsStart, WayPtsEnd, WayPtsSet = [];
@@ -706,3 +754,5 @@ function Get_Linear_Line2(Pt, k){
 
     return {x : x, y : y};
 } */
+
+// var DictDetourDir = [];

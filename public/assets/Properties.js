@@ -1,117 +1,22 @@
-// preload image src
-const ImgFolder = "./assets/images";
-const AudioFolder = "./assets/audio/";
+
+
+// current parameters
 
 // all properties and parameters in the project
     var PName;
     var stage;
 
-    // modules and keys' dictionary
-    var Msgs        = {}; // feedback message
-    var Keys        = []; // connecting keys
-    var Analysis    = Object();
 
-    var topicLoaded = false
-
-    // direction dictionary parameters
-    var DictDirN = {}; // normal
-    var DictDirD = {}; // diagonal
-
-    // subline dictionary parameters
-    var DictSubL    = {};   // subline length parameters
-    var DictSubMScl = {}    // subline module scale
-
-    // dynamic line dictionary parameters
-    var DictDetourDir = [];
-    var DetourBaseL;        // base length of detour point extention
-    var DetourAddL;         // additional length of detour point extention
-    var DictDetourL   = {}; // detour parameter dictionary
-
-    // learning module parameters
-    var DictModuleLink  = {}  // all modules' url
-    var DictModuleRank  = {}; // all modules priority
-
-    // image list
-    var DictImg = {};
-
-    // others
-    var PortSize;
-
-    var ReEnterFlag = false;
 
 // -------------------------
 // static parameters
 // -------------------------
 
-    // image list
-    var ImgsJpg =  ["ABBRobot", "COMAURobot", "FANUCRobot",
-                    "KUKARobot", "OMRONRobot", 
-                    "PLCInput", "PLCOutput",
-                    "Relay", "5VDC", "24VDC", "240VDC",
-                    "LSensor", "Convey", 
-                    "ButtonStart", "ButtonMotorStop"];
 
-    var ImgsJpeg = ["Legend", "Switch", "Motor", "Sensor", 
-                    "PLCInput(New)", "PLCOutput(New)", 
-                    "PNP", "48VDC", "Optical"];
 
     // default connection port size
-    PortSize = 5;
-
-
-    // normal direction
-    DictDirN = [{x : 0,  y : -1}, // up
-                {x : 0,  y : 1},  // down
-                {x : -1, y : 0},  // left
-                {x : 1,  y : 0}]; // right
     
-    // diagonal direction
-    DictDirD = [{x : -1, y : -1}, // left up
-                {x : 1, y : -1},  // right up
-                {x : 1, y : 1},   // right down
-                {x : -1, y : 1}]  // left down
 
-    // subline parameters
-    DictSubL.Break = 2;
-    DictSubL.Base  = 2;
-    DictSubL.Move  = 8;
-    
-    // detour point property
-    DetourBaseL   = 5;
-    DetourAddL    = 5;
-
-    // initialize modules' hyper link
-    DictModuleLink = {  "Inputs"            : "http://128.194.119.24/tutorial?topic=1",
-                        "Outputs"           : "http://128.194.119.24/tutorial?topic=2",
-                        "PLC Input module"  : "http://128.194.119.24/tutorial?topic=3",
-                        "PLC Output module" : "http://128.194.119.24/tutorial?topic=4", 
-                        "Relay"             : "http://128.194.119.24/tutorial?topic=5",
-                        "Sensors"           : "http://128.194.119.24/tutorial?topic=6", 
-                        "ABB Robot"         : "http://128.194.119.24/tutorial?topic=7", 
-                        "COMAU Robot"       : "http://128.194.119.24/tutorial?topic=8", 
-                        "FANUC Robot"       : "http://128.194.119.24/tutorial?topic=9", 
-                        "KUKA Robot"        : "http://128.194.119.24/tutorial?topic=10", 
-                        "OMRON Robot"       : "http://128.194.119.24/tutorial?topic=11"
-                    };
-
-    // initalize modules' priority(0 -> low, 10 -> high,)                  
-    DictModuleRank = {  "Inputs"            : 1,
-                        "Outputs"           : 1,
-                        "Sensors"           : 1,
-                        "PLC Input module"  : 2,
-                        "PLC Output module" : 2,                                  
-                        "Relay"             : 3, 
-                        "ABB Robot"         : 4, 
-                        "COMAU Robot"       : 4, 
-                        "FANUC Robot"       : 4, 
-                        "KUKA Robot"        : 4, 
-                        "OMRON Robot"       : 4
-                    };
-
-function Get_Random_Array_Value(ArrayIn){
-    const randomIndex = Math.floor(Math.random() * ArrayIn.length);
-    return ArrayIn[randomIndex];
-}
 //// initialize pure ports
 //			// 0       1     
 //AllPorts    = ["LS1",  "LS2",

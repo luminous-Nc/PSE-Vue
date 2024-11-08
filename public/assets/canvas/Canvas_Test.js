@@ -1,17 +1,37 @@
 // display practice connection page on Canvas
 import { DictModule } from "../properties/Properties_Task.js"
-import { DictObjPort } from "../properties/Properties_Port.js"
+import { PortPos, OtherPos } from "../properties/Properties_Position.js"
 import { DictMsg }  from "../properties/Properties_Message.js"
-import { ObjRndPool, ObjRndPoolName } from '../properties/Properties_Random_Port_Pool.js';
+import { ObjRndPool, ObjRndPoolName } from "../properties/Properties_Random_Port_Pool.js";
+import { Init_Practice } from "../Connection.js"
+import { DictImg } from "./Canvas_Image.js";
+import { PortSize } from "../properties/Properties_Connection.js";
+// import { stage } from "./Canvas_Page.js";
 
+
+var ObjRndPorts = {};
+var Obstacles   = [];  // all specific obstacle points
+var ObjPorts    = [];
+var MsgBox;
+var AnlysBox;
+var ImgLegend;
+
+var Modules     = {};
+var Msgs        = {}; // feedback message
+var Keys        = []; // connecting keys
+
+export { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys};
+
+// main
 export function Init_Test(){
     // initialization 
     stage.removeAllChildren(); 
-    Init_Object();              
-    Draw_Image();               
-    Draw_Connection_Ports();
+    Init_Object();            
+    Draw_Modules();            
+    Draw_Modules_Ports();
     Draw_Msg_Box();
     Draw_Anlys_Box();
+    Draw_Legend(); 
     Init_Practice();
 }
 
@@ -26,8 +46,8 @@ function Init_Object(){
     Keys = DictModule[PName]["Key"];
     
     // get current module and port
-    ObjDict = {...DictModule[PName]};
-    delete ObjDict["Key"]
+    Modules = {...DictModule[PName]};
+    delete Modules["Key"]
 
     // custom random port
     Custom_Random_Port();
@@ -36,9 +56,9 @@ function Init_Object(){
 
 // custom random port for single practice
 function Custom_Random_Port(){
-    for (const ModuleName in ObjDict){
-        if (ObjDict[ModuleName].hasOwnProperty("RndPort")){
-            for (const RNDPort of ObjDict[ModuleName]["RndPort"]){
+    for (const ModuleName in Modules){
+        if (Modules[ModuleName].hasOwnProperty("RndPort")){
+            for (const RNDPort of Modules[ModuleName]["RndPort"]){
                 // get current random port
                 const RNDPortIndex    = RNDPort[0];
                 const RNDPortKeyIndex = RNDPort[1];
@@ -48,7 +68,7 @@ function Custom_Random_Port(){
                 const RNDPortOut      = Get_Random_Array_Value(RNDPortPool);
 
                 // assign random port
-                ObjDict[ModuleName]["Port"][RNDPortIndex] = RNDPortOut;
+                Modules[ModuleName]["Port"][RNDPortIndex] = RNDPortOut;
 
                 // assign random port general name
                 ObjRndPorts[RNDPortOut] = RNDGeneralName;
@@ -61,43 +81,45 @@ function Custom_Random_Port(){
     
 }
 
-function Draw_Image(){
+function Draw_Modules(){
     Obstacles = [];
 
-    for (const ModuleName in ObjDict){
+    for (const ModuleName in Modules){
         var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
         Btmp.name   = ModuleName;
-        Btmp.x      = ObjDict[ModuleName].x; // Center horizontally
-        Btmp.y      = ObjDict[ModuleName].y; // Center vertically
+        Btmp.x      = Modules[ModuleName].x; // Center horizontally
+        Btmp.y      = Modules[ModuleName].y; // Center vertically
 
         // resize the image if applicable
         const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
         Btmp.scaleX        = Scale;
         Btmp.scaleY        = Scale;
-        Btmp.bound  = {"width": Btmp.image.width * Scale,
+        Btmp.bound  = {"width" : Btmp.image.width * Scale,
                        "height": Btmp.image.height * Scale
                     };
 
         // integrate the image
-        ObjDict[ModuleName].img = Btmp;
+        Modules[ModuleName].img = Btmp;
         stage.addChild(Btmp);
 
         // draw image bound(obstacle) 
-        const Bound = Get_Img_Bound(DictObjPort[ModuleName]);
+        const Bound = Get_Img_Bound(PortPos[ModuleName]);
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
         Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
         Obstacles.push(Obstacle);
         stage.addChild(Obstacle.obj);                                
 
     }
+    
     stage.update();         
 }
 
 
-function Draw_Connection_Ports(){
-    ObjPorts = []
-    for(const ModuleName in ObjDict){
-        for(const PortName of ObjDict[ModuleName].Port){
+function Draw_Modules_Ports(){
+    ObjPorts = [];
+    
+    for(const ModuleName in Modules){
+        for(const PortName of Modules[ModuleName].Port){
             var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
             var circle = new createjs.Shape();
             circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
@@ -107,8 +129,8 @@ function Draw_Connection_Ports(){
                 circle.rndname = ObjRndPorts[PortName];
             }
             console.log(ModuleName + "->" + PortName);
-            circle.x = ObjDict[ModuleName].x + DictObjPort[ModuleName][PortName].x * Scale;
-            circle.y = ObjDict[ModuleName].y + DictObjPort[ModuleName][PortName].y * Scale;
+            circle.x = Modules[ModuleName].x + PortPos[ModuleName][PortName].x * Scale;
+            circle.y = Modules[ModuleName].y + PortPos[ModuleName][PortName].y * Scale;
             ObjPorts.push(circle);
             stage.addChild(circle);
             
@@ -195,8 +217,6 @@ function Draw_Msg_Box(){
     stage.update();
 }
 
-
-
 function Draw_Anlys_Box(){
     AnlysBox = new createjs.Text();
     AnlysBox.font = "bold 20px Arial";
@@ -208,4 +228,23 @@ function Draw_Anlys_Box(){
     AnlysBox.y = 800;
     stage.addChild(AnlysBox);
     stage.update();
+}
+
+function Draw_Legend(){
+    var key     = "Legend";
+    var Btmp    = new createjs.Bitmap(DictImg[key]);
+    Btmp.name   = key;
+    Btmp.x      = OtherPos[key].x; // Center horizontally
+    Btmp.y      = OtherPos[key].y; // Center vertically
+    Btmp.visible = false;
+
+    ImgLegend   = Btmp;
+    stage.addChild(ImgLegend);
+    stage.update();
+
+}
+
+function Get_Random_Array_Value(ArrayIn){
+    const randomIndex = Math.floor(Math.random() * ArrayIn.length);
+    return ArrayIn[randomIndex];
 }

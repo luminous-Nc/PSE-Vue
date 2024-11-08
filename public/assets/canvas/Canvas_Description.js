@@ -1,5 +1,10 @@
-import {Dict_Func_Txt, Dict_Audio} from '../text/Properties_Description.js';
-import {useStudentStore} from "@/stores/student.js";
+import { Dict_Func_Txt, DictTitleTxt, DictContentTxt } from '../properties/Properties_Description.js';
+import { TxtTPage, TxtCPage, AudPage } from '../properties/Properties_Page.js';
+import { useStudentStore } from "@/stores/student.js";
+import { AudioFolder, DictAudio } from '../properties/Properties_Audio.js';
+import { errorMessages } from 'vue/compiler-sfc';
+
+export { Init_Description, Next_Step_Stop_Audio };
 
 // initialize description page in Canvas
 var AudioBarBg;
@@ -8,29 +13,152 @@ var MyAudio;
 var IsAudioEnd = false;
 var AudioToggle;
 var SpeakerToggle;
+var Name;
 
 // main
-export function Init_Description() {
+function Init_Description() {
     // initialize modules
     stage.removeAllChildren();
+
+    Name = PName;
+
+    // initialize textbox
     Init_Textbox();
-    Init_Voice(Dict_Audio[PName]);
+
+    // initialize audio player
+    Init_Voice();
 }
 
-
 function Init_Textbox() {
-    Dict_Func_Txt[PName]();
+    if (TxtTPage.hasOwnProperty(Name)){
+        // init main title page
+        Init_Title_Txt(TxtTPage[Name]);
+
+    }else if(TxtCPage.hasOwnProperty(Name)){
+        // init introduction page
+        Init_Content_Txt(TxtCPage[Name]);
+    }else{
+        console.error("undefined text");
+    }
+
     stage.update();
 }
 
-function Init_Voice(AudioFile) {
-    console.error(MyAudio)
-    console.error(AudioToggle)
-    // generate audio
-    if (AudioFile === "" || AudioFile == null) {
+function Init_Title_Txt(Name){
+    // initialize generate textbox(default properties)
+    var TxtBxT = Init_TxTBx();
+
+    // set properties
+    TxtBxT.color    = "red";
+    TxtBxT.font     = "bold 70px Arial";
+    TxtBxT.x        = 300;
+    TxtBxT.y        = 300;
+    TxtBxT.text     = DictTitleTxt["Name"];
+
+    stage.addChild(TxtBxT);
+}
+
+function Init_Content_Txt(Name){
+    // check if the page has content or not
+    if (!DictContentTxt.hasOwnProperty(Name)){ 
         return
     }
-    ;
+
+    // get the current content text dictionary
+    const ContentTxt = DictContentTxt[Name];
+
+    // init title
+    if (ContentTxt.hasOwnProperty("Title")){
+        // get the current title content
+        const TTxt  = ContentTxt["Title"];
+
+        // set up title textbox
+        var TxtBxT        = Init_TxTBx();
+        TxtBxT.color      = "#7A0000FF";
+        TxtBxT.font       = "bold 30px Times New Roman";
+        TxtBxT.lineWidth  = 900;
+        TxtBxT.x          = 50;
+        TxtBxT.y          = 100;
+        TxtBxT.text       = TTxt;
+
+        stage.addChild(TxtBxT);
+    }
+
+    // init subtitle
+    if (ContentTxt.hasOwnProperty("SubTitle")){
+        // get the current subtitle content
+        const STTxt  = ContentTxt["SubTitle"];
+
+        // set up subtitle textbox
+        var TxtBxST        = Init_TxTBx();
+        TxtBxST.color      = "#7A0000FF";
+        TxtBxST.font       = "bold 30px Times New Roman";
+        TxtBxST.lineWidth  = 900;
+        TxtBxST.x          = 50;
+        TxtBxST.y          = 180;
+        TxtBxST.text       = STTxt;
+
+        stage.addChild(TxtBxST);
+    }
+
+    // init content
+    if (ContentTxt.hasOwnProperty("List")){
+        // get the current content array
+        const CTxt  = ContentTxt["List"];
+
+        // init each content
+        const TxtBxCTX      = 50
+        var   TxtBxCTY      = 210;
+        const TxtBxCTYAdd   = 20;
+
+        for(var i = 0; i < CTxt.length; i++){
+            // init each sub content textbox
+            var TxtBxCT        = Init_TxTBx();
+            TxtBxCT.color      = "#000";
+            TxtBxCT.font       = "20px Arial";
+            TxtBxCT.lineWidth  = 900;
+
+            // set text and position
+            TxtBxCT.x          = TxtBxCTX;
+            TxtBxCT.y          = TxtBxCTY;
+            TxtBxCT.text       = CTxt[i];
+
+            stage.addChild(TxtBxCT);
+
+            // update Y position to display the next sub content
+            TxtBxCTY += TxtBxCT.getBounds().height + TxtBxCTYAdd;
+        }
+
+    }
+
+}
+
+function Init_TxTBx(){
+    // title1
+    var TxTBx        = new createjs.Text();
+    TxTBx.text       = "N/A";
+    TxTBx.lineWidth  = 900;
+    TxTBx.color      = "#000";
+    TxTBx.textAlign  = "left";
+
+    return TxTBx;
+}
+
+function Init_Voice() {
+
+    // check if the page has audio or not
+    if (!AudPage.hasOwnProperty(Name)){ 
+        return
+    }
+
+    // check if the audio exist
+    const AudioFile = DictAudio[AudPage[Name]];       
+    if (AudioFile === "" || AudioFile == null) {   
+        console.error("undefined voice");
+        return
+    }
+    
+    // generate audio
     if (MyAudio !== undefined || AudioToggle !== undefined || SpeakerToggle !== undefined) {
         MyAudio.removeEventListener("timeupdate", Update_Bar);
         AudioToggle.removeEventListener("click", Pause_Audio)
@@ -68,12 +196,12 @@ function Init_Voice(AudioFile) {
     AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
 
-    MyAudio.play();
+    // MyAudio.play();
 
     stage.update();
 }
 
-export function Next_Step_Stop_Audio() {
+function Next_Step_Stop_Audio() {
     if (MyAudio) {
         MyAudio.pause();  // Stop the audio
         MyAudio.currentTime = 0;  // Reset the audio to the beginning
@@ -102,7 +230,9 @@ function Update_Bar() {
     if (studentStore.repeatMode) {
         threshold = 0
     }
+
     IsAudioEnd = (MyAudio.currentTime == MyAudio.duration);
+
     let IsAudioHalf = (MyAudio.currentTime >= threshold * MyAudio.duration)
     if (IsAudioHalf) {
         studentStore.finishCurrentStep()

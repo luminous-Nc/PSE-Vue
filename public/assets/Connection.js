@@ -1,25 +1,25 @@
+import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "./canvas/Canvas_Test.js"
+import { Get_Path, Get_Break_Extend_Point,
+         Remove_Repeated_Line_Waypoints, Reset_Dict_Scale } from "./Find_Path.js"
+import { PortSize } from "./properties/Properties_Connection.js";
+
+export { MyPorts, MyLines, Timer};
+export {Init_Practice, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
+
 // declare variables
-
-// rendering objects
-var ObjDict  = {};
-var ObjPorts = [];
-var ObjRndPorts = {};
-var MsgBox;
-var AnlysBox;
-
 // User's operation
-var MyPorts		 = [];  // user's accumulated ports set
-var TempPorts    = [];  // current dual selected ports
-var MySubLines	 = [];	// user's accumulated subLines
-var MyLines		 = [];	// user's accumulated connections(two ports array);
-var Timer        = {};  // user's start time
-var ImgLegend;
-// overall parameters
-var Title = {};     // objects' prefix
-var Obstacles = []  // all specific obstacle points
-var Ports = [];	    // selectable ports
+var TempPorts   = [];   // current dual selected ports
+var MySubLines  = [];   // user's accumulated subLines
 
-// main of practice frame
+var MyPorts     = [];   // user's accumulated ports set
+var MyLines	    = [];	// user's accumulated connections(two ports array);
+var Timer       = {};   // user's start time
+
+// overall parameters
+var Title       = {};   // objects' prefix
+var Ports       = [];	// selectable ports
+
+// main
 function Init_Practice(){
     //Analysis_Symbols_Remove();
     Init_Parameter();
@@ -28,23 +28,18 @@ function Init_Practice(){
 
 // initialize all parameters
 function Init_Parameter(){
-    DictSubMScl = {};
-    DictDetourL = {};
+    Reset_Dict_Scale(); // reset scale of subline && detour line move
     MyPorts	    = [];
     TempPorts   = [];
     Title       = Titles_Init(PName);  // objects' general title
     Timer       = {Start: new Date()};
 }
-function Remove_Legend(){
-    stage.removeChild(ImgLegend);
-    stage.update();
-}
+
 // initialize designated symbols in <practice> frame
 function Init_Symbol(){
     // remove SubLines, Lines, and Legend
     Remove_SubLines();
     Remove_Lines();
-    Remove_Legend();
 
     // generate obstacles
     // Obstacles = Init_Obstacles(ObjDict);
@@ -57,6 +52,9 @@ function Init_Symbol(){
 
     // reset dynamic analysis box
     Reset_AnlysBox();
+
+    // reset legend
+    Reset_Legend();
     
 }
 
@@ -77,43 +75,43 @@ function Titles_Init(Title){
 }
 
 // initialize all obstacles of the current task based on module figure
-function Init_Obstacles(Objs){
-    var Obstacles = []; // modules array
-    const BufHor = 5; // buffer expand to the object
-    const BufVer = 10;
+// function Init_Obstacles(Objs){
+//     var Obstacles = []; // modules array
+//     const BufHor = 5; // buffer expand to the object
+//     const BufVer = 10;
 
-    // get all modules' figure
-    for (const key in Objs){
-        // initialize the module
-        var Module = Objs[key].img;     // object
-        var name = Module.name;         // object name
-        var x    = Module.x;            // left coordinate
-        var y    = Module.y;            // top coordinate
-        var w    = Module.image.width;  // image width
-        var h    = Module.image.height; // image height
+//     // get all modules' figure
+//     for (const key in Objs){
+//         // initialize the module
+//         var Module = Objs[key].img;     // object
+//         var name = Module.name;         // object name
+//         var x    = Module.x;            // left coordinate
+//         var y    = Module.y;            // top coordinate
+//         var w    = Module.image.width;  // image width
+//         var h    = Module.image.height; // image height
 
-        // initialize obstacle
-        var Obstacle = {};
-        Obstacle.name = name;
+//         // initialize obstacle
+//         var Obstacle = {};
+//         Obstacle.name = name;
 
-        // initialize 4 corner points of the module
-        Obstacle.Port = [{x: x - BufHor,     y: y - BufVer},      // left up
-                         {x: x + w + BufHor, y: y - BufVer},      // right up
-                         {x: x + w + BufHor, y: y + h + BufVer},  // right down
-                         {x: x - BufHor,     y: y + h + BufVer}]; // left down
+//         // initialize 4 corner points of the module
+//         Obstacle.Port = [{x: x - BufHor,     y: y - BufVer},      // left up
+//                          {x: x + w + BufHor, y: y - BufVer},      // right up
+//                          {x: x + w + BufHor, y: y + h + BufVer},  // right down
+//                          {x: x - BufHor,     y: y + h + BufVer}]; // left down
 
-        // initialize 5 drawing points of the module(1->2->3->4->1)
-        var MyObPts = [...Obstacle.Port, Obstacle.Port[0]];
+//         // initialize 5 drawing points of the module(1->2->3->4->1)
+//         var MyObPts = [...Obstacle.Port, Obstacle.Port[0]];
 
-        // draw obstacle(optional)
-        Obstacle.obj = Draw_Connection(name, MyObPts, true);
+//         // draw obstacle(optional)
+//         Obstacle.obj = Draw_Connection(name, MyObPts, true);
 
-        // assign to obstacles set
-        Obstacles.push(Obstacle);
-    }
+//         // assign to obstacles set
+//         Obstacles.push(Obstacle);
+//     }
 
-    return Obstacles;
-}
+//     return Obstacles;
+// }
 
 // initialize ports: display them and reset event listeners
 function Reset_Ports(){
@@ -160,6 +158,11 @@ function Hide_Ports(){
     Execute_All(Ports, false);
 }
 
+// hide legend
+function Hide_Legend(){
+    ImgLegend.visible = false;
+}
+
 // reset message box
 function Reset_MsgBox(){
     MsgBox.text = "";
@@ -171,6 +174,13 @@ function Reset_AnlysBox(){
     AnlysBox.text = "";
     Updage_Stage();
 }
+
+// reset legend label
+function Reset_Legend(){
+    ImgLegend.visible = false;
+    Updage_Stage();
+}
+
 
 // remove all connections
 function Remove_Lines(){
@@ -184,6 +194,12 @@ function Remove_SubLines(){
     MySubLines = [];
 }
 
+// remove legend
+function Remove_Legend(){
+    stage.removeChild(ImgLegend);
+    stage.update();
+}
+
 // display all select ports initially
 function Display_Ports(){
     Execute_All(Ports, true);
@@ -192,6 +208,12 @@ function Display_Ports(){
 // display message box
 function Display_MsgBox(){
     MsgBox.visible = true;
+    Updage_Stage();
+}
+
+// display legend label
+function Display_Legend(){
+    ImgLegend.visible = true;
     Updage_Stage();
 }
 
@@ -351,19 +373,22 @@ function Show_Msg(Port1, Port2){
     if (Port2.hasOwnProperty("rndname")){Port2Name = Port2["rndname"];}
 
     // check message dictionary
-    const PortName = [Port1Name, Port2Name];
-    if (Msgs === undefined) { Msgs = [];}
+    if (Msgs === undefined){ 
+        // generate empty string if unfouned message dictionary
+        MsgBox.text = "";    
+    }else{
+        // get message if database exists
+        for (const Msg of Msgs){
+            const MsgPort = Msg["Ports"];
+            if (MsgPort.includes(Port1Name) && MsgPort.includes(Port2Name)){
+                MsgBox.text = Msg["Message"];
+                break;
+            }
+        } 
+    };
     
-    for (const Msg of Msgs){
-        const MsgPort = Msg["Ports"];
-        if (MsgPort.includes(PortName[0]) && MsgPort.includes(PortName[1])){
-            MsgBox.text = Msg["Message"];
-            stage.update();
-            return;
-        }
-    } 
-    MsgBox.text = "";
     stage.update();
+
 }
 
 // get subline
