@@ -3,13 +3,13 @@ import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
 import { DePage, STPage } from "../properties/Properties_Page.js";
 
-// var PName;
-// var stage;
+export { Init_Canvas, Destroy_Canvas, Set_PageID, stage, PageID };
 
-// export { PName, stage };
+var stage;
+var PageID;
 
 // main
-export function Init_Canvas(CanvasRef){
+function Init_Canvas(CanvasRef){
     // generate canvas and stage
     if (!CanvasRef.value) return;
     const Canvas = CanvasRef.value;
@@ -23,21 +23,24 @@ export function Init_Canvas(CanvasRef){
 
     // initialization
     switch(true){
-        case DePage.includes(PName):
+        case DePage.includes(PageID):
             Init_Description();
             break;
-        case STPage.hasOwnProperty(PName):
-            PName = STPage[PName] // map customed test
+        case STPage.hasOwnProperty(PageID):
             Init_Test();
             break;
     }
 }
 
-export function Destroy_Canvas(){
+function Destroy_Canvas(){
     stage.enableMouseOver(-1);
     stage.enableDOMEvents(false);
     stage.removeAllEventListeners();
     stage.removeAllChildren();
     stage.canvas = null;
     stage = null;
+}
+
+function Set_PageID(NewID){
+    PageID = NewID;
 }

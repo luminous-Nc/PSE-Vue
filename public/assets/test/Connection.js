@@ -1,7 +1,8 @@
-import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "./canvas/Canvas_Test.js"
+import { stage } from "../canvas/Canvas_Page.js";
+import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "../canvas/Canvas_Test.js"
 import { Get_Path, Get_Break_Extend_Point,
          Remove_Repeated_Line_Waypoints, Reset_Dict_Scale } from "./Find_Path.js"
-import { PortSize } from "./properties/Properties_Connection.js";
+import { PortSize } from "../properties/Properties_Connection.js";
 
 export { MyPorts, MyLines, Timer};
 export {Init_Practice, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
@@ -31,7 +32,7 @@ function Init_Parameter(){
     Reset_Dict_Scale(); // reset scale of subline && detour line move
     MyPorts	    = [];
     TempPorts   = [];
-    Title       = Titles_Init(PName);  // objects' general title
+    Title       = Titles_Init();  // objects' general title
     Timer       = {Start: new Date()};
 }
 
@@ -59,8 +60,9 @@ function Init_Symbol(){
 }
 
 // generate titles of the current task
-function Titles_Init(Title){
+function Titles_Init(){
     // setup each title
+    const Title    = "Test_";
     const Port     = Title + "P"; // select
     const SubLine  = Title + "S"; // subline
     const Line     = Title + "L"; // line

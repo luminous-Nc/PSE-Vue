@@ -20,14 +20,15 @@ import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
 
-import {Destroy_Canvas, Init_Canvas} from "../../../public/assets/canvas/Canvas_Page.js";
+import {Destroy_Canvas, Init_Canvas, 
+        Set_PageID, PageID} from "../../../public/assets/canvas/Canvas_Page.js";
 import {Init_Test} from "../../../public/assets/canvas/Canvas_Test.js";
-import {Init_Practice} from "../../../public/assets/Connection.js"
-import {Init_Analysis} from "../../../public/assets/Analysis";
+import {Init_Practice} from "../../../public/assets/test/Connection.js"
+import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
 import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSizeTest.js";
 import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
 import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
-// import { PName } from '../../../public/assets/canvas/Canvas_Page.js';
+import "../../../public/assets/css/ButtonStyle.css";
 
 const canvas = ref(null);
 const showResetButton = ref(false);
@@ -36,8 +37,6 @@ const showCanvas = ref(true);
 
 const studentStore = useStudentStore();
 const currentStepLocal = computed(() => studentStore.currentStep);
-
-
 
 Load_Img(); // preload all images
 
@@ -69,8 +68,9 @@ const initPSECanvas = () => {
         studentStore.currentStepFinished = false
     }
 
-    PName = studentStore.currentStep.pnameID;
-    console.log('PName', PName)
+    // PName = studentStore.currentStep.pnameID;
+
+    Set_PageID(studentStore.currentStep.pnameID);
 
     Init_Canvas(canvas);
 }
@@ -100,9 +100,7 @@ watch(currentStepLocal,
           showCanvas.value = false
         }
 
-        PName = newStep.pnameID;
-        console.log('PName', PName)
-
+        Set_PageID(newStep.pnameID);
         Init_Canvas(canvas);
 
         studentStore.currentStepFinished = true

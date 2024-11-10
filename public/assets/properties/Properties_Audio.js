@@ -1,7 +1,7 @@
 export { AudioFolder, DictAudio };
 
 // audio folder
-const AudioFolder = "../audio/";
+const AudioFolder = "./assets/audio/";
 
 // audio files
 const DictAudio = {

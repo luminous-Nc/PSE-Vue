@@ -1,14 +1,16 @@
 // display practice connection page on Canvas
+import { STPage } from "../properties/Properties_Page.js";
 import { DictModule } from "../properties/Properties_Task.js"
 import { PortPos, OtherPos } from "../properties/Properties_Position.js"
 import { DictMsg }  from "../properties/Properties_Message.js"
 import { ObjRndPool, ObjRndPoolName } from "../properties/Properties_Random_Port_Pool.js";
-import { Init_Practice } from "../Connection.js"
+import { Init_Practice } from "../test/Connection.js"
+import { stage, PageID } from "./Canvas_Page.js";
 import { DictImg } from "./Canvas_Image.js";
 import { PortSize } from "../properties/Properties_Connection.js";
 // import { stage } from "./Canvas_Page.js";
 
-
+var PName;
 var ObjRndPorts = {};
 var Obstacles   = [];  // all specific obstacle points
 var ObjPorts    = [];
@@ -20,12 +22,14 @@ var Modules     = {};
 var Msgs        = {}; // feedback message
 var Keys        = []; // connecting keys
 
-export { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys};
+export { PName, ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys};
 
 // main
-export function Init_Test(){
-    // initialization 
+export function Init_Test(){ 
     stage.removeAllChildren(); 
+
+    // initialization 
+    PName = STPage[PageID] // map customed test
     Init_Object();            
     Draw_Modules();            
     Draw_Modules_Ports();

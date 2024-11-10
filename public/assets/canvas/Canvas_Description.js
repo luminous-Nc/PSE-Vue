@@ -1,8 +1,10 @@
-import { Dict_Func_Txt, DictTitleTxt, DictContentTxt } from '../properties/Properties_Description.js';
+import { Dict_Func_Txt, DictTitleTxt,
+         DictContentTxt } from '../properties/Properties_Description.js';
 import { TxtTPage, TxtCPage, AudPage } from '../properties/Properties_Page.js';
-import { useStudentStore } from "@/stores/student.js";
 import { AudioFolder, DictAudio } from '../properties/Properties_Audio.js';
+import { useStudentStore } from "@/stores/student.js";
 import { errorMessages } from 'vue/compiler-sfc';
+import { stage, PageID } from './Canvas_Page.js';
 
 export { Init_Description, Next_Step_Stop_Audio };
 
@@ -19,8 +21,7 @@ var Name;
 function Init_Description() {
     // initialize modules
     stage.removeAllChildren();
-
-    Name = PName;
+    Name = PageID;
 
     // initialize textbox
     Init_Textbox();
@@ -165,9 +166,9 @@ function Init_Voice() {
         SpeakerToggle.removeEventListener("click", Mute_Audio)
     }
 
+    // load the audio
     const Path = AudioFolder + AudioFile;
     MyAudio = new Audio(Path);
-    MyAudio.controls = true;
 
     // generate audio progress bar background
     AudioBarBg = new createjs.Shape();
@@ -181,7 +182,8 @@ function Init_Voice() {
 
     // generate play/pause toggle
     AudioToggle = new createjs.Shape();
-    Draw_Pause_Toggle(AudioToggle);
+    // Draw_Pause_Toggle(AudioToggle);
+    Draw_Play_Toggle(AudioToggle);
     stage.addChild(AudioToggle);
 
     // generate speaker toggle
@@ -196,8 +198,7 @@ function Init_Voice() {
     AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
 
-    // MyAudio.play();
-
+    // MyAudio.play(); // issue on autoplaying audio
     stage.update();
 }
 

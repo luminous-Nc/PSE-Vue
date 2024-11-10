@@ -1,7 +1,9 @@
-import { OtherPos } from "./properties/Properties_Position.js"
-import { AnlysBox, ImgLegend, Keys } from "./canvas/Canvas_Test.js"
-import { Hide_Ports, Display_Legend, Reset_MsgBox, MyPorts, MyLines, Timer } from "./Connection.js"
+import { OtherPos } from "../properties/Properties_Position.js"
+import { AnlysBox, ImgLegend, Keys } from "../canvas/Canvas_Test.js"
+import { Hide_Ports, Display_Legend, 
+         Reset_MsgBox, MyPorts, MyLines, Timer } from "./Connection.js"
 import { Init_Table } from "./Table_Create.js";
+import { stage } from "../canvas/Canvas_Page.js";
 
 var Analysis = Object(); // numerical analysis report
 
