@@ -15,8 +15,8 @@ const DictAudio = {
                     "P8"    : "",
                     "P9"    : "",
                     "P10"   : "Interfacingg the PLC output module ABB Robot.mp3",
-                    "P11"   : "FANUC interfacing  PLC input module.mp3",
-                    "P12"   : "",
+                    "P11"   : "",
+                    "P12"   : "FANUC interfacing  PLC input module.mp3",
                     "P13"   : "",
                     "P14"   : "",
                     "P15"   : ""

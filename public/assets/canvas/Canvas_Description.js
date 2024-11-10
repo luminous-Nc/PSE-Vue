@@ -50,11 +50,11 @@ function Init_Title_Txt(Name){
     var TxtBxT = Init_TxTBx();
 
     // set properties
-    TxtBxT.color    = "red";
+    TxtBxT.color    = "black";
     TxtBxT.font     = "bold 70px Arial";
     TxtBxT.x        = 300;
     TxtBxT.y        = 300;
-    TxtBxT.text     = DictTitleTxt["Name"];
+    TxtBxT.text     = DictTitleTxt[Name]["Title"];
 
     stage.addChild(TxtBxT);
 }

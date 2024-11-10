@@ -47,12 +47,17 @@ import {useStudentStore} from "@/stores/student.js";
 import {storeToRefs} from 'pinia'
 import {watch} from "vue";
 
+import { Add_Time_Ticker } from "../../../public/assets/test/Time_Log";
+
 const stepStore = useStepsStore();
 const studentStore = useStudentStore();
 
 
 function nextButton() {
-  studentStore.continue()
+  studentStore.continue();
+
+  // collect time ticker
+  Add_Time_Ticker("Click", "Continue Button");
 }
 
 function resetLearning() {

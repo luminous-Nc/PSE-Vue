@@ -177,8 +177,8 @@ const DictContentTxt = {
                             "P8"    : null,
                             "P9"    : null,
                             "P10"   : PLCABBRobotTxt,
-                            "P11"   : PLCFANUCRobotTxt,
-                            "P12"   : null,
+                            "P11"   : null,
+                            "P12"   : PLCFANUCRobotTxt,
                             "P13"   : null,
                             "P14"   : null
                         }

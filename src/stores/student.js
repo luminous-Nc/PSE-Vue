@@ -229,7 +229,7 @@ export const calculateUseTime = (timeArray) => {
     console.log(timeArray)
     let totalTime = 0
     for (let oneTime of timeArray) {
-        console.log(oneTime)
+        // console.log(oneTime)
         if (oneTime.indexOf('idle') !== -1) {
             totalTime += oneTime[4]
         }

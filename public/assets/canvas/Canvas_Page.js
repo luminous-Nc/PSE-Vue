@@ -3,10 +3,12 @@ import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
 import { DePage, STPage } from "../properties/Properties_Page.js";
 
-export { Init_Canvas, Destroy_Canvas, Set_PageID, stage, PageID };
+export { Init_Canvas, Destroy_Canvas, 
+         Set_Page_ID, Set_Page_Name, stage, PageID, PageName };
 
 var stage;
 var PageID;
+var PageName;
 
 // main
 function Init_Canvas(CanvasRef){
@@ -41,6 +43,10 @@ function Destroy_Canvas(){
     stage = null;
 }
 
-function Set_PageID(NewID){
+function Set_Page_ID(NewID){
     PageID = NewID;
+}
+
+function Set_Page_Name(NewName){
+    PageName = NewName;
 }

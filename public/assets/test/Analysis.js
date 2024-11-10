@@ -5,7 +5,8 @@ import { Hide_Ports, Display_Legend,
 import { Init_Table } from "./Table_Create.js";
 import { stage } from "../canvas/Canvas_Page.js";
 
-var Analysis = Object(); // numerical analysis report
+var AllAnalysis = [];       // numerical analysis report
+var Analysis    = Object(); // numerical analysis report(single test)
 
 export { Init_Analysis };
 
@@ -15,8 +16,8 @@ function Init_Analysis(){
         Init_Symbol_A();
         General_Analysis();
         Display_Analysis();
-        console.log(Analysis);
-
+        AllAnalysis.push(Analysis);
+        console.log(AllAnalysis);
         return Analysis;
 }
 

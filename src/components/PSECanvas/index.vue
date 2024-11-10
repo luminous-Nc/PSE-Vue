@@ -21,7 +21,8 @@ import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
 
 import {Destroy_Canvas, Init_Canvas, 
-        Set_PageID, PageID} from "../../../public/assets/canvas/Canvas_Page.js";
+        Set_Page_ID, Set_Page_Name,
+        PageID} from "../../../public/assets/canvas/Canvas_Page.js";
 import {Init_Test} from "../../../public/assets/canvas/Canvas_Test.js";
 import {Init_Practice} from "../../../public/assets/test/Connection.js"
 import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
@@ -29,6 +30,7 @@ import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSize
 import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
 import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
 import "../../../public/assets/css/ButtonStyle.css";
+import { Add_Time_Ticker } from '../../../public/assets/test/Time_Log.js';
 
 const canvas = ref(null);
 const showResetButton = ref(false);
@@ -68,10 +70,9 @@ const initPSECanvas = () => {
         studentStore.currentStepFinished = false
     }
 
-    // PName = studentStore.currentStep.pnameID;
 
-    Set_PageID(studentStore.currentStep.pnameID);
-
+    Set_Page_ID(studentStore.currentStep.pnameID);
+    Set_Page_Name(studentStore.currentStep.menu_text);
     Init_Canvas(canvas);
 }
 watch(currentStepLocal,
@@ -100,7 +101,8 @@ watch(currentStepLocal,
           showCanvas.value = false
         }
 
-        Set_PageID(newStep.pnameID);
+        Set_Page_ID(newStep.pnameID);
+        Set_Page_Name(studentStore.currentStep.menu_text);
         Init_Canvas(canvas);
 
         studentStore.currentStepFinished = true
@@ -114,6 +116,9 @@ watch(currentStepLocal,
 
 function Reset_Canvas() {
     Init_Practice()
+
+    // collect time ticker
+    Add_Time_Ticker("Click", "Reset Button");
 };
 
 
@@ -128,6 +133,9 @@ function Analyze_Canvas() {
     }
     studentStore.addLearningRecord(MyAnalysis)
 
+    // collect time ticker
+    Set_Page_Name(studentStore.currentStep.menu_text);
+    Add_Time_Ticker("Click", "Submit Button");
 };
 
 function finishIntro() {

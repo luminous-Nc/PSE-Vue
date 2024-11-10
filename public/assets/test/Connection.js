@@ -3,6 +3,8 @@ import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "../canva
 import { Get_Path, Get_Break_Extend_Point,
          Remove_Repeated_Line_Waypoints, Reset_Dict_Scale } from "./Find_Path.js"
 import { PortSize } from "../properties/Properties_Connection.js";
+import { Add_Time_Ticker } from "./Time_Log.js";
+import { useStudentStore } from "@/stores/student.js";
 
 export { MyPorts, MyLines, Timer};
 export {Init_Practice, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
@@ -294,6 +296,10 @@ function Event_Click_Connect(e){
 
     // 2. display connection when two ports have been selected
     Display_Connection();
+
+    // collect time ticker
+    const Object = e.target.module + ": " + e.target.name;
+    Add_Time_Ticker("Click", Object);
 }
 
 function Select_Ports(target){
