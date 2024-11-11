@@ -1,6 +1,6 @@
 // record time ticker for all operations
 import { PageName } from "../canvas/Canvas_Page";
-export { Add_Time_Ticker, Init_Timer, Reset_Time_Ticker }
+export { TimerTickers, Add_Time_Ticker, Init_Timer, Reset_Time_Ticker }
 
 var TimeStart;
 var TimeNow;
@@ -17,7 +17,7 @@ function Add_Time_Ticker(Operation, Object = "N/A", Detail = ""){
 
     // add time ticker
     TimerTickers.push(TimerTicker);
-    
+
     console.log(TimerTickers);
 
 }

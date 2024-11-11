@@ -5,6 +5,8 @@ import { Hide_Ports, Display_Legend,
 import { Init_Table } from "./Table_Create.js";
 import { stage } from "../canvas/Canvas_Page.js";
 import { PageName } from "../canvas/Canvas_Page.js";
+import { Download_Analysis_Json } from "./File_Manager.js";
+export { AllAnalysis };
 
 var AllAnalysis = [];       // numerical analysis report
 var Analysis    = Object(); // numerical analysis report(single test)
@@ -17,6 +19,7 @@ function Init_Analysis(){
         Init_Symbol_A();
         General_Analysis();
         Display_Analysis();
+
         AllAnalysis.push(Analysis);
         console.log(AllAnalysis);
         return Analysis;
@@ -94,7 +97,8 @@ function Init_Legend(){
                (Port1Name == Key2Name) && (Port2Name == Key1Name)){
 
                 // append the correct connection
-                CorrectOut.push([...PortsIn[i], LinesIn[i]]);
+                // CorrectOut.push([...PortsIn[i], LinesIn[i]]);
+                CorrectOut.push([PortsIn[i][0]["name"], PortsIn[i][1]["name"]]);
 
                 // revise line's correct sign
                 LinesIn[i].Correct = true;
@@ -111,7 +115,8 @@ function Init_Legend(){
         }
 
         // append incorrect connection if unfound correct one
-        IncorrectOut.push([...PortsIn[i], LinesIn[i]]);
+        // IncorrectOut.push([...PortsIn[i], LinesIn[i]]);
+        IncorrectOut.push([PortsIn[i][0]["name"], PortsIn[i][1]["name"]]);
     }
 
     // correct and incorrect rate
@@ -119,12 +124,13 @@ function Init_Legend(){
     var IncorrectRateOut = 1 - CorrectRateOut;
 
     // integrate all results and return as an object
-    return {Line:           LinesIn,
+    return {
             Key:            KeysIn,
             Correct:        CorrectOut,
             CorrectRate:    CorrectRateOut,
             Incorrect:      IncorrectOut,
-            IncorrectRate:  IncorrectRateOut};
+            IncorrectRate:  IncorrectRateOut
+        };
 }
 
 // Process time elapsed
@@ -205,7 +211,7 @@ function Init_Legend(){
 
 // display analysis on the textbox
 function Display_Analysis(){
-    const Attempt = Analysis.Line.length;
+    const Attempt = Analysis.Correct.length + Analysis.Incorrect.length;
     const Correct = Analysis.Correct.length;
     const CorrectRate = (Analysis.CorrectRate * 100).toFixed(1);
     
