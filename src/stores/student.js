@@ -226,7 +226,7 @@ export const useStudentStore = defineStore('student', {
 });
 
 export const calculateUseTime = (timeArray) => {
-    console.log(timeArray)
+    // console.log(timeArray)
     let totalTime = 0
     for (let oneTime of timeArray) {
         // console.log(oneTime)

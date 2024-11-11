@@ -1,5 +1,4 @@
-import { Dict_Func_Txt, DictTitleTxt,
-         DictContentTxt } from '../properties/Properties_Description.js';
+import { DictTitleTxt, DictContentTxt } from '../properties/Properties_Description.js';
 import { TxtTPage, TxtCPage, AudPage } from '../properties/Properties_Page.js';
 import { AudioFolder, DictAudio } from '../properties/Properties_Audio.js';
 import { useStudentStore } from "@/stores/student.js";

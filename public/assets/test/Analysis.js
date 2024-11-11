@@ -4,6 +4,7 @@ import { Hide_Ports, Display_Legend,
          Reset_MsgBox, MyPorts, MyLines, Timer } from "./Connection.js"
 import { Init_Table } from "./Table_Create.js";
 import { stage } from "../canvas/Canvas_Page.js";
+import { PageName } from "../canvas/Canvas_Page.js";
 
 var AllAnalysis = [];       // numerical analysis report
 var Analysis    = Object(); // numerical analysis report(single test)
@@ -50,6 +51,9 @@ function Init_Legend(){
 
 // analyze connections
  function General_Analysis(){
+    // add page name
+    Object.assign(Analysis, {Name: PageName});
+    
     // <<Statistic Analysis>>
     // get correct and incorrect line
     var ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
