@@ -1,9 +1,11 @@
 // record time ticker for all operations
 import { PageName } from "../canvas/Canvas_Page";
-export { TimerTickers, Add_Time_Ticker, Init_Timer, Reset_Time_Ticker }
+export { TimerTickers, Add_Time_Ticker, Init_Timer, 
+         Reset_Time_Ticker, Get_Time_FileName }
 
 var TimeStart;
 var TimeNow;
+var TimeNowFileName;
 var TimerTickers = [];
 
 // main
@@ -45,4 +47,22 @@ function Format_Time(TimeIn){
                                                     }
                                         );
     return Timeout;
+}
+
+// format the time as legal file name
+function Get_Time_FileName(){
+    const date = new Date();
+    const months = String(date.getMonth() + 1).padStart(2, '0');
+    const days = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    const amPm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12; // Convert to 12-hour format and handle midnight as 12
+    hours = String(hours).padStart(2, '0');
+
+    return `${months}_${days}_${year}--${hours}_${minutes}_${seconds}_${amPm}`;
 }

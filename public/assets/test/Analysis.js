@@ -5,7 +5,6 @@ import { Hide_Ports, Display_Legend,
 import { Init_Table } from "./Table_Create.js";
 import { stage } from "../canvas/Canvas_Page.js";
 import { PageName } from "../canvas/Canvas_Page.js";
-import { Download_Analysis_Json } from "./File_Manager.js";
 export { AllAnalysis };
 
 var AllAnalysis = [];       // numerical analysis report

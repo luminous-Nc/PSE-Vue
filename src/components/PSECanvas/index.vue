@@ -31,8 +31,7 @@ import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Descrip
 import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
 import "../../../public/assets/css/ButtonStyle.css";
 import { Add_Time_Ticker } from '../../../public/assets/test/Time_Log.js';
-import { Download_Operation_Json, 
-         Download_Analysis_Json } from '../../../public/assets/test/File_Manager.js';
+import { Save_Data } from '../../../public/assets/test/File_Manager.js';
 
 const canvas = ref(null);
 const showResetButton = ref(false);
@@ -101,8 +100,7 @@ watch(currentStepLocal,
 
         if (newStep.type === "finish") {
           showCanvas.value = false
-          Download_Operation_Json();
-          Download_Analysis_Json();
+          Save_Data();
         }
 
         Set_Page_ID(newStep.pnameID);

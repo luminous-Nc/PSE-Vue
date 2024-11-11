@@ -1,14 +1,17 @@
 // manage json file and save it
-import { TimerTickers } from "./Time_Log.js"; 
+import { TimerTickers, Get_Time_FileName } from "./Time_Log.js"; 
 import { AllAnalysis } from "./Analysis.js";
-export { Download_Operation_Json, Download_Analysis_Json };
+export { Save_Data };
 
-function Download_Operation_Json(){
-    Download_Json({"data": TimerTickers}, "OperationData");
-}
+function Save_Data(){
+    const data = {
+                    "Operation": TimerTickers,
+                    "Analysis": AllAnalysis
+    }
 
-function Download_Analysis_Json(){
-    Download_Json({"data": AllAnalysis}, "AnalysisData");
+    const TimeFileName = Get_Time_FileName();
+
+    Download_Json(data, TimeFileName + "--" + "ASI_Data");
 }
 
 function Download_Json(Data, FileName){
@@ -22,7 +25,7 @@ function Download_Json(Data, FileName){
     const link = document.createElement("a");
 
     // Set the download attribute with the desired file name
-    link.download = FileName + ".json";
+    link.download =  FileName + ".json";
 
     // Create a URL for the Blob and set it as the href attribute
     link.href = URL.createObjectURL(blob);
