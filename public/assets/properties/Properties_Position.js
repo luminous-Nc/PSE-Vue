@@ -114,11 +114,27 @@ const PortPos = {
 
                     // relay
                     "Relay": {
-                                "RLCU":  {x:144, y:4}, 
-                                "RLCD": {x:144, y:203},
-                                "RLSWU": {x:46, y:4}, 
-                                "RLSWDL": {x:28, y:203},
-                                "RLSWDR": {x:72, y:203}
+                                "RLCU":     {x:144, y:4}, 
+                                "RLCD":     {x:144, y:203},
+                                "RLSWU":    {x:46, y:4}, 
+                                "RLSWDL":   {x:28, y:203},
+                                "RLSWDR":   {x:72, y:203}
+                    },
+
+                    "Relay1": {
+                                "RLCU1":    {x:80, y:1}, 
+                                "RLCD1":    {x:80, y:114},
+                                "RLSWU1":   {x:24, y:1}, 
+                                "RLSWDL1":  {x:14, y:114},
+                                "RLSWDR1":  {x:39, y:114}
+                    },
+
+                    "Relay2": {
+                                "RLCU2":    {x:80, y:1}, 
+                                "RLCD2":    {x:80, y:114},
+                                "RLSWU2":   {x:24, y:1}, 
+                                "RLSWDL2":  {x:14, y:114},
+                                "RLSWDR2":  {x:39, y:114}
                     },
 
                     // power
@@ -135,6 +151,11 @@ const PortPos = {
                     "48VDC": {
                                 "48VP": {x:29, y:7}, 
                                 "48VN": {x:75, y:7}
+                    },
+
+                    "120VDC": {
+                                "120VP": {x:22, y:4}, 
+                                "120VN": {x:60, y:4}
                     },
                     
                     "240VDC": {
@@ -153,6 +174,33 @@ const PortPos = {
                                 "LSR": {x:106, y:23}
                     },
                     
+                    "PressureSensor": {
+                                        "PRESL": {x:4, y:41}, 
+                                        "PRESR": {x:137, y:41}
+                    },
+
+                    "ProximitySensor": {
+                                        "PROSL": {x:4, y:41}, 
+                                        "PROSR": {x:137, y:41}
+                    },
+
+                    // light
+                    "Light": {
+                                "LTU": {x:22, y:4}, 
+                                "LTD": {x:22, y:90}
+                    },
+
+                    // solenoid
+                    "SolA": {
+                                "SAU": {x:22, y:4}, 
+                                "SAD": {x:22, y:90}
+                    },
+                    
+                    "SolB": {
+                                "SBU": {x:22, y:4}, 
+                                "SBD": {x:22, y:90}
+                    },
+
                     // PNP
                     "PNP": {
                                 "PNPB": {x:5, y:69}, 
@@ -204,7 +252,7 @@ const PortPos = {
                                     "IN-7": {x:150, y:213},   "IN-6": {x:228, y:213},
                                     "GNDPLCL": {x:150, y:263}, "GNDPLCR": {x:228, y:263},
                     
-                                    "Bound": {wl: 80, wr: 70, hu: 5, hd: 5}
+                                    "Bound": {wl: 120, wr: 90, hu: 25, hd: 5}
                     },
 
                     // "PLCInput(New)": {
@@ -225,7 +273,7 @@ const PortPos = {
                                     "DC-3": {x:156, y:213}, "OUT-3": {x:235, y:213},
                                     "DC-4": {x:156, y:263}, "OUT-4": {x:235, y:263},
                     
-                                    "Bound": {wl: 85, wr: 70, hu: 5, hd: 5}
+                                    "Bound": {wl: 125, wr: 90, hu: 25, hd: 5}
                     },
 
                     // "PLCOutput(New)" :{

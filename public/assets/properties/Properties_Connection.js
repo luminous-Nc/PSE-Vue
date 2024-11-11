@@ -1,5 +1,6 @@
 // all default properties and parameters in the port connection
-export { PortSize };
+export { PortSize, IsObstacleOn };
 
 const PortSize = 5;
 
+const IsObstacleOn = false;

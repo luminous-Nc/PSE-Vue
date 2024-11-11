@@ -1,6 +1,6 @@
 // manage json file and save it
-import { TimerTickers } from "./Time_Log"; 
-import { AllAnalysis } from "./Analysis";
+import { TimerTickers } from "./Time_Log.js"; 
+import { AllAnalysis } from "./Analysis.js";
 export { Download_Operation_Json, Download_Analysis_Json };
 
 function Download_Operation_Json(){

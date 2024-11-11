@@ -407,10 +407,77 @@ const P16Port = {
                                      ["RLSWU", "240VP"], ["RLSWDR", "CVL"], ["CVR", "240VN"]
                                     ]              
             };
+
+const P17Port = {
+                "PLCInput":         {
+                                        x:150, y:100, Scale: 0.9, Port: ["GNDPLCL", "IN-0", "IN-1", "IN-2", "IN-3"]
+                                    },
+
+                "PLCOutput":        {
+                                        x:600, y:100, Scale: 0.9, Port: ["DC-0", "DC-1", "DC-2", "OUT-0", "OUT-1", "OUT-2"],
+                                    },   
+
+                "Relay1":          {
+                                        x:400, y:500, Scale: 1, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                    },
+
+                "Relay2":          {
+                                        x:700, y:500, Scale: 1, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                    },                            
+
+                "120VDC":           {
+                                        x:650, y:700, Scale: 0.7, Port: ["120VP", "120VN"]
+                                    },
+
+                "240VDC":           {
+                                        x:200, y:700, Scale: 0.7, Port: ["240VP", "240VN"]
+                                    },
+
+                "PressureSensor":   {
+                                        x:50, y:200, Scale: 0.7, Port: ["PRESL", "PRESR"]
+                                    },
+
+                "ProximitySensor":  {
+                                        x:480, y:190, Scale: 0.7, Port: ["PROSL", "PROSR"]
+                                    },
+
+                "Light":          {
+                                        x:880, y:400, Port: ["LTU", "LTD"]
+                                    },
+
+                "SolA":           {
+                                        x:300, y:500, Port: ["SAU", "SAD"]
+                                    },
+
+                "SolB":           {
+                                        x:600, y:500, Port: ["SBU", "SBD"]
+                                    },
+
+                "ButtonStart":      {
+                                        x:480, y:120, Scale: 0.7, Port: ["BTSTRL", "BTSTRR"]
+                                    },
+
+                "ButtonMotorStop":  {
+                                        x:50, y:130, Scale: 0.7, Port: ["BTMSTPL", "BTMSTPR"]
+                                    },
+
+                "Key":              [
+                                     ["IN-1", "BTMSTPR"], ["IN-3", "PRESR"], ["IN-0", "BTSTRL"],
+                                     ["IN-2", "PROSL"], ["BTMSTPL", "240VP"], ["PRESL", "240VP"],
+                                     ["BTSTRR", "240VP"], ["PROSR", "240VP"], ["GNDPLCL", "240VN"],
+                                     ["DC-0", "240VP"], ["DC-1", "240VP"], ["DC-2", "240VP"], 
+                                     ["OUT-0", "RLCU1"], ["OUT-1", "RLCU2"], ["OUT-2", "LTU"],
+                                     ["LTD", "240VN"], ["RLCD1", "240VN"], ["RLCD2", "240VN"], 
+                                     ["RLSWU1", "SAU"], ["RLSWU2", "SBU"], ["120VN", "SBD"],
+                                     ["120VN", "SAD"], ["RLSWDR1", "120VP"], ["RLSWDR2", "120VP"]
+                                    ]              
+            };
+
 const DictModule = {
                         P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
                         P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
                         P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
-                        P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port
+                        P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port,
+                        P17: P17Port
                     };
 

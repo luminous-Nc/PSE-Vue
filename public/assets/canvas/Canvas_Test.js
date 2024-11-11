@@ -7,7 +7,7 @@ import { ObjRndPool, ObjRndPoolName } from "../properties/Properties_Random_Port
 import { Init_Practice } from "../test/Connection.js"
 import { stage, PageID } from "./Canvas_Page.js";
 import { DictImg } from "./Canvas_Image.js";
-import { PortSize } from "../properties/Properties_Connection.js";
+import { PortSize, IsObstacleOn } from "../properties/Properties_Connection.js";
 // import { stage } from "./Canvas_Page.js";
 
 var PName;
@@ -106,13 +106,14 @@ function Draw_Modules(){
         Modules[ModuleName].img = Btmp;
         stage.addChild(Btmp);
 
-        // draw image bound(obstacle) 
+        // draw image bound(obstacle)
         const Bound = Get_Img_Bound(PortPos[ModuleName]);
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
         Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
+        Obstacle.obj.visible = IsObstacleOn; // display the obstacle?
         Obstacles.push(Obstacle);
-        stage.addChild(Obstacle.obj);                                
-
+        stage.addChild(Obstacle.obj);    
+           
     }
     
     stage.update();         

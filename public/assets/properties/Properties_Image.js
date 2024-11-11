@@ -5,8 +5,10 @@ const ImgFolder = "./assets/images";
 const ImgsJpg = ["ABBRobot", "COMAURobot", "FANUCRobot",
                  "KUKARobot", "OMRONRobot", 
                  "PLCInput", "PLCOutput",
-                 "Relay", "5VDC", "24VDC", "240VDC",
-                 "LSensor", "Convey", 
+                 "Relay", "Relay1", "Relay2", 
+                 "5VDC", "24VDC", "120VDC", "240VDC",
+                 "LSensor", "Convey",  "PressureSensor", "ProximitySensor",
+                 "Light", "SolA", "SolB",
                  "ButtonStart", "ButtonMotorStop"];
 
 const ImgsJpeg = ["Legend", "Switch", "Motor", "Sensor", 
