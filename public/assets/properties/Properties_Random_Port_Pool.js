@@ -30,6 +30,12 @@ var PLCOutputPort   = ["OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"];
 
 var PLCOutputDCPort = ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4"];
 
+var PLCOutputPortSet = [
+                        ["OUT-0", "DC-0"], ["OUT-1", "DC-1"], 
+                        ["OUT-2", "DC-2"], ["OUT-3", "DC-3"], 
+                        ["OUT-4", "DC-4"], 
+                        ]
+
 // var PLCOutputNewPort = ["OUT-0", "OUT-1", "OUT-2", 
 //                         "OUT-3", "OUT-4", "OUT-5"];
 
@@ -122,6 +128,7 @@ export var ObjRndPool = {
                         PLCInputGNDPort:    PLCInputGNDPort,
                         PLCOutputPort:      PLCOutputPort,
                         PLCOutputDCPort:    PLCOutputDCPort,
+                        PLCOutputPortSet:   PLCOutputPortSet,
                         ABBDIPort:          ABBDIPort,
                         ABBDOPort:          ABBDOPort,
                         ABBGNDDIPort:       ABBGNDDIPort,
@@ -155,6 +162,7 @@ export var ObjRndPoolName = {
                                 PLCInputGNDPort:    "GNDRND",
                                 PLCOutputPort:      "OUT-RND",
                                 PLCOutputDCPort:    "DC-RND",
+                                PLCOutputPortSet:   ["OUT-RND", "DC-RND"],
                                 ABBDIPort:          "DI-RND",
                                 ABBDOPort:          "DO-RND",
                                 ABBGNDDIPort:       "GNDDI-RND",

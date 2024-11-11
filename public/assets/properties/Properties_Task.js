@@ -27,8 +27,8 @@ const P1Port = {
 const P2Port = {
                 "PLCOutput":{
                                 x:450, y:100, Port: ["", ""],
-                                RndPort: [[0, [0, 0], "PLCOutputPort"], 
-                                          [1, [1, 0], "PLCOutputDCPort"]]
+                                RndPortSet: [[0, 0, [0, 0],  "PLCOutputPortSet"], 
+                                             [1, 1, [1, 0]], "PLCOutputPortSet"]                                                              
                             },
 
                 "24VDC":    {

@@ -61,6 +61,8 @@ function Init_Object(){
 // custom random port for single practice
 function Custom_Random_Port(){
     for (const ModuleName in Modules){
+
+        // assign independent random port
         if (Modules[ModuleName].hasOwnProperty("RndPort")){
             for (const RNDPort of Modules[ModuleName]["RndPort"]){
                 // get current random port
@@ -80,6 +82,36 @@ function Custom_Random_Port(){
                 // assign random port key
                 Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
             }
+
+        // assign group random port
+        }else if (Modules[ModuleName].hasOwnProperty("RndPortSet")){         
+                // get random port set
+                const RndPortSet         = Modules[ModuleName]["RndPortSet"];
+                const RNDPortPoolName    = RndPortSet[0][3];
+                const RNDGeneralNameSet  = ObjRndPoolName[RNDPortPoolName];
+                const RNDPortPool        = ObjRndPool[RNDPortPoolName];
+                const RNDPortOutSet      = Get_Random_Array_Value(RNDPortPool);
+                
+                // assign each random port from port set
+                for (var i = 0; i < RNDPortOutSet.length; i++){
+                    const RndPortOutIndex = RndPortSet[i][0];
+                    const RNDPortIndex    = RndPortSet[i][1];
+                    const RNDPortKeyIndex = RndPortSet[i][2];
+
+                    // get current random port out
+                    const RNDPortOut = RNDPortOutSet[RndPortOutIndex];
+                    
+                    // assign random port
+                    Modules[ModuleName]["Port"][RNDPortIndex] = RNDPortOut
+                
+                    // assign random port general name
+                    ObjRndPorts[RNDPortOut] = RNDGeneralNameSet[RndPortOutIndex];
+
+                    // assign random port key
+                    Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
+                
+                }
+             
         }
     }
     
