@@ -298,8 +298,8 @@ function Event_Click_Connect(e){
     Display_Connection();
 
     // collect time ticker
-    const Object = e.target.module + ": " + e.target.name;
-    Add_Time_Ticker("Click", Object);
+    const Detail = e.target.name;
+    Add_Time_Ticker("Click", "Port", Detail);
 }
 
 function Select_Ports(target){

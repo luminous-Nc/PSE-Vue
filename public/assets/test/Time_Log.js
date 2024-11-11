@@ -3,15 +3,23 @@ import { PageName } from "../canvas/Canvas_Page";
 export { Add_Time_Ticker, Init_Timer, Reset_Time_Ticker }
 
 var TimeStart;
+var TimeNow;
 var TimerTickers = [];
 
 // main
-function Add_Time_Ticker(Operation, Object = "N/A"){
-    // const TimeNow = (new Date() - TimeStart) / 1000;
-    const TimeNow = Format_Time(new Date());
-    const TimerTicker = [TimeNow, PageName, Operation, Object];
+function Add_Time_Ticker(Operation, Object = "N/A", Detail = ""){
+    // get current formatted time 
+    TimeNow = new Date();
+    const TimeNowString = Format_Time(TimeNow);
+
+    // integrate time ticker
+    const TimerTicker = [TimeNowString, PageName, Operation, Object, Detail];
+
+    // add time ticker
     TimerTickers.push(TimerTicker);
+    
     console.log(TimerTickers);
+
 }
 
 // init timer
