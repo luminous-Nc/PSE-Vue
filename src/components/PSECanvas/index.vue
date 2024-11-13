@@ -2,9 +2,9 @@
     <div class="w-full h-full">
         <div class="h-full flex justify-center">
             <canvas v-show="showCanvas" ref="canvas" height="1000" width="1000" class="canvas"></canvas>
-          <div class="h-full flex flex-col justify-center" v-show="studentStore.getCurrentStep?.type === 'finish'">
-           <img src="/assets/images/Right_Panel_Image.jpg">
-          </div>
+            <div class="h-full flex flex-col justify-center" v-show="studentStore.getCurrentStep?.type === 'finish'">
+                <img src="/assets/images/Right_Panel_Image.jpg">
+            </div>
             <button v-if="showResetButton" class="button-83 reset-button" @click="Reset_Canvas">Reset</button>
             <button v-if="showSubmitButton" class="button-83 submit-button" @click="Analyze_Canvas">Submit</button>
         </div>
@@ -20,9 +20,11 @@ import {computed, nextTick, onMounted, ref, watch} from 'vue';
 import {useStudentStore} from "@/stores/student.js";
 import {stringify} from "postcss";
 
-import {Destroy_Canvas, Init_Canvas, 
-        Set_Page_ID, Set_Page_Name,
-        PageID} from "../../../public/assets/canvas/Canvas_Page.js";
+import {
+    Destroy_Canvas, Init_Canvas,
+    Set_Page_ID, Set_Page_Name,
+    PageID
+} from "../../../public/assets/canvas/Canvas_Page.js";
 import {Init_Test} from "../../../public/assets/canvas/Canvas_Test.js";
 import {Init_Practice} from "../../../public/assets/test/Connection.js"
 import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
@@ -30,8 +32,8 @@ import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSize
 import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
 import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
 import "../../../public/assets/css/ButtonStyle.css";
-import { Add_Time_Ticker } from '../../../public/assets/test/Time_Log.js';
-import { Save_Data } from '../../../public/assets/test/File_Manager.js';
+import {Add_Time_Ticker} from '../../../public/assets/test/Time_Log.js';
+import {Save_Data} from '../../../public/assets/test/File_Manager.js';
 
 const canvas = ref(null);
 const showResetButton = ref(false);
@@ -43,7 +45,7 @@ const currentStepLocal = computed(() => studentStore.currentStep);
 
 Load_Img(); // preload all images
 
-onMounted(()=> {
+onMounted(() => {
     checkId();
 })
 
@@ -78,47 +80,45 @@ const initPSECanvas = () => {
 }
 watch(currentStepLocal,
     (newStep, oldStep) => {
-    // Check if 'newStep' and 'newStep.id' are defined
-    if (oldStep && oldStep.id) {
-        // Destroy_Canvas();
-        if (oldStep.type === "description") {
-            Next_Step_Stop_Audio()
+        // Check if 'newStep' and 'newStep.id' are defined
+        if (oldStep && oldStep.id) {
+            // Destroy_Canvas();
+            if (oldStep.type === "description") {
+                Next_Step_Stop_Audio()
+            }
         }
-    }
-    if (newStep && newStep.id) {
-        showResetButton.value = false
-        showSubmitButton.value = false
-        if (newStep.type === "introduction") {
-            studentStore.currentStepFinished = true
+        if (newStep && newStep.id) {
+            showResetButton.value = false
+            showSubmitButton.value = false
+            if (newStep.type === "introduction") {
+                studentStore.currentStepFinished = true
+            }
+
+            if (newStep.type === "interactive") {
+                showResetButton.value = true
+                showSubmitButton.value = true
+                studentStore.currentStepFinished = false
+            }
+
+            if (newStep.type === "finish") {
+                showCanvas.value = false
+                Save_Data();
+            }
+
+            Set_Page_ID(newStep.pnameID);
+            Set_Page_Name(studentStore.currentStep.menu_text);
+            Init_Canvas(canvas);
+
+        } else {
+            console.log("currentStep or currentTopic.id is undefined.");
         }
-
-        if (newStep.type === "interactive") {
-            showResetButton.value = true
-            showSubmitButton.value = true
-            studentStore.currentStepFinished = false
-        }
-
-        if (newStep.type === "finish") {
-          showCanvas.value = false
-          Save_Data();
-        }
-
-        Set_Page_ID(newStep.pnameID);
-        Set_Page_Name(studentStore.currentStep.menu_text);
-        Init_Canvas(canvas);
-
-        studentStore.currentStepFinished = true
-    } else {
-        console.log("currentStep or currentTopic.id is undefined.");
-    }
-},
-{deep:true},
-    { immediate: true }
+    },
+    {deep: true},
+    {immediate: true}
 );
 
 function Reset_Canvas() {
     Init_Practice()
-
     // collect time ticker
     Add_Time_Ticker("Click", "Reset Button");
 };

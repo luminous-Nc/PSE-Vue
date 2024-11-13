@@ -1,12 +1,13 @@
 // record time ticker for all operations
 import { PageName } from "../canvas/Canvas_Page";
-export { TimerTickers, Add_Time_Ticker, Init_Timer, 
+
+export { TimerTickers, Add_Time_Ticker, Init_Timer,
          Reset_Time_Ticker, Get_Time_FileName }
 
-var TimeStart;
-var TimeNow;
-var TimeNowFileName;
-var TimerTickers = [];
+let TimeStart;
+let TimeNow;
+let TimeNowFileName;
+let TimerTickers = [];
 
 // main
 function Add_Time_Ticker(Operation, Object = "N/A", Detail = ""){

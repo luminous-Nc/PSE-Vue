@@ -95,6 +95,7 @@ export const useStudentStore = defineStore('student', {
         },
 
         finishComprehensiveTest(analysis) {
+            console.log(analysis)
             let knowledgeLevel = ''
             let learnModule = analysis.LearnModule
             let modulesToCheckPLC = ['PLCInput', 'PLCOutput', 'ButtonStart', 'ButtonMotorStop']
@@ -121,7 +122,7 @@ export const useStudentStore = defineStore('student', {
             let correctConnections = analysis.Correct
             for (let oneCorrect of correctConnections) {
                 console.log(oneCorrect)
-                modulesAlreadyPass.push(oneCorrect[2].Module)
+                modulesAlreadyPass.push(oneCorrect)
             }
 
             function arraysContainSameElements(arr1, arr2) {
@@ -145,9 +146,9 @@ export const useStudentStore = defineStore('student', {
             removeMatchingElements(modulesAlreadyPass, modulesToCheckPLCRobotV2);
 
 
-            console.log(modulesToCheckPLCV2.length)
-            console.log(modulesToCheckRobotV2.length)
-            console.log(modulesToCheckPLCRobotV2.length)
+            // console.log(modulesToCheckPLCV2.length)
+            // console.log(modulesToCheckRobotV2.length)
+            // console.log(modulesToCheckPLCRobotV2.length)
 
             // const containsAnyPLC = modulesToCheckPLC.some(module => learnModule.includes(module));
             // const containsAnyRobot = modulesToCheckRobot.some(module => learnModule.includes(module));
@@ -167,19 +168,19 @@ export const useStudentStore = defineStore('student', {
             switch (knowledgeLevel) {
                 case "plc":
                     newSteps = ["2.1", "2.2", "2.3", "2.4", "2.5", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "99"]
-                    this.responseMessage = "Your knowledge level is estimated to 'PLC'"
+                    this.responseMessage = "Your mastery level is assessed as 'PLC'. Start with this module to continue your learning."
                     break
                 case "robot":
                     newSteps = ["3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "4.4", "4.5", "99"]
-                    this.responseMessage = "Your knowledge level is estimated to 'Robot'"
+                    this.responseMessage = "Your mastery level is assessed as 'Robot'. Start with this module to continue your learning."
                     break
                 case "plcrobot":
                     newSteps = ["4.1", "4.2", "4.3", "4.4", "4.5", "99"]
-                    this.responseMessage = "Your knowledge level is estimated to 'PLC and Robot'"
+                    this.responseMessage = "Your mastery level is assessed as 'PLC & Robot'. Start with this module to continue your learning."
                     break
                 case 'finish':
                     newSteps = []
-                    this.responseMessage = "Your knowledge level is estimated to 'Finish"
+                    this.responseMessage = "Congratulations! You've mastered all the content. You can now finish your learning."
                     break
             }
             this.addNewSteps(newSteps)
@@ -192,13 +193,13 @@ export const useStudentStore = defineStore('student', {
                 this.direction = 'previous'
                 this.repeatMode = true
                 this.finishCurrentStep()
-                this.responseMessage = "Incorrect. Learn again"
+                this.responseMessage = "That's not correct. Review and try again."
             } else {
                 // this.responseMessage = analysis.Key
                 this.direction = 'next'
                 this.repeatMode = false
                 this.finishCurrentStep()
-                this.responseMessage = "Correct! You use time " + calculateUseTime(analysis.Time) + " seconds!"
+                this.responseMessage = "Well done! It took you " + calculateUseTime(analysis.Time) + " seconds."
             }
         },
     },

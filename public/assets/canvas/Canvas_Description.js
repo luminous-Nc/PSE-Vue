@@ -196,8 +196,8 @@ function Init_Voice() {
     // Event listener to
     AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
-
-    // MyAudio.play(); // issue on autoplaying audio
+    Draw_Pause_Toggle(AudioToggle);
+    MyAudio.play(); // issue on autoplaying audio //Works during test on my devices
     stage.update();
 }
 
@@ -226,7 +226,7 @@ function Update_Bar() {
     const studentStore = useStudentStore();
 
     // check if the audio is end
-    let threshold = 0.2
+    let threshold = 0.14
     if (studentStore.repeatMode) {
         threshold = 0
     }

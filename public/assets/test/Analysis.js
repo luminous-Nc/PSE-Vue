@@ -39,15 +39,15 @@ function Init_Symbol_A(){
 
 // initialize connection legend
 function Init_Legend(){
-        var key     = "Legend";
-        var Btmp    = new createjs.Bitmap(DictImg[key]);
-        Btmp.name   = key;
-        Btmp.x      = OtherPos[key].x; // Center horizontally
-        Btmp.y      = OtherPos[key].y; // Center vertically
-        ImgLegend   = Btmp;
-
-        stage.addChild(ImgLegend);
-        stage.update();
+        // var key     = "Legend";
+        // var Btmp    = new createjs.Bitmap(DictImg[key]);
+        // Btmp.name   = key;
+        // Btmp.x      = OtherPos[key].x; // Center horizontally
+        // Btmp.y      = OtherPos[key].y; // Center vertically
+        // ImgLegend   = Btmp;
+        //
+        // stage.addChild(ImgLegend);
+        // stage.update();
 
 }
 

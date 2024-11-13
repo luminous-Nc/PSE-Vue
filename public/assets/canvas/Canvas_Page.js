@@ -6,9 +6,9 @@ import { DePage, STPage } from "../properties/Properties_Page.js";
 export { Init_Canvas, Destroy_Canvas, 
          Set_Page_ID, Set_Page_Name, stage, PageID, PageName };
 
-var stage;
-var PageID;
-var PageName;
+let stage;
+let PageID;
+let PageName;
 
 // main
 function Init_Canvas(CanvasRef){
