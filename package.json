@@ -7,6 +7,7 @@
     "dev": "vite",
     "build-test": "vite build --mode test",
     "build-ncc": "vite build --mode ncc",
+    "build-hsieh": "vite build --mode hsieh",
     "preview": "vite preview"
   },
   "dependencies": {
