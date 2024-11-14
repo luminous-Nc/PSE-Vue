@@ -226,8 +226,8 @@ export const P12Msg = [
      },
      {
         Ports: ["24VP","DOSRC1-RND"],
-        Message: "The positivve terminal does not connect to the DOSRC1",
-        Color: "Red"
+        Message: "The positive terminal connects to the DOSRC1",
+        Color: "Green"
      },
      {
         Ports: ["24VP","BTSTRL"],
@@ -256,13 +256,13 @@ export const P12Msg = [
      },
      {
         Ports: ["24VN","0V-RND"],
-        Message: "The negative terminal does not connect to the 0V",
-        Color: "Red"
+        Message: "The negative terminal connects to the 0V",
+        Color: "Green"
      },
      {
         Ports: ["24VN","DOSRC1-RND"],
-        Message: "The negative terminal connects to the DOSRC1",
-        Color: "Green"
+        Message: "The negative terminal does not connect to the DOSRC1",
+        Color: "Red"
      },
      {
         Ports: ["24VN","BTSTRL"],

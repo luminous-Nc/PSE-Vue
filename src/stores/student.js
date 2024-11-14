@@ -95,7 +95,7 @@ export const useStudentStore = defineStore('student', {
         },
 
         finishComprehensiveTest(analysis) {
-            console.log(analysis)
+            // console.log(analysis)
             let knowledgeLevel = ''
             let learnModule = analysis.LearnModule
             let modulesToCheckPLC = ['PLCInput', 'PLCOutput', 'ButtonStart', 'ButtonMotorStop']
@@ -121,7 +121,7 @@ export const useStudentStore = defineStore('student', {
 
             let correctConnections = analysis.Correct
             for (let oneCorrect of correctConnections) {
-                console.log(oneCorrect)
+                // console.log(oneCorrect)
                 modulesAlreadyPass.push(oneCorrect)
             }
 
