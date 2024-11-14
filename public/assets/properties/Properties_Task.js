@@ -39,7 +39,7 @@ const P2Port = {
                                 x:150, y:150, Port: ["MTL", "MTR"]
                             },
                 
-                "Key":      [["", "MTR"], ["", "24VN"], ["MTL", "24VP"]]
+                "Key":      [["", "MTR"], ["", "24VP"], ["MTL", "24VN"]]
             };
 
 const P3Port = {
