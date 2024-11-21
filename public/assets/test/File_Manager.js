@@ -1,10 +1,13 @@
 // manage json file and save it
 import { TimerTickers, Get_Time_FileName } from "./Time_Log.js"; 
 import { AllAnalysis } from "./Analysis.js";
+import {useStudentStore} from "@/stores/student.js";
 export { Save_Data };
 
 function Save_Data(){
+    const studentStore = useStudentStore()
     const data = {
+                    "LearningStyle": studentStore.learningStyle,
                     "Operation": TimerTickers,
                     "Analysis": AllAnalysis
     }
@@ -15,8 +18,9 @@ function Save_Data(){
 }
 
 function Download_Json(Data, FileName){
+
     // Convert it to a JSON string
-    const jsonString = JSON.stringify(Data);
+    const jsonString = JSON.stringify(Data,null,2);
 
     // Create a Blob with the JSON data
     const blob = new Blob([jsonString], { type: "application/json" });

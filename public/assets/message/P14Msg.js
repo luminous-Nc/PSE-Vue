@@ -121,7 +121,7 @@ export const P14Msg = [
      },
      {
         Ports: ["24VP","GND-RND"],
-        Message: "The positivve terminal does not connect to the ground",
+        Message: "The positive terminal does not connect to the ground",
         Color: "Red"
      },
      {
