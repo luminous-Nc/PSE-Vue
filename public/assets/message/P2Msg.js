@@ -26,8 +26,8 @@ export const P2Msg = [
     },
     {
         Ports: ["DC-RND","24VP"],
-        Message: "The DC can be connected to the positive terminal, but it reverses the polarity of the curcuit",
-        Color: "Yellow"
+        Message: "The DC is connected to the positive terminal",
+        Color: "Green"
     },
     {
         Ports: ["DC-RND","24VN"],
@@ -61,8 +61,8 @@ export const P2Msg = [
     },
     {
         Ports: ["24VN","MTL"],
-        Message: "The negative terminal should not be connected to the motor",
-        Color: "Red"
+        Message: "The negative terminal is connected to the motor",
+        Color: "Green"
     },
     {
         Ports: ["24VN","MTR"],
