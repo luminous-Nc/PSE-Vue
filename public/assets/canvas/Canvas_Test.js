@@ -61,7 +61,6 @@ function Init_Object(){
 // custom random port for single practice
 function Custom_Random_Port(){
     for (const ModuleName in Modules){
-
         // assign independent random port
         if (Modules[ModuleName].hasOwnProperty("RndPort")){
             for (const RNDPort of Modules[ModuleName]["RndPort"]){
@@ -81,10 +80,11 @@ function Custom_Random_Port(){
                 
                 // assign random port key
                 Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
-            }
+            }      
+        } 
 
         // assign group random port
-        }else if (Modules[ModuleName].hasOwnProperty("RndPortSet")){         
+        if (Modules[ModuleName].hasOwnProperty("RndPortSet")){         
                 // get random port set
                 const RndPortSet         = Modules[ModuleName]["RndPortSet"];
                 const RNDPortPoolName    = RndPortSet[0][3];
@@ -108,10 +108,8 @@ function Custom_Random_Port(){
                     ObjRndPorts[RNDPortOut] = RNDGeneralNameSet[RndPortOutIndex];
 
                     // assign random port key
-                    Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
-                
-                }
-             
+                    Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;     
+                }             
         }
     }
     

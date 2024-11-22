@@ -3,7 +3,7 @@ import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "../canva
 import { Get_Path, Get_Break_Extend_Point,
          Remove_Repeated_Line_Waypoints, Reset_Dict_Scale } from "./Find_Path.js"
 import { PortSize } from "../properties/Properties_Connection.js";
-import { Add_Time_Ticker } from "./Time_Log.js";
+import { Add_Log } from "../record/Log.js";
 import { useStudentStore } from "@/stores/student.js";
 
 export { MyPorts, MyLines, Timer};
@@ -299,7 +299,7 @@ function Event_Click_Connect(e){
 
     // collect time ticker
     const Detail = e.target.name;
-    Add_Time_Ticker("Click", "Port", Detail);
+    Add_Log("Click", "Port", Detail);
 }
 
 function Select_Ports(target){

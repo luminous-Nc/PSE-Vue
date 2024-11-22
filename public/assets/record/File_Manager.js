@@ -1,18 +1,18 @@
 // manage json file and save it
-import { TimerTickers, Get_Time_FileName } from "./Time_Log.js"; 
-import { AllAnalysis } from "./Analysis.js";
-import {useStudentStore} from "@/stores/student.js";
+import { Log } from "./Log.js"; 
+import { AllAnalysis } from "../test/Analysis.js";
+import { useStudentStore } from "@/stores/student.js";
 export { Save_Data };
 
 function Save_Data(){
     const studentStore = useStudentStore()
     const data = {
                     "LearningStyle": studentStore.learningStyle,
-                    "Operation": TimerTickers,
+                    "Operation": Log,
                     "Analysis": AllAnalysis
     }
 
-    const TimeFileName = Get_Time_FileName();
+    const TimeFileName = Get_Time_String();
 
     Download_Json(data, TimeFileName + "--" + "ASI_Data");
 }
@@ -42,4 +42,22 @@ function Download_Json(Data, FileName){
 
     // Remove the link from the document
     document.body.removeChild(link);
+}
+
+// format the time as legal file name
+function Get_Time_String(){
+    const date = new Date();
+    const months = String(date.getMonth() + 1).padStart(2, '0');
+    const days = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+
+    let hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    const amPm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12; // Convert to 12-hour format and handle midnight as 12
+    hours = String(hours).padStart(2, '0');
+
+    return `${months}_${days}_${year}--${hours}_${minutes}_${seconds}_${amPm}`;
 }

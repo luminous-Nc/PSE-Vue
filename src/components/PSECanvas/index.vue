@@ -32,8 +32,8 @@ import {initCanvasWithCountdown} from "../../../public/assets/CanvasEventandSize
 import {Next_Step_Stop_Audio} from "../../../public/assets/canvas/Canvas_Description.js";
 import {Load_Img} from "../../../public/assets/canvas/Canvas_Image.js";
 import "../../../public/assets/css/ButtonStyle.css";
-import {Add_Time_Ticker} from '../../../public/assets/test/Time_Log.js';
-import {Save_Data} from '../../../public/assets/test/File_Manager.js';
+import {Add_Log} from '../../../public/assets/record/Log.js';
+import {Save_Data} from '../../../public/assets/record/File_Manager.js';
 
 const canvas = ref(null);
 const showResetButton = ref(false);
@@ -120,7 +120,7 @@ watch(currentStepLocal,
 function Reset_Canvas() {
     Init_Practice()
     // collect time ticker
-    Add_Time_Ticker("Click", "Reset Button");
+    Add_Log("Click", "Reset Button");
 };
 
 
@@ -136,7 +136,7 @@ function Analyze_Canvas() {
     studentStore.addLearningRecord(MyAnalysis)
 
     // collect time ticker
-    Add_Time_Ticker("Click", "Submit Button");
+    Add_Log("Click", "Submit Button");
 };
 
 function finishIntro() {

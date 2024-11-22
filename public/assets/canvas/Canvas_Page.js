@@ -1,6 +1,7 @@
 // display Canvas
 import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
+import { Init_Design } from "./Canvas_Design_Test.js";
 import { DePage, STPage } from "../properties/Properties_Page.js";
 
 export { Init_Canvas, Destroy_Canvas, 
@@ -30,6 +31,7 @@ function Init_Canvas(CanvasRef){
             break;
         case STPage.hasOwnProperty(PageID):
             Init_Test();
+            // Init_Design();
             break;
     }
 }

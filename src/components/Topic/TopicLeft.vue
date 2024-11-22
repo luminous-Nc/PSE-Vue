@@ -32,9 +32,9 @@
         Restart
       </button>
 
-<!--      <button @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-->
-<!--        Continue Debug-->
-<!--      </button>-->
+      <button @click="nextButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">-->
+       Continue Debug
+      </button>
 
     </div>
   </div>
@@ -49,7 +49,7 @@ import {useStudentStore} from "@/stores/student.js";
 import {storeToRefs} from 'pinia'
 import {watch} from "vue";
 
-import { Add_Time_Ticker } from "../../../public/assets/test/Time_Log";
+import { Add_Log } from "../../../public/assets/record/Log";
 
 const stepStore = useStepsStore();
 const studentStore = useStudentStore();
@@ -59,7 +59,7 @@ function nextButton() {
   studentStore.continue();
 
   // collect time ticker
-  Add_Time_Ticker("Click", "Continue Button");
+  Add_Log("Click", "Continue Button");
 }
 
 function resetLearning() {
