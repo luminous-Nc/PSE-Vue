@@ -473,11 +473,100 @@ const P17Port = {
                                     ]              
             };
 
+const PChocolateMachineStage1 = {
+                "PLCInput":     {
+                                    x:129, y:223, Scale: 0.6, 
+                                    Port: ["GNDPLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutput":    {
+                                    x:485, y:229, Scale: 0.6, 
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                },   
+
+                "Relay1":       {
+                                    x:498, y:518, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                },
+
+                "Relay2":       {
+                                    x:634, y:519, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                }, 
+
+                "Relay3":       {
+                                    x:887, y:233, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },  
+
+                "Relay4":       {
+                                    x:888, y:411, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },  
+
+                "ProS1":        {
+                                    x:17, y:300, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                },                
+
+                "ProS2":        {
+                                    x:118, y:437, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
+                                },  
+
+                "ProS3":        {
+                                    x:319, y:442, Scale: 0.5, Port: ["BR3", "BK3", "BL3"]
+                                },  
+
+                "ProS4":        {
+                                    x:359, y:290, Scale: 0.5, Port: ["BR4", "BK4", "BL4"]
+                                },  
+
+                "24VDCS":       {
+                                    x:181, y:621, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "120VDCS":      {
+                                    x:649, y:633, Scale: 0.7, Port: ["120VPS", "120VNS"]
+                                },
+
+                "L":            {
+                                    x:723, y:249, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+                "V":            {
+                                    x:722, y:317, Scale: 0.7, Port: ["VL", "VR"]
+                                },
+
+                "R":            {
+                                    x:827, y:340, Scale: 0.7, Port: ["RL", "RR"]
+                                },
+
+                "M":            {
+                                    x:899, y:545, Scale: 0.7, Port: ["MU", "MD"]
+                                },
+
+                "P1":           {
+                                    x:722, y:411, Scale: 0.7, Port: ["P1L", "P1R"]
+                                },
+
+                "P2":           {
+                                    x:722, y:450, Scale: 0.7, Port: ["P2L", "P2R"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:46, y:246, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:360, y:247, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },                    
+
+                "Key":              [
+                                    
+                                    ]              
+            };
+
 const DictModule = {
                         P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
                         P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
                         P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
                         P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port,
-                        P17: P17Port
+                        P17: P17Port, P18: PChocolateMachineStage1
                     };
 

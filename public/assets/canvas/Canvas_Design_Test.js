@@ -46,25 +46,26 @@ function Draw_Modules(){
     Obstacles = [];
 
     for (const ModuleName in Modules){
+        // initialize image
         var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
         Btmp.name   = ModuleName;
         Btmp.x      = Modules[ModuleName].x; // Center horizontally
         Btmp.y      = Modules[ModuleName].y; // Center vertically
 
         // resize the image if applicable
-        const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
+        const  Scale = Get_Img_Scale(ModuleName)
         Btmp.scaleX        = Scale;
         Btmp.scaleY        = Scale;
         Btmp.bound  = {"width" : Btmp.image.width * Scale,
                        "height": Btmp.image.height * Scale
-                    };
+                      };
 
         // integrate the image
         // Modules[ModuleName].img = Btmp;
         stage.addChild(Btmp);
 
         // draw image bound(obstacle)
-        const Bound = Get_Img_Bound(PortPos[ModuleName]);
+        const Bound = Get_Img_Bound(ModuleName);
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
         Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
         Obstacle.obj.visible = IsObstacleOn; // display the obstacle?
@@ -81,7 +82,9 @@ function Draw_Modules(){
 }
 
 
-function Get_Img_Scale(Module){
+function Get_Img_Scale(ModuleName){  
+    // get module
+    const Module = Modules[ModuleName];
     if (Module.hasOwnProperty("Scale")){
         return Module["Scale"];
     }else{
@@ -89,12 +92,21 @@ function Get_Img_Scale(Module){
     }
 }
 
-function Get_Img_Bound(Module){
-    if (Module.hasOwnProperty("Bound")){
-        return Module["Bound"];
-    }else{
+function Get_Img_Bound(ModuleName){
+    // check if the module port position has been generated
+    if (!PortPos.hasOwnProperty(ModuleName)){
+        console.error(`${ModuleName} port does not exist!`)
         return {wl: 0, wr: 0, hu: 0, hd: 0};
     }
+    
+    // check if the module port has "bound"
+    const ModulePos = PortPos[ModuleName];
+    if (!ModulePos.hasOwnProperty("Bound")){
+        return {wl: 0, wr: 0, hu: 0, hd: 0};
+    }
+        
+    return ModulePos["Bound"];
+
 }
 
 function Init_Rec_Obstacle(Img, b, s){

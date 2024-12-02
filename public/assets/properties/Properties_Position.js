@@ -137,6 +137,22 @@ const PortPos = {
                                 "RLSWDR2":  {x:39, y:114}
                     },
 
+                    "Relay3": {
+                                "RLCU3":    {x:80, y:1}, 
+                                "RLCD3":    {x:80, y:114},
+                                "RLSWU3":   {x:24, y:1}, 
+                                "RLSWDL3":  {x:14, y:114},
+                                "RLSWDR3":  {x:39, y:114}
+                    },
+
+                    "Relay4": {
+                                "RLCU4":    {x:80, y:1}, 
+                                "RLCD4":    {x:80, y:114},
+                                "RLSWU4":   {x:24, y:1}, 
+                                "RLSWDL4":  {x:14, y:114},
+                                "RLSWDR4":  {x:39, y:114}
+                    },
+
                     // power
                     "5VDC": {
                                 "5VP": {x:32, y:7}, 
@@ -148,6 +164,12 @@ const PortPos = {
                                 "24VN": {x:77, y:7}
                     },
                     
+                    "24VDCS": {
+                                "24VPS": {x:3, y:80}, 
+                                "24VNS": {x:142, y:80},
+                                "Bound": {wl: 0, wr: 0, hu: 50, hd: 12}
+                    },
+
                     "48VDC": {
                                 "48VP": {x:29, y:7}, 
                                 "48VN": {x:75, y:7}
@@ -157,7 +179,13 @@ const PortPos = {
                                 "120VP": {x:22, y:4}, 
                                 "120VN": {x:60, y:4}
                     },
-                    
+
+                    "120VDCS": {
+                                "120VPS": {x:3, y:80}, 
+                                "120VNS": {x:142, y:80},
+                                "Bound": {wl: 0, wr: 0, hu: 50, hd: 12}
+                    },          
+
                     "240VDC": {
                                 "240VP": {x:22, y:4}, 
                                 "240VN": {x:60, y:4}
@@ -179,9 +207,38 @@ const PortPos = {
                                         "PRESR": {x:137, y:41}
                     },
 
+                    // proximity sensor
                     "ProximitySensor": {
                                         "PROSL": {x:4, y:41}, 
                                         "PROSR": {x:137, y:41}
+                    },
+
+                    "ProS1": {
+                                "BR1": {x:132, y:18}, 
+                                "BK1": {x:132, y:55},
+                                "BL1": {x:150, y:92},
+                                "Bound": {wl: 10, wr: 25, hu: 20, hd: 20}
+                    },
+                
+                    "ProS2": {
+                                "BR2": {x:132, y:18}, 
+                                "BK2": {x:132, y:55},
+                                "BL2": {x:150, y:92},
+                                "Bound": {wl: 10, wr: 25, hu: 20, hd: 20}
+                    },
+           
+                    "ProS3": {
+                                "BR3": {x:132, y:18}, 
+                                "BK3": {x:132, y:55},
+                                "BL3": {x:150, y:92},
+                                "Bound": {wl: 10, wr: 25, hu: 20, hd: 20}
+                    },
+   
+                    "ProS4": {
+                                "BR4": {x:132, y:18}, 
+                                "BK4": {x:132, y:55},
+                                "BL4": {x:150, y:92},
+                                "Bound": {wl: 10, wr: 25, hu: 20, hd: 20}
                     },
 
                     // light
@@ -221,7 +278,17 @@ const PortPos = {
                                 "SWL": {x:3, y:23}, 
                                 "SWR": {x:102, y:23}
                     },
-                    
+
+                    "SwitchSP1": {
+                                    "SWSPL1": {x: 1, y: 19},
+                                    "SWSPR1": {x: 69, y: 19}
+                    },
+
+                    "SwitchSP2": {
+                                    "SWSPL2": {x: 1, y: 19},
+                                    "SWSPR2": {x: 69, y: 19}
+                    },
+        
                     // motor
                     "Motor": {
                                 "MTL": {x:6, y:28}, 
@@ -244,6 +311,42 @@ const PortPos = {
                                     "BTMSTPR": {x:83, y:34}
                     },
                     
+                    // simple letter
+                    "L": {
+                            "LL": {x: 3, y: 23},
+                            "LR": {x: 98, y: 23},
+                            "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                    },
+
+                    "V": {
+                            "VL": {x: 3, y: 23},
+                            "VR": {x: 98, y: 23},
+                            "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                    },
+
+                    "R": {
+                            "RL": {x: 3, y: 23}, 
+                            "RR": {x: 98, y: 23},
+                            "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                    },
+
+                    "M": {
+                            "MU": {x: 22, y: 4},
+                            "MD": {x: 22, y: 90}
+                    },
+
+                    "P1": {
+                            "P1L": {x: 3, y: 23},
+                            "P1R": {x: 98, y: 23},
+                            "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                    },
+
+                    "P2": {
+                            "P2L": {x: 3, y: 23},
+                            "P2R": {x: 98, y: 23},
+                            "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                    },                   
+
                     // PLC input
                     "PLCInput": {
                                     "IN-1": {x:150, y:65},    "IN-0": {x:228, y:65},
