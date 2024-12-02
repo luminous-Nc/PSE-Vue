@@ -154,22 +154,24 @@ function Draw_Modules_Ports(){
     ObjPorts = [];
     
     for(const ModuleName in Modules){
-        for(const PortName of Modules[ModuleName].Port){
-            var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
-            var circle = new createjs.Shape();
-            circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
-            circle.module = ModuleName;
-            circle.name   = PortName; 
-            if(ObjRndPorts.hasOwnProperty(PortName)){
-                circle.rndname = ObjRndPorts[PortName];
-            }
-            // console.log(ModuleName + "->" + PortName);
-            circle.x = Modules[ModuleName].x + PortPos[ModuleName][PortName].x * Scale;
-            circle.y = Modules[ModuleName].y + PortPos[ModuleName][PortName].y * Scale;
-            ObjPorts.push(circle);
-            stage.addChild(circle);
+        if (Modules[ModuleName].hasOwnProperty("Port")){
+            for(const PortName of Modules[ModuleName].Port){
+                var Scale = Get_Img_Scale(DictModule[PName][ModuleName])
+                var circle = new createjs.Shape();
+                circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
+                circle.module = ModuleName;
+                circle.name   = PortName; 
+                if(ObjRndPorts.hasOwnProperty(PortName)){
+                    circle.rndname = ObjRndPorts[PortName];
+                }
+                // console.log(ModuleName + "->" + PortName);
+                circle.x = Modules[ModuleName].x + PortPos[ModuleName][PortName].x * Scale;
+                circle.y = Modules[ModuleName].y + PortPos[ModuleName][PortName].y * Scale;
+                ObjPorts.push(circle);
+                stage.addChild(circle);
+                
             
-        
+            }
         }
     } 
     stage.update();

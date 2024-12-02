@@ -269,7 +269,7 @@ function All_Events_Remove(objects, event, event_func) {
 
 // mouseover a connection
 function Event_MouseOver_Connect(e){
-    Edit_Connect(e.target, "blue", PortSize*2);
+    Edit_Connect(e.target, "blue", PortSize*3);
 }
 
 // mousedown a connection

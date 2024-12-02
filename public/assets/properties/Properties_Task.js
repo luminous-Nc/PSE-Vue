@@ -330,7 +330,7 @@ const P15Port = {
                                         x:700, y:700, Scale: 0.9, Port: ["240VP", "240VN"]
                                     },
                             
-                "LSensor":          {
+                "LS":          {
                                         x:400, y:300, Port: ["LSL", "LSR"]
                                     },
 
@@ -382,7 +382,7 @@ const P16Port = {
                                         x:700, y:700, Scale: 0.9, Port: ["240VP", "240VN"]
                                     },
                             
-                "LSensor":          {
+                "LS":          {
                                         x:400, y:300, Port: ["LSL", "LSR"]
                                     },
 
@@ -441,15 +441,15 @@ const P17Port = {
                                         x:480, y:190, Scale: 0.7, Port: ["PROSL", "PROSR"]
                                     },
 
-                "Light":          {
+                "Light":            {
                                         x:880, y:400, Port: ["LTU", "LTD"]
                                     },
 
-                "SolA":           {
+                "SolA":             {
                                         x:300, y:500, Port: ["SAU", "SAD"]
                                     },
 
-                "SolB":           {
+                "SolB":             {
                                         x:600, y:500, Port: ["SBU", "SBD"]
                                     },
 
@@ -474,27 +474,23 @@ const P17Port = {
             };
 
 const PChocolateMachineStage1 = {
-                "PLCInput":     {
+                "PLCInputV2":   {
                                     x:129, y:223, Scale: 0.6, 
-                                    Port: ["GNDPLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
                                 },
 
-                "PLCOutput":    {
-                                    x:485, y:229, Scale: 0.6, 
+                "PLCOutputV2":  {
+                                    x:466, y:227, Scale: 0.6, 
                                     Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
                                            "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
                                 },   
 
-                "Relay1":       {
-                                    x:498, y:518, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
-                                },
-
                 "Relay2":       {
-                                    x:634, y:519, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                    x:655, y:678, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
                                 }, 
 
                 "Relay3":       {
-                                    x:887, y:233, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                    x:880, y:178, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
                                 },  
 
                 "Relay4":       {
@@ -502,27 +498,27 @@ const PChocolateMachineStage1 = {
                                 },  
 
                 "ProS1":        {
-                                    x:17, y:300, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                    x:19, y:314, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
                                 },                
 
                 "ProS2":        {
-                                    x:118, y:437, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
+                                    x:22, y:401, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
                                 },  
 
                 "ProS3":        {
-                                    x:319, y:442, Scale: 0.5, Port: ["BR3", "BK3", "BL3"]
+                                    x:357, y:421, Scale: 0.5, Port: ["BR3", "BK3", "BL3"]
                                 },  
 
                 "ProS4":        {
-                                    x:359, y:290, Scale: 0.5, Port: ["BR4", "BK4", "BL4"]
+                                    x:349, y:317, Scale: 0.5, Port: ["BR4", "BK4", "BL4"]
                                 },  
 
                 "24VDCS":       {
-                                    x:181, y:621, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                    x:154, y:685, Scale: 0.7, Port: ["24VPS", "24VNS"]
                                 },
 
                 "120VDCS":      {
-                                    x:649, y:633, Scale: 0.7, Port: ["120VPS", "120VNS"]
+                                    x:811, y:695, Scale: 0.7, Port: ["120VPS", "120VNS"]
                                 },
 
                 "L":            {
@@ -534,7 +530,7 @@ const PChocolateMachineStage1 = {
                                 },
 
                 "R":            {
-                                    x:827, y:340, Scale: 0.7, Port: ["RL", "RR"]
+                                    x:901, y:310, Scale: 0.7, Port: ["RU", "RD"]
                                 },
 
                 "M":            {
@@ -545,8 +541,86 @@ const PChocolateMachineStage1 = {
                                     x:722, y:411, Scale: 0.7, Port: ["P1L", "P1R"]
                                 },
 
-                "P2":           {
-                                    x:722, y:450, Scale: 0.7, Port: ["P2L", "P2R"]
+                "SwitchSP1":    {
+                                    x:46, y:246, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:360, y:247, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },                    
+
+                "Key":              [
+                                    
+                                    ]              
+            };
+
+
+const PChocolateMachineStage2 = {
+                "PLCInputV2":   {
+                                    x:129, y:223, Scale: 0.6, 
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutputV2":  {
+                                    x:466, y:227, Scale: 0.6, 
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                },   
+
+                "Relay2":       {
+                                    x:655, y:678, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                }, 
+
+                "Relay3":       {
+                                    x:880, y:178, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },  
+
+                "Relay4":       {
+                                    x:888, y:411, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },  
+
+                "ProS1":        {
+                                    x:19, y:314, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                },                
+
+                "THC":          {
+                                    x:10, y:654, Scale: 0.5, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
+                                },  
+
+                "OPS":{
+                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                },  
+
+                "ProS4":        {
+                                    x:349, y:317, Scale: 0.5, Port: ["BR4", "BK4", "BL4"]
+                                },  
+
+                "24VDCS":       {
+                                    x:199, y:771, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "120VDCS":      {
+                                    x:811, y:695, Scale: 0.7, Port: ["120VPS", "120VNS"]
+                                },
+
+                "L":            {
+                                    x:723, y:249, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+                "V":            {
+                                    x:722, y:317, Scale: 0.7, Port: ["VL", "VR"]
+                                },
+
+                "C":            {
+                                    x:722, y:387, Scale: 0.7, Port: ["CL", "CR"]
+                                },
+
+                "Co":            {
+                                    x:804, y:517, Scale: 0.7
+                                },
+
+                "P2":            {
+                                    x:826, y:288, Scale: 0.7, Port: ["P2L", "P2R"]
                                 },
 
                 "SwitchSP1":    {
@@ -555,6 +629,282 @@ const PChocolateMachineStage1 = {
 
                 "SwitchSP2":    {
                                     x:360, y:247, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },                    
+
+                "Key":              [
+                                    
+                                    ]              
+            };
+
+const PChocolateMachineStage3 = {
+                "PLCInputV2":   {
+                                    x:129, y:223, Scale: 0.6, 
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutputV2":  {
+                                    x:466, y:227, Scale: 0.6, 
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                },   
+
+                "Relay3":       {
+                                    x:880, y:178, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },  
+
+                "Relay4":       {
+                                    x:884, y:503, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },  
+
+                "ProS1":        {
+                                    x:19, y:314, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                },                
+
+                "THC":          {
+                                    x:10, y:654, Scale: 0.5, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
+                                },  
+
+                "OPS":{
+                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                },  
+
+                "ProS4":        {
+                                    x:349, y:317, Scale: 0.5, Port: ["BR4", "BK4", "BL4"]
+                                },  
+
+                "24VDCS":       {
+                                    x:199, y:771, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "120VDCS":      {
+                                    x:811, y:695, Scale: 0.7, Port: ["120VPS", "120VNS"]
+                                },
+
+                "L":            {
+                                    x:723, y:249, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+
+                "C":            {
+                                    x:776, y:483, Scale: 0.7, Port: ["CL", "CR"]
+                                },
+
+                "Cf":            {
+                                    x:894, y:310, Scale: 0.7, Port: ["CfU", "CfD"]
+                                },
+
+                "Ch":            {
+                                    x:732, y:358, Scale: 0.7, Port: ["ChU", "ChD"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:46, y:246, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:360, y:247, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },                    
+
+                "Key":              [
+                                    
+                                    ]              
+            };
+
+const PIronBarkStage1 = {
+                "PLCInputV2":   {
+                                    x:180, y:125, Scale: 0.4, 
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutputV2":  {
+                                    x:497, y:134, Scale: 0.4, 
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                },   
+
+                "Relay1":       {
+                                    x:727, y:275, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                }, 
+
+                "Relay2":       {
+                                    x:878, y:171, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                }, 
+
+                "Relay3":       {
+                                    x:700, y:522, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },  
+
+                "Relay4":       {
+                                    x:800, y:480, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },  
+
+                "Relay5":       {
+                                    x:889, y:370, Scale: 0.7, Port: ["RLCU5", "RLCD5", "RLSWU5", "RLSWDL5", "RLSWDR5"]
+                                },  
+
+                "ProS1":        {
+                                    x:27, y:194, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                }, 
+
+                "ProS2":        {
+                                    x:26, y:273, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
+                                },  
+
+                "ProS3":        {
+                                    x:350, y:275, Scale: 0.5, Port: ["BR3", "BK3", "BL3"]
+                                },  
+
+                "THC1":         {
+                                    x:46, y:506, Scale: 0.5, Port: ["THC1-2", "THC1-8", "THC1-9", "THC1-10"]
+                                },
+                                
+                "THC2":         {
+                                    x:313, y:422, Scale: 0.5, Port: ["THC2-2", "THC2-8", "THC2-9", "THC2-10"]
+                                },  
+
+                "OPS1":         {
+                                    x:14, y:369, Scale: 0.5, Port: ["OPS1-VP", "OPS1-NC", "OPS1-COM", "OPS1-VN"]
+                                },  
+
+                "OPS2":         {
+                                    x:331, y:177, Scale: 0.5, Port: ["OPS2-VP", "OPS2-NC", "OPS2-COM", "OPS2-VN"]
+                                },  
+
+                "24VDCS":       {
+                                    x:171, y:768, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "230VDCS":      {
+                                    x:432, y:768, Scale: 0.7, Port: ["230VPS", "230VNS"]
+                                },
+                                
+                "400VDCS":      {
+                                    x:663, y:778, Scale: 0.7, Port: ["400VPS", "400VNS"]
+                                },
+
+                "L":            {
+                                    x:727, y:133, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+                "V":            {
+                                    x:726, y:182, Scale: 0.7, Port: ["VL", "VR"]
+                                },
+
+                "La":            {
+                                    x:883, y:282, Scale: 0.7, Port: ["LaL", "LaR"]
+                                },
+
+                "F":            {
+                                    x:722, y:400, Scale: 0.7, Port: ["FL", "FR"]
+                                },
+  
+                "Cf":            {
+                                    x:726, y:649, Scale: 0.7, Port: ["CfU", "CfD"]
+                                },
+
+                "Cn":            {
+                                    x:921, y:495, Scale: 0.7, Port: ["CnU", "CnD"]
+                                },
+                                
+                "R":            {
+                                    x:821, y:604, Scale: 0.7, Port: ["RU", "RD"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:30, y:133, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:388, y:122, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },                    
+
+                "Key":              [
+                                    
+                                    ]              
+            };
+
+const PIronBarkStage2 = {
+                "PLCInputV2":   {
+                                    x:180, y:125, Scale: 0.4, 
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutputV2":  {
+                                    x:497, y:134, Scale: 0.4, 
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                },   
+
+                "Relay1":       {
+                                    x:727, y:275, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                }, 
+
+                "Relay2":       {
+                                    x:822, y:110, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                }, 
+
+                "Relay3":       {
+                                    x:700, y:522, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },  
+
+                "Relay4":       {
+                                    x:891, y:523, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },  
+
+                "Relay5":       {
+                                    x:895, y:282, Scale: 0.7, Port: ["RLCU5", "RLCD5", "RLSWU5", "RLSWDL5", "RLSWDR5"]
+                                },  
+
+                "ProS1":        {
+                                    x:27, y:194, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                }, 
+
+                "ProS2":        {
+                                    x:336, y:191, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
+                                },  
+
+                "OPS":         {
+                                    x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                },  
+
+                "24VDCS":       {
+                                    x:171, y:768, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "230VDCS":      {
+                                    x:432, y:768, Scale: 0.7, Port: ["230VPS", "230VNS"]
+                                },
+                                
+                "400VDCS":      {
+                                    x:663, y:778, Scale: 0.7, Port: ["400VPS", "400VNS"]
+                                },
+
+                "FM":            {
+                                    x:833, y:217, Scale: 0.7, Port: ["FMU", "FMD"]
+                                },
+
+                "LS":            {
+                                    x:722, y:400, Scale: 0.7, Port: ["LSL", "LSR"]
+                                },
+  
+                "RT":            {
+                                    x:726, y:649, Scale: 0.7, Port: ["RTU", "RTD"]
+                                },
+
+                "Cb":            {
+                                    x:916, y:394, Scale: 0.7, Port: ["CbU", "CbD"]
+                                },
+                                
+                "CP":            {
+                                    x:917, y:650, Scale: 0.7, Port: ["CPU", "CPD"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:30, y:133, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:344, y:121, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
                                 },                    
 
                 "Key":              [

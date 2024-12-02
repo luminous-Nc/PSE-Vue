@@ -3,4 +3,4 @@ export { PortSize, IsObstacleOn };
 
 const PortSize = 5;
 
-const IsObstacleOn = true;
+const IsObstacleOn = false;  // true or false
