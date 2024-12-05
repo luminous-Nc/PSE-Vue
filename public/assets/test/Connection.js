@@ -2,7 +2,7 @@ import { stage } from "../canvas/Canvas_Page.js";
 import { ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs } from "../canvas/Canvas_Test.js"
 import { Get_Path, Get_Break_Extend_Point,
          Remove_Repeated_Line_Waypoints, Reset_Dict_Scale } from "./Find_Path.js"
-import { PortSize } from "../properties/Properties_Connection.js";
+import { PortSize, IsLineRndColor, IsLineDash } from "../properties/Properties_Connection.js";
 import { Add_Log } from "../record/Log.js";
 import { useStudentStore } from "@/stores/student.js";
 
@@ -480,7 +480,7 @@ function Get_Line(MyPortSet){
     WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
 
     // draw mutiple waypoints line
-    var Line     = Draw_Connection(LineName, WayPts, false, true);
+    var Line     = Draw_Connection(LineName, WayPts);
 
     // draw direct line based on the position of the two Ports
     //var Line = Draw_Connection(LineName, [StartPt, EndPt]);
@@ -522,18 +522,23 @@ function Skip_Waypoints(Port1, Port2, MyLines){
 
 
 // draw waypoint connection
-function Draw_Connection(LineName, Points, DashPattern = false, IsRndColor = false){
+function Draw_Connection(LineName, Points){
     // define a new line
     var Line = new createjs.Shape();
 
     // setup properties
     Line.graphics.setStrokeStyle(2); 	  // Line thickness
 
-    var Color;
-    if (IsRndColor == true){Color = Get_Rnd_Color()}else{Color = "#000000"};
+    // set color(black || random)
+    if (IsLineRndColor == true){
+        var Color = Get_Rnd_Color()
+    }else{
+        var Color = "#000000"
+        };
     Line.graphics.beginStroke(Color); // Line color
     
-    if (DashPattern == true) {
+    // set dash(solid || dash)
+    if (IsLineDash == true) {
         Line.graphics.setStrokeDash([10, 5]); // dash line if required
     }
 

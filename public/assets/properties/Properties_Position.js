@@ -27,6 +27,33 @@ const PortPos = {
                                         "DI15":  {x:170, y:431}, "DI16":  {x:170, y:456}                              
                         },
 
+                        "ABBRobotS": {              
+                                        "ABBSPWRDOL": {x:7, y:33},   "ABBSPWRDOR": {x:170, y:33},
+                                        "ABBSGNDDOL": {x:7, y:56},   "ABBSGNDDOR": {x:170, y:56},
+                                        "ABBSDO01":   {x:7, y:78},   "ABBSDO02":   {x:170, y:102},
+                                        "ABBSGNDDIL": {x:7, y:103},  "ABBSGNDDIR": {x:170, y:103}, 
+                                        "ABBSDI01":   {x:7, y:127},  "ABBSDI02":   {x:170, y:127},                             
+                                        "Bound": {wl: 0, wr: 0, hu: 30, hd: 10} 
+                        },
+
+                        "ABBRobotS1": {              
+                                        "ABBS1PWRDOL": {x:7, y:33},   "ABBS1PWRDOR": {x:170, y:33},
+                                        "ABBS1GNDDOL": {x:7, y:56},   "ABBS1GNDDOR": {x:170, y:56},
+                                        "ABBS1DO01":   {x:7, y:78},   "ABBS1DO02":   {x:170, y:102},
+                                        "ABBS1GNDDIL": {x:7, y:103},  "ABBS1GNDDIR": {x:170, y:103}, 
+                                        "ABBS1DI01":   {x:7, y:127},  "ABBS1DI02":   {x:170, y:127},  
+                                        "Bound": {wl: 0, wr: 0, hu: 30, hd: 10}                             
+                        },
+
+                        "ABBRobotS2": {              
+                                        "ABBS2PWRDOL": {x:7, y:33},   "ABBS2PWRDOR": {x:170, y:33},
+                                        "ABBS2GNDDOL": {x:7, y:56},   "ABBS2GNDDOR": {x:170, y:56},
+                                        "ABBS2DO01":   {x:7, y:78},   "ABBS2DO02":   {x:170, y:102},
+                                        "ABBS2GNDDIL": {x:7, y:103},  "ABBS2GNDDIR": {x:170, y:103}, 
+                                        "ABBS2DI01":   {x:7, y:127},  "ABBS2DI02":   {x:170, y:127},  
+                                        "Bound": {wl: 0, wr: 0, hu: 30, hd: 10}                            
+                        },
+
                         // COMAU robot
                         "COMAURobot": {
                                         "IN16":  {x:160, y:72},  "IN15":  {x:160, y:104},  
@@ -312,6 +339,42 @@ const PortPos = {
                                         "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
                         },
 
+                        "OPS3": {
+                                        "OPS3-VP":  {x:217, y:11}, 
+                                        "OPS3-NC":  {x:215, y:35},
+                                        "OPS3-COM": {x:215, y:66},
+                                        "OPS3-NO":  {x:218, y:92},
+                                        "OPS3-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },
+
+                        "OPS4": {
+                                        "OPS4-VP":  {x:217, y:11}, 
+                                        "OPS4-NC":  {x:215, y:35},
+                                        "OPS4-COM": {x:215, y:66},
+                                        "OPS4-NO":  {x:218, y:92},
+                                        "OPS4-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },
+
+                        "OPS5": {
+                                        "OPS5-VP":  {x:217, y:11}, 
+                                        "OPS5-NC":  {x:215, y:35},
+                                        "OPS5-COM": {x:215, y:66},
+                                        "OPS5-NO":  {x:218, y:92},
+                                        "OPS5-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },
+
+                        "OPS6": {
+                                        "OPS6-VP":  {x:217, y:11}, 
+                                        "OPS6-NC":  {x:215, y:35},
+                                        "OPS6-COM": {x:215, y:66},
+                                        "OPS6-NO":  {x:218, y:92},
+                                        "OPS6-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },               
+
                         // light
                         "Light": {
                                         "LTU": {x:22, y:4}, 
@@ -406,6 +469,24 @@ const PortPos = {
                                 "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
 
+                        "V1": {
+                                "V1L": {x: 3, y: 23},
+                                "V1R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "V2": {
+                                "V2L": {x: 3, y: 23},
+                                "V2R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "O": {
+                                "OL": {x: 3, y: 23},
+                                "OR": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
                         "F": {
                                 "FL": {x: 3, y: 23},
                                 "FR": {x: 98, y: 23},
@@ -424,6 +505,41 @@ const PortPos = {
                                 "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
 
+                        "C1": {
+                                "C1L": {x: 3, y: 23},
+                                "C1R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "C2": {
+                                "C2L": {x: 3, y: 23},
+                                "C2R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "C3": {
+                                "C3L": {x: 3, y: 23},
+                                "C3R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "C4": {
+                                "C4L": {x: 3, y: 23},
+                                "C4R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "C5": {
+                                "C5L": {x: 3, y: 23},
+                                "C5R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "C6": {
+                                "C6L": {x: 3, y: 23},
+                                "C6R": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
                         
                         "Co": {
                                 "CoL": {x: 3, y: 23},
@@ -473,9 +589,21 @@ const PortPos = {
                                 "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
 
+                        "S": {
+                                "SL": {x: 3, y: 23},
+                                "SR": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
                         "M": {
                                 "MU": {x: 22, y: 4},
                                 "MD": {x: 22, y: 90}
+                        },
+
+                        "P": {
+                                "PL": {x: 3, y: 23},
+                                "PR": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
 
                         "P1": {
@@ -501,7 +629,7 @@ const PortPos = {
                                         "Bound": {wl: 120, wr: 90, hu: 25, hd: 5}
                         },
 
-                        "PLCInputV2": {
+                        "PLCInputAB": {
                                         "IN-1": {x:143, y:100},     "IN-0": {x:218, y:100},
                                         "IN-3": {x:143, y:160},     "IN-2": {x:218, y:160},
                                         "IN-5": {x:143, y:220},     "IN-4": {x:218, y:220},
@@ -537,7 +665,7 @@ const PortPos = {
                                         "Bound": {wl: 125, wr: 90, hu: 25, hd: 5}
                         },
 
-                        "PLCOutputV2" :{
+                        "PLCOutputAB" :{
                                         "DC-0": {x:186, y:76},      "OUT-0": {x:265, y:76},
                                         "DC-1": {x:186, y:140},     "OUT-1": {x:265, y:140},
                                         "DC-2": {x:186, y:203},     "OUT-2": {x:265, y:203},
@@ -552,6 +680,36 @@ const PortPos = {
                                         "Bound": {wl: 160, wr: 130, hu: 70, hd: 20}
                         },
 
+                        "PLCOutputAB1" :{
+                                        "DC1-0": {x:186, y:92},      "OUT1-0": {x:265, y:92},
+                                        "DC1-1": {x:186, y:156},     "OUT1-1": {x:265, y:156},
+                                        "DC1-2": {x:186, y:219},     "OUT1-2": {x:265, y:219},
+                                        "DC1-3": {x:186, y:284},     "OUT1-3": {x:265, y:284},
+                                        "RTN1OUT0L": {x:186, y:346}, "RTN1OUT0R": {x:265, y:346},
+                                        "DC1-4": {x:186, y:409},     "OUT1-4": {x:265, y:409},
+                                        "DC1-5": {x:186, y:474},     "OUT1-5": {x:265, y:474},
+                                        "DC1-6": {x:186, y:537},     "OUT1-6": {x:265, y:537},
+                                        "DC1-7": {x:186, y:603},     "OUT1-7": {x:265, y:603},
+                                        "RTN1OUT1L": {x:186, y:664}, "RTN1OUT1R": {x:265, y:664},
+                        
+                                        "Bound": {wl: 160, wr: 130, hu: 70, hd: 20}
+                        },
+
+                        "PLCOutputAB2" :{
+                                        "DC2-0": {x:186, y:92},      "OUT2-0": {x:265, y:92},
+                                        "DC2-1": {x:186, y:156},     "OUT2-1": {x:265, y:156},
+                                        "DC2-2": {x:186, y:219},     "OUT2-2": {x:265, y:219},
+                                        "DC2-3": {x:186, y:284},     "OUT2-3": {x:265, y:284},
+                                        "RTN2OUT0L": {x:186, y:346}, "RTN2OUT0R": {x:265, y:346},
+                                        "DC2-4": {x:186, y:409},     "OUT2-4": {x:265, y:409},
+                                        "DC2-5": {x:186, y:474},     "OUT2-5": {x:265, y:474},
+                                        "DC2-6": {x:186, y:537},     "OUT2-6": {x:265, y:537},
+                                        "DC2-7": {x:186, y:603},     "OUT2-7": {x:265, y:603},
+                                        "RTN2OUT1L": {x:186, y:664}, "RTN2OUT1R": {x:265, y:664},
+                        
+                                        "Bound": {wl: 160, wr: 130, hu: 70, hd: 20}
+                        },
+
                         // "PLCOutput(New)" :{
                         //                     "DC-00": {x:75, y:374},  "DC-01": {x:119, y:374},
                         //                     "DC-02": {x:163, y:374}, "DC-03": {x:205, y:374},
@@ -560,6 +718,34 @@ const PortPos = {
                         //                     "OUT-2":  {x:163, y:40}, "OUT-3":  {x:205, y:40},
                         //                     "OUT-4":  {x:250, y:40}, "OUT-5":  {x:293, y:40},
                         // },
+
+                        
+                        "CNCController" :{
+                                        "CNCIN-1": {x:91, y:56},  "CNCIN-0": {x:137, y:56},
+                                        "CNCGND0L": {x:91, y:90}, "CNCGND0R": {x:137, y:90},
+                                        "CNCDC-0": {x:91, y:119}, "CNCOUT-0": {x:137, y:119},
+                                        "CNCDC-1": {x:91, y:156}, "CNCOUT-1": {x:137, y:156},
+
+                                        "Bound": {wl: 80, wr: 60, hu: 35, hd: 10}
+                        },
+
+                        "DrillController" :{
+                                        "DRILLIN-1": {x:91, y:56},   "DRILLIN-0": {x:137, y:56},
+                                        "DRILLGND0L": {x:91, y:90},  "DRILLGND0R": {x:137, y:90},
+                                        "DRILLDC-0": {x:91, y:119},  "DRILLOUT-0": {x:137, y:119},
+                                        "DRILLDC-1": {x:91, y:156},  "DRILLOUT-1": {x:137, y:156},
+
+                                        "Bound": {wl: 80, wr: 60, hu: 35, hd: 10}
+                        },
+
+                        "GrinderController" :{
+                                        "GRIIN-1": {x:91, y:56},  "GRIIN-0": {x:137, y:56},
+                                        "GRIGND0L": {x:91, y:90}, "GRIGND0R": {x:137, y:90},
+                                        "GRIDC-0": {x:91, y:119}, "GRIOUT-0": {x:137, y:119},
+                                        "GRIDC-1": {x:91, y:156}, "GRIOUT-1": {x:137, y:156},
+
+                                        "Bound": {wl: 80, wr: 60, hu: 35, hd: 10}
+                        }
 
                 };
 

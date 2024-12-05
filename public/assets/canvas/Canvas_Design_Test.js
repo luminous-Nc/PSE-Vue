@@ -102,6 +102,7 @@ function Get_Img_Bound(ModuleName){
     // check if the module port has "bound"
     const ModulePos = PortPos[ModuleName];
     if (!ModulePos.hasOwnProperty("Bound")){
+        // console.error(`${ModuleName} bound does not exist!`)
         return {wl: 0, wr: 0, hu: 0, hd: 0};
     }
         
@@ -123,14 +124,14 @@ function Init_Rec_Obstacle(Img, b, s){
 
     Obstacle.name = Img.name;
 
-    Obstacle.Port = [{x: x - BufH + b.wl * s,
-                      y: y - BufV + b.hu * s},      // left up
-                     {x: x + w + BufH - b.wr * s, 
-                      y: y - BufV + b.hu * s},      // right up
-                     {x: x + w + BufH - b.wr * s, 
-                      y: y + h + BufV - b.hd * s},  // right down
-                     {x: x - BufH + b.wl * s,    
-                      y: y + h + BufV - b.hd * s}]; // left down
+    Obstacle.Port = [{x: x     - BufH * s + b.wl * s,
+                      y: y     - BufV * s + b.hu * s},      // left up
+                     {x: x + w + BufH * s - b.wr * s, 
+                      y: y     - BufV * s + b.hu * s},      // right up
+                     {x: x + w + BufH * s - b.wr * s, 
+                      y: y + h + BufV * s - b.hd * s},  // right down
+                     {x: x     - BufH * s + b.wl * s,    
+                      y: y + h + BufV * s - b.hd * s}]; // left down
                
     return Obstacle;
 }
