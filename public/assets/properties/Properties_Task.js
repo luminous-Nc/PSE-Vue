@@ -712,25 +712,32 @@ const PChocolateMachineStage3 = {
 const PIronBarkStage1 = {
                 "PLCInputAB":   {
                                     x:180, y:125, Scale: 0.4, 
-                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["IN-0", "IN-1", "IN-2", "IN-3", 
+                                           "IN-4", "IN-5", "IN-6", "IN-7", "IN-8",
+                                           "GND0PLCL", "GND1PLCR"]
                                 },
 
                 "PLCOutputAB":  {
                                     x:497, y:134, Scale: 0.4, 
-                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
-                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", 
+                                           "DC-4", "DC-5", "DC-6", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", 
+                                           "OUT-4", "OUT-5", "OUT-6"]
                                 },   
 
                 "Relay1":       {
-                                    x:727, y:275, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                    x:727, y:275, Scale: 0.7, 
+                                    Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
                                 }, 
 
                 "Relay2":       {
-                                    x:878, y:171, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                    x:878, y:171, Scale: 0.7, 
+                                    Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
                                 }, 
 
                 "Relay3":       {
-                                    x:700, y:522, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                    x:700, y:522, Scale: 0.7, 
+                                    Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
                                 },  
 
                 "Relay4":       {
@@ -754,19 +761,19 @@ const PIronBarkStage1 = {
                                 },  
 
                 "THC1":         {
-                                    x:46, y:506, Scale: 0.5, Port: ["THC1-2", "THC1-8", "THC1-9", "THC1-10"]
+                                    x:46, y:506, Scale: 0.5, Port: ["THC1-7", "THC1-8"]
                                 },
                                 
                 "THC2":         {
-                                    x:313, y:422, Scale: 0.5, Port: ["THC2-2", "THC2-8", "THC2-9", "THC2-10"]
+                                    x:313, y:422, Scale: 0.5, Port: ["THC2-7", "THC2-8"]
                                 },  
 
                 "OPS1":         {
-                                    x:14, y:369, Scale: 0.5, Port: ["OPS1-VP", "OPS1-NC", "OPS1-COM", "OPS1-VN"]
+                                    x:14, y:369, Scale: 0.5, Port: ["OPS1-VP", "OPS1-COM", "OPS1-NO", "OPS1-VN"]
                                 },  
 
                 "OPS2":         {
-                                    x:331, y:177, Scale: 0.5, Port: ["OPS2-VP", "OPS2-NC", "OPS2-COM", "OPS2-VN"]
+                                    x:331, y:177, Scale: 0.5, Port: ["OPS2-VP", "OPS2-COM", "OPS2-NO", "OPS2-VN"]
                                 },  
 
                 "24VDCS":       {
@@ -825,7 +832,9 @@ const PIronBarkStage1 = {
 const PIronBarkStage2 = {
                 "PLCInputAB":   {
                                     x:180, y:125, Scale: 0.4, 
-                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["IN-0", "IN-1", "IN-2", 
+                                           "IN-3", "IN-4", 
+                                           "GND0PLCL"]
                                 },
 
                 "PLCOutputAB":  {
@@ -859,7 +868,7 @@ const PIronBarkStage2 = {
                                 },  
 
                 "OPS":         {
-                                    x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                    x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-COM", "OPS-NO", "OPS-VN"]
                                 },  
 
                 "24VDCS":       {
@@ -911,13 +920,17 @@ const PIronBarkStage2 = {
 const PEngineBlockStage1 = {
                 "PLCInputAB":   {
                                     x:187, y:123, Scale: 0.4, 
-                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["IN-0", "IN-1", "IN-2", "IN-3", 
+                                           "IN-4", "IN-5", "IN-6", "IN-7", "IN-10",
+                                           "GND0PLCL", "GND1PLCL"]
                                 },
 
                 "PLCOutputAB":  {
                                     x:497, y:134, Scale: 0.4, 
-                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
-                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", 
+                                           "DC-4", "DC-5", "DC-6", "DC-7", 
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", 
+                                           "OUT-4", "OUT-5", "OUT-6", "OUT-7"],
                                 },   
 
                 "Relay1":       {
@@ -949,11 +962,11 @@ const PEngineBlockStage1 = {
                                 },  
 
                 "OPS2":         {
-                                    x:330, y:268, Scale: 0.5, Port: ["OPS2-VP", "OPS2-NC", "OPS2-COM", "OPS2-VN"]
+                                    x:330, y:268, Scale: 0.5, Port: ["OPS2-VP", "OPS2-COM", "OPS2-NO", "OPS2-VN"]
                                 },
                                 
                 "THC":         {
-                                    x:309, y:432, Scale: 0.7, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
+                                    x:309, y:432, Scale: 0.7, Port: ["THC-7", "THC-8"]
                                 },                
 
                 "24VDCS":       {
@@ -1001,7 +1014,9 @@ const PEngineBlockStage1 = {
                                 },
 
                 "ABBRobotS":    {
-                                    x:807, y:517, Scale: 0.7, Port: ["ABBSGNDDIR", "ABBSDI02"]
+                                    x:807, y:517, Scale: 0.7, 
+                                    Port: ["ABBSPWRDOL", "ABBSGNDDOL", "ABBSDO01", 
+                                           "ABBSDI01", "ABBSGNDDIR"]
                                 },                 
 
                 "SwitchSP1":    {

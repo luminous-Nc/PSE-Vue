@@ -1,6 +1,10 @@
 
 export { PortPos, OtherPos };
 
+// const SimpleCirclePos = {
+//                                 "L": {x: 3, y: 23},
+//                                 "R": {x: 98, y: 23}
+//                         }
 // all modules' ports relative coordinates
 const PortPos = { 
                     // ABB robot
@@ -451,7 +455,12 @@ const PortPos = {
                                 "LR": {x: 98, y: 23},
                                 "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
-
+                        // "L": {
+                        //         "LL": SimpleCirclePos.L,
+                        //         "LR": SimpleCirclePos.R,
+                        //         "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        // },
+                        
                         "La": {
                                 "LaL": {x: 3, y: 23},
                                 "LaR": {x: 98, y: 23},
@@ -459,8 +468,8 @@ const PortPos = {
                         },
 
                         "LS":   {
-                                "LSL": {x:4, y:23}, 
-                                "LSR": {x:106, y:23}
+                                "LSL": {x:3, y:23}, 
+                                "LSR": {x:98, y:23}
                         },
 
                         "V": {

@@ -20,4 +20,29 @@ function Load_Img(){
         Img.src = ImgFolder + "/"+ value +".jpeg";
         DictImg[value] = Img;
     }
+    // Load_Img2();
 }
+
+// const fs = require('fs');
+// const path = require('path');
+// const jpgFiles = [];
+
+// function Load_Img2(){
+//     fs.readdir(folderPath, (err, files) => {
+//         if (err) {
+//             console.error("Error reading the folder:", err);
+//             return;
+//         }
+    
+//         // Filter files with .jpg or .jpeg extensions
+//         files.forEach(file => {
+//             const ext = path.extname(file).toLowerCase();
+//             if (ext === '.jpg' || ext === '.jpeg') {
+//                 jpgFiles.push(file);
+//             }
+//         });
+    
+//         // Log the array of jpg/jpeg file names
+//         console.log("JPG/JPEG files:", jpgFiles);
+//     });
+// }
