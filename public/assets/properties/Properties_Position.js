@@ -192,6 +192,30 @@ const PortPos = {
                                         "RLSWDR5":  {x:39, y:114}
                         },
 
+                        "Relay6": {
+                                        "RLCU6":    {x:80, y:1}, 
+                                        "RLCD6":    {x:80, y:114},
+                                        "RLSWU6":   {x:24, y:1}, 
+                                        "RLSWDL6":  {x:14, y:114},
+                                        "RLSWDR6":  {x:39, y:114}
+                        },
+
+                        "Relay7": {
+                                        "RLCU7":    {x:80, y:1}, 
+                                        "RLCD7":    {x:80, y:114},
+                                        "RLSWU7":   {x:24, y:1}, 
+                                        "RLSWDL7":  {x:14, y:114},
+                                        "RLSWDR7":  {x:39, y:114}
+                        },
+
+                        "Relay8": {
+                                        "RLCU8":    {x:80, y:1}, 
+                                        "RLCD8":    {x:80, y:114},
+                                        "RLSWU8":   {x:24, y:1}, 
+                                        "RLSWDL8":  {x:14, y:114},
+                                        "RLSWDR8":  {x:39, y:114}
+                        },
+
                         // power
                         "5VDC": {
                                         "5VP": {x:32, y:7}, 
@@ -377,7 +401,25 @@ const PortPos = {
                                         "OPS6-NO":  {x:218, y:92},
                                         "OPS6-VN":  {x:218, y:118},
                                         "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
-                        },               
+                        },   
+                        
+                        "OPS7": {
+                                        "OPS7-VP":  {x:217, y:11}, 
+                                        "OPS7-NC":  {x:215, y:35},
+                                        "OPS7-COM": {x:215, y:66},
+                                        "OPS7-NO":  {x:218, y:92},
+                                        "OPS7-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },  
+
+                        "OPS8": {
+                                        "OPS8-VP":  {x:217, y:11}, 
+                                        "OPS8-NC":  {x:215, y:35},
+                                        "OPS8-COM": {x:215, y:66},
+                                        "OPS8-NO":  {x:218, y:92},
+                                        "OPS8-VN":  {x:218, y:118},
+                                        "Bound": {wl: 10, wr: 65, hu: 10, hd: 10}
+                        },  
 
                         // light
                         "Light": {
@@ -583,6 +625,24 @@ const PortPos = {
                         "CP": {
                                 "CPU": {x: 22, y: 4},
                                 "CPD": {x: 22, y: 90},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "CNCM": {
+                                "CNCML": {x: 3, y: 23},
+                                "CNCMR": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "DM": {
+                                "DML": {x: 3, y: 23},
+                                "DMR": {x: 98, y: 23},
+                                "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
+                        },
+
+                        "GM": {
+                                "GML": {x: 3, y: 23},
+                                "GMR": {x: 98, y: 23},
                                 "Bound": {wl: 0, wr: 0, hu: 10, hd: 10}
                         },
 
