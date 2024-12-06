@@ -1083,27 +1083,27 @@ const PEngineBlockStage2 = {
                                 },  
 
                 "OPS3":         {
-                                    x:13, y:184, Scale: 0.5, Port: ["OPS3-VP", "OPS3-NC", "OPS3-COM", "OPS3-VN"]
+                                    x:13, y:184, Scale: 0.5, Port: ["OPS3-VP", "OPS3-NO", "OPS3-COM", "OPS3-VN"]
                                 },
 
                 "OPS4":         {
-                                    x:13, y:264, Scale: 0.5, Port: ["OPS4-VP", "OPS4-NC", "OPS4-COM", "OPS4-VN"]
+                                    x:13, y:264, Scale: 0.5, Port: ["OPS4-VP", "OPS4-NO", "OPS4-COM", "OPS4-VN"]
                                 },
 
                 "OPS5":         {
-                                    x:18, y:350, Scale: 0.5, Port: ["OPS5-VP", "OPS5-NC", "OPS5-COM", "OPS5-VN"]
+                                    x:18, y:350, Scale: 0.5, Port: ["OPS5-VP", "OPS5-NO", "OPS5-COM", "OPS5-VN"]
                                 },
 
                 "OPS6":         {
-                                    x:325, y:183, Scale: 0.5, Port: ["OPS6-VP", "OPS6-NC", "OPS6-COM", "OPS6-VN"]
+                                    x:325, y:183, Scale: 0.5, Port: ["OPS6-VP", "OPS6-NO", "OPS6-COM", "OPS6-VN"]
                                 }, 
                                 
                 "OPS7":         {
-                                    x:325, y:265, Scale: 0.5, Port: ["OPS7-VP", "OPS7-NC", "OPS7-COM", "OPS7-VN"]
+                                    x:325, y:265, Scale: 0.5, Port: ["OPS7-VP", "OPS7-NO", "OPS7-COM", "OPS7-VN"]
                                 },
 
                 "OPS8":         {
-                                    x:325, y:352, Scale: 0.5, Port: ["OPS8-VP", "OPS8-NC", "OPS8-COM", "OPS8-VN"]
+                                    x:325, y:352, Scale: 0.5, Port: ["OPS8-VP", "OPS8-NO", "OPS8-COM", "OPS8-VN"]
                                 },
 
                 "24VDCS":       {
