@@ -584,11 +584,11 @@ const PChocolateMachineStage2 = {
                                 },                
 
                 "THC":          {
-                                    x:10, y:654, Scale: 0.5, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
+                                    x:10, y:654, Scale: 0.5, Port: ["THC-7", "THC-8", "THC-9", "THC-10"]
                                 },  
 
                 "OPS":{
-                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NO", "OPS-COM", "OPS-VN"]
                                 },  
 
                 "ProS4":        {
@@ -616,7 +616,7 @@ const PChocolateMachineStage2 = {
                                 },
 
                 "Co":            {
-                                    x:804, y:517, Scale: 0.7
+                                    x:804, y:517, Scale: 0.7, Port: ["CoL", "CoR"]
                                 },
 
                 "P2":            {
@@ -660,12 +660,12 @@ const PChocolateMachineStage3 = {
                                     x:19, y:314, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
                                 },                
 
-                "THC":          {
-                                    x:10, y:654, Scale: 0.5, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
-                                },  
+               // "THC":          {
+                               //     x:10, y:654, Scale: 0.5, Port: ["THC-2", "THC-8", "THC-9", "THC-10"]
+                              //  },
 
                 "OPS":{
-                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                    x:320, y:666, Scale: 0.5, Port: ["OPS-VP", "OPS-NO", "OPS-COM", "OPS-VN"]
                                 },  
 
                 "ProS4":        {
@@ -763,7 +763,7 @@ const PIronBarkStage1 = {
                                 },  
 
                 "OPS1":         {
-                                    x:14, y:369, Scale: 0.5, Port: ["OPS1-VP", "OPS1-NC", "OPS1-COM", "OPS1-VN"]
+                                    x:14, y:369, Scale: 0.5, Port: ["OPS1-VP", "OPS1-NO", "OPS1-COM", "OPS1-VN"]
                                 },  
 
                 "OPS2":         {
@@ -917,6 +917,7 @@ const DictModule = {
                         P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
                         P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
                         P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port,
-                        P17: P17Port, P18: PChocolateMachineStage1
-                    };
+                        P17: P17Port, P18: PChocolateMachineStage1, P19: PChocolateMachineStage2,
+                        P20: PChocolateMachineStage3,
+                        };
 
