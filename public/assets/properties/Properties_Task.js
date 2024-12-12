@@ -474,12 +474,12 @@ const P17Port = {
             };
 
 const PChocolateMachineStage1 = {
-                "PLCInputV2":   {
+                "PLCInputAB":   {
                                     x:129, y:223, Scale: 0.6, 
                                     Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
                                 },
 
-                "PLCOutputV2":  {
+                "PLCOutputAB":  {
                                     x:466, y:227, Scale: 0.6, 
                                     Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
                                            "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
@@ -556,12 +556,12 @@ const PChocolateMachineStage1 = {
 
 
 const PChocolateMachineStage2 = {
-                "PLCInputV2":   {
+                "PLCInputAB":   {
                                     x:129, y:223, Scale: 0.6, 
                                     Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
                                 },
 
-                "PLCOutputV2":  {
+                "PLCOutputAB":  {
                                     x:466, y:227, Scale: 0.6, 
                                     Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
                                            "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
@@ -637,12 +637,12 @@ const PChocolateMachineStage2 = {
             };
 
 const PChocolateMachineStage3 = {
-                "PLCInputV2":   {
+                "PLCInputAB":   {
                                     x:129, y:223, Scale: 0.6, 
                                     Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
                                 },
 
-                "PLCOutputV2":  {
+                "PLCOutputAB":  {
                                     x:466, y:227, Scale: 0.6, 
                                     Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
                                            "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
@@ -711,27 +711,34 @@ const PChocolateMachineStage3 = {
             };
 
 const PIronBarkStage1 = {
-                "PLCInputV2":   {
+                "PLCInputAB":   {
                                     x:180, y:125, Scale: 0.4, 
-                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["IN-0", "IN-1", "IN-2", "IN-3",
+                                           "IN-4", "IN-5", "IN-6", "IN-7", "IN-8",
+                                           "GND0PLCL", "GND1PLCR"]
                                 },
 
-                "PLCOutputV2":  {
+                "PLCOutputAB":  {
                                     x:497, y:134, Scale: 0.4, 
-                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
-                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3",
+                                           "DC-4", "DC-5", "DC-6",
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3",
+                                           "OUT-4", "OUT-5", "OUT-6"]
                                 },   
 
                 "Relay1":       {
-                                    x:727, y:275, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                    x:727, y:275, Scale: 0.7,
+                                    Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
                                 }, 
 
                 "Relay2":       {
-                                    x:878, y:171, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                    x:878,  y:171, Scale: 0.7,
+                                    Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
                                 }, 
 
                 "Relay3":       {
-                                    x:700, y:522, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                    x:700, y:522, Scale: 0.7,
+                                    Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
                                 },  
 
                 "Relay4":       {
@@ -755,11 +762,11 @@ const PIronBarkStage1 = {
                                 },  
 
                 "THC1":         {
-                                    x:46, y:506, Scale: 0.5, Port: ["THC1-2", "THC1-8", "THC1-9", "THC1-10"]
+                                    x:46, y:506, Scale: 0.5, Port: ["THC1-7", "THC1-8"]
                                 },
                                 
                 "THC2":         {
-                                    x:313, y:422, Scale: 0.5, Port: ["THC2-2", "THC2-8", "THC2-9", "THC2-10"]
+                                    x:313, y:422, Scale: 0.5, Port: ["THC2-7", "THC2-8"]
                                 },  
 
                 "OPS1":         {
@@ -824,12 +831,14 @@ const PIronBarkStage1 = {
             };
 
 const PIronBarkStage2 = {
-                "PLCInputV2":   {
+                "PLCInputAB":   {
                                     x:180, y:125, Scale: 0.4, 
-                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                    Port: ["IN-0", "IN-1", "IN-2",
+                                           "IN-3", "IN-4",
+                                           "GND0PLCL"]
                                 },
 
-                "PLCOutputV2":  {
+                "PLCOutputAB":  {
                                     x:497, y:134, Scale: 0.4, 
                                     Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
                                            "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
@@ -864,7 +873,7 @@ const PIronBarkStage2 = {
                                 },  
 
                 "OPS":         {
-                                    x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-NC", "OPS-COM", "OPS-VN"]
+                                    x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-COM", "OPS-NO", "OPS-VN"]
                                 },  
 
                 "24VDCS":       {
@@ -908,6 +917,278 @@ const PIronBarkStage2 = {
                                 },                    
 
                 "Key":              [
+
+                                    ]
+            };
+
+
+const PEngineBlockStage1 = {
+                "PLCInputAB":   {
+                                    x:187, y:123, Scale: 0.4,
+                                    Port: ["IN-0", "IN-1", "IN-2", "IN-3",
+                                           "IN-4", "IN-5", "IN-6", "IN-7", "IN-10",
+                                           "GND0PLCL", "GND1PLCL"]
+                                },
+
+                "PLCOutputAB":  {
+                                    x:497, y:134, Scale: 0.4,
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3",
+                                           "DC-4", "DC-5", "DC-6", "DC-7",
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3",
+                                           "OUT-4", "OUT-5", "OUT-6", "OUT-7"],
+                                },
+
+                "Relay1":       {
+                                    x:688, y:162, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                },
+
+                "Relay2":       {
+                                    x:894, y:184, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                },
+
+                "Relay3":       {
+                                    x:693, y:331, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },
+
+                "Relay4":       {
+                                    x:894, y:370, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },
+
+                "ProS1":        {
+                                    x:24, y:329, Scale: 0.5, Port: ["BR1", "BK1", "BL1"]
+                                },
+
+                "ProS2":        {
+                                    x:348, y:179, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
+                                },
+
+                "OPS1":         {
+                                    x:24, y:329, Scale: 0.5, Port: ["OPS1-VP", "OPS1-NC", "OPS1-COM", "OPS1-VN"]
+                                },
+
+                "OPS2":         {
+                                    x:330, y:268, Scale: 0.5, Port: ["OPS2-VP", "OPS2-COM", "OPS2-NO", "OPS2-VN"]
+                                },
+
+                "THC":         {
+                                    x:309, y:432, Scale: 0.7, Port: ["THC-7", "THC-8"]
+                                },
+
+                "24VDCS":       {
+                                    x:151, y:639, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "230VDCS":      {
+                                    x:429, y:644, Scale: 0.7, Port: ["230VPS", "230VNS"]
+                                },
+
+                "400VDCS":      {
+                                    x:681, y:637, Scale: 0.7, Port: ["400VPS", "400VNS"]
+                                },
+
+                "L":            {
+                                    x:792, y:131, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+                "P":            {
+                                    x:792, y:175, Scale: 0.7, Port: ["PL", "PR"]
+                                },
+
+                "La":           {
+                                    x:792, y:220, Scale: 0.7, Port: ["LaL", "LaR"]
+                                },
+
+                "V1":           {
+                                    x:792, y:267, Scale: 0.7, Port: ["V1L", "V1R"]
+                                },
+
+                "V2":           {
+                                    x:792, y:319, Scale: 0.7, Port: ["V2L", "V2R"]
+                                },
+
+                "C":            {
+                                    x:792, y:377, Scale: 0.7, Port: ["CL", "CR"]
+                                },
+
+                "O":            {
+                                    x:792, y:428, Scale: 0.7, Port: ["OL", "OR"]
+                                },
+
+                "S":            {
+                                    x:42, y:171, Scale: 0.7, Port: ["SL", "SR"]
+                                },
+
+                "ABBRobotS1":    {
+                                    x:807, y:517, Scale: 0.7,
+                                    Port: ["ABBS1PWRDOL", "ABBS1GNDDOL", "ABBS1DO01",
+                                           "ABBS1DI01", "ABBS1GNDDIR"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:58, y:111, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:357, y:104, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },
+
+                "Key":              [
+
+                                    ]
+            };
+
+const PEngineBlockStage2 = {
+                "PLCInputAB":   {
+                                    x:180, y:125, Scale: 0.4,
+                                    Port: ["GND0PLCL", "IN-0", "IN-1", "IN-2", "IN-3", "IN-4", "IN-5"]
+                                },
+
+                "PLCOutputAB1":  {
+                                    x:471, y:139, Scale: 0.4,
+                                    Port: ["DC1-0", "DC1-1", "DC1-2", "DC1-3", "DC1-4",
+                                           "OUT1-0", "OUT1-1", "OUT1-2", "OUT1-3", "OUT1-4"],
+                                },
+
+                "PLCOutputAB2":  {
+                                    x:640, y:145, Scale: 0.4,
+                                    Port: ["DC2-0", "DC2-1", "DC2-2", "DC2-3", "DC2-4",
+                                           "OUT2-0", "OUT2-1", "OUT2-2", "OUT2-3", "OUT2-4"],
+                                },
+
+                "Relay1":       {
+                                    x:800, y:113, Scale: 0.7, Port: ["RLCU1", "RLCD1", "RLSWU1", "RLSWDL1", "RLSWDR1"]
+                                },
+
+                "Relay2":       {
+                                    x:902, y:108, Scale: 0.7, Port: ["RLCU2", "RLCD2", "RLSWU2", "RLSWDL2", "RLSWDR2"]
+                                },
+
+                "Relay3":       {
+                                    x:837, y:263, Scale: 0.7, Port: ["RLCU3", "RLCD3", "RLSWU3", "RLSWDL3", "RLSWDR3"]
+                                },
+
+                "Relay4":       {
+                                    x:763, y:441, Scale: 0.7, Port: ["RLCU4", "RLCD4", "RLSWU4", "RLSWDL4", "RLSWDR4"]
+                                },
+
+                "Relay5":       {
+                                    x:878, y:417, Scale: 0.7, Port: ["RLCU5", "RLCD5", "RLSWU5", "RLSWDL5", "RLSWDR5"]
+                                },
+
+                "Relay6":       {
+                                    x:290, y:734, Scale: 0.7, Port: ["RLCU6", "RLCD6", "RLSWU6", "RLSWDL6", "RLSWDR6"]
+                                },
+
+                "Relay7":       {
+                                    x:501, y:731, Scale: 0.7, Port: ["RLCU7", "RLCD7", "RLSWU7", "RLSWDL7", "RLSWDR7"]
+                                },
+
+                "Relay8":       {
+                                    x:886, y:614, Scale: 0.7, Port: ["RLCU8", "RLCD8", "RLSWU8", "RLSWDL8", "RLSWDR8"]
+                                },
+
+                "OPS3":         {
+                                    x:13, y:184, Scale: 0.5, Port: ["OPS3-VP", "OPS3-NO", "OPS3-COM", "OPS3-VN"]
+                                },
+
+                "OPS4":         {
+                                    x:13, y:264, Scale: 0.5, Port: ["OPS4-VP", "OPS4-NO", "OPS4-COM", "OPS4-VN"]
+                                },
+
+                "OPS5":         {
+                                    x:18, y:350, Scale: 0.5, Port: ["OPS5-VP", "OPS5-NO", "OPS5-COM", "OPS5-VN"]
+                                },
+
+                "OPS6":         {
+                                    x:325, y:183, Scale: 0.5, Port: ["OPS6-VP", "OPS6-NO", "OPS6-COM", "OPS6-VN"]
+                                },
+
+                "OPS7":         {
+                                    x:325, y:265, Scale: 0.5, Port: ["OPS7-VP", "OPS7-NO", "OPS7-COM", "OPS7-VN"]
+                                },
+
+                "OPS8":         {
+                                    x:325, y:352, Scale: 0.5, Port: ["OPS8-VP", "OPS8-NO", "OPS8-COM", "OPS8-VN"]
+                                },
+
+                "24VDCS":       {
+                                    x:82, y:446, Scale: 0.7, Port: ["24VPS", "24VNS"]
+                                },
+
+                "230VDCS":      {
+                                    x:407, y:448, Scale: 0.7, Port: ["230VPS", "230VNS"]
+                                },
+
+                "400VDCS":      {
+                                    x:595, y:525, Scale: 0.7, Port: ["400VPS", "400VNS"]
+                                },
+
+                "L":            {
+                                    x:691, y:90, Scale: 0.7, Port: ["LL", "LR"]
+                                },
+
+                "C2":           {
+                                    x:804, y:205, Scale: 0.7, Port: ["C2L", "C2R"]
+                                },
+
+                "C3":           {
+                                    x:906, y:212, Scale: 0.7, Port: ["C3L", "C3R"]
+                                },
+
+                "C4":           {
+                                    x:846, y:361, Scale: 0.7, Port: ["C4L", "C4R"]
+                                },
+
+                "C5":           {
+                                    x:765, y:542, Scale: 0.7, Port: ["C5L", "C5R"]
+                                },
+
+                "C6":           {
+                                    x:881, y:535, Scale: 0.7, Port: ["C6L", "C6R"]
+                                },
+
+                "CNCM":         {
+                                    x:586, y:669, Scale: 0.7, Port: ["CNCML", "CNCMR"]
+                                },
+
+                "DM":           {
+                                    x:782, y:648, Scale: 0.7, Port: ["DML", "DMR"]
+                                },
+
+                "GM":           {
+                                    x:244, y:681, Scale: 0.7, Port: ["GML", "GMR"]
+                                },
+
+                "ABBRobotS2":   {
+                                    x:55, y:554, Scale: 0.7,
+                                    Port: ["ABBS2PWRDOL", "ABBS2GNDDOL", "ABBS2DO01",
+                                           "ABBS2DI02", "ABBS2GNDDIR"]
+                                },
+
+                "SwitchSP1":    {
+                                    x:30, y:133, Scale: 0.7, Port: ["SWSPL1", "SWSPR1"]
+                                },
+
+                "SwitchSP2":    {
+                                    x:344, y:121, Scale: 0.7, Port: ["SWSPL2", "SWSPR2"]
+                                },
+
+                "CNCController":{
+                                    x:634, y:731, Scale: 0.6,
+                                    Port: ["CNCIN-0", "CNCGND0L", "CNCDC-1", "CNCOUT-1"],
+                                },
+
+                "DrillController":{
+                                    x:859, y:737, Scale: 0.6,
+                                    Port: ["DRILLIN-0", "DRILLGND0R", "DRILLDC-1", "DRILLOUT-1"],
+                                },
+
+                "GrinderController":{
+                                    x:92, y:709, Scale: 0.6,
+                                    Port: ["GRIIN-0", "GRIGND0R", "GRIDC-1", "GRIOUT-1"],
+                                },
+
+                "Key":              [
                                     
                                     ]              
             };
@@ -917,7 +1198,13 @@ const DictModule = {
                         P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
                         P9: P9Port,   P10: P10Port, P11: P11Port, P12: P12Port,
                         P13: P13Port, P14: P14Port, P15: P15Port, P16: P16Port,
-                        P17: P17Port, P18: PChocolateMachineStage1, P19: PChocolateMachineStage2,
+                        P17: P17Port,
+                        P18: PChocolateMachineStage1,
+                        P19: PChocolateMachineStage2,
                         P20: PChocolateMachineStage3,
-                        };
+                        P21: PIronBarkStage1,
+                        P22: PIronBarkStage2,
+                        P23: PEngineBlockStage1,
+                        P24: PEngineBlockStage2
+                    };
 
