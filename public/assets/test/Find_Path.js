@@ -57,7 +57,7 @@ function Get_Path(StartPt, EndPt, Obstacles){
             MyWayPts = Add_Plaid_Line_Waypoint(MyWayPts, MyObstacles);
             
             // add detour point after the start point 
-            MyWayPts = Add_Detour_Points(MyWayPts, MyObstacle);
+            MyWayPts = Add_Detour_Points(MyWayPts, MyObstacle, MyObstacles);
 
             // update the overal waypoint
             WayPts = Integrate_Waypoints(WayPts, j, MyWayPts);
@@ -159,14 +159,14 @@ function Add_Plaid_Line_Waypoint(MyWayPts, MyObstacles){
 }
 
 // add detour points between two waypoints
-function Add_Detour_Points(MyWayPts, MyObstacle){
+function Add_Detour_Points(MyWayPts, MyObstacle, MyObstacles){
     var Result, MyResult;
     var ObName;
     
     // MyWayPts = [Point1, Point2]
     if (Is_Obstacle_Among(MyWayPts, MyObstacle) ){
         // generate 4 detour point outside of each corner of the rectangle
-        var MyDePts  = Get_Detour_Points(MyObstacle);
+        var MyDePts  = Get_Detour_Points(MyObstacle, MyObstacles);
 
         // initialize waypoints distance
         var Distance = 9999, MyDistance;
@@ -461,7 +461,7 @@ function Get_Distance_Between(A, B) {
 }
 
 // get the 4 detour points around the rectangle
-function Get_Detour_Points(MyRec){
+function Get_Detour_Points(MyRec, MyObstacles){
     // determin max and min coordinates
     var MyBound = Get_Rec_Bound(MyRec);
 
@@ -493,18 +493,32 @@ function Get_Detour_Points(MyRec){
 
     // generate 4 detour points with the recent extention
     var MyShift  = [];
+    var MyShiftPts = [];
+    var MyShiftDePts = [];
  
     for (var i = 0; i < MyDePts.length; i++){ 
         // generate the current shift value
         MyShift[i] = DictDetL.Base + DictDetL.Add * DeFactors;
         
+        // generate shifted detour point
+        MyShiftPts[i] = {
+                            x: MyDePts[i].x + MyShift[i] * DictDirD[i].x,
+                            y: MyDePts[i].y + MyShift[i] * DictDirD[i].y
+                        }
+
         // update the detour point based on shift value and direction
-        MyDePts[i] = {x : MyDePts[i].x + MyShift[i] * DictDirD[i].x, 
-                      y : MyDePts[i].y + MyShift[i] * DictDirD[i].y,
-                      Dir: DictDirD[i]};
+        if(!Is_Inside_Obstacles(MyShiftPts[i], MyObstacles)){
+            var MyShiftDePt = {
+                                x : MyShiftPts[i].x, 
+                                y : MyShiftPts[i].y,
+                                Dir: DictDirD[i]
+                            };
+
+            MyShiftDePts.push(MyShiftDePt);
+        }
     }
 
-    return MyDePts
+    return MyShiftDePts;
 }
 
 // get the closest point on the polyline
