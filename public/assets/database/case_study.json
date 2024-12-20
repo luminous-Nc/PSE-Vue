@@ -8,12 +8,32 @@
           "name": "Statement",
           "steps":[
             {
-              "id": "1.1",
-              "menu_text": "1. Introduction",
-              "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
+              "id": "1.1.1",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "1.1.2",
+              "title": "Integrated System Layout",
+              "type": "introduction"
+            },
+            {
+              "id": "1.2.1",
+              "title": "Problem Statement",
+              "sub_title": "Stage 1: Refining and Mixing",
+              "type": "introduction"
+            },
+            {
+              "id": "1.3.1",
+              "title": "Problem Statement",
+              "sub_title": "Stage 2: Molding and Cooling",
+              "type": "introduction"
+            },
+            {
+              "id": "1.4.1",
+              "title": "Problem Statement",
+              "sub_title": "Stage 3: Packing",
+              "type": "introduction"
             }
           ]
         },
@@ -21,20 +41,9 @@
           "name": "Setup",
           "steps":[
             {
-              "id": "1.1",
-              "menu_text": "1. Introduction",
-              "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
-            },
-            {
-              "id": "1.2",
-              "menu_text": "1. Introduction",
-              "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
+              "id": "2.1.1",
+              "title": "Setup - Stage 1",
+              "type": "introduction"
             }
           ]
         },
@@ -42,20 +51,49 @@
           "name": "Animation",
           "steps":[
             {
-              "id": "1.1",
-              "menu_text": "1. Introduction",
-              "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
-            },
+              "id": "3.1.1",
+              "title": "Animation - Stage 1",
+              "type": "animation"
+            }
+          ]
+        },
+        {
+          "name": "Setup2",
+          "steps":[
             {
-              "id": "1.1",
-              "menu_text": "1. Introduction",
-              "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
+              "id": "4.1.1",
+              "title": "Setup - Stage 2",
+              "type": "introduction"
+            }
+          ]
+        },
+        {
+          "name": "Animation2",
+          "steps":[
+            {
+              "id": "5.1.1",
+              "title": "Animation - Stage 2",
+              "type": "animation"
+            }
+          ]
+        },
+        {
+          "name": "Setup3",
+          "steps":[
+            {
+              "id": "6.1.1",
+              "title": "Setup - Stage 3",
+              "type": "introduction"
+            }
+          ]
+        },
+        {
+          "name": "Animation3",
+          "steps":[
+            {
+              "id": "7.1.1",
+              "title": "Animation - Stage 3",
+              "type": "animation"
             }
           ]
         },
@@ -63,12 +101,240 @@
           "name": "Case Analysis",
           "steps":[
             {
-              "id": "1.1",
-              "menu_text": "1. Introduction",
+              "id": "8.1.1",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "1. Inputs and Outputs",
+              "type": "introduction"
+            },
+            {
+              "id": "8.1.2",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "2. Determination of I/O Ports",
+              "type": "introduction"
+            },
+            {
+              "id": "8.1.3",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "3. Determination of sequence of events",
+              "type": "introduction"
+            },
+            {
+              "id": "8.1.4",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
               "type": "introduction",
-              "text": "Watch the introduction of entire module",
-              "url": "",
-              "pnameID": "1-1"
+              "start": "Since the on and off buttons"
+            },
+            {
+              "id": "8.1.5",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 1 Specifies"
+            },
+            {
+              "id": "8.1.6",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 2 specifies"
+            },
+            {
+              "id": "8.1.7",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 3 specifies"
+            },
+            {
+              "id": "8.1.8",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 4 specifies"
+            },
+            {
+              "id": "8.1.9",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 5 specifies"
+            },
+            {
+              "id": "8.1.10",
+              "title": "Case Analysis - Stage 1",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Ladder Diagram"
+            },
+            {
+              "id": "8.2.1",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "1. Inputs and Outputs",
+              "type": "introduction"
+            },
+            {
+              "id": "8.2.2",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "2. Determination of I/O Ports",
+              "type": "introduction"
+            },
+            {
+              "id": "8.2.3",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "3. Determination of sequence of events",
+              "type": "introduction"
+            },
+            {
+              "id": "8.2.4",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Since the on and off buttons"
+            },
+            {
+              "id": "8.2.5",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 1 Specifies"
+            },
+            {
+              "id": "8.2.6",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 2 specifies"
+            },
+            {
+              "id": "8.2.7",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 3 specifies"
+            },
+            {
+              "id": "8.2.8",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 4 specifies"
+            },
+            {
+              "id": "8.2.9",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 5 specifies"
+            },
+            {
+              "id": "8.2.10",
+              "title": "Case Analysis - Stage 2",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Ladder Diagram"
+            },
+            {
+              "id": "8.3.1",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "1. Inputs and Outputs",
+              "type": "introduction"
+            },
+            {
+              "id": "8.3.2",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "2. Determination of I/O Ports",
+              "type": "introduction"
+            },
+            {
+              "id": "8.3.3",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "3. Determination of sequence of events",
+              "type": "introduction"
+            },
+            {
+              "id": "8.3.4",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Since the on and off buttons"
+            },
+            {
+              "id": "8.3.5",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 1 Specifies"
+            },
+            {
+              "id": "8.3.6",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 2 specifies"
+            },
+            {
+              "id": "8.3.7",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 3 specifies"
+            },
+            {
+              "id": "8.3.8",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 4 specifies"
+            },
+            {
+              "id": "8.3.9",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Rung 5 specifies"
+            },
+            {
+              "id": "8.3.10",
+              "title": "Case Analysis - Stage 3",
+              "sub_title": "4. Problem Solution",
+              "type": "introduction",
+              "start": "Ladder Diagram"
+            }
+          ]
+        },
+        {
+          "name": "Schematic",
+          "steps":[
+            {
+              "id": "9.1.1",
+              "title": "Stage 1 - Schematic",
+              "type": "schematic"
+            },
+            {
+              "id": "9.1.2",
+              "title": "Stage 1 - Interface Practice",
+              "type": "practice"
+            },
+            {
+              "id": "9.2.1",
+              "title": "Stage 2 - Schematic",
+              "type": "schematic"
+            },
+            {
+              "id": "9.2.2",
+              "title": "Stage 2 - Interface Practice",
+              "type": "practice"
+            },
+            {
+              "id": "9.3.1",
+              "title": "Stage 3 - Schematic",
+              "type": "schematic"
+            },
+            {
+              "id": "9.3.2",
+              "title": "Stage 3 - Interface Practice",
+              "type": "practice"
             }
           ]
         }

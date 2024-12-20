@@ -12,15 +12,15 @@
                 >
                     {{ moduleName }}
                 </div>
-                <div class="flex flex-row justify-between space-x-2">
-                    <div v-for="(stepNumber,stepIndex) in stepArray[moduleIndex]"
-                         :class="[
-        'mt-2 w-6 h-6 flex items-center justify-center rounded-full border text-black',
-        stepCSS(moduleIndex, stepIndex)]"
-                    >
-                        {{ stepIndex + 1 }}
-                    </div>
-                </div>
+<!--                <div class="flex flex-row justify-between space-x-2">-->
+<!--                    <div v-for="(stepNumber,stepIndex) in stepArray[moduleIndex]"-->
+<!--                         :class="[-->
+<!--        'mt-2 w-6 h-6 flex items-center justify-center rounded-full border text-black',-->
+<!--        stepCSS(moduleIndex, stepIndex)]"-->
+<!--                    >-->
+<!--                        {{ stepIndex + 1 }}-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </Suspense>

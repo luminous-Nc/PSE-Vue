@@ -15,7 +15,6 @@ export const useCaseStore = defineStore('caseStudy', {
 
     actions: {
         async loadCaseStudy(caseID) {
-
             if (!this.current_case_study) {
                 console.log(`Downloading case studies from ${apiBaseUrl}/assets/database/case_study.json`)
                 try {
@@ -66,5 +65,11 @@ export const useCaseStore = defineStore('caseStudy', {
     getters: {
         getModuleArray: (state) => state.module_array,
         getStepArray: (state) => state.step_array,
+        // getCurrentStep:(state) => {
+        //     console.log('module',state.current_module)
+        //     console.log('step',state.current_step)
+        //     console.log('stepArray',state.step_array.length)
+        //     return state.step_array[state.current_module][state.current_step]
+        // }
     }
 })
