@@ -1,5 +1,4 @@
 <template>
-    <Suspense>
         <div class="flex w-full justify-between space-x-4">
             <!-- Step Buttons -->
             <div
@@ -23,7 +22,6 @@
 <!--                </div>-->
             </div>
         </div>
-    </Suspense>
 </template>
 
 <script setup>
