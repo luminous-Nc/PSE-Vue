@@ -1,0 +1,226 @@
+{
+  "case_study": [
+    {
+      "case_id": "1",
+      "case_name": "Chocolate Machine",
+      "modules": [
+        {
+          "name": "Statement",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Setup",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.2",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Animation",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Case Analysis",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "2",
+      "case_name": "Time Machine",
+      "modules": [
+        {
+          "name": "Statement",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Setup",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.2",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Animation",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Case Analysis",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "3",
+      "case_name": "Chocolate Machine",
+      "modules": [
+        {
+          "name": "Statement",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Setup",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.2",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Animation",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            },
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        },
+        {
+          "name": "Case Analysis",
+          "steps":[
+            {
+              "id": "1.1",
+              "menu_text": "1. Introduction",
+              "type": "introduction",
+              "text": "Watch the introduction of entire module",
+              "url": "",
+              "pnameID": "1-1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
