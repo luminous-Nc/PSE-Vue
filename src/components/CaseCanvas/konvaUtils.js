@@ -1,11 +1,12 @@
 import Konva from 'konva';
 import {stage} from "../../../public/assets/canvas/Canvas_Page.js";
+import {render} from "vue";
 
 let stageInstance = null;
 let layerInstance = null;
 
-let stageLogicHeight = 800
-let stageLogicWidth = 1200
+let stageLogicHeight = 540
+let stageLogicWidth = 960
 
 /**
  * 初始化 Konva.js Stage 和 Layer
@@ -233,7 +234,7 @@ function renderStep1_1_1() {
         x:0,
         y:10,
         align:'left',
-        text: 'A chocolate manufacturing system utilizes three PLCs to control and monitor physical parameters affecting the three different processes (i. e. Stages), namely, refining and mixing, molding and cooling, and packing process. Each process is controlled by one PLC and has its own start and stop buttons. \n' +
+        text: 'Background Information:\nA chocolate manufacturing system utilizes three PLCs to control and monitor physical parameters affecting the three different processes (i. e. Stages), namely, refining and mixing, molding and cooling, and packing process. Each process is controlled by one PLC and has its own start and stop buttons. \n' +
             '\nIn stage 1, upon pressing the start button, the pump will inject ingredients into the refiner tank. Ingredients are heated in a furnace from 100°C to 110°C for 30 minutes for the 30 liters tank, monitored by a temperature sensor.\n' +
             '\nIn stage 2, the heated mixture is then transferred to a blender, where a motor mixes the contents for 30 minutes. \n' +
             '\nIn stage 3, the resulting liquid chocolate is dispensed into molds using a time-controlled dispenser. The molds are transported through a cooling chamber, where the temperature is maintained at 10°C. Once solidified, the chocolates are moved to a chute-type dispenser, which releases five chocolates into each box, monitored by an optical counter. After five chocolates are dispensed, the system triggers the conveyor belt to move by one unit length and activates a piston to seal the box.'
@@ -336,7 +337,7 @@ function renderStep2_1_1() {
 
     renderImage({
         x: text.x() + text.width(),
-        y: stageInstance.getHeight()/4,
+        y: 0,
         maxWidth: stageInstance.getWidth() / 2,
         maxHeight: stageInstance.getHeight(),
         imageSrc: '/assets/images/caseStudy/1/2.1.1.png'
@@ -588,8 +589,8 @@ function renderStep8_1_4() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.4.png'
     })
 }
@@ -605,8 +606,8 @@ function renderStep8_1_5() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.5.png'
     })
 }
@@ -622,8 +623,8 @@ function renderStep8_1_6() {
 
         renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.6.png'
     })
 }
@@ -639,8 +640,8 @@ function renderStep8_1_7() {
 
         renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.7.png'
     })
 }
@@ -656,8 +657,8 @@ function renderStep8_1_8() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.8.png'
     })
 }
@@ -673,8 +674,8 @@ function renderStep8_1_9() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.9.png'
     })
 }
@@ -682,9 +683,9 @@ function renderStep8_1_9() {
 function renderStep8_1_10() {
 
     renderImage({
-        x:100,
-        y:10,
-        maxWidth:1000,
+        x:0,
+        y:0,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.1.10.png'
     })
 }
@@ -883,8 +884,8 @@ function renderStep8_2_4() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.4.png'
     })
 }
@@ -900,8 +901,8 @@ function renderStep8_2_5() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.5.png'
     })
 }
@@ -917,8 +918,8 @@ function renderStep8_2_6() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.6.png'
     })
 }
@@ -934,8 +935,8 @@ function renderStep8_2_7() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.7.png'
     })
 }
@@ -951,8 +952,8 @@ function renderStep8_2_8() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.8.png'
     })
 }
@@ -968,8 +969,8 @@ function renderStep8_2_9() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.9.png'
     })
 }
@@ -977,9 +978,9 @@ function renderStep8_2_9() {
 function renderStep8_2_10() {
 
     renderImage({
-        x:100,
-        y:10,
-        maxWidth:1000,
+        x:0,
+        y:0,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.2.10.png'
     })
 }
@@ -1174,8 +1175,8 @@ function renderStep8_3_4() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.4.png'
     })
 }
@@ -1191,8 +1192,8 @@ function renderStep8_3_5() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100, // 放置在文本下方，间隔 10px
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50, // 放置在文本下方，间隔 10px
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.5.png'
     })
 }
@@ -1208,8 +1209,8 @@ function renderStep8_3_6() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.6.png'
     })
 }
@@ -1225,8 +1226,8 @@ function renderStep8_3_7() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.7.png'
     })
 }
@@ -1242,8 +1243,8 @@ function renderStep8_3_8() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.8.png'
     })
 }
@@ -1260,8 +1261,8 @@ function renderStep8_3_9() {
 
     renderImage({
         x:0,
-        y:text.y() + text.height()+ 100,
-        maxWidth:1000,
+        y:text.y() + text.height()+ 50,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.9.png'
     })
 }
@@ -1269,48 +1270,162 @@ function renderStep8_3_9() {
 function renderStep8_3_10() {
 
     renderImage({
-        x:100,
-        y:10,
-        maxWidth:1000,
+        x:0,
+        y:0,
+        maxWidth:stageInstance.getWidth(),
         imageSrc:'/assets/images/caseStudy/1/8.3.10.png'
     })
 }
 
+function createLabel({ x, y, width, height, textContent, fontSize=18, padding=20, textColor='black', backgroundColor='white', cornerRadius = 0}) {
+
+    try {
+        // 创建文字
+        const text = new Konva.Text({
+            x,
+            y,
+            text: textContent,
+            fontSize: fontSize,
+            fontFamily: 'Arial',
+            fill: textColor || 'black', // 默认文字颜色为黑色
+            align: 'center', // 水平居中
+            padding: 0, // 添加一些内边距
+        });
+
+        const background = new Konva.Rect({
+            x: x - padding / 2, // 为了让背景更好地包裹文字，背景的 x 坐标需要稍微偏移
+            y: y - padding / 2,
+            width: text.width() + padding,
+            height: text.height() + padding,
+            fill: backgroundColor,
+            cornerRadius,
+        });
+
+        // 将背景和文字添加到图层
+        layerInstance.add(background);
+        layerInstance.add(text);
+
+        // 方法：改变背景颜色
+        const changeBackgroundColor = (newColor) => {
+            background.fill(newColor);
+            layerInstance.draw(); // 重新绘制图层以更新更改
+        };
+
+        // 返回 label 对象
+        return {
+            background,
+            text,
+            changeBackgroundColor,
+        };
+    } catch (error) {
+        console.error('Failed to create label:', error);
+        throw error;
+    }
+}
+
 async function animationStep3_1_1() {
 
-    await addImage({
-        x: 0,
-        y: 0,
-        targetWidth: stageInstance.getWidth(),
-        targetHeight: stageInstance.getHeight(),
-        imageSrc: '/assets/images/caseStudy/1/animation_1/background.png'
+    let machineOn = false; // 机器状态
+    let switchBase, upButton, downButton, bulb, pumpInLabel,RefiningLabel, LLBPoint,SetPoint,ULBPoint,wave, = 0
+
+    async function initAnimation() {
+        console.log('initAnimation')
+        await addImage({
+            x: 0,
+            y: 0,
+            targetWidth: stageInstance.getWidth(),
+            targetHeight: stageInstance.getHeight(),
+            imageSrc: '/assets/images/caseStudy/1/animation_1/background.png'
+        })
+
+        switchBase = await addImage({
+            x: 100,
+            y: 400,
+            targetHeight: 100,
+            targetWidth: 100,
+            imageSrc: '/assets/images/caseStudy/1/animation_1/switchBase.png'
+        });
+
+        bulb = await addImage({
+            x: 220,
+            y: 300,
+            targetHeight: 100,
+            targetWidth: 100,
+            imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+        });
+
+        upButton = new Konva.Circle({
+            x: 119,
+            y: 418,
+            radius: 9,
+            fill: 'grey',
+            stroke: 'black',
+            strokeWidth: 1,
+        });
+
+        downButton = new Konva.Circle({
+            x: 119,
+            y: 444,
+            radius: 9,
+            fill: 'grey',
+            stroke: 'black',
+            strokeWidth: 1,
+        });
+
+        layerInstance.add(upButton);
+        layerInstance.add(downButton);
+
+        pumpInLabel = createLabel({
+            x:20,
+            y:55,
+            textContent:'PumpIn(O)',
+            layer:layerInstance
+        })
+
+        layerInstance.draw();
+    }
+
+    async function renderAnimation() {
+        if (machineOn) {
+            upButton.fill('green')
+            downButton.fill('red')
+            bulb = await addImage({
+                x: 220,
+                y: 300,
+                targetHeight: 100,
+                targetWidth: 100,
+                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+            });
+
+            pumpInLabel.changeBackgroundColor('#00ff00')
+
+        } else {
+            upButton.fill('grey')
+            downButton.fill('grey')
+            bulb = await addImage({
+                x: 220,
+                y: 300,
+                targetHeight: 100,
+                targetWidth: 100,
+                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            });
+        }
+        layerInstance.draw();
+    }
+
+    await initAnimation();
+    upButton.on('click', async () => {
+        // 切换灯泡和开关的图片
+        machineOn = true;
+        console.log('upButtonClick')
+        await renderAnimation();
+    });
+
+    downButton.on('click',async() => {
+        machineOn = false;
+        console.log('downButtonClick')
+        await renderAnimation();
     })
-
-    const switchBase = await addImage({
-        x: 100,
-        y: 600,
-        targetHeight: 200,
-        targetWidth: 200,
-        imageSrc: '/assets/images/caseStudy/1/animation_1/switchBase.png'
-    });
-
-    const greenButton = await addImage({
-        x: 115,
-        y: 612,
-        targetHeight: 50,
-        targetWidth: 50,
-        imageSrc: '/assets/images/caseStudy/1/animation_1/greenButton.png'
-    });
-
-    const offBulb = await addImage({
-        x: 220,
-        y: 400,
-        targetHeight: 150,
-        targetWidth: 150,
-        imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
-    });
-
-    layerInstance.draw();
 
     // const powerSwitchImage = await renderImage({
     //     x: 100,
@@ -1321,26 +1436,7 @@ async function animationStep3_1_1() {
     // });
     //
     // // 添加点击事件到开关图片
-    // let isBulbOn = false; // 灯泡状态
-    // switchImage.on('click', async () => {
-    //     // 切换灯泡和开关的图片
-    //     isBulbOn = !isBulbOn;
     //
-    //     // 更新灯泡图片
-    //     bulbImageOff.image(new Image());
-    //     bulbImageOff.image().src = isBulbOn
-    //         ? '/assets/images/caseStudy/1/bulb_on.png'
-    //         : '/assets/images/caseStudy/1/bulb_off.png';
-    //
-    //     // 更新开关图片
-    //     switchImage.image(new Image());
-    //     switchImage.image().src = isBulbOn
-    //         ? '/assets/images/caseStudy/1/switch_on.png'
-    //         : '/assets/images/caseStudy/1/switch_off.png';
-    //
-    //     // Redraw the layer to reflect changes
-    //     layerInstance.draw();
-    // });
 
 }
 
@@ -1348,7 +1444,7 @@ function renderText({
                         x = 0,
                         y = 10,
                         text,
-                        fontSize = 28,
+                        fontSize = 20,
                         fontFamily = 'Times New Roman',
                         fill = 'black',
                         width = stageInstance.getWidth(),

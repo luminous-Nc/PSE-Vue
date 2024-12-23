@@ -13,6 +13,10 @@ export const useCaseStore = defineStore('caseStudy', {
         }
     },
 
+    persist: {
+        enabled: true,
+    },
+
     actions: {
         async loadCaseStudy(caseID) {
             if (!this.current_case_study) {
