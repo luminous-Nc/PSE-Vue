@@ -13,6 +13,11 @@
               "type": "introduction"
             },
             {
+              "id": "9.1.1",
+              "title": "Stage 1 - Schematic",
+              "type": "schematic"
+            },
+            {
               "id": "1.1.2",
               "title": "Integrated System Layout",
               "type": "introduction"
@@ -23,6 +28,7 @@
               "sub_title": "Stage 1: Refining and Mixing",
               "type": "introduction"
             },
+
             {
               "id": "1.3.1",
               "title": "Problem Statement",

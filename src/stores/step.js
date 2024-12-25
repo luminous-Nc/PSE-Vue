@@ -3,6 +3,8 @@ import {useRoute} from "vue-router";
 import {useTopicsStore} from "@/stores/topic.js";
 import {useStudentStore} from "@/stores/student.js";
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH;
+
+console.log(apiBaseUrl)
 export const useStepsStore = defineStore('steps', {
     state: () => {
         return {
@@ -14,7 +16,7 @@ export const useStepsStore = defineStore('steps', {
             if (!this.steps.length) {
                 // console.log('Downloading steps')
                 try {
-                    const response = await fetch(`${apiBaseUrl}/assets/database/steps.json`);
+                    const response = await fetch(`${apiBaseUrl}assets/database/steps.json`);
                     const data = await response.json();
                     this.steps = data.steps;
                     // console.log('Downloaded store steps')

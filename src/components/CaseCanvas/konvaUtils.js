@@ -14,7 +14,7 @@ let stageLogicWidth = 960
  * @param canvasWidth
  * @param canvasHeight
  */
-export function initializeCanvas(containerElement) {
+export function initializeKonvaCanvas(containerElement) {
     // console.log('init Canvas,', containerElement)
     // console.log('init container Element',containerElement.offsetWidth,containerElement.offsetHeight)
     // console.log('init container Element',containerElement.getBoundingClientRect())
@@ -1326,7 +1326,7 @@ function createLabel({ x, y, width, height, textContent, fontSize=18, padding=20
 async function animationStep3_1_1() {
 
     let machineOn = false; // 机器状态
-    let switchBase, upButton, downButton, bulb, pumpInLabel,RefiningLabel, LLBPoint,SetPoint,ULBPoint,wave, = 0
+    let switchBase, upButton, downButton, bulb, pumpInLabel,RefiningLabel, LLBPoint,SetPoint,ULBPoint,wave = 0
 
     async function initAnimation() {
         console.log('initAnimation')
@@ -1372,6 +1372,10 @@ async function animationStep3_1_1() {
             strokeWidth: 1,
         });
 
+        LLBPoint = new Konva.Circle({
+
+        })
+
         layerInstance.add(upButton);
         layerInstance.add(downButton);
 
@@ -1398,6 +1402,14 @@ async function animationStep3_1_1() {
             });
 
             pumpInLabel.changeBackgroundColor('#00ff00')
+
+            wave = await addImage({
+                x:120,
+                y:170,
+                targetHeight:50,
+                targetWidth:200,
+                imageSrc:'/assets/images/caseStudy/1/animation_1/wave.png'
+            })
 
         } else {
             upButton.fill('grey')

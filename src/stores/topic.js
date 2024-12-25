@@ -13,7 +13,7 @@ export const useTopicsStore = defineStore('topics', {
             if (!this.topics.length) {
                 console.log('Downloading topics...')
                 try {
-                    const response = await fetch(`${apiBaseUrl}/assets/database/topic.json`);
+                    const response = await fetch(`${apiBaseUrl}assets/database/topic.json`);
                     const data = await response.json();
                     this.topics = data.topics;
                     console.log('Downloaded store topics')

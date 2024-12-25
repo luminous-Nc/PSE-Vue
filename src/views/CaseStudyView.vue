@@ -1,6 +1,7 @@
 <template>
     <main class="flex h-screen w-screen flex-col items-center justify-start p-4 pt-[48px]">
         <case-step-bar></case-step-bar>
+        <div>{{currentStep}}</div>
         <div class="mx-auto w-full max-w-[960px] mt-2" id="stepTitle">
             <div class="text-3xl font-bold text-blue-600">
                 {{ currentStep?.title }}
@@ -13,9 +14,18 @@
         <!-- Canvas Area Filling the remaining space-->
         <div class="flex justify-center w-full h-full mt-2">
             <div
-                    ref="caseStudyCanvas"
-                    class="caseStudyCanvas"
+                v-show="showKonvaCanvas"
+                ref="caseStudyCanvas"
+                class="caseStudyCanvas"
             ></div>
+
+            <canvas
+                v-show="!showKonvaCanvas"
+                ref="pseCanvas"
+                height="1000"
+                width="1000"
+                class="w-auto h-auto border-gray-300"
+            ></canvas>
         </div>
         <case-step-button></case-step-button>
     </main>
@@ -26,7 +36,9 @@ import {computed, ref, onMounted, watch, nextTick} from 'vue';
 import caseStepBar from "@/components/CaseStepBar/index.vue";
 import caseStepButton from "@/components/CaseStepButton/index.vue";
 import {useCaseStore} from "@/stores/caseStudy.js";
-import {initializeCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaUtils.js";
+import {initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaUtils.js";
+import {Init_Canvas, Set_Page_ID, Set_Page_Name} from "../../public/assets/canvas/Canvas_Page.js";
+import {Load_Img} from "../../public/assets/canvas/Canvas_Image.js";
 
 const caseStudyStore = useCaseStore()
 
@@ -39,23 +51,47 @@ const currentStep = computed(() => {
 
 });
 
+const showKonvaCanvas = computed(()=>{
+    if (currentStep.value.type!=='schematic' && currentStep.value.type!=='practice') {
+        return true
+    } else {
+        return false
+    }
+})
+
 const caseStudyCanvas = ref(null);
+const pseCanvas = ref(null)
 
 onMounted(async () => {
     await nextTick();
     setTimeout(() => {
-        initializeCanvas(caseStudyCanvas.value);
+        initializeKonvaCanvas(caseStudyCanvas.value);
         // let currentStep = caseStudyStore.step_array[caseStudyStore.current_module][caseStudyStore.current_step]
         // renderCanvasContent(currentStep.id, caseStudyCanvas.value);
     }, 100); // 等待100毫秒再初始化
 });
 
 watch(
-    () => currentStep.value.id,
-    (newStepId) => {
-        // console.log('Current Step ID',newStepId)
-        renderCanvasContent(newStepId, caseStudyCanvas.value);
-    }
+    currentStep,
+    (newStep,oldStep) => {
+        if (newStep.type == oldStep.type) {
+            renderCanvasContent(newStep.id,caseStudyCanvas.value)
+        } else {
+            if (newStep.type === "schematic" || newStep.type === "practice") {
+                console.log('PSE Canvas')
+                Load_Img(); // preload all images
+                Set_Page_ID("case1.9.1.1");
+                Set_Page_Name("haha");
+                Init_Canvas(pseCanvas);
+            } else {
+                initializeKonvaCanvas(caseStudyCanvas.value);
+                renderCanvasContent(newStep.id,caseStudyCanvas.value)
+            }
+        }
+
+    },
+    {deep: true},
+    {immediate: true}
 );
 
 

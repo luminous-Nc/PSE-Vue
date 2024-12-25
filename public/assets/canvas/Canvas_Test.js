@@ -45,14 +45,14 @@ export function Init_Test(){
 function Init_Object(){
     // get dynamic message
     Msgs = DictMsg[PName];
-
+    console.log(Msgs)
     // get key
     Keys = DictModule[PName]["Key"];
-    
+    console.log('keys',Keys)
     // get current module and port
     Modules = {...DictModule[PName]};
     delete Modules["Key"]
-
+    console.log('Modules',Modules)
     // custom random port
     Custom_Random_Port();
     
@@ -117,13 +117,15 @@ function Custom_Random_Port(){
 
 function Draw_Modules(){
     Obstacles = [];
-
+    console.log(Modules)
     for (const ModuleName in Modules){
+        console.log(ModuleName)
         var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
+        console.log('DictImg',DictImg)
         Btmp.name   = ModuleName;
         Btmp.x      = Modules[ModuleName].x; // Center horizontally
         Btmp.y      = Modules[ModuleName].y; // Center vertically
-
+        console.log('BTmp',Btmp)
         // resize the image if applicable
         const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
         Btmp.scaleX        = Scale;
@@ -134,10 +136,12 @@ function Draw_Modules(){
 
         // integrate the image
         Modules[ModuleName].img = Btmp;
+
         stage.addChild(Btmp);
 
         // draw image bound(obstacle)
         const Bound = Get_Img_Bound(PortPos[ModuleName]);
+        console.log('Bound',Bound)
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
         Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
         Obstacle.obj.visible = IsObstacleOn; // display the obstacle?

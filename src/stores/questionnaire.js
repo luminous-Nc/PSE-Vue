@@ -11,7 +11,7 @@ export const useQuestionnaireStore = defineStore('questionnaire', {
             if (!this.questions.length) {
                 console.log('Downloading questions')
                 try {
-                    const response = await fetch(`${apiBaseUrl}/assets/database/learning_style.json`);
+                    const response = await fetch(`${apiBaseUrl}assets/database/learning_style.json`);
                     const data = await response.json();
                     this.questions = data.questions;
                     console.log('Downloaded store questions')

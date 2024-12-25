@@ -1,5 +1,5 @@
 // image path
-const ImgFolder = "./assets/images";
+const ImgFolder = `${import.meta.env.BASE_URL}assets/images`;
 
 // image list
 const ImgsJpg = ["ABBRobot", "ABBRobotS", "ABBRobotS1", "ABBRobotS2", 

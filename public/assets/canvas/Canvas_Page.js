@@ -13,27 +13,31 @@ let PageName;
 
 // main
 function Init_Canvas(CanvasRef){
-    // generate canvas and stage
-    if (!CanvasRef.value) return;
-    const Canvas = CanvasRef.value;
+    try {
+        console.log(CanvasRef.value)
+        // generate canvas and stage
+        if (!CanvasRef.value) return;
+        const Canvas = CanvasRef.value;
 
-    stage = new createjs.Stage(Canvas);
-    stage.removeAllChildren();
-    stage.removeAllEventListeners();
-    stage.enableMouseOver();
+        stage = new createjs.Stage(Canvas);
+        stage.removeAllChildren();
+        stage.removeAllEventListeners();
+        stage.enableMouseOver();
 
-
-
-    // initialization
-    switch(true){
-        case DePage.includes(PageID):
-            Init_Description();
-            break;
-        case STPage.hasOwnProperty(PageID):
-            Init_Test();
-            // Init_Design();
-            break;
+        // initialization
+        switch(true){
+            case DePage.includes(PageID):
+                Init_Description();
+                break;
+            case STPage.hasOwnProperty(PageID):
+                Init_Test();
+                // Init_Design();
+                break;
+        }
+    } catch (exception) {
+        console.error(exception)
     }
+
 }
 
 function Destroy_Canvas(){
