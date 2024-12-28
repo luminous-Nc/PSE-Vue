@@ -24,7 +24,7 @@
                 ref="pseCanvas"
                 height="1000"
                 width="1000"
-                class="w-auto h-auto border-gray-300"
+                class="w-auto h-auto border-gray-300 translate-y-[-100px] "
             ></canvas>
         </div>
         <case-step-button></case-step-button>
@@ -64,6 +64,7 @@ const pseCanvas = ref(null)
 
 onMounted(async () => {
     await nextTick();
+    Load_Img(); // preload all images for createJS canvas
     setTimeout(() => {
         initializeKonvaCanvas(caseStudyCanvas.value);
         // let currentStep = caseStudyStore.step_array[caseStudyStore.current_module][caseStudyStore.current_step]
@@ -73,21 +74,23 @@ onMounted(async () => {
 
 watch(
     currentStep,
-    (newStep,oldStep) => {
-        if (newStep.type == oldStep.type) {
-            renderCanvasContent(newStep.id,caseStudyCanvas.value)
+    async (newStep, oldStep) => {
+      console.log('if same type', newStep.type === oldStep.type)
+      if (newStep.type === oldStep.type) {
+        renderCanvasContent(newStep.id, caseStudyCanvas.value)
+      } else {
+        console.log('not equal, need init')
+        if (newStep.type === "schematic" || newStep.type === "practice") {
+          console.log('init PSE Canvas')
+          Set_Page_ID("case1.9.1.1");
+          Set_Page_Name("haha");
+          Init_Canvas(pseCanvas);
         } else {
-            if (newStep.type === "schematic" || newStep.type === "practice") {
-                console.log('PSE Canvas')
-                Load_Img(); // preload all images
-                Set_Page_ID("case1.9.1.1");
-                Set_Page_Name("haha");
-                Init_Canvas(pseCanvas);
-            } else {
-                initializeKonvaCanvas(caseStudyCanvas.value);
-                renderCanvasContent(newStep.id,caseStudyCanvas.value)
-            }
+          await nextTick()
+          initializeKonvaCanvas(caseStudyCanvas.value);
+          renderCanvasContent(newStep.id, caseStudyCanvas.value)
         }
+      }
 
     },
     {deep: true},

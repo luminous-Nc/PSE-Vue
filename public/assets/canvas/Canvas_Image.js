@@ -9,14 +9,14 @@ var DictImg = {};  // image list
 function Load_Img(){
     // load jpg
     for (const value of ImgsJpg){
-        var Img = new Image();
+        let Img = new Image();
         Img.src = ImgFolder + "/"+ value +".jpg";
         DictImg[value] = Img;
     }
 
     // load jpeg
     for (const value of ImgsJpeg){
-        var Img = new Image();
+        let Img = new Image();
         Img.src = ImgFolder + "/"+ value +".jpeg";
         DictImg[value] = Img;
     }
@@ -33,7 +33,7 @@ function Load_Img(){
 //             console.error("Error reading the folder:", err);
 //             return;
 //         }
-    
+
 //         // Filter files with .jpg or .jpeg extensions
 //         files.forEach(file => {
 //             const ext = path.extname(file).toLowerCase();
@@ -41,7 +41,7 @@ function Load_Img(){
 //                 jpgFiles.push(file);
 //             }
 //         });
-    
+
 //         // Log the array of jpg/jpeg file names
 //         console.log("JPG/JPEG files:", jpgFiles);
 //     });
