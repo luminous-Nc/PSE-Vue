@@ -7,8 +7,8 @@ import { Add_Log } from "../record/Log.js";
 import { useStudentStore } from "@/stores/student.js";
 
 export { MyPorts, MyLines, Timer};
-export {Init_Practice, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
-
+export {Init_Practice,Init_Practice_For_Demo, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
+export {Get_Line,Get_SubLine,Get_Line_For_Demo,Get_SubLine_For_Demo}
 // declare variables
 // User's operation
 var TempPorts   = [];   // current dual selected ports
@@ -29,6 +29,12 @@ function Init_Practice(){
     Init_Symbol();
 }
 
+function Init_Practice_For_Demo(){
+    //Analysis_Symbols_Remove();
+    Init_Parameter();
+    Init_Symbol(true);
+}
+
 // initialize all parameters
 function Init_Parameter(){
     Reset_Dict_Scale(); // reset scale of subline && detour line move
@@ -39,7 +45,7 @@ function Init_Parameter(){
 }
 
 // initialize designated symbols in <practice> frame
-function Init_Symbol(){
+function Init_Symbol(DemoMode=false){
     // remove SubLines, Lines, and Legend
     Remove_SubLines();
     Remove_Lines();
@@ -48,7 +54,7 @@ function Init_Symbol(){
     // Obstacles = Init_Obstacles(ObjDict);
 
     // generate ports and event listeners
-    Reset_Ports();
+    Reset_Ports(DemoMode);
 
     // reset dynamic message box
     Reset_MsgBox();
@@ -58,7 +64,7 @@ function Init_Symbol(){
 
     // reset legend
     Reset_Legend();
-    
+
 }
 
 // generate titles of the current task
@@ -118,7 +124,7 @@ function Titles_Init(){
 // }
 
 // initialize ports: display them and reset event listeners
-function Reset_Ports(){
+function Reset_Ports(demoMode=false){
     // remove old events
     All_Events_Remove(Ports, "mouseover", Event_MouseOver_Connect);
     All_Events_Remove(Ports, "mousedown", Event_MouseDown_Connect);
@@ -137,14 +143,13 @@ function Reset_Ports(){
     //     All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
     //     All_Events_Init(Ports, "click", Event_Click_Connect);
     // }
-
-    // initialize all select mouseover/out and click events
-    All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
-    All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
-    All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
-    All_Events_Init(Ports, "click", Event_Click_Connect);
-        
-
+    if (!demoMode) {
+        // initialize all select mouseover/out and click events
+        All_Events_Init(Ports, "mouseover", Event_MouseOver_Connect);
+        All_Events_Init(Ports, "mousedown", Event_MouseDown_Connect);
+        All_Events_Init(Ports, "mouseout", Event_MouseOut_Connect);
+        All_Events_Init(Ports, "click", Event_Click_Connect);
+    }
 }
 
 // hide all sub-line
@@ -349,7 +354,7 @@ function Display_Connection(){
 
                 // notify in message box(if applicable)
                 Show_Msg(TempPorts[0], TempPorts[1]);
-                // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name 
+                // MsgBox.text =  TempPorts[0].name + "---" + TempPorts[0].name
                 //               + ": error message(display)";
                 // stage.update();
             }else{
@@ -381,9 +386,9 @@ function Show_Msg(Port1, Port2){
     if (Port2.hasOwnProperty("rndname")){Port2Name = Port2["rndname"];}
 
     // check message dictionary
-    if (Msgs === undefined){ 
+    if (Msgs === undefined){
         // generate empty string if unfouned message dictionary
-        MsgBox.text = "";    
+        MsgBox.text = "";
     }else{
         // get message if database exists
         for (const Msg of Msgs){
@@ -392,11 +397,43 @@ function Show_Msg(Port1, Port2){
                 MsgBox.text = Msg["Message"];
                 break;
             }
-        } 
+        }
     };
-    
+
     stage.update();
 
+}
+
+function Get_SubLine_For_Demo(Port){
+    // initialie current point
+    var StartPt = {x : Port.x, y : Port.y};
+    var EndPt = Get_Break_Extend_Point(StartPt, Obstacles);
+
+    // initialize subline name
+    var SubLineName = Get_Symbol_Name(Title.SubLine, Port.name);
+
+    // return if the subline exist
+    var CurrentSubLine = stage.getChildByName(SubLineName);
+    if (CurrentSubLine != null){
+        CurrentSubLine.visible = true;
+        return CurrentSubLine;
+    }
+
+    // intialize subline
+    var SubLine = new createjs.Shape();
+
+
+    SubLine.name    = SubLineName;           // Name
+    SubLine.Module  = Port.Module;           // parent module name
+    SubLine.visible = true;                  // visibility
+
+    // add start and end points
+    SubLine.point = {start: StartPt, end: EndPt}
+
+    // add the line to current connection array
+    MySubLines.push(SubLine);
+
+    return SubLine;
 }
 
 // get subline
@@ -404,7 +441,7 @@ function Get_SubLine(Port){
     // initialie current point
     var StartPt = {x : Port.x, y : Port.y};
     var EndPt = Get_Break_Extend_Point(StartPt, Obstacles);
- 
+
     // initialize subline name
     var SubLineName = Get_Symbol_Name(Title.SubLine, Port.name);
 
@@ -441,13 +478,57 @@ function Get_SubLine(Port){
 
     return SubLine;
 }
+function Get_Line_For_Demo(MyPortSet) {
+    // get two Ports
+    let Port1 = MyPortSet[0];
+    let Port2 = MyPortSet[1];
 
+    // get the line name
+    let LineName = Get_Line_Name(Title.Line, Port1.name, Port2.name);
+
+    // get original start and end point
+    let StartPt0 = [{x: Port1.x, y : Port1.y}];
+    let EndPt0   = [{x: Port2.x, y : Port2.y}];
+
+    // get new start and end point
+    let StartPt  = Port1.SubLEnd;
+    let EndPt    = Port2.SubLEnd;
+
+    // get detouring waypoints
+    let WayPts   = Get_Path(StartPt, EndPt, Obstacles);
+
+    // integrate with orignal start and end points
+    WayPts       = [...StartPt0, ...WayPts, ...EndPt0];
+
+    // eliminate repated line
+    WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
+
+    // draw mutiple waypoints line
+    let Line     = Draw_Connection_With_Animation(LineName, WayPts);
+
+    // assign the connection module
+    Line.Module = [Port1.name, Port2.name];
+
+    // assign waypoints
+    Line.WayPts = WayPts;
+
+    // add time elapsed(second)
+    Line.Time = {Start:  (Port1.Time - Timer.Start) / 1000,
+        Stop:   (Port2.Time - Timer.Start) / 1000};
+
+    // set correct sign of the line(default: false)
+    Line.Correct = false;
+
+    return Line;
+}
 // get dynamic line
 function Get_Line(MyPortSet){
     // get two Ports
     var Port1 = MyPortSet[0];
     var Port2 = MyPortSet[1];
-    
+
+    console.log(Port1,Port2)
+
     // get the line name
     var LineName = Get_Line_Name(Title.Line, Port1.name, Port2.name);
 
@@ -501,6 +582,64 @@ function Get_Line(MyPortSet){
     return Line;
 }
 
+function Draw_Connection_With_Animation(LineName, Points) {
+    // 定义一条新线
+    let Line = new createjs.Shape();
+    let AnimationDuration = 0
+    if (Points.length < 3) {
+        AnimationDuration = 1000
+    } else {
+        AnimationDuration = 2000
+    }
+    // 设置线条属性
+    Line.graphics.setStrokeStyle(5); // 线条宽度
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    let Color = `rgb(${r}, ${g}, ${b})`;
+    // 设置颜色（黑色或随机颜色）
+    // let Color = "#6306d9";
+    Line.graphics.beginStroke(Color); // 设置线条颜色
+
+    // 设置是否为虚线
+    if (IsLineDash) {
+        Line.graphics.setStrokeDash([10, 5]); // 如果需要虚线，则设置虚线样式
+    }
+
+    // 添加线条到舞台
+    stage.addChild(Line);
+
+    // 动画绘制逻辑
+    let currentIndex = 0;
+    function drawNextSegment() {
+        if (currentIndex < Points.length - 1) {
+            // 获取当前线段的起点和终点
+            let startPoint = Points[currentIndex];
+            let endPoint = Points[currentIndex + 1];
+
+            // 逐段绘制线条
+            Line.graphics.moveTo(startPoint.x, startPoint.y);
+            Line.graphics.lineTo(endPoint.x, endPoint.y);
+
+            // 更新舞台
+            stage.update();
+
+            // 递归调用，绘制下一段
+            currentIndex++;
+            setTimeout(drawNextSegment, AnimationDuration / (Points.length - 1)); // 按总时长平分每段动画时间
+        }
+    }
+
+    // 开始绘制动画
+    drawNextSegment();
+
+    // 设置线条名称
+    Line.name = LineName;
+
+    // 返回线条对象
+    return Line;
+}
+
 // ***skip partial waypoints for the same start/end point
 function Skip_Waypoints(Port1, Port2, MyLines){
     for (const MyLine of MyLines){
@@ -524,26 +663,26 @@ function Skip_Waypoints(Port1, Port2, MyLines){
 // draw waypoint connection
 function Draw_Connection(LineName, Points){
     // define a new line
-    var Line = new createjs.Shape();
-
+    let Line = new createjs.Shape();
+    let Color = 0
     // setup properties
     Line.graphics.setStrokeStyle(2); 	  // Line thickness
 
     // set color(black || random)
     if (IsLineRndColor == true){
-        var Color = Get_Rnd_Color()
+        Color = Get_Rnd_Color()
     }else{
-        var Color = "#000000"
+        Color = "#000000"
         };
     Line.graphics.beginStroke(Color); // Line color
-    
+
     // set dash(solid || dash)
     if (IsLineDash == true) {
         Line.graphics.setStrokeDash([10, 5]); // dash line if required
     }
 
     // start to draw waypoint line
-    for(var i = 0; i < Points.length - 1; i++){
+    for(let i = 0; i < Points.length - 1; i++){
         // current draw start point
         Line.graphics.moveTo(Points[i].x, Points[i].y);
 

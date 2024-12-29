@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import LearningView from '../views/LearningView.vue'
 import TopicView from '../views/TopicView.vue'
 
-console.log(import.meta.env.BASE_URL+'pse2')
+console.log(import.meta.env.BASE_URL)
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL+'pse2'),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',

@@ -4,8 +4,12 @@
             <div class="w-0 h-0 border-t-[24px] border-r-[36px] border-b-[24px] transform -translate-x-1 border-transparent border-r-black group-hover:border-r-white"></div>
         </div>
 
-        <div v-show="!ifLastStep" class="absolute right-10 bottom-10 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="nextButton">
+        <div v-show="showNextStep" class="absolute right-10 bottom-10 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="nextButton">
             <div class="w-0 h-0 border-t-[24px] border-l-[36px] border-b-[24px] transform translate-x-1 border-transparent border-l-black transform group-hover:border-l-white"></div>
+        </div>
+
+        <div v-show="showFunctionButton" class="absolute right-10 bottom-10 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="functionButton">
+          {{ caseStudyStore.function_key_name }}
         </div>
     </div>
 </template>
@@ -14,6 +18,10 @@
 
 import {useCaseStore} from "@/stores/caseStudy.js";
 import {computed} from "vue";
+import {nextWireDemo, startWireDemo} from "../../../public/assets/canvas/Canvas_Test.js";
+import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
+import {useStudentStore} from "@/stores/student.js";
+import {Add_Log} from "../../../public/assets/record/Log.js";
 
 const caseStudyStore = useCaseStore()
 
@@ -24,6 +32,18 @@ function nextButton() {
 
 function lastButton() {
     caseStudyStore.lastStep();
+}
+
+function functionButton() {
+  if (caseStudyStore.function_key_name === 'start') {
+    startWireDemo()
+  } else if (caseStudyStore.function_key_name === 'next') {
+    nextWireDemo()
+  } else if (caseStudyStore.function_key_name === 'submit') {
+    let MyAnalysis = Init_Analysis();
+    caseStudyStore.show_function_button = false
+    caseStudyStore.allow_next_step = true
+  }
 }
 
 const moduleArray = computed(() => caseStudyStore.module_array);
@@ -44,6 +64,15 @@ const ifLastStep = computed(() => {
 
     return isLastModule && isLastStepInModule;
 });
+
+const showNextStep = computed(()=> {
+    return (!ifLastStep.value && caseStudyStore.allow_next_step)
+})
+
+const showFunctionButton = computed(()=> {
+    return caseStudyStore.show_function_button
+})
+
 
 
 </script>

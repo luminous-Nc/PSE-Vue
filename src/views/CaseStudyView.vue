@@ -1,7 +1,7 @@
 <template>
     <main class="flex h-screen w-screen flex-col items-center justify-start p-4 pt-[48px]">
         <case-step-bar></case-step-bar>
-        <div>{{currentStep}}</div>
+<!--      -->
         <div class="mx-auto w-full max-w-[960px] mt-2" id="stepTitle">
             <div class="text-3xl font-bold text-blue-600">
                 {{ currentStep?.title }}
@@ -24,7 +24,7 @@
                 ref="pseCanvas"
                 height="1000"
                 width="1000"
-                class="w-auto h-auto border-gray-300 translate-y-[-100px] "
+                class="w-auto h-auto border-gray-300 translate-y-[-50px] "
             ></canvas>
         </div>
         <case-step-button></case-step-button>
@@ -75,17 +75,24 @@ onMounted(async () => {
 watch(
     currentStep,
     async (newStep, oldStep) => {
-      console.log('if same type', newStep.type === oldStep.type)
-      if (newStep.type === oldStep.type) {
+      // console.log('if same type', newStep.type === oldStep.type)
+      if (newStep.type === oldStep.type) { //Always be introduction, keep using Konva
         renderCanvasContent(newStep.id, caseStudyCanvas.value)
       } else {
-        console.log('not equal, need init')
         if (newStep.type === "schematic" || newStep.type === "practice") {
+          caseStudyStore.allow_next_step = false
+          caseStudyStore.show_function_button = true
+          if (newStep.type === "schematic") {
+            caseStudyStore.function_key_name = 'start'
+          } else if (newStep.type === "practice"){
+            caseStudyStore.function_key_name = 'submit'
+          }
           console.log('init PSE Canvas')
-          Set_Page_ID("case1.9.1.1");
-          Set_Page_Name("haha");
+          Set_Page_ID(newStep.id);  // Change this to change P
           Init_Canvas(pseCanvas);
-        } else {
+        } else { // introduction
+          caseStudyStore.allow_next_step = true
+          caseStudyStore.show_function_button = false
           await nextTick()
           initializeKonvaCanvas(caseStudyCanvas.value);
           renderCanvasContent(newStep.id, caseStudyCanvas.value)

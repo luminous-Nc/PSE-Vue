@@ -1,5 +1,5 @@
 // description and practice page array
-export { DePage, TxtTPage, TxtCPage, AudPage, STPage, ATPage}
+export { DePage, TxtTPage, TxtCPage, AudPage, STPage, ATPage,WireDemoPage}
 
 // description page
 const DePage = [
@@ -15,7 +15,7 @@ const TxtTPage = {
                     "3-1":  "P5",
                     "4-1":  "P10",
                 };
-                
+
 const TxtCPage = {
                     "2-2":  "P1",
                     "2-4":  "P2",
@@ -44,10 +44,16 @@ const STPage = {
                     "4-3": "P10",
                     "4-5": "P12",
                     "9-9": "P10", // test
-                    "case1.9.1.1":"P19",
-                    "case1.9.3.1":"P19",
-                    "case1.9.5.1":"P20"
-                }  
+                    "9.1.2":"P18",
+                    "9.2.2":"P19",
+                    "9.3.2":"P20"
+                }
+
+const WireDemoPage = {
+    "9.1.1":"P18",
+    "9.2.1":"P19",
+    "9.3.1":"P20"
+}
 
 // all test page
 const ATPage =  [

@@ -1,7 +1,7 @@
 import Konva from 'konva';
-import {stage} from "../../../public/assets/canvas/Canvas_Page.js";
-import {render} from "vue";
-import {set} from "@vueuse/core";
+
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
+console.log('apiBase',apiBaseUrl)
 
 let stageInstance = null;
 let layerInstance = null;
@@ -16,9 +16,9 @@ const activeAnimations = []; // 存储所有活动的动画
  * @param canvasHeight
  */
 export function initializeKonvaCanvas(containerElement) {
-    console.log('init Canvas,', containerElement)
-    console.log('init container Element', containerElement.offsetWidth, containerElement.offsetHeight)
-    console.log('init container Element', containerElement.getBoundingClientRect())
+    // console.log('init Canvas,', containerElement)
+    // console.log('init container Element', containerElement.offsetWidth, containerElement.offsetHeight)
+    // console.log('init container Element', containerElement.getBoundingClientRect())
 
     if (!containerElement) {
         console.error("Container element is not provided.");
@@ -261,7 +261,7 @@ function renderStep1_1_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: '/assets/images/caseStudy/1/1.1.1.jpg'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.1.1.jpg'
     })
 }
 
@@ -270,7 +270,7 @@ function renderStep1_1_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/1.1.2.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.1.2.png'
     })
 }
 
@@ -285,7 +285,7 @@ function renderStep1_2_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: '/assets/images/caseStudy/1/1.2.1.jpg'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.2.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -306,7 +306,7 @@ function renderStep1_3_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: '/assets/images/caseStudy/1/1.3.1.jpg'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.3.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -327,7 +327,7 @@ function renderStep1_4_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: '/assets/images/caseStudy/1/1.4.1.jpg'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.4.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -357,7 +357,7 @@ function renderStep2_1_1() {
         y: 0,
         maxWidth: stageInstance.getWidth() / 2,
         maxHeight: stageInstance.getHeight(),
-        imageSrc: '/assets/images/caseStudy/1/2.1.1.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/2.1.1.png'
     })
 }
 
@@ -376,7 +376,7 @@ function renderStep4_1_1() {
             '8. After conveyor run for 5 seconds, resets the timer for nozzle (ready for the next timing cycle).\n' +
             '9. The system shut down when Off button is pressed.',
         width: stageInstance.getWidth() / 2,
-        fontSize: 28,
+        fontSize: 20,
         lineHeight: 1.2
     })
 
@@ -384,7 +384,7 @@ function renderStep4_1_1() {
         x: stageInstance.getWidth() / 2,
         y: 10,
         maxWidth: stageInstance.getWidth() / 2,
-        imageSrc: '/assets/images/caseStudy/1/4.1.1.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/4.1.1.png'
     })
 }
 
@@ -402,7 +402,7 @@ function renderStep6_1_1() {
             '7. As the package reaches OptSenP, resets chutter counter.\n' +
             '8. The system shut down when Off button is pressed.\n',
         width: stageInstance.getWidth() / 2,
-        fontSize: 28,
+        fontSize: 22,
         lineHeight: 1.2
     })
 
@@ -410,7 +410,7 @@ function renderStep6_1_1() {
         x: text.x() + text.width(),
         y: 10,
         maxWidth: stageInstance.getWidth() / 2,
-        imageSrc: '/assets/images/caseStudy/1/6.1.1.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/6.1.1.png'
     })
 }
 
@@ -471,110 +471,11 @@ function renderStep8_1_1() {
 }
 
 function renderStep8_1_2() {
-    let text = renderText({
+    renderImage({
         x: 0,
-        y: 10,
-        text: 'Inputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text2 = renderText({
-        x: text.x() + text.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text3 = renderText({
-        x: text2.x() + text2.width(),
-        y: 10,
-        text: 'Outputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text4 = renderText({
-        x: text3.x() + text3.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text11 = renderText({
-        x: 0,
-        y: text.height() + text.y() + 30,
-        text: 'On Button (ONB)\n' +
-            'Off Button (OFFB)\n' +
-            'Upper Level Bound (ULB)\n' +
-            'Lower Level Bound (LLB)\n' +
-            'Upper Level Milk) (ULM)\n' +
-            'Set Point',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text22 = renderText({
-        x: text.x() + text.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:8:I:Data.0\n' +
-            'Local:8:I:Data.1\n' +
-            'Local:8:I:Data.2\n' +
-            'Local:8:I:Data.3\n' +
-            'Local:8:I:Data.4\n' +
-            'Local:8:I:Data.5',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text33 = renderText({
-        x: text2.x() + text2.width(),
-        y: text.height() + text.y() + 30,
-        text: 'System Light\n' +
-            'Refiner\n' +
-            'Mixer\n' +
-            'Valve\n' +
-            'PumpIn\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text44 = renderText({
-        x: text3.x() + text3.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:9:O:Data.0\n' +
-            'Local:9:O:Data.1\n' +
-            'Local:9:O:Data.2\n' +
-            'Local:9:O:Data.3\n' +
-            'Local:9:O:Data.4\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
+        y: 0,
+        maxWidth: stageInstance.getWidth(),
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.2.png'
     })
 
 }
@@ -610,7 +511,7 @@ function renderStep8_1_4() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.4.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.4.png'
     })
 }
 
@@ -628,7 +529,7 @@ function renderStep8_1_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.5.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.5.png'
     })
 }
 
@@ -646,7 +547,7 @@ function renderStep8_1_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.6.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.6.png'
     })
 }
 
@@ -664,7 +565,7 @@ function renderStep8_1_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.7.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.7.png'
     })
 }
 
@@ -682,7 +583,7 @@ function renderStep8_1_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.8.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.8.png'
     })
 }
 
@@ -700,7 +601,7 @@ function renderStep8_1_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.9.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.9.png'
     })
 }
 
@@ -710,7 +611,7 @@ function renderStep8_1_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.1.10.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.10.png'
     })
 }
 
@@ -771,110 +672,11 @@ function renderStep8_2_1() {
 }
 
 function renderStep8_2_2() {
-    let text = renderText({
+    renderImage({
         x: 0,
-        y: 10,
-        text: 'Inputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text2 = renderText({
-        x: text.x() + text.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text3 = renderText({
-        x: text2.x() + text2.width(),
-        y: 10,
-        text: 'Outputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text4 = renderText({
-        x: text3.x() + text3.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text11 = renderText({
-        x: 0,
-        y: text.height() + text.y() + 30,
-        text: 'On Button (ONB)\n' +
-            'Off Button (OFFB)\n' +
-            'Upper Level Bound (ULD)\n' +
-            'Lower Level Bound (LLD)\n' +
-            'Set Point\n' +
-            'Opt Sensor',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text22 = renderText({
-        x: text.x() + text.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:8:I:Data.0\n' +
-            'Local:8:I:Data.1\n' +
-            'Local:8:I:Data.2\n' +
-            'Local:8:I:Data.3\n' +
-            'Local:8:I:Data.4\n' +
-            'Local:8:I:Data.5',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text33 = renderText({
-        x: text2.x() + text2.width(),
-        y: text.height() + text.y() + 30,
-        text: 'System Light\n' +
-            'Pump\n' +
-            'Nozzle\n' +
-            'Cooling\n' +
-            'Conveyor\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text44 = renderText({
-        x: text3.x() + text3.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:9:O:Data.0\n' +
-            'Local:9:O:Data.1\n' +
-            'Local:9:O:Data.2\n' +
-            'Local:9:O:Data.3\n' +
-            'Local:9:O:Data.4\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
+        y: 0,
+        maxWidth: stageInstance.getWidth(),
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.2.png'
     })
 
 }
@@ -884,10 +686,10 @@ function renderStep8_2_3() {
         x: 0,
         y: 10,
         text: 'The sequence of events is as follows:\n\n' +
-            'Step 1. If On is (pressed) true and Off is false (not pressed), the system light is energized.\n\n' +
+            'Step 1. If On is (pressed) true and Off is false (not pressed), the system light is energized.\n' +
             'Step 2. When the set_point is turned off, energizes the cooling system.\n' +
             'Step 3. Pump is energized once the system light is on, until the ingredients reach Upper limit bound (ULD).\n' +
-            'Step 4. Nozzle is energized for 15 seconds when Lower limit bound (LLD) bit is 1 or when Upper limit bound (ULD) bit is 1.\n\n' +
+            'Step 4. Nozzle is energized for 15 seconds when Lower limit bound (LLD) bit is 1 or when Upper limit bound (ULD) bit is 1.\n' +
             'Step 5. After the nozzle works for 15 seconds, the Conveyor is energized for 5 seconds to move the parts forward.\n' +
             'Step 6. After the conveyor works for 5 seconds, timers for nozzle and conveyor are reset and ready for the next round operation.\n' +
             'Step 7. When the parts reaches the end of the conveyor and triggers the optical sensor (Opt_sensor), the conveyor stops.\n' +
@@ -901,7 +703,7 @@ function renderStep8_2_3() {
 function renderStep8_2_4() {
     let text = renderText({
         x: 0,
-        y: 100,
+        y: 80,
         fontSize: 26,
         lineHeight: 1.2,
         text: 'Since the on and off buttons are inputs to the system light, we can write the following rung to specify conditions for the system light to be On. Rung 0 specifies that when the start bit is set to 1, then the system light gets energized. System light bit branching the on bit keep the system light energized as spring return start button gets released, after it is pressed, which makes the on bit 0. A set-point is used to energize the cooling when the set-point is turned off. \n'
@@ -910,9 +712,9 @@ function renderStep8_2_4() {
 
     renderImage({
         x: 0,
-        y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
+        y: text.y() + text.height() + 10, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.4.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.4.png'
     })
 }
 
@@ -930,7 +732,7 @@ function renderStep8_2_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.5.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.5.png'
     })
 }
 
@@ -948,7 +750,7 @@ function renderStep8_2_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.6.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.6.png'
     })
 }
 
@@ -966,7 +768,7 @@ function renderStep8_2_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.7.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.7.png'
     })
 }
 
@@ -984,7 +786,7 @@ function renderStep8_2_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.8.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.8.png'
     })
 }
 
@@ -1002,7 +804,7 @@ function renderStep8_2_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.9.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.9.png'
     })
 }
 
@@ -1012,7 +814,7 @@ function renderStep8_2_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.2.10.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.10.png'
     })
 }
 
@@ -1072,108 +874,11 @@ function renderStep8_3_1() {
 }
 
 function renderStep8_3_2() {
-    let text = renderText({
+    renderImage({
         x: 0,
-        y: 10,
-        text: 'Inputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text2 = renderText({
-        x: text.x() + text.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text3 = renderText({
-        x: text2.x() + text2.width(),
-        y: 10,
-        text: 'Outputs',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text4 = renderText({
-        x: text3.x() + text3.width(),
-        y: 10,
-        text: 'Terminal Address',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 30,
-        lineHeight: 1,
-        fill: 'blue',
-        align: 'center'
-    })
-
-    let text11 = renderText({
-        x: 0,
-        y: text.height() + text.y() + 30,
-        text: 'On Button (ONB)\n' +
-            'Off Button (OFFB)\n' +
-            'Upper Level Bound (ULP)\n' +
-            'Lower Level Bound (LLP)\n' +
-            'Chutter Counter\n' +
-            'Opt Sensor',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text22 = renderText({
-        x: text.x() + text.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:8:I:Data.0\n' +
-            'Local:8:I:Data.1\n' +
-            'Local:8:I:Data.2\n' +
-            'Local:8:I:Data.3\n' +
-            'Local:8:I:Data.4\n' +
-            'Local:8:I:Data.5',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text33 = renderText({
-        x: text2.x() + text2.width(),
-        y: text.height() + text.y() + 30,
-        text: 'System Light\n' +
-            'Conveyor Front\n' +
-            'Chutter\n' +
-            'Conveyor Back\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
-    })
-
-    let text44 = renderText({
-        x: text3.x() + text3.width(),
-        y: text.height() + text.y() + 30,
-        text: 'Local:9:O:Data.0\n' +
-            'Local:9:O:Data.1\n' +
-            'Local:9:O:Data.2\n' +
-            'Local:9:O:Data.3\n',
-        width: stageInstance.getWidth() / 4,
-        fontSize: 22,
-        lineHeight: 2,
-        fill: 'red',
-        align: 'center'
+        y: 0,
+        maxWidth: stageInstance.getWidth(),
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.2.png'
     })
 
 }
@@ -1210,7 +915,7 @@ function renderStep8_3_4() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.4.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.4.png'
     })
 }
 
@@ -1228,7 +933,7 @@ function renderStep8_3_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.5.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.5.png'
     })
 }
 
@@ -1246,7 +951,7 @@ function renderStep8_3_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.6.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.6.png'
     })
 }
 
@@ -1264,7 +969,7 @@ function renderStep8_3_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.7.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.7.png'
     })
 }
 
@@ -1282,7 +987,7 @@ function renderStep8_3_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.8.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.8.png'
     })
 }
 
@@ -1301,7 +1006,7 @@ function renderStep8_3_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.9.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.9.png'
     })
 }
 
@@ -1311,7 +1016,7 @@ function renderStep8_3_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: '/assets/images/caseStudy/1/8.3.10.png'
+        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.10.png'
     })
 }
 
@@ -1573,7 +1278,7 @@ async function animationStep3_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: '/assets/images/caseStudy/1/animation_1/background.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/background.png'
         })
 
         switchBase = await addImage({
@@ -1581,7 +1286,7 @@ async function animationStep3_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         bulb = await addImage({
@@ -1589,7 +1294,7 @@ async function animationStep3_1_1() {
             y: 300,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         clock1 = await addImage({
@@ -1597,7 +1302,7 @@ async function animationStep3_1_1() {
                 y: 230,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -1612,7 +1317,7 @@ async function animationStep3_1_1() {
                 y: 150,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -1722,7 +1427,7 @@ async function animationStep3_1_1() {
                 y: 300,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             // PumpIn is energized when the system is on, will operate until the ingredient reach ULB
@@ -1732,7 +1437,7 @@ async function animationStep3_1_1() {
                 y: 170,
                 targetHeight: 50,
                 targetWidth: 200,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/wave.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/wave.png'
             })
 
             await moveObject(wave1, 0, -50, 1000);
@@ -1785,7 +1490,7 @@ async function animationStep3_1_1() {
                 y: 390,
                 targetHeight: 50,
                 targetWidth: 150,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/wave.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/wave.png'
             })
             await moveObject(wave1, 0, 20, 1000);
             await moveObject(wave2, 0, -20, 1000);
@@ -1850,7 +1555,7 @@ async function animationStep3_1_1() {
                 y: 300,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
             });
             stopAllAnimations();
         }
@@ -1884,7 +1589,7 @@ async function animationStep5_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: '/assets/images/caseStudy/1/animation_2/background.jpg'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/background.jpg'
         })
 
         switchBase = await addImage({
@@ -1892,7 +1597,7 @@ async function animationStep5_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         bulb = await addImage({
@@ -1900,7 +1605,7 @@ async function animationStep5_1_1() {
             y: 405,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         clock1 = await addImage({
@@ -1908,7 +1613,7 @@ async function animationStep5_1_1() {
                 y: 300,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -1923,7 +1628,7 @@ async function animationStep5_1_1() {
                 y: 413,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -2024,7 +1729,7 @@ async function animationStep5_1_1() {
             y: 315,
             targetHeight: 40,
             targetWidth: 40,
-            imageSrc: '/assets/images/caseStudy/1/animation_2/cup.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/cup.png'
         })
 
         layerInstance.draw();
@@ -2041,7 +1746,7 @@ async function animationStep5_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             // PumpD turns on until the ingredient reaches ULD.
@@ -2059,7 +1764,7 @@ async function animationStep5_1_1() {
                 y: 285,
                 targetHeight: 20,
                 targetWidth: 80,
-                imageSrc: '/assets/images/caseStudy/1/animation_2/wave.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/wave.png'
             })
 
 
@@ -2156,7 +1861,7 @@ async function animationStep5_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
             });
             upButton.changeBackgroundColor('grey')
             downButton.changeBackgroundColor('grey')
@@ -2194,7 +1899,7 @@ async function animationStep7_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: '/assets/images/caseStudy/1/animation_3/background.jpg'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/background.jpg'
         })
 
         switchBase = await addImage({
@@ -2202,7 +1907,7 @@ async function animationStep7_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_3/switchBase.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/switchBase.png'
         });
 
         bulb = await addImage({
@@ -2210,7 +1915,7 @@ async function animationStep7_1_1() {
             y: 405,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: '/assets/images/caseStudy/1/animation_3/bulbOff.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bulbOff.png'
         });
 
         upButton = createCircle({
@@ -2309,7 +2014,7 @@ async function animationStep7_1_1() {
             y: 234,
             targetHeight: 40,
             targetWidth: 40,
-            imageSrc: '/assets/images/caseStudy/1/animation_3/cup.png'
+            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
         })
 
         accLabel = createLabel(
@@ -2326,7 +2031,7 @@ async function animationStep7_1_1() {
             y:383,
             targetWidth:50,
             targetHeight:50,
-            imageSrc:'/assets/images/caseStudy/1/animation_3/bump.png'
+            imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bump.png'
         })
         layerInstance.draw();
     }
@@ -2342,7 +2047,7 @@ async function animationStep7_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             //Conveyor Front turns on until the amount of the chocolate reaches ULP.
@@ -2361,7 +2066,7 @@ async function animationStep7_1_1() {
                     y:307,
                     targetHeight:100,
                     targetWidth:100,
-                    imageSrc:'/assets/images/caseStudy/1/animation_3/coffee_1.png'
+                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_1.png'
                 }
             )
 
@@ -2370,7 +2075,7 @@ async function animationStep7_1_1() {
                 y: 234,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: '/assets/images/caseStudy/1/animation_3/cup.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
             })
 
             await moveObject(cup,150,0,1000)
@@ -2384,7 +2089,7 @@ async function animationStep7_1_1() {
                     y:293,
                     targetHeight:150,
                     targetWidth:180,
-                    imageSrc:'/assets/images/caseStudy/1/animation_3/coffee_2.png'
+                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_2.png'
                 }
             )
 
@@ -2395,7 +2100,7 @@ async function animationStep7_1_1() {
                 y: 230,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: '/assets/images/caseStudy/1/animation_3/cup.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
             })
 
             await moveObject(cup,150,0,1000)
@@ -2410,7 +2115,7 @@ async function animationStep7_1_1() {
                     y:280,
                     targetHeight:150,
                     targetWidth:180,
-                    imageSrc:'/assets/images/caseStudy/1/animation_3/coffee_3.png'
+                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_3.png'
                 }
             )
 
@@ -2426,7 +2131,7 @@ async function animationStep7_1_1() {
                 y: 411,
                 targetHeight: 20,
                 targetWidth: 20,
-                imageSrc: '/assets/images/caseStudy/1/animation_3/chocolate_1.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_1.png'
 
             })
             await waitAnimation(500)
@@ -2441,7 +2146,7 @@ async function animationStep7_1_1() {
                 y: 401,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: '/assets/images/caseStudy/1/animation_3/chocolate_2.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_2.png'
             })
 
             await waitAnimation(500)
@@ -2454,7 +2159,7 @@ async function animationStep7_1_1() {
                 y: 395,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: '/assets/images/caseStudy/1/animation_3/chocolate_3.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_3.png'
             })
 
             await waitAnimation(500)
@@ -2483,7 +2188,7 @@ async function animationStep7_1_1() {
                 y:383,
                 targetWidth:50,
                 targetHeight:50,
-                imageSrc:'/assets/images/caseStudy/1/animation_3/bump.png'
+                imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bump.png'
             })
 
             accLabel.changeBackgroundColor('Yellow')
@@ -2498,7 +2203,7 @@ async function animationStep7_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
             });
             upButton.changeBackgroundColor('grey')
             downButton.changeBackgroundColor('grey')

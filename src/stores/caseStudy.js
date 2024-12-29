@@ -10,6 +10,9 @@ export const useCaseStore = defineStore('caseStudy', {
             current_step: 0,
             module_array:[],
             step_array:[],
+            allow_next_step:true,
+            function_key_name:'start',
+            show_function_button:false
         }
     },
 

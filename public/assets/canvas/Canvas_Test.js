@@ -1,13 +1,21 @@
 // display practice connection page on Canvas
-import { STPage } from "../properties/Properties_Page.js";
+import {STPage, WireDemoPage} from "../properties/Properties_Page.js";
 import { DictModule } from "../properties/Properties_Task.js"
 import { PortPos, OtherPos } from "../properties/Properties_Position.js"
 import { DictMsg }  from "../properties/Properties_Message.js"
 import { ObjRndPool, ObjRndPoolName } from "../properties/Properties_Random_Port_Pool.js";
-import { Init_Practice } from "../test/Connection.js"
+import {
+    Get_Line,
+    Get_Line_For_Demo,
+    Get_SubLine,
+    Get_SubLine_For_Demo,
+    Init_Practice,
+    Init_Practice_For_Demo
+} from "../test/Connection.js"
 import { stage, PageID } from "./Canvas_Page.js";
 import { DictImg } from "./Canvas_Image.js";
 import { PortSize, IsObstacleOn } from "../properties/Properties_Connection.js";
+import {useCaseStore} from "@/stores/caseStudy.js";
 // import { stage } from "./Canvas_Page.js";
 
 var PName;
@@ -21,41 +29,112 @@ var ImgLegend;
 var Modules     = {};
 var Msgs        = {}; // feedback message
 var Keys        = []; // connecting keys
-
-export { PName, ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys};
+let wireAnimationIndex = 0;
+let WireAnimationObjectList = []
+let CurrentAnimationObjectPair = []
+export { PName, ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys, wireAnimationIndex};
 
 // main
-export function Init_Test(){ 
-    stage.removeAllChildren(); 
+export function Init_Test(){
+    stage.removeAllChildren();
 
-    // initialization 
+    // initialization
     PName = STPage[PageID] // map customed test
-    Init_Object();            
-    Draw_Modules();            
+    Init_Object();
+    Draw_Modules();
     Draw_Modules_Ports();
     Draw_Msg_Box();
     Draw_Anlys_Box();
-    Draw_Legend(); 
+    Draw_Legend();
     Init_Practice();
 }
 
+export function Init_WireDemo() {
+    stage.removeAllChildren();
+
+    // initialization
+    PName = WireDemoPage[PageID] // map customed test
+    Init_Object();
+    Draw_Modules();
+    Draw_Modules_Ports();
+    Draw_Msg_Box();
+    Draw_Anlys_Box();
+    Draw_Legend();
+    Init_Practice_For_Demo();
+}
+
+export function nextWireDemo() {
+
+    CurrentAnimationObjectPair = WireAnimationObjectList[wireAnimationIndex]
+    let pointA = CurrentAnimationObjectPair[0]
+    let pointB = CurrentAnimationObjectPair[1]
+    let caseStore = useCaseStore()
+    // get and display subline symbol from select symbol
+    console.log('pointA',pointA)
+    console.log('pointB',pointB)
+
+    if (!pointA || !pointB) {
+        console.error("Miss Point in Key",pointA,pointB)
+        wireAnimationIndex++
+        console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
+        if (wireAnimationIndex === WireAnimationObjectList.length) { //Last wire
+            caseStore.show_function_button=false
+            caseStore.allow_next_step = true
+        } else {
+            caseStore.function_key_name = 'next'
+        }
+        return
+    }
+
+    let subLineA = Get_SubLine_For_Demo(pointA);
+
+    // add subline end point to the port
+    pointA.SubLEnd = subLineA.point.end;
+
+    let subLineB = Get_SubLine_For_Demo(pointB);
+    pointB.SubLEnd = subLineB.point.end;
+
+    let line = Get_Line_For_Demo(CurrentAnimationObjectPair)
+    wireAnimationIndex++
+    console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
+    if (wireAnimationIndex === WireAnimationObjectList.length) { //Last wire
+        caseStore.show_function_button=false
+        caseStore.allow_next_step = true
+    } else {
+        caseStore.function_key_name = 'next'
+
+    }
+}
+export function startWireDemo() {
+    console.log('start Wire Demo for', PName)
+    console.log('Key',Keys)
+    console.log('Ports',ObjPorts)
+    let caseStore = useCaseStore()
+    wireAnimationIndex = 0
+    WireAnimationObjectList = Keys.map(([key1, key2]) => {
+        const obj1 = ObjPorts.find(port => port.name === key1);
+        const obj2 = ObjPorts.find(port => port.name === key2);
+        return [obj1, obj2];
+    });
+    caseStore.function_key_name = 'next'
+}
 
 
 // assign all ports' coordinate set to each object
 function Init_Object(){
     // get dynamic message
     Msgs = DictMsg[PName];
-    console.log(Msgs)
+    console.log('Msgs',Msgs)
     // get key
     Keys = DictModule[PName]["Key"];
-    console.log('keys',Keys)
+    console.log('keys',Keys) // Keys is the key to show wire connection
     // get current module and port
     Modules = {...DictModule[PName]};
     delete Modules["Key"]
     console.log('Modules',Modules)
     // custom random port
     Custom_Random_Port();
-    
+
 }
 
 // custom random port for single practice
@@ -77,21 +156,21 @@ function Custom_Random_Port(){
 
                 // assign random port general name
                 ObjRndPorts[RNDPortOut] = RNDGeneralName;
-                
+
                 // assign random port key
                 Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
-            }      
-        } 
+            }
+        }
 
         // assign group random port
-        if (Modules[ModuleName].hasOwnProperty("RndPortSet")){         
+        if (Modules[ModuleName].hasOwnProperty("RndPortSet")){
                 // get random port set
                 const RndPortSet         = Modules[ModuleName]["RndPortSet"];
                 const RNDPortPoolName    = RndPortSet[0][3];
                 const RNDGeneralNameSet  = ObjRndPoolName[RNDPortPoolName];
                 const RNDPortPool        = ObjRndPool[RNDPortPoolName];
                 const RNDPortOutSet      = Get_Random_Array_Value(RNDPortPool);
-                
+
                 // assign each random port from port set
                 for (var i = 0; i < RNDPortOutSet.length; i++){
                     const RndPortOutIndex = RndPortSet[i][0];
@@ -100,19 +179,19 @@ function Custom_Random_Port(){
 
                     // get current random port out
                     const RNDPortOut = RNDPortOutSet[RndPortOutIndex];
-                    
+
                     // assign random port
                     Modules[ModuleName]["Port"][RNDPortIndex] = RNDPortOut
-                
+
                     // assign random port general name
                     ObjRndPorts[RNDPortOut] = RNDGeneralNameSet[RndPortOutIndex];
 
                     // assign random port key
-                    Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;     
-                }             
+                    Keys[RNDPortKeyIndex[0]][[RNDPortKeyIndex[1]]] = RNDPortOut;
+                }
         }
     }
-    
+
 }
 
 function Draw_Modules(){
@@ -143,20 +222,20 @@ function Draw_Modules(){
         const Bound = Get_Img_Bound(PortPos[ModuleName]);
         console.log('Bound',Bound)
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
-        Obstacle.obj = Draw_Closed_Shape(Obstacle.Port); 
+        Obstacle.obj = Draw_Closed_Shape(Obstacle.Port);
         Obstacle.obj.visible = IsObstacleOn; // display the obstacle?
         Obstacles.push(Obstacle);
-        stage.addChild(Obstacle.obj);    
-           
+        stage.addChild(Obstacle.obj);
+
     }
-    
-    stage.update();         
+
+    stage.update();
 }
 
 
 function Draw_Modules_Ports(){
     ObjPorts = [];
-    
+
     for(const ModuleName in Modules){
         if (Modules[ModuleName].hasOwnProperty("Port")){
             for(const PortName of Modules[ModuleName].Port){
@@ -164,7 +243,7 @@ function Draw_Modules_Ports(){
                 var circle = new createjs.Shape();
                 circle.graphics.beginFill("blue").drawCircle(0,0,PortSize);
                 circle.module = ModuleName;
-                circle.name   = PortName; 
+                circle.name   = PortName;
                 if(ObjRndPorts.hasOwnProperty(PortName)){
                     circle.rndname = ObjRndPorts[PortName];
                 }
@@ -173,11 +252,11 @@ function Draw_Modules_Ports(){
                 circle.y = Modules[ModuleName].y + PortPos[ModuleName][PortName].y * Scale;
                 ObjPorts.push(circle);
                 stage.addChild(circle);
-                
-            
+
+
             }
         }
-    } 
+    }
     stage.update();
 }
 
@@ -206,20 +285,20 @@ function Init_Rec_Obstacle(Img, b, s){
     const y = Img.y;
     const w = Img.bound.width;
     const h = Img.bound.height;
-    
+
     var Obstacle = {};
 
     Obstacle.name = Img.name;
 
     Obstacle.Port = [{x: x - BufH + b.wl * s,
                       y: y - BufV + b.hu * s},      // left up
-                     {x: x + w + BufH - b.wr * s, 
+                     {x: x + w + BufH - b.wr * s,
                       y: y - BufV + b.hu * s},      // right up
-                     {x: x + w + BufH - b.wr * s, 
+                     {x: x + w + BufH - b.wr * s,
                       y: y + h + BufV - b.hd * s},  // right down
-                     {x: x - BufH + b.wl * s,    
+                     {x: x - BufH + b.wl * s,
                       y: y + h + BufV - b.hd * s}]; // left down
-               
+
     return Obstacle;
 }
 
@@ -239,7 +318,7 @@ function Draw_Closed_Shape(Points){
     }
 
     // last draw to close the shape
-    Shape.graphics.moveTo(Points[Points.length - 1].x, 
+    Shape.graphics.moveTo(Points[Points.length - 1].x,
                           Points[Points.length - 1].y);
     Shape.graphics.lineTo(Points[0].x, Points[0].y);
 
