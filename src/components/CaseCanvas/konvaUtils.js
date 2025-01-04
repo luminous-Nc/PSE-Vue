@@ -1,47 +1,5 @@
 import Konva from 'konva';
 
-
-
-export function resizeCanvas(containerElement) {
-    //console.log('resize')
-    if (!stageInstance) return;
-
-    const {width, height} = containerElement.getBoundingClientRect();
-
-    //console.log('size in resize',width,height)
-
-    stageInstance.width(width);
-    stageInstance.height(height);
-
-
-    // 按宽度和高度计算缩放比例，取较小值
-    const scale = Math.min(width / stageLogicWidth, height / stageLogicHeight);
-
-    stageInstance.scale({
-        x: scale, // 使用较小的缩放比例
-        y: scale, // 保持比例一致
-    });
-}
-
-/**
- * 清除 Canvas 上的内容
- */
-export function clearCanvas() {
-    if (layerInstance) {
-        layerInstance.destroyChildren(); // 清除所有子元素
-        layerInstance.draw(); // 重新渲染
-    }
-}
-
-
-/**
- * 根据 currentStepId 填充 Canvas
- * @param {string} currentStepId - 当前步骤的 ID
- */
-/**
- * 根据 currentStepId 调用相应的渲染函数
- * @param {string} currentStepId - 当前步骤的 ID
- */
 export function renderCanvasContent(currentStepId, containerElement) {
     if (!layerInstance) return;
 

@@ -1,15 +1,17 @@
 import Konva from 'konva';
 import {resizeCanvas} from "@/components/CaseCanvas/konvaUtils.js";
-export {apiBaseUrl,stageInstance, layerInstance}
+export {apiBaseUrl,stageInstance, layerInstance,activeAnimations}
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
 console.log('apiBase',apiBaseUrl)
 
 let stageInstance = null;
 let layerInstance = null;
 
+const activeAnimations = []; // 存储所有活动的动画
+
 let stageLogicHeight = 540
 let stageLogicWidth = 960
-const activeAnimations = []; // 存储所有活动的动画
+
 
 export function initializeKonvaCanvas(containerElement) {
     // console.log('init Canvas,', containerElement)
@@ -50,4 +52,32 @@ export function initializeKonvaCanvas(containerElement) {
             console.error("未能获取点击位置！");
         }
     })
+}
+
+export function resizeCanvas(containerElement) {
+    //console.log('resize')
+    if (!stageInstance) return;
+
+    const {width, height} = containerElement.getBoundingClientRect();
+
+    //console.log('size in resize',width,height)
+
+    stageInstance.width(width);
+    stageInstance.height(height);
+
+
+    // 按宽度和高度计算缩放比例，取较小值
+    const scale = Math.min(width / stageLogicWidth, height / stageLogicHeight);
+
+    stageInstance.scale({
+        x: scale, // 使用较小的缩放比例
+        y: scale, // 保持比例一致
+    });
+}
+
+export function clearCanvas() {
+    if (layerInstance) {
+        layerInstance.destroyChildren(); // 清除所有子元素
+        layerInstance.draw(); // 重新渲染
+    }
 }
