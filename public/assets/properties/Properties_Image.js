@@ -1,6 +1,7 @@
 // image path
-const ImgFolder = `${import.meta.env.BASE_URL}/assets/images`;
 
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
+const ImgFolder = `${apiBaseUrl}/assets/images/wireConvas`;
 // image list
 const ImgsJpg = ["ABBRobot", "ABBRobotS", "ABBRobotS1", "ABBRobotS2",
                  "COMAURobot", "FANUCRobot", "KUKARobot", "OMRONRobot",

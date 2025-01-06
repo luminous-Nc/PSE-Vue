@@ -36,7 +36,7 @@ import {computed, ref, onMounted, watch, nextTick} from 'vue';
 import caseStepBar from "@/components/CaseStepBar/index.vue";
 import caseStepButton from "@/components/CaseStepButton/index.vue";
 import {useCaseStore} from "@/stores/caseStudy.js";
-import {initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaUtils.js";
+import {initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
 import {Init_Canvas, Set_Page_ID, Set_Page_Name} from "../../public/assets/canvas/Canvas_Page.js";
 import {Load_Img} from "../../public/assets/canvas/Canvas_Image.js";
 

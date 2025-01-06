@@ -1,11 +1,18 @@
 import Konva from 'konva';
-import {resizeCanvas} from "@/components/CaseCanvas/konvaUtils.js";
-export {apiBaseUrl,stageInstance, layerInstance,activeAnimations}
+import {useCaseStore} from "@/stores/caseStudy.js";
+import {renderCase1Step} from "@/components/CaseCanvas/caseStudy1.js";
+import {renderCase2Step} from "@/components/CaseCanvas/caseStudy2.js";
+export {apiBaseUrl,stageInstance, layerInstance,activeAnimations,developmentMode}
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
 console.log('apiBase',apiBaseUrl)
 
 let stageInstance = null;
 let layerInstance = null;
+
+let convaContainerElement = null
+
+let developmentMode = import.meta.env.VITE_APP_ENV==="development"
+
 
 const activeAnimations = []; // 存储所有活动的动画
 
@@ -21,7 +28,9 @@ export function initializeKonvaCanvas(containerElement) {
     if (!containerElement) {
         console.error("Container element is not provided.");
         return;
-    }
+    };
+
+    convaContainerElement = containerElement
 
     // Init Stage and Layer in Case Study Canvas
     if (!stageInstance) {
@@ -38,7 +47,7 @@ export function initializeKonvaCanvas(containerElement) {
         stageInstance.add(layerInstance);
     }
 
-    resizeCanvas(containerElement);
+    resizeCanvas();
 
     // 添加窗口 resize 监听器，动态调整宽高
     window.addEventListener("resize", () => resizeCanvas(containerElement));
@@ -54,17 +63,16 @@ export function initializeKonvaCanvas(containerElement) {
     })
 }
 
-export function resizeCanvas(containerElement) {
-    //console.log('resize')
+export function resizeCanvas() {
+
     if (!stageInstance) return;
 
-    const {width, height} = containerElement.getBoundingClientRect();
+    const {width, height} = convaContainerElement.getBoundingClientRect();
 
     //console.log('size in resize',width,height)
 
     stageInstance.width(width);
     stageInstance.height(height);
-
 
     // 按宽度和高度计算缩放比例，取较小值
     const scale = Math.min(width / stageLogicWidth, height / stageLogicHeight);
@@ -80,4 +88,38 @@ export function clearCanvas() {
         layerInstance.destroyChildren(); // 清除所有子元素
         layerInstance.draw(); // 重新渲染
     }
+}
+
+export function renderCanvasContent(currentStepId) {
+    if (!layerInstance) return;
+
+    clearCanvas(); // 清除当前内容
+
+    let caseStore = useCaseStore()
+    switch(caseStore.current_case_study.case_id) {
+        case "1":
+            renderCase1Step(currentStepId)
+            break
+        case "2":
+            renderCase2Step(currentStepId)
+            break
+        default:
+            renderDefault(caseStore.current_case_study.case_id, currentStepId)
+            break
+    }
+    resizeCanvas();
+}
+
+export function renderDefault(caseID, currentStepID) {
+    const text = new Konva.Text({
+        x: 50,
+        y: 50,
+        text: 'Current Case Study ID ' + caseID + '\nCurrentStepID' + currentStepID,
+        fontSize: 20,
+        fontFamily: 'Arial',
+        fill: 'gray',
+    });
+    layerInstance.add(text);
+    stageInstance.add(layerInstance);
+    layerInstance.draw();
 }

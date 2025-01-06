@@ -7,6 +7,7 @@ export { DictImg,  Load_Img};
 var DictImg = {};  // image list
 
 function Load_Img(){
+    console.log('Start loading images... from',ImgFolder)
     // load jpg
     for (const value of ImgsJpg){
         let Img = new Image();
