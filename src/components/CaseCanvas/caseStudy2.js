@@ -255,8 +255,8 @@ function renderStep2_1_1() {
             '8. When Opt2 sense the filled mold, and robot1 is available, start the robot arm operation, moving the mold to to conveyor 2 for stage 2 process.\n' +
             '9. The system shut down when Off button is pressed.\n',
         width: stageInstance.getWidth() / 2,
-        lineHeight: 1.2,
-        fontSize:19,
+        lineHeight: 1.1,
+        fontSize:17,
     })
 
     renderImage({
@@ -287,7 +287,7 @@ function renderStep4_1_1() {
             '12. When the block reaches Opt8, Conveyor6 stops and energizes Robot2 to package the block.\n' +
             '13. The system shut down when Off button is pressed.\n',
         width: stageInstance.getWidth(),
-        fontSize: 20,
+        fontSize: 18,
         lineHeight: 1.1
     })
 
@@ -444,7 +444,7 @@ function renderStep8_2_3() {
             'Step 13. When timer T3.DN bit is 1, resumes Conveyor5, until the block reaches Opt7.\n' +
             'Step 14. When block reaches Opt8, stops Conveyor6, and energizes Robot2.\n',
         lineHeight: 1.2,
-        fontSize: 26
+        fontSize: 20
     })
 
 }
