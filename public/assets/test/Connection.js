@@ -8,7 +8,7 @@ import { useStudentStore } from "@/stores/student.js";
 
 export { MyPorts, MyLines, Timer};
 export {Init_Practice,Init_Practice_For_Demo, Display_Legend, Hide_Ports, Hide_Legend, Reset_MsgBox};
-export {Get_Line,Get_SubLine,Get_Line_For_Demo,Get_SubLine_For_Demo}
+export {Get_Line,Get_SubLine,Get_Line_For_Demo,Get_SubLine_For_Demo,Redraw_Line}
 // declare variables
 // User's operation
 var TempPorts   = [];   // current dual selected ports
@@ -21,6 +21,8 @@ var Timer       = {};   // user's start time
 // overall parameters
 var Title       = {};   // objects' prefix
 var Ports       = [];	// selectable ports
+
+
 
 // main
 function Init_Practice(){
@@ -478,7 +480,30 @@ function Get_SubLine(Port){
 
     return SubLine;
 }
-function Get_Line_For_Demo(MyPortSet) {
+
+function Redraw_Line(Line, opacity) {
+    let newLine = new createjs.Shape(); // 新建线条
+    newLine.graphics.setStrokeStyle(4); // 宽度缩减
+
+    // 使用原线条的颜色
+    newLine.graphics.beginStroke(Line.graphics._stroke.style);
+
+    // 设置透明度
+    newLine.alpha = opacity;
+
+    // 重绘原来的路径点
+    Line.WayPts.forEach((point, index) => {
+        if (index === 0) {
+            newLine.graphics.moveTo(point.x, point.y);
+        } else {
+            newLine.graphics.lineTo(point.x, point.y);
+        }
+    });
+
+    return newLine;
+}
+
+function Get_Line_For_Demo(MyPortSet,randomColor) {
     // get two Ports
     let Port1 = MyPortSet[0];
     let Port2 = MyPortSet[1];
@@ -504,7 +529,7 @@ function Get_Line_For_Demo(MyPortSet) {
     WayPts       = Remove_Repeated_Line_Waypoints(WayPts);
 
     // draw mutiple waypoints line
-    let Line     = Draw_Connection_With_Animation(LineName, WayPts);
+    let Line     = Draw_Connection_With_Animation(LineName, WayPts,randomColor);
 
     // assign the connection module
     Line.Module = [Port1.name, Port2.name];
@@ -518,6 +543,8 @@ function Get_Line_For_Demo(MyPortSet) {
 
     // set correct sign of the line(default: false)
     Line.Correct = false;
+
+    Line.opacity = 1;
 
     return Line;
 }
@@ -582,7 +609,7 @@ function Get_Line(MyPortSet){
     return Line;
 }
 
-function Draw_Connection_With_Animation(LineName, Points) {
+function Draw_Connection_With_Animation(LineName, Points, randomColor) {
     // 定义一条新线
     let Line = new createjs.Shape();
     let AnimationDuration = 0
@@ -593,13 +620,9 @@ function Draw_Connection_With_Animation(LineName, Points) {
     }
     // 设置线条属性
     Line.graphics.setStrokeStyle(5); // 线条宽度
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    let Color = `rgb(${r}, ${g}, ${b})`;
-    // 设置颜色（黑色或随机颜色）
+
     // let Color = "#6306d9";
-    Line.graphics.beginStroke(Color); // 设置线条颜色
+    Line.graphics.beginStroke(randomColor); // 设置线条颜色
 
     // 设置是否为虚线
     if (IsLineDash) {

@@ -11,6 +11,12 @@
         <div v-show="showFunctionButton" class="absolute right-10 bottom-10 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="functionButton">
           {{ caseStudyStore.function_key_name }}
         </div>
+
+        <div v-show="showReplayButton" class="absolute right-10 bottom-32 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="replayButton">
+           replay
+        </div>
+
+        <div v-show="showWireSteps" class="absolute right-16 pr-2 bottom-7">{{caseStudyStore.current_wire}} / {{caseStudyStore.total_wire}}</div>
     </div>
 </template>
 
@@ -18,7 +24,7 @@
 
 import {useCaseStore} from "@/stores/caseStudy.js";
 import {computed} from "vue";
-import {nextWireDemo, startWireDemo} from "../../../public/assets/canvas/Canvas_Test.js";
+import {nextWireDemo, replayWireDemo, startWireDemo} from "../../../public/assets/canvas/Canvas_Test.js";
 import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
 import {useStudentStore} from "@/stores/student.js";
 import {Add_Log} from "../../../public/assets/record/Log.js";
@@ -46,27 +52,59 @@ function functionButton() {
   }
 }
 
+function replayButton(){
+    replayWireDemo()
+}
+
 const moduleArray = computed(() => caseStudyStore.module_array);
 const stepArray = computed(() => caseStudyStore.step_array);
-const currentModule = computed(()=> caseStudyStore.current_module)
-const currentStep = computed(() => caseStudyStore.current_step)
+const currentModuleIndex = computed(()=> caseStudyStore.current_module)
+const currentStepIndex = computed(() => caseStudyStore.current_step)
+
+const currentStep = computed(() => {
+    if (caseStudyStore.step_array[caseStudyStore.current_module]?.length > 0) {
+        return caseStudyStore.step_array[caseStudyStore.current_module][caseStudyStore.current_step]
+    } else {
+        return {title: '', id: null}
+    }
+
+});
+
+const currentKeyName = computed(()=>caseStudyStore.function_key_name)
 
 const ifFirstStep = computed(() => {
-    return currentModule.value === 0 && currentStep.value === 0;
+    return currentModuleIndex.value === 0 && currentStepIndex.value === 0;
 });
 
 const ifLastStep = computed(() => {
     // 判断当前模块和步骤是否为最后一个
-    const isLastModule = currentModule.value === moduleArray.value.length - 1;
+    const isLastModule = currentModuleIndex.value === moduleArray.value.length - 1;
     const isLastStepInModule =
-        stepArray.value[currentModule.value]?.length &&
-        currentStep.value === stepArray.value[currentModule.value].length - 1;
+        stepArray.value[currentModuleIndex.value]?.length &&
+        currentStepIndex.value === stepArray.value[currentModuleIndex.value].length - 1;
 
     return isLastModule && isLastStepInModule;
 });
 
 const showNextStep = computed(()=> {
     return (!ifLastStep.value && caseStudyStore.allow_next_step)
+})
+
+const showWireSteps = computed(()=>{
+    if (currentStep.value.type === "schematic") {
+        if (caseStudyStore.function_key_name !== "start") {
+            return true
+        }
+    }
+    return false
+})
+
+const showReplayButton = computed(()=>{
+    if(currentStep.value.type==="schematic") {
+        if (caseStudyStore.function_key_name !== "start" && caseStudyStore.current_wire!==0) {
+            return true
+        }
+    }
 })
 
 const showFunctionButton = computed(()=> {

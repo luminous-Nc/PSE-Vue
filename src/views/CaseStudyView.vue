@@ -19,13 +19,20 @@
                 class="caseStudyCanvas"
             ></div>
 
-            <canvas
-                v-show="!showKonvaCanvas"
-                ref="pseCanvas"
-                height="1000"
-                width="1000"
-                class="w-auto h-auto border-gray-300 translate-y-[-50px] "
-            ></canvas>
+            <div class="flex flex-row" v-show="!showKonvaCanvas">
+                <div class="relative items-center w-[500px] h-auto mr-5">
+                    <img class="absolute top-[30%] w-full h-auto" :src="pseLeftTable">
+                </div>
+
+                <canvas
+                    ref="pseCanvas"
+                    height="1000"
+                    width="1000"
+                    class="w-auto h-auto border-gray-300 translate-y-[-50px] "
+                ></canvas>
+            </div>
+
+
         </div>
         <case-step-button></case-step-button>
     </main>
@@ -36,10 +43,11 @@ import {computed, ref, onMounted, watch, nextTick} from 'vue';
 import caseStepBar from "@/components/CaseStepBar/index.vue";
 import caseStepButton from "@/components/CaseStepButton/index.vue";
 import {useCaseStore} from "@/stores/caseStudy.js";
-import {initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrl, initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
 import {Init_Canvas, Set_Page_ID, Set_Page_Name} from "../../public/assets/canvas/Canvas_Page.js";
 import {Load_Img} from "../../public/assets/canvas/Canvas_Image.js";
 
+let pseLeftTable = ref("")
 const caseStudyStore = useCaseStore()
 
 const currentStep = computed(() => {
@@ -82,6 +90,7 @@ watch(
         if (newStep.type === "schematic" || newStep.type === "practice") {
           caseStudyStore.allow_next_step = false
           caseStudyStore.show_function_button = true
+          pseLeftTable.value = apiBaseUrl + '/assets/images/caseStudy/1/' + newStep.id + '.png'
           if (newStep.type === "schematic") {
             caseStudyStore.function_key_name = 'start'
           } else if (newStep.type === "practice"){

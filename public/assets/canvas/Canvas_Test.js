@@ -10,7 +10,7 @@ import {
     Get_SubLine,
     Get_SubLine_For_Demo,
     Init_Practice,
-    Init_Practice_For_Demo
+    Init_Practice_For_Demo, Redraw_Line
 } from "../test/Connection.js"
 import { stage, PageID } from "./Canvas_Page.js";
 import { DictImg } from "./Canvas_Image.js";
@@ -32,7 +32,10 @@ var Keys        = []; // connecting keys
 let wireAnimationIndex = 0;
 let WireAnimationObjectList = []
 let CurrentAnimationObjectPair = []
-export { PName, ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys, wireAnimationIndex};
+let previousLine = null
+let currentLine = null
+let randomColor = ""
+export { PName, ObjPorts, Obstacles, MsgBox, AnlysBox, ImgLegend, Msgs, Keys, wireAnimationIndex,previousLine,currentLine};
 
 // main
 export function Init_Test(){
@@ -63,20 +66,39 @@ export function Init_WireDemo() {
     Init_Practice_For_Demo();
 }
 
-export function nextWireDemo() {
+function Clear_Line(Line) {
+    stage.removeChild(Line); // 从舞台中移除线条
+    stage.update(); // 更新舞台
+}
 
+export function replayWireDemo(){
+    if (currentLine) {
+        // 移除当前线条
+        stage.removeChild(currentLine);
+        stage.update();
+
+        // 重新播放当前线条动画
+        currentLine = Get_Line_For_Demo(CurrentAnimationObjectPair,randomColor);
+        currentLine.alpha = 1; // 设置为不透明
+        stage.addChild(currentLine);
+        stage.update();
+        previousLine = currentLine
+    }
+}
+
+export function nextWireDemo() {
     CurrentAnimationObjectPair = WireAnimationObjectList[wireAnimationIndex]
     let pointA = CurrentAnimationObjectPair[0]
     let pointB = CurrentAnimationObjectPair[1]
     let caseStore = useCaseStore()
     // get and display subline symbol from select symbol
-    console.log('pointA',pointA)
-    console.log('pointB',pointB)
+    // console.log('pointA',pointA)
+    // console.log('pointB',pointB)
 
     if (!pointA || !pointB) {
         console.error("Miss Point in Key",pointA,pointB)
         wireAnimationIndex++
-        console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
+        // console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
         if (wireAnimationIndex === WireAnimationObjectList.length) { //Last wire
             caseStore.show_function_button=false
             caseStore.allow_next_step = true
@@ -86,6 +108,18 @@ export function nextWireDemo() {
         return
     }
 
+    if (previousLine) {
+        Clear_Line(previousLine); // 移除上一条线
+        let semiTransparentLine = Redraw_Line(previousLine, 0.3); // 半透明重绘
+        stage.addChild(semiTransparentLine); // 添加到舞台
+    }
+
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    randomColor = `rgb(${r}, ${g}, ${b})`;
+    // 设置颜色（黑色或随机颜色）
+
     let subLineA = Get_SubLine_For_Demo(pointA);
 
     // add subline end point to the port
@@ -94,23 +128,31 @@ export function nextWireDemo() {
     let subLineB = Get_SubLine_For_Demo(pointB);
     pointB.SubLEnd = subLineB.point.end;
 
-    let line = Get_Line_For_Demo(CurrentAnimationObjectPair)
+    let line = Get_Line_For_Demo(CurrentAnimationObjectPair,randomColor)
+    line.alpha = 1;
+    stage.addChild(line)
+    currentLine = line
+    previousLine = line
+    stage.update();
+
     wireAnimationIndex++
-    console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
+    caseStore.current_wire = wireAnimationIndex
+    // console.log('wireAnimationIndex,',wireAnimationIndex,'/',Keys.length)
     if (wireAnimationIndex === WireAnimationObjectList.length) { //Last wire
         caseStore.show_function_button=false
         caseStore.allow_next_step = true
     } else {
         caseStore.function_key_name = 'next'
-
     }
 }
 export function startWireDemo() {
-    console.log('start Wire Demo for', PName)
-    console.log('Key',Keys)
-    console.log('Ports',ObjPorts)
     let caseStore = useCaseStore()
+    caseStore.total_wire = Keys.length
     wireAnimationIndex = 0
+    caseStore.current_wire = wireAnimationIndex
+    previousLine = null
+    currentLine = null
+
     WireAnimationObjectList = Keys.map(([key1, key2]) => {
         const obj1 = ObjPorts.find(port => port.name === key1);
         const obj2 = ObjPorts.find(port => port.name === key2);
@@ -124,14 +166,14 @@ export function startWireDemo() {
 function Init_Object(){
     // get dynamic message
     Msgs = DictMsg[PName];
-    console.log('Msgs',Msgs)
-    // get key
+    // console.log('Msgs',Msgs)
+   // // get key
     Keys = DictModule[PName]["Key"];
-    console.log('keys',Keys) // Keys is the key to show wire connection
+    //console.log('keys',Keys) // Keys is the key to show wire connection
     // get current module and port
     Modules = {...DictModule[PName]};
     delete Modules["Key"]
-    console.log('Modules',Modules)
+    //console.log('Modules',Modules)
     // custom random port
     Custom_Random_Port();
 
@@ -196,15 +238,15 @@ function Custom_Random_Port(){
 
 function Draw_Modules(){
     Obstacles = [];
-    console.log(Modules)
+    // console.log(Modules)
     for (const ModuleName in Modules){
-        console.log(ModuleName)
+        // console.log(ModuleName)
         var Btmp = new createjs.Bitmap(DictImg[ModuleName]);
-        console.log('DictImg',DictImg)
+        // console.log('DictImg',DictImg)
         Btmp.name   = ModuleName;
         Btmp.x      = Modules[ModuleName].x; // Center horizontally
         Btmp.y      = Modules[ModuleName].y; // Center vertically
-        console.log('BTmp',Btmp)
+        // console.log('BTmp',Btmp)
         // resize the image if applicable
         const  Scale = Get_Img_Scale(DictModule[PName][ModuleName])
         Btmp.scaleX        = Scale;
@@ -220,7 +262,7 @@ function Draw_Modules(){
 
         // draw image bound(obstacle)
         const Bound = Get_Img_Bound(PortPos[ModuleName]);
-        console.log('Bound',Bound)
+        // console.log('Bound',Bound)
         var Obstacle = Init_Rec_Obstacle(Btmp, Bound, Scale);
         Obstacle.obj = Draw_Closed_Shape(Obstacle.Port);
         Obstacle.obj.visible = IsObstacleOn; // display the obstacle?
