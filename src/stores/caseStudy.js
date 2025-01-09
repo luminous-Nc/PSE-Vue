@@ -12,7 +12,9 @@ export const useCaseStore = defineStore('caseStudy', {
             step_array:[],
             allow_next_step:true,
             function_key_name:'start',
-            show_function_button:false
+            show_function_button:false,
+            current_wire:0,
+            total_wire:0,
         }
     },
 
