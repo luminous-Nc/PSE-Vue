@@ -890,11 +890,11 @@ const PIronBarkStage1 = {
                                 },  
 
                 "THC1":         {
-                                    x:46, y:506, Scale: 0.5, Port: ["THC1-7", "THC1-8"]
+                                    x:313, y:422, Scale: 0.5, Port: ["THC1-7", "THC1-8", "THC1-9", "THC1-10"]
                                 },
                                 
                 "THC2":         {
-                                    x:313, y:422, Scale: 0.5, Port: ["THC2-7", "THC2-8"]
+                                    x:46, y:506, Scale: 0.5, Port: ["THC2-7", "THC2-8", "THC2-9", "THC2-10"]
                                 },  
 
                 "OPS1":         {
@@ -902,7 +902,7 @@ const PIronBarkStage1 = {
                                 },  
 
                 "OPS2":         {
-                                    x:331, y:177, Scale: 0.5, Port: ["OPS2-VP", "OPS2-NC", "OPS2-COM", "OPS2-VN"]
+                                    x:331, y:177, Scale: 0.5, Port: ["OPS2-VP", "OPS2-NO", "OPS2-COM", "OPS2-VN"]
                                 },  
 
                 "24VDCS":       {
@@ -954,22 +954,88 @@ const PIronBarkStage1 = {
                                 },                    
 
                 "Key":              [
-                                    
-                                    ]              
-            };
+                                    ['SWSPL2', 'IN-0'],
+                                    ['SWSPR2', '24VNS'],
+                                    ['IN-1', 'SWSPR1'],
+                                    ['SWSPL1', '24VNS'],
+                                    ['24VPS', 'GND0PLCL'],
+                                    ['OPS2-VP', '24VNS'],
+                                    ['OPS2-VN', '24VPS'],
+                                    ['OPS2-NO', '24VNS'],
+                                    ['OPS2-COM', 'IN-2'],
+                                    ['IN-3', 'BK1'],
+                                    ['BR1', '24VNS'],
+                                    ['BL1', '24VPS'],
+                                    ['BK2', 'IN-5'],
+                                    ['BR2', '24VNS'],
+                                    ['BL2', '24VPS'],
+                                    ['BR3', '24VNS'],
+                                    ['BL3', '24VPS'],
+                                    ['BK3', 'IN-4'],
+                                    ['OPS1-COM', 'IN-7'],
+                                    ['OPS1-VP', '24VNS'],
+                                    ['OPS1-VN', '24VPS'],
+                                    ['OPS1-NO', '24VNS'],
+                                    ['IN-6', 'THC1-7'],
+                                    ['THC1-8', '24VNS'],
+                                    ['THC1-9', '24VNS'],
+                                    ['THC1-10', '24VPS'],
+                                    ['THC2-7', 'IN-8'],
+                                    ['THC2-8', '24VNS'],
+                                    ['THC2-9', '24VNS'],
+                                    ['THC2-10', '24VPS'],
+                                    ['GND1PLCR', '24VPS'],
+                                    ['DC-0', '24VNS'],
+                                    ['DC-1', '24VNS'],
+                                    ['DC-2', '24VNS'],
+                                    ['DC-3', '24VNS'],
+                                    ['DC-4', '24VNS'],
+                                    ['DC-5', '24VNS'],
+                                    ['DC-6', '24VNS'],
+                                    ['OUT-0', 'LL'],
+                                    ['LR', '24VPS'],
+                                    ['OUT-1', 'RLCU2'],
+                                    ['RLCD2', '24VPS'],
+                                    ['RLSWDR2', 'LaR'],
+                                    ['LaL', '400VNS'],
+                                    ['400VPS', 'RLSWU2'],
+                                    ['OUT-2', 'VL'],
+                                    ['VR', '24VPS'],
+                                    ['OUT-3', 'RLCU1'],
+                                    ['RLCD1', '24VPS'],
+                                    ['RLSWDR1', 'FR'],
+                                    ['FL', '400VNS'],
+                                    ['400VPS', 'RLSWU1'],
+                                    ['OUT-4', 'RLCU5'],
+                                    ['RLCD5', '24VPS'],
+                                    ['RLSWDR5', 'CnU'],
+                                    ['CnD', '230VNS'],
+                                    ['230VPS', 'RLSWU5'],
+                                    ['OUT-5', 'RLCU3'],
+                                    ['RLCD3', '24VPS'],
+                                    ['RLSWDR3', 'CfU'],
+                                    ['CfD', '230VNS'],
+                                    ['230VPS', 'RLSWU3'],
+                                    ['OUT-6', 'RLCU4'],
+                                    ['RLCD4', '24VPS'],
+                                    ['RLSWDR4', 'RU'],
+                                    ['RD', '400VNS'],
+                                    ['400VPS', 'RLSWU4']
+                ]
+                            };
 
 const PIronBarkStage2 = {
                 "PLCInputAB":   {
                                     x:180, y:125, Scale: 0.4, 
                                     Port: ["IN-0", "IN-1", "IN-2",
-                                           "IN-3", "IN-4",
+                                           "IN-3", "IN-4", "IN-5",
                                            "GND0PLCL"]
                                 },
 
                 "PLCOutputAB":  {
                                     x:497, y:134, Scale: 0.4, 
-                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", 
-                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4"],
+                                    Port: ["DC-0", "DC-1", "DC-2", "DC-3", "DC-4", "DC-5",
+                                           "OUT-0", "OUT-1", "OUT-2", "OUT-3", "OUT-4", "OUT-5"],
                                 },   
 
                 "Relay1":       {
@@ -998,7 +1064,11 @@ const PIronBarkStage2 = {
 
                 "ProS2":        {
                                     x:336, y:191, Scale: 0.5, Port: ["BR2", "BK2", "BL2"]
-                                },  
+                                },
+
+                "ProS3":        {
+                                    x:27, y:300, Scale: 0.5, Port: ["BR3", "BK3", "BL3"]
+                                },
 
                 "OPS":         {
                                     x:325, y:300, Scale: 0.5, Port: ["OPS-VP", "OPS-COM", "OPS-NO", "OPS-VN"]
@@ -1014,6 +1084,10 @@ const PIronBarkStage2 = {
                                 
                 "400VDCS":      {
                                     x:663, y:778, Scale: 0.7, Port: ["400VPS", "400VNS"]
+                                },
+
+                "L":            {
+                                    x:687, y:73, Scale: 0.7, Port: ["LL", "LR"]
                                 },
 
                 "FM":            {
@@ -1045,8 +1119,58 @@ const PIronBarkStage2 = {
                                 },                    
 
                 "Key":              [
-
-                                    ]
+                                    ['SWSPL2', 'IN-0'],
+                                    ['SWSPR2', '24VNS'],
+                                    ['IN-1', 'SWSPR1'],
+                                    ['SWSPL1', '24VNS'],
+                                    ['GND0PLCL', '24VPS'],
+                                    ['IN-2', 'OPS-COM'],
+                                    ['OPS-VP', '24VNS'],
+                                    ['OPS-VN', '24VPS'],
+                                    ['OPS-NO', '24VNS'],
+                                    ['IN-3', 'BK1'],
+                                    ['BR1', '24VNS'],
+                                    ['BL1', '24VPS'],
+                                    ['IN-4', 'BK2'],
+                                    ['BR2', '24VNS'],
+                                    ['BL2', '24VPS'],
+                                    ['IN-5', 'BK3'],
+                                    ['BR3', '24VNS'],
+                                    ['BL3', '24VPS'],
+                                    ['DC-0', '24VNS'],
+                                    ['DC-1', '24VNS'],
+                                    ['DC-2', '24VNS'],
+                                    ['DC-3', '24VNS'],
+                                    ['DC-4', '24VNS'],
+                                    ['LL', 'OUT-0'],
+                                    ['LR', '24VPS'],
+                                    ['OUT-1', 'RLCU2'],
+                                    ['RLCD2', '24VPS'],
+                                    ['RLSWDR2', 'FMU'],
+                                    ['FMD', '400VNS'],
+                                    ['400VPS', 'RLSWU2'],
+                                    ['OUT-2', 'RLCU5'],
+                                    ['RLCD5', '24VPS'],
+                                    ['RLSWDR5', 'CbU'],
+                                    ['CbD', '230VNS'],
+                                    ['230VPS', 'RLSWU5'],
+                                    ['OUT-3', 'RLCU1'],
+                                    ['RLCD1', '24VPS'],
+                                    ['RLSWDR1', 'LSR'],
+                                    ['LSL', '400VNS'],
+                                    ['400VPS', 'RLSWU1'],
+                                    ['OUT-4', 'RLCU3'],
+                                    ['RLCD3', '24VPS'],
+                                    ['RLSWDR3', 'RTU'],
+                                    ['RTD', '230VNS'],
+                                    ['230VPS', 'RLSWU3'],
+                                    ['DC-5', '24VNS'],
+                                    ['OUT-5', 'RLCU4'],
+                                    ['RLCD4', '24VPS'],
+                                    ['RLSWDR4', 'CPU'],
+                                    ['CPD', '400VNS'],
+                                    ['400VPS', 'RLSWU4']
+                ]
             };
 
 
