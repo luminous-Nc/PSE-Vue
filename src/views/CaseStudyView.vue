@@ -20,8 +20,9 @@
             ></div>
 
             <div class="flex flex-row" v-show="!showKonvaCanvas">
-                <div class="relative items-center w-[500px] h-auto mr-5">
-                    <img class="absolute top-[30%] w-full h-auto" :src="pseLeftTable">
+                <div class="relative w-4/12 max-w-[400px] h-auto mr-5 mt-16">
+                    <img
+                        class="w-auto h-auto max-w-full max-h-full" :src="pseLeftTable">
                 </div>
 
                 <canvas
@@ -90,7 +91,7 @@ watch(
         if (newStep.type === "schematic" || newStep.type === "practice") {
           caseStudyStore.allow_next_step = false
           caseStudyStore.show_function_button = true
-          pseLeftTable.value = apiBaseUrl + '/assets/images/caseStudy/1/' + newStep.id + '.png'
+          pseLeftTable.value = apiBaseUrl + '/assets/images/caseStudy/'+caseStudyStore.current_case_study.case_id+'/' + newStep.id + '.png'
           if (newStep.type === "schematic") {
             caseStudyStore.function_key_name = 'start'
           } else if (newStep.type === "practice"){

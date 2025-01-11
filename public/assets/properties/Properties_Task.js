@@ -1594,9 +1594,9 @@ const DictModule = {
                         P18: PChocolateMachineStage1,
                         P19: PChocolateMachineStage2,
                         P20: PChocolateMachineStage3,
-                        P21: PIronBarkStage1,
-                        P22: PIronBarkStage2,
-                        P23: PEngineBlockStage1,
-                        P24: PEngineBlockStage2
+                        P21: PEngineBlockStage1,
+                        P22: PEngineBlockStage2,
+                        P23: PIronBarkStage1,
+                        P24: PIronBarkStage2
                     };
 

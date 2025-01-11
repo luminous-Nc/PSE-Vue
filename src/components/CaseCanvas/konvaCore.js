@@ -2,6 +2,7 @@ import Konva from 'konva';
 import {useCaseStore} from "@/stores/caseStudy.js";
 import {renderCase1Step} from "@/components/CaseCanvas/caseStudy1.js";
 import {renderCase2Step} from "@/components/CaseCanvas/caseStudy2.js";
+import {renderCase3Step} from "@/components/CaseCanvas/caseStudy3.js";
 export {apiBaseUrl,stageInstance, layerInstance,activeAnimations,developmentMode}
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
 console.log('apiBase',apiBaseUrl)
@@ -102,6 +103,9 @@ export function renderCanvasContent(currentStepId) {
             break
         case "2":
             renderCase2Step(currentStepId)
+            break
+        case "3":
+            renderCase3Step(currentStepId)
             break
         default:
             renderDefault(caseStore.current_case_study.case_id, currentStepId)
