@@ -1,6 +1,6 @@
 import { OtherPos } from "../properties/Properties_Position.js"
 import { AnlysBox, ImgLegend, Keys } from "../canvas/Canvas_Test.js"
-import { Hide_Ports, Display_Legend, 
+import { Hide_Ports, Display_Legend,
          Reset_MsgBox, MyPorts, MyLines, Timer } from "./Connection.js"
 import { Init_Table } from "./Table_Create.js";
 import { stage } from "../canvas/Canvas_Page.js";
@@ -55,7 +55,7 @@ function Init_Legend(){
  function General_Analysis(){
     // add page name
     Object.assign(Analysis, {Name: PageName});
-    
+
     // <<Statistic Analysis>>
     // get correct and incorrect line
     var ConnectionOut = Check_Connection(MyPorts, MyLines, Keys);
@@ -210,16 +210,39 @@ function Init_Legend(){
 
 // display analysis on the textbox
 function Display_Analysis(){
+
     const Attempt = Analysis.Correct.length + Analysis.Incorrect.length;
     const Correct = Analysis.Correct.length;
     const CorrectRate = (Analysis.CorrectRate * 100).toFixed(1);
-    
+
     const Str1 = `Total attemps: ${Attempt}\n`;
     const Str2 = `Correct: ${Correct}\n`;
     const Str3 = `Accuracy: ${CorrectRate}%`;
 
     const Str = Str1 + Str2 + Str3;
-    AnlysBox.text = Str;
+
+    let AnalysBox = new createjs.Text();
+    AnalysBox.font = "bold 20px Arial";
+    AnalysBox.color = "#000";
+    AnalysBox.textAlign = "left";
+    AnalysBox.lineWidth  = 400;
+    // AnlysBox.lineHeight = 300;
+    AnalysBox.text = Str
+    AnalysBox.x = 800;
+    AnalysBox.y = 800;
+
+    let textWidth = AnalysBox.getMeasuredWidth();
+    let textHeight = AnalysBox.getMeasuredHeight();
+
+    let backgroundBox = new createjs.Shape();
+    backgroundBox.graphics
+        .beginFill("rgba(255, 255, 255, 0.7)") // 半透明白色背景
+        .drawRect(0, 0, textWidth + 40, textHeight + 20); // 给背景留出内边距
+
+    backgroundBox.x = AnalysBox.x - 20;
+    backgroundBox.y = AnalysBox.y - 10;
+
+    stage.addChild(backgroundBox,AnalysBox)
 
     stage.update();
 }

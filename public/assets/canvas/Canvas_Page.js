@@ -15,7 +15,7 @@ let PageName;
 // main
 function Init_Canvas(CanvasRef){
     try {
-        console.log(CanvasRef.value)
+        // console.log(CanvasRef.value)
         // generate canvas and stage
         if (!CanvasRef.value) return;
         const Canvas = CanvasRef.value;

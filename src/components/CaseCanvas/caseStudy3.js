@@ -260,7 +260,7 @@ function renderStep4_1_1() {
             '9. When the iron block reaches the end of the runout table, triggers Opt1, trigger the counter to keep track the number of the complete products, and stop both the runout table and cooling spray.\n' +
             '10. When the Off button is pressed, the whole system shut down.',
         width: stageInstance.getWidth()/2,
-        fontSize: 18,
+        fontSize: 17,
         lineHeight: 1.1
     })
 

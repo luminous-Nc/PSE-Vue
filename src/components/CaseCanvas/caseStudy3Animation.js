@@ -58,8 +58,8 @@ export async function animation1() {
         });
 
         ULFLabel = createLabel({
-                x: 285,
-                y: 99,
+                x: 282,
+                y: 102,
                 fontSize: 14,
                 padding: 0,
                 textContent: 'ULF',
@@ -67,14 +67,14 @@ export async function animation1() {
         )
 
         ULFPoint = createCircle({
-            x: 135,
-            y: 105,
+            x: 138,
+            y: 108,
             radius: 6
         })
 
         LLFLabel = createLabel({
-                x: 285,
-                y: 128,
+                x: 282,
+                y: 129,
                 fontSize: 14,
                 padding: 0,
                 textContent: 'LLF',
@@ -82,133 +82,133 @@ export async function animation1() {
         )
 
         LLFPoint = createCircle({
-            x: 135,
-            y: 132,
+            x: 138,
+            y: 137,
             radius: 6
         })
 
 
         valveLabel = createLabel({
-                x: 227,
-                y: 159,
+                x: 241,
+                y: 160,
                 fontSize: 14,
                 textContent: 'Valve(O)',
             }
         )
 
         tempLLabel = createLabel({
-                x: 224,
-                y: 25,
+                x: 222,
+                y: 26,
                 fontSize: 14,
                 textContent: 'TempL',
             }
         )
 
         tempFLabel = createLabel({
-                x: 437,
-                y: 269,
+                x: 449,
+                y: 279,
                 fontSize: 14,
                 textContent: 'TempF',
             }
         )
 
         ladleLabel = createLabel({
-                x: 10,
-                y: 154,
+                x: 29,
+                y: 149,
                 fontSize: 14,
                 textContent: 'Ladle',
             }
         )
         furnaceLabel = createLabel({
-                x: 429,
-                y: 234,
+                x: 426,
+                y: 239,
                 fontSize: 14,
                 textContent: 'Furnace(O)',
             }
         )
 
         conveyorRLabel = createLabel({
-                x: 429,
-                y: 234,
+                x: 655,
+                y: 496,
                 fontSize: 14,
                 textContent: 'Conveyor(R)',
             }
         )
 
         proxyLabel  = createLabel({
-                x: 704,
-                y: 348,
+                x: 720,
+                y: 344,
                 fontSize: 14,
                 textContent: 'Prox',
             }
         )
 
         proxyPoint =  createCircle({
-            x: 778,
-            y: 348,
+            x: 797,
+            y: 383,
             radius: 6
         })
 
 
         tempLPoint = createCircle({
-            x: 146,
+            x: 150,
             y: 32,
             radius: 6
         })
 
         tempFPoint = createCircle({
-            x: 398,
-            y: 370,
+            x: 409,
+            y: 378,
             radius: 6
         })
 
         opt1Point = createCircle({
-            x: 131,
-            y: 256,
+            x: 136,
+            y: 263,
             radius: 6
         })
 
         opt2Point = createCircle({
-            x: 534,
-            y: 358,
+            x: 547,
+            y: 369,
             radius: 6
         })
 
         opt1Label = createLabel({
-            x: 218,
-            y: 248,
+            x: 216,
+            y: 257,
             fontSize: 14,
             padding: 0,
             textContent: 'Opt1',
         })
 
         conveyorFLabel = createLabel({
-            x: 237,
-            y: 281,
+            x: 249,
+            y: 288,
             textContent: 'ConveyorF(O)',
             padding: 0,
             fontSize: 14,
         })
 
         opt2Label = createLabel({
-            x: 522,
-            y: 262,
+            x: 531,
+            y: 265,
             textContent: 'Opt2',
             fontSize: 14,
             padding: 0
         })
 
         singlePassLabel = createLabel({
-            x: 467,
-            y: 441,
+            x: 477,
+            y: 452,
             textContent: 'Single Pass Rougher',
             fontSize: 14,
             padding: 0
         })
 
         clock1 = await createImage({
-                x: 608,
-                y: 425,
+                x: 612,
+                y: 441,
                 targetHeight: 30,
                 targetWidth: 30,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
@@ -216,8 +216,8 @@ export async function animation1() {
         )
 
         time1 = createLabel({
-            x: 639,
-            y: 425,
+            x: 643,
+            y: 452,
             fontSize: 12,
             padding: 0,
             textContent: '10 min',
@@ -231,6 +231,8 @@ export async function animation1() {
                 fontSize: 20
             }
         )
+
+
 
         layerInstance.draw();
     }
@@ -249,8 +251,8 @@ export async function animation1() {
 
             await newKeyFrame("When the liquid metal reach ULF, ULF is triggered and energize control valve, filling the liquid metal into the tundish", 2000)
             hotwave = await createImage({
-                x: 70,
-                y: 97,
+                x: 73,
+                y: 99,
                 targetHeight: 60,
                 targetWidth: 120,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/hotwave.png'
@@ -278,17 +280,17 @@ export async function animation1() {
             tempFLabel.activate()
 
             tundishImg = await createImage({
-                x: 90,
-                y: 173,
+                x: 82,
+                y: 178,
                 targetHeight: 50,
-                targetWidth: 80,
+                targetWidth: 100,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/tundish.png'
-
             })
 
+
             mouldImg = await createImage({
-                x: 125,
-                y: 242,
+                x: 129,
+                y: 249,
                 targetHeight: 25,
                 targetWidth: 40,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould1.png'
@@ -297,8 +299,8 @@ export async function animation1() {
 
             await newKeyFrame("Ladle and Furnace de-energizes when temperature reach the desired temperature (TempL and TempF is off).\n",0)
             fireImg = await createImage({
-                x: 292,
-                y: 337,
+                x: 304,
+                y: 344,
                 targetHeight: 100,
                 targetWidth: 220,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/fire.png'
@@ -331,8 +333,8 @@ export async function animation1() {
             opt1Label.deactivate()
 
             mouldImg = await createImage({
-                x: 129,
-                y: 249,
+                x: 135,
+                y: 256,
                 targetHeight: 50,
                 targetWidth:50,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould2.png'
@@ -343,20 +345,19 @@ export async function animation1() {
             mouldImg.destroy()
 
             mouldImg = await createImage({
-                x: 184,
-                y: 338,
+                x: 189,
+                y: 347,
                 targetHeight: 50,
                 targetWidth:50,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould3.png'
 
             })
-
             await waitAnimation(1500)
 
             mouldImg.destroy()
             mouldImg = await createImage({
-                x: 306,
-                y: 374,
+                x: 292,
+                y: 384,
                 targetHeight: 50,
                 targetWidth:70,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould4.png'
@@ -389,8 +390,8 @@ export async function animation1() {
             time1.deactivate()
 
             mouldImg = await createImage({
-                x: 562,
-                y: 360,
+                x: 578,
+                y: 369,
                 targetHeight: 50,
                 targetWidth:70,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould5.png'
@@ -398,7 +399,7 @@ export async function animation1() {
             })
 
 
-            await moveObject(mouldImg, 160, 0, 1500)
+            await moveObject(mouldImg, 180, 0, 1500)
             proxyPoint.activate()
             proxyLabel.activate()
             conveyorRLabel.deactivate()
@@ -600,8 +601,8 @@ export async function animation2() {
 
 
         clock1 = await createImage({
-                x: 351,
-                y: 518,
+                x: 346,
+                y: 506,
                 targetHeight: 30,
                 targetWidth: 30,
                 imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
@@ -726,13 +727,13 @@ export async function animation2() {
             conveyorB.deactivate()
             laserCut.activate()
             await Promise.all([
-                await labelAnimation({
+                scaleObject(mouldImg,0.6,0.6,5000),
+                labelAnimation({
                     label: time2,
                     duration:5000,
                     textContents: ["20 min", "15 min", "10 min","5 min","1 min"],
                     backgroundColors: ["#00ff00", "#00ff00", "#05a805","#05a805", "#0d5701"]
                 }),
-                await scaleObject(mouldImg,0.4,0.4,5000)
             ]);
 
 

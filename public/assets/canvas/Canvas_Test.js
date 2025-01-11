@@ -47,7 +47,7 @@ export function Init_Test(){
     Draw_Modules();
     Draw_Modules_Ports();
     Draw_Msg_Box();
-    Draw_Anlys_Box();
+    //Draw_Anlys_Box();
     Draw_Legend();
     Init_Practice();
 }
@@ -380,13 +380,16 @@ function Draw_Msg_Box(){
 }
 
 function Draw_Anlys_Box(){
+
+
+
     AnlysBox = new createjs.Text();
     AnlysBox.font = "bold 20px Arial";
     AnlysBox.color = "#000";
     AnlysBox.textAlign = "left";
     AnlysBox.lineWidth  = 400;
     // AnlysBox.lineHeight = 300;
-    AnlysBox.x = 400;
+    AnlysBox.x = 800;
     AnlysBox.y = 800;
     stage.addChild(AnlysBox);
     stage.update();

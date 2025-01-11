@@ -12,11 +12,19 @@
           {{ caseStudyStore.function_key_name }}
         </div>
 
+      <div v-show="showResetButton" class="absolute right-10 bottom-32 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="resetButton">
+        reset
+      </div>
+
         <div v-show="showReplayButton" class="absolute right-10 bottom-32 m-4 w-20 h-20 bg-green-500 rounded-full flex items-center justify-center group hover:bg-green-600" @click="replayButton">
            replay
         </div>
 
-        <div v-show="showWireSteps" class="absolute right-16 pr-2 bottom-7">{{caseStudyStore.current_wire}} / {{caseStudyStore.total_wire}}</div>
+      <div v-show="showWireSteps" class="absolute right-10 bottom-0 rounded-full m-4 w-20 h-5 flex items-center justify-center group hover:text-green-700" @click="nextButton">
+        skip
+      </div>
+
+        <div v-show="showWireSteps" class="absolute right-16 pr-2 bottom-9">{{caseStudyStore.current_wire}} / {{caseStudyStore.total_wire}}</div>
     </div>
 </template>
 
@@ -28,6 +36,7 @@ import {nextWireDemo, replayWireDemo, startWireDemo} from "../../../public/asset
 import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
 import {useStudentStore} from "@/stores/student.js";
 import {Add_Log} from "../../../public/assets/record/Log.js";
+import {Init_Practice} from "../../../public/assets/test/Connection.js";
 
 const caseStudyStore = useCaseStore()
 
@@ -38,6 +47,10 @@ function nextButton() {
 
 function lastButton() {
     caseStudyStore.lastStep();
+}
+
+function resetButton() {
+  Init_Practice()
 }
 
 function functionButton() {
@@ -105,6 +118,12 @@ const showReplayButton = computed(()=>{
             return true
         }
     }
+})
+
+const showResetButton = computed(()=>{
+  if(currentStep.value.type==="practice") {
+    return true
+  }
 })
 
 const showFunctionButton = computed(()=> {
