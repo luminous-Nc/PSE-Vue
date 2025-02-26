@@ -1584,7 +1584,31 @@ const PEngineBlockStage2 = {
                                 ['C6L', '230VNS']
                                     ]              
             };
+const P25Port = {
+            "PLCInput": {
+                x: 120, y: 100, Scale: 1, Port: ["", ""],
+                RndPort: [[0, [0, 0], "PLCInputPort"], [1, [1, 0], "PLCInputGNDPort"]]
+            },
 
+            "Relay":    {
+                x:500, y:300, Scale: 0.8, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+            },
+
+            "Sensor":   {
+                x:650, y:120, Port: ["SL", "SR"]
+            },
+
+            "5VDC":     {
+                x:700, y:550, Port: ["5VP", "5VN"]
+            },
+
+            "24VDC":    {
+                x:400, y:600, Port: ["24VP", "24VN"]
+            },
+
+            "Key":      [["", "RLSWU"], ["", "24VN"],    ["24VP", "RLSWDR"],
+                ["5VN", "SR"], ["5VP", "RLCD"], ["SL", "RLCU"]]
+        };
 const DictModule = {
                         P1: P1Port,   P2: P2Port,   P3: P3Port,   P4: P4Port,
                         P5: P5Port,   P6: P6Port,   P7: P7Port,   P8: P8Port,
@@ -1597,6 +1621,7 @@ const DictModule = {
                         P21: PEngineBlockStage1,
                         P22: PEngineBlockStage2,
                         P23: PIronBarkStage1,
-                        P24: PIronBarkStage2
+                        P24: PIronBarkStage2,
+                        P25: P25Port
                     };
 
