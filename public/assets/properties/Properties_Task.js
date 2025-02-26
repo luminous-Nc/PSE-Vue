@@ -1584,38 +1584,36 @@ const PEngineBlockStage2 = {
         ['C6L', '230VNS']
     ]
 };
+
 const P25Port = {
     "PLCInput": {
-        x: 120, y: 100, Scale: 1, Port: ["", ""],
-        RndPort: [[0, [0, 0], "PLCInputPort"], [1, [1, 0], "PLCInputGNDPort"]]
+        x: 100, y: 100, Port: ["GNDPLCR","IN-1"]
     },
 
     "Relay": {
-        x: 500, y: 300, Scale: 0.8, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+        x: 500, y: 400, Scale: 0.8, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
     },
 
     "Sensor": {
-        x: 650, y: 120, Port: ["SL", "SR"]
+        x: 650, y: 200, Port: ["SL", "SR"]
     },
 
     "5VDC": {
-        x: 700, y: 550, Port: ["5VP", "5VN"]
+        x: 750, y: 550, Port: ["5VP", "5VN"]
     },
 
     "24VDC": {
-        x: 400, y: 600, Port: ["24VP", "24VN"]
+        x: 300, y: 650, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["", "RLSWU"], ["", "24VN"], ["24VP", "RLSWDR"],
-        ["5VN", "SR"], ["5VP", "RLCD"], ["SL", "RLCU"]]
+    "Key": [["IN-1", "24VP"], ["24VN", "RLSWDR"], ["RLSWU", "GNDPLCR"],
+        ["SL", "RLCU"], ["RLCD", "5VP"], ["5VN", "SR"]]
 };
 
 
 const P26Port = {
     "PLCOutput": {
-        x: 550, y: 100, Port: ["", ""],
-        RndPortSet: [[0, 0, [0, 0], "PLCOutputPortSet"],
-            [1, 1, [1, 0]], "PLCOutputPortSet"]
+        x: 550, y: 100, Port: ["OUT-4", "DC-4"],
     },
 
     "Relay": {
@@ -1634,7 +1632,7 @@ const P26Port = {
         x: 600, y: 600, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["", "24VN"], ["", "RLCU"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VP"]]
+    "Key": [["OUT-4", "24VN"], ["DC-4", "RLCU"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VP"]]
 };
 
 const DictModule = {
@@ -1649,8 +1647,8 @@ const DictModule = {
     P21: PEngineBlockStage1,
     P22: PEngineBlockStage2,
     P23: PIronBarkStage1,
-    P26: P26Port,
     P24: PIronBarkStage2,
-    P25: P25Port
+    P25: P25Port,
+    P26: P26Port
 };
 
