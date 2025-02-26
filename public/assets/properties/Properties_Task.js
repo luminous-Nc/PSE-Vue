@@ -1617,7 +1617,7 @@ const P26Port = {
     },
 
     "Relay": {
-        x: 300, y: 300, Scale: 0.6, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+        x: 300, y: 450, Scale: 0.6, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
     },
 
     "Motor": {
@@ -1625,14 +1625,14 @@ const P26Port = {
     },
 
     "5VDC": {
-        x: 150, y: 550, Port: ["5VP", "5VN"]
+        x: 150, y: 700, Port: ["5VP", "5VN"]
     },
 
     "24VDC": {
-        x: 600, y: 600, Port: ["24VP", "24VN"]
+        x: 600, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["OUT-4", "24VN"], ["DC-4", "RLCU"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VP"]]
+    "Key": [["OUT-4", "RLCU"], ["DC-4", "24VP"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VN"]]
 };
 
 const DictModule = {
