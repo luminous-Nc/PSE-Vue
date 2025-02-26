@@ -38,8 +38,8 @@ const AudPage = {
 // sequential test page
 const STPage = {
                     "1-2": "P16",
-                    "2-3": "P26",
-                    "2-5": "P2",
+                    "2-3": "P25",
+                    "2-5": "P26",
                     "3-3": "P5",
                     "4-3": "P10",
                     "4-5": "P12",
