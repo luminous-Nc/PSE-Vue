@@ -20,6 +20,7 @@ export default defineConfig(({mode, command})=> {
         input: {
           pse: resolve(__dirname, 'index.html'), // index.html 对应 /pse/
           caseStudy: resolve(__dirname, 'case.html'), // case.html 对应 /case-study/
+          plcInterfacing: resolve(__dirname,'plcInterfacing.html') // plcInterfacing.html 对应 /plc-interfacing/
         },
       }
     },
@@ -33,6 +34,10 @@ export default defineConfig(({mode, command})=> {
         '/case-study': {
           target: 'http://localhost:5173',
           rewrite: (path) => '/case.html'
+        },
+        '/plc-interfacing': {
+          target: 'http://localhost:5173',
+          rewrite: (path) => '/plcInterfacing.html'
         },
       },
     },

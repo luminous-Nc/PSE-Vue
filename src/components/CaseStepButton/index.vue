@@ -31,16 +31,39 @@
 <script setup>
 
 import {useCaseStore} from "@/stores/caseStudy.js";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 import {nextWireDemo, replayWireDemo, startWireDemo} from "../../../public/assets/canvas/Canvas_Test.js";
 import {Init_Analysis} from "../../../public/assets/test/Analysis.js";
-import {useStudentStore} from "@/stores/student.js";
 import {Add_Log} from "../../../public/assets/record/Log.js";
 import {Init_Practice} from "../../../public/assets/test/Connection.js";
+import {useMemoryStore} from "@/stores/memory.js";
+import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
 
-const caseStudyStore = useCaseStore()
+const memoryStore = useMemoryStore()
+let caseStudyStore
+if (memoryStore.task === "plc interfacing") {
+    caseStudyStore = usePLCInterfacingStore()
+    console.log("set case store as PLC")
+}
+
+if (memoryStore.task === "case study") {
+    caseStudyStore = useCaseStore()
+    console.log("set case store as study")
+}
 
 
+
+onMounted(()=> {
+    if (memoryStore.task === "plc interfacing") {
+        caseStudyStore = usePLCInterfacingStore()
+        console.log("set case store as PLC")
+    }
+
+    if (memoryStore.task === "case study") {
+        caseStudyStore = useCaseStore()
+        console.log("set case store as study")
+    }
+})
 function nextButton() {
     caseStudyStore.nextStep();
 }
@@ -56,6 +79,7 @@ function resetButton() {
 function functionButton() {
   if (caseStudyStore.function_key_name === 'start') {
     startWireDemo()
+      console.error('start wire demo')
   } else if (caseStudyStore.function_key_name === 'next') {
     nextWireDemo()
   } else if (caseStudyStore.function_key_name === 'submit') {

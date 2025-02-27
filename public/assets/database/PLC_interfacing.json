@@ -1,0 +1,56 @@
+{
+  "case_study": [
+    {
+      "case_id": "1",
+      "case_name": "PLC Input",
+      "case_path": "input",
+      "modules": [
+        {
+          "name": "Statement",
+          "steps":[
+            {
+              "id": "1.1.1",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "1.1.2",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "PLC_IN-1.1.3",
+              "title": "Let's learn the interfacing of switch first",
+              "type": "schematic"
+            },
+            {
+              "id": "PLC_IN-1.1.4",
+              "title": "Let's learn the interfacing of switch first",
+              "type": "practice"
+            },
+            {
+              "id": "1.2.1",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "1.2.2",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "PLC_IN-1.2.3",
+              "title": "Let's learn the interfacing of switch first",
+              "type": "schematic"
+            },
+            {
+              "id": "PLC_IN-1.2.4",
+              "title": "Let's learn the interfacing of switch first",
+              "type": "practice"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
