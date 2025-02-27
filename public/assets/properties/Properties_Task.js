@@ -1587,7 +1587,11 @@ const PEngineBlockStage2 = {
 
 const P25Port = {
     "PLCInput": {
-        x: 100, y: 100, Port: ["GNDPLCR","IN-1"]
+        x: 100, y: 100, Port: ["GNDPLCR","IN-1","GNDPLCL","IN-7"]
+    },
+
+    "Switch": {
+        x: 100, y: 500, Port: ["SWL", "SWR"]
     },
 
     "Relay": {
@@ -1607,7 +1611,7 @@ const P25Port = {
     },
 
     "Key": [["IN-1", "24VP"], ["24VN", "RLSWDR"], ["RLSWU", "GNDPLCR"],
-        ["SL", "RLCU"], ["RLCD", "5VP"], ["5VN", "SR"]]
+        ["SL", "RLCU"], ["RLCD", "5VP"], ["5VN", "SR"], ["GNDPLCL", "SWR"], ["IN-7","SWL"]]
 };
 
 
