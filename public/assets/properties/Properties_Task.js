@@ -1587,19 +1587,19 @@ const PEngineBlockStage2 = {
 
 const P25Port = {
     "PLCInput": {
-        x: 100, y: 100, Port: ["GNDPLCR","IN-1","GNDPLCL","IN-7"]
+        x: 50, y: 150, Port: ["GNDPLCR","IN-0","IN-2"]
     },
 
     "Switch": {
-        x: 100, y: 500, Port: ["SWL", "SWR"]
+        x: 560, y: 150, Port: ["SWL", "SWR"]
     },
 
     "Relay": {
-        x: 500, y: 400, Scale: 0.8, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
+        x: 500, y: 350, Scale: 0.8, Port: ["RLCU", "RLCD", "RLSWU", "RLSWDL", "RLSWDR"]
     },
 
     "Sensor": {
-        x: 650, y: 200, Port: ["SL", "SR"]
+        x: 760, y: 250, Port: ["SL", "SR"]
     },
 
     "5VDC": {
@@ -1607,11 +1607,11 @@ const P25Port = {
     },
 
     "24VDC": {
-        x: 300, y: 650, Port: ["24VP", "24VN"]
+        x: 400, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["IN-1", "24VP"], ["24VN", "RLSWDR"], ["RLSWU", "GNDPLCR"],
-        ["SL", "RLCU"], ["RLCD", "5VP"], ["5VN", "SR"], ["GNDPLCL", "SWR"], ["IN-7","SWL"]]
+    "Key": [["IN-0", "SWL"], ["SWR", "24VP"], ["24VP", "RLSWDR"],
+        ["RLSWU", "IN-2"], ["24VN", "GNDPLCR"], ["RLCU", "SL"], ["SR", "5VN"], ["5VP","RLCD"]]
 };
 
 
