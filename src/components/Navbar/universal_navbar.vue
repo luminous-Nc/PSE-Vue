@@ -9,7 +9,7 @@
                         Case Study - {{ currentCaseStudyName }}
                     </template>
                     <template v-else-if="appName === 'plcInterfacing'">
-                       PLC Interfacing
+                       PLC Interfacing - {{ currentPLCCaseName }}
                     </template>
                     <template v-else>
                         App Display Name
@@ -29,6 +29,8 @@
 import {useRoute, useRouter} from "vue-router";
 import {computed} from "vue";
 import {useCaseStore} from "@/stores/caseStudy.js";
+import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
+
 const route = useRoute();
 const router = useRouter();
 
@@ -49,6 +51,16 @@ const currentCaseStudyName = computed(() => {
   }
 });
 
+const currentPLCCaseName = computed(() => {
+    if (plcStore.current_case_study) {
+        return plcStore.current_case_study.case_name
+    } else {
+        return ""
+    }
+});
+
+
+const plcStore = usePLCInterfacingStore()
 const caseStore = useCaseStore()
 
 </script>

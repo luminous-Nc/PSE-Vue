@@ -6,6 +6,7 @@ import {renderCase3Step} from "@/components/CaseCanvas/caseStudy3.js";
 import {useMemoryStore} from "@/stores/memory.js";
 import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
 import {renderCasePLCInputStep} from "@/components/CaseCanvas/casePLCInput.js";
+import {renderCasePLCOutputStep} from "@/components/CaseCanvas/casePLCOutput.js";
 export {apiBaseUrl,stageInstance, layerInstance,activeAnimations,developmentMode}
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
 console.log('apiBase',apiBaseUrl)
@@ -102,11 +103,12 @@ export function renderCanvasContent(currentStepId) {
     const memoryStore = useMemoryStore()
     if (memoryStore.task === "plc interfacing")  {
         let plcCaseStore = usePLCInterfacingStore()
-        switch(plcCaseStore.current_case_study.case_name) {
-            case "PLC Input":
+        switch(plcCaseStore.current_case_study.case_path) {
+            case "input":
                 renderCasePLCInputStep(currentStepId)
                 break
-            case "PLC Output":
+            case "output":
+                renderCasePLCOutputStep(currentStepId)
                 break
         }
     }

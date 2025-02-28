@@ -2,7 +2,7 @@
   "case_study": [
     {
       "case_id": "1",
-      "case_name": "PLC Input",
+      "case_name": "Input Module",
       "case_path": "input",
       "modules": [
         {
@@ -19,19 +19,19 @@
               "type": "introduction"
             },
             {
+              "id": "1.1.5",
+              "title": "Interfacing with IB16 Input Module",
+              "type": "introduction"
+            },
+            {
               "id": "PLC_IN-1.1.3",
-              "title": "Let's learn the interfacing of switch first",
+              "title": "Learn the interfacing of switch",
               "type": "schematic"
             },
             {
               "id": "PLC_IN-1.1.4",
-              "title": "Let's learn the interfacing of switch first",
+              "title": "Complete the interfacing practice of switch",
               "type": "practice"
-            },
-            {
-              "id": "1.2.1",
-              "title": "Problem Statement",
-              "type": "introduction"
             },
             {
               "id": "1.2.2",
@@ -40,12 +40,64 @@
             },
             {
               "id": "PLC_IN-1.2.3",
-              "title": "Let's learn the interfacing of switch first",
+              "title": "Learn the interfacing of relay",
               "type": "schematic"
             },
             {
               "id": "PLC_IN-1.2.4",
-              "title": "Let's learn the interfacing of switch first",
+              "title": "Complete the interfacing practice of relay",
+              "type": "practice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "2",
+      "case_name": "Output Module",
+      "case_path": "output",
+      "modules": [
+        {
+          "name": "Statement",
+          "steps":[
+            {
+              "id": "1.1.1",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "1.1.2",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "1.1.3",
+              "title": "Interfacing with OB8 Output Module",
+              "type": "introduction"
+            },
+            {
+              "id": "PLC_OUT-1.1.4",
+              "title": "Learn the interfacing of 24VDC motor",
+              "type": "schematic"
+            },
+            {
+              "id": "PLC_OUT-1.1.5",
+              "title": "Complete the interfacing practice of 24VDC motor",
+              "type": "practice"
+            },
+            {
+              "id": "1.2.1",
+              "title": "Problem Statement",
+              "type": "introduction"
+            },
+            {
+              "id": "PLC_OUT-1.2.2",
+              "title": "Learn the interfacing of 5VDC motor",
+              "type": "schematic"
+            },
+            {
+              "id": "PLC_OUT-1.2.3",
+              "title": "Complete the interfacing practice of 5VDC motor",
               "type": "practice"
             }
           ]

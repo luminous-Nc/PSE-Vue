@@ -1587,7 +1587,7 @@ const PEngineBlockStage2 = {
     ]
 };
 
-const P25Port = {
+const PLCIN2 = {
     "PLCInput": {
         x: 50, y: 150, Port: ["GNDPLCR","IN-0","IN-2"]
     },
@@ -1612,12 +1612,12 @@ const P25Port = {
         x: 400, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["IN-0", "SWL"], ["SWR", "24VP"], ["24VP", "RLSWDR"],
-        ["RLSWU", "IN-2"], ["24VN", "GNDPLCR"], ["RLCU", "SL"], ["SR", "5VN"], ["5VP","RLCD"]]
+    "Key": [["IN-0", "SWL"], ["SWR", "24VP"], ["24VN", "GNDPLCR"],["IN-2","RLSWU"],["RLSWDR", "24VP"],
+        ["RLCU", "SL"], ["SR", "5VN"], ["5VP","RLCD"]]
 };
 
 
-const P26Port = {
+const PLCOUT2 = {
     "PLCOutput": {
         x: 550, y: 100, Port: ["OUT-4", "DC-4"],
     },
@@ -1638,7 +1638,7 @@ const P26Port = {
         x: 600, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["OUT-4", "RLCU"], ["DC-4", "24VP"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VN"]]
+    "Key": [["24VP", "DC-4"],["OUT-4", "RLCU"],  ["RLCD", "24VN"], ["5VP", "MTL"],["MTR", "RLSWU"], ["RLSWDR", "5VN"]]
 };
 
 const PLCIN1 = {
@@ -1654,24 +1654,25 @@ const PLCIN1 = {
         x: 650, y: 200, Port: ["SWL", "SWR"]
     },
 
-    "Key": [["IN-0", "SWL"], ["GNDPLCR", "24VN"], ["SWR", "24VP"]]
+    "Key": [["IN-0", "SWL"], ["SWR", "24VP"],["GNDPLCR", "24VN"]]
 };
 
-const PLCIN2 = {
-    "PLCInput": {
-        x: 150, y: 100, Scale: 1.2, Port: ["IN-0", "GNDPLCR"]
+const PLCOUT1 = {
+    "PLCOutput": {
+        x: 450, y: 100, Port: ["OUT-4", "DC-4"],
     },
 
     "24VDC": {
-        x: 650, y: 500, Port: ["24VP", "24VN"]
+        x: 250, y: 600, Port: ["24VP", "24VN"]
     },
 
-    "Switch": {
-        x: 650, y: 200, Port: ["SWL", "SWR"]
+    "Motor": {
+        x: 600, y: 550, Port: ["MTL", "MTR"]
     },
 
-    "Key": [["IN-0", "SWL"], ["GNDPLCR", "24VN"], ["SWR", "24VP"]]
+    "Key": [["24VP", "DC-4"],["OUT-4", "MTR"], ["MTL", "24VN"]]
 };
+
 
 const DictModule = {
     P1: P1Port, P2: P2Port, P3: P3Port, P4: P4Port,
@@ -1686,8 +1687,9 @@ const DictModule = {
     P22: PEngineBlockStage2,
     P23: PIronBarkStage1,
     P24: PIronBarkStage2,
-    P25: P25Port,
-    P26: P26Port,
+    P25: PLCIN2,
+    P26: PLCOUT2,
     P27: PLCIN1,
+    P28: PLCOUT1
 };
 

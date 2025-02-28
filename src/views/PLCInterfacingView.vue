@@ -95,7 +95,7 @@ watch(
         if (newStep.type === "schematic" || newStep.type === "practice") {
           plcInterfacingStore.allow_next_step = false
           plcInterfacingStore.show_function_button = true
-          pseLeftTable.value = apiBaseUrl + '/assets/images/caseStudy/'+plcInterfacingStore.current_case_study.case_id+'/' + newStep.id + '.png'
+          pseLeftTable.value = apiBaseUrl + '/assets/images/PLCInterfacing/'+plcInterfacingStore.current_case_study.case_path+'/' + newStep.id + '.png'
           if (newStep.type === "schematic") {
             plcInterfacingStore.function_key_name = 'start'
           } else if (newStep.type === "practice"){

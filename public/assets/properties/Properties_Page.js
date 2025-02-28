@@ -53,6 +53,8 @@ const STPage = {
                     "3-9.2.2":"P24",
                     "PLC_IN-1.1.4":"P27",
                     "PLC_IN-1.2.4":"P25",
+                    "PLC_OUT-1.1.5":"P28",
+                     "PLC_OUT-1.2.3":"P26",
                 }
 
 const WireDemoPage = {
@@ -64,7 +66,9 @@ const WireDemoPage = {
     "3-9.1.1":"P23",
     "3-9.2.1":"P24",
     "PLC_IN-1.1.3":"P27",
-    "PLC_IN-1.2.3":"P25"
+    "PLC_IN-1.2.3":"P25",
+    "PLC_OUT-1.1.4":"P28",
+    "PLC_OUT-1.2.2":"P26",
 }
 
 // all test page
