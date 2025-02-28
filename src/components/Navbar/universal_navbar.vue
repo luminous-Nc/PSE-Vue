@@ -4,7 +4,7 @@
             <!-- Left Logo and Title -->
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="/assets/TAMU-Logo.svg" class="h-8" alt="TAMU Logo"/>
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">
                     <template v-if="appName === 'caseStudy'">
                         Case Study - {{ currentCaseStudyName }}
                     </template>

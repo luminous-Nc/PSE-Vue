@@ -9,7 +9,7 @@
         <div class="flex justify-between h-full pt-16 px-2 pb-2 space-x-2">
 
             <div
-                class="flex flex-col justify-between w-1/3 p-6 bg-white border border-gray-300 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700">
+                class="flex flex-col justify-between w-1/3 p-6 bg-white border border-gray-300 rounded-lg shadow">
                 <div class="flex-shrink-0 basis-11/12 overflow-y-auto text-lg flex-col flex w-full">
                     <div v-for="PName in reversedATPage" :key="PName" class="text-black" @click="handlePNameClick(PName)">
                         <h3  class="text-xl cursor-pointer hover:bg-gray-100 p-1 rounded transition-colors"
@@ -31,7 +31,6 @@
             <div class= "flex items-center justify-center
                  overflow-clip block w-2/3
                  bg-white border border-gray-300 rounded-lg shadow-2xl
-                 dark:bg-gray-800 dark:border-gray-700
                  relative">
                 <DebugCanvas ref="debugCanvasRef"/>
             </div>
