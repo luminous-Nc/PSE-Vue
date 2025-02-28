@@ -1,6 +1,7 @@
 import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import LearningView from '../views/LearningView.vue'
 import TopicView from '../views/TopicView.vue'
+import DebugView from '../views/Debug.vue'
 
 console.log(import.meta.env.BASE_URL)
 const router = createRouter({
@@ -10,6 +11,11 @@ const router = createRouter({
       path: '/',
       name: 'learning',
       component: LearningView
+    },
+    {
+      path: '/debug',
+      name: 'debug',
+      component: DebugView
     },
     {
       path: '/topic',

@@ -66,6 +66,20 @@ export function Init_Test() {
     Init_Practice();
 }
 
+export function Init_Test_For_Debug(targetPName) {
+    stage.removeAllChildren();
+
+    // initialization
+    PName = targetPName // map customed test
+    Init_Object();
+    Draw_Modules();
+    Draw_Modules_Ports();
+    Draw_Msg_Box();
+    //Draw_Anlys_Box();
+    Draw_Legend();
+    Init_Practice();
+}
+
 export function Init_WireDemo() {
     stage.removeAllChildren();
 

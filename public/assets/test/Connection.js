@@ -182,7 +182,9 @@ function Reset_MsgBox(){
 
 // reset analyis box
 function Reset_AnlysBox(){
-    AnlysBox.text = "";
+    if (AnlysBox) {
+        AnlysBox.text = "";
+    }
     Updage_Stage();
 }
 

@@ -1,11 +1,11 @@
 // display Canvas
 import { Init_Description } from "./Canvas_Description.js";
 import { Init_Test } from "./Canvas_Test.js";
-import { Init_WireDemo} from "./Canvas_Test.js"
-import { Init_Design } from "./Canvas_Design_Test.js";
+import { Init_WireDemo,Init_Test_For_Debug} from "./Canvas_Test.js"
+import {Init_Design, Init_Design_For_Debug} from "./Canvas_Design_Test.js";
 import { DePage, STPage, WireDemoPage } from "../properties/Properties_Page.js";
 
-export { Init_Canvas, Destroy_Canvas,
+export { Init_Canvas, Destroy_Canvas, Init_Canvas_For_Debug,
          Set_Page_ID, Set_Page_Name, stage, PageID, PageName };
 
 let stage;
@@ -39,6 +39,26 @@ function Init_Canvas(CanvasRef){
                 break;
 
         }
+    } catch (exception) {
+        console.error(exception)
+    }
+
+}
+
+function Init_Canvas_For_Debug(CanvasRef,TargetPName){
+    try {
+        // generate canvas and stage
+        if (!CanvasRef.value) return;
+        const Canvas = CanvasRef.value;
+
+        stage = new createjs.Stage(Canvas);
+        stage.removeAllChildren();
+        stage.removeAllEventListeners();
+        stage.enableMouseOver();
+
+        Init_Test_For_Debug(TargetPName)
+        // Init_Design_For_Debug(TargetPName);
+
     } catch (exception) {
         console.error(exception)
     }

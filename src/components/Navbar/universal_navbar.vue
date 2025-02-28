@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 shadow-lg">
+    <nav class="bg-white fixed w-full z-20 top-0 start-0 shadow-lg">
         <div class="flex flex-wrap items-center justify-between mx-auto px-4 py-2">
             <!-- Left Logo and Title -->
             <div class="flex items-center space-x-3 rtl:space-x-reverse">
