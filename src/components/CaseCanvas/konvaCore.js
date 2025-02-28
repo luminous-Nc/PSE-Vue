@@ -3,6 +3,9 @@ import {useCaseStore} from "@/stores/caseStudy.js";
 import {renderCase1Step} from "@/components/CaseCanvas/caseStudy1.js";
 import {renderCase2Step} from "@/components/CaseCanvas/caseStudy2.js";
 import {renderCase3Step} from "@/components/CaseCanvas/caseStudy3.js";
+import {useMemoryStore} from "@/stores/memory.js";
+import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
+import {renderCasePLCInputStep} from "@/components/CaseCanvas/casePLCInput.js";
 export {apiBaseUrl,stageInstance, layerInstance,activeAnimations,developmentMode}
 const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
 console.log('apiBase',apiBaseUrl)
@@ -96,21 +99,36 @@ export function renderCanvasContent(currentStepId) {
 
     clearCanvas(); // 清除当前内容
 
-    let caseStore = useCaseStore()
-    switch(caseStore.current_case_study.case_id) {
-        case "1":
-            renderCase1Step(currentStepId)
-            break
-        case "2":
-            renderCase2Step(currentStepId)
-            break
-        case "3":
-            renderCase3Step(currentStepId)
-            break
-        default:
-            renderDefault(caseStore.current_case_study.case_id, currentStepId)
-            break
+    const memoryStore = useMemoryStore()
+    if (memoryStore.task === "plc interfacing")  {
+        let plcCaseStore = usePLCInterfacingStore()
+        switch(plcCaseStore.current_case_study.case_name) {
+            case "PLC Input":
+                renderCasePLCInputStep(currentStepId)
+                break
+            case "PLC Output":
+                break
+        }
     }
+
+    if (memoryStore.task === "case study") {
+        let caseStore = useCaseStore()
+        switch(caseStore.current_case_study.case_id) {
+            case "1":
+                renderCase1Step(currentStepId)
+                break
+            case "2":
+                renderCase2Step(currentStepId)
+                break
+            case "3":
+                renderCase3Step(currentStepId)
+                break
+            default:
+                renderDefault(caseStore.current_case_study.case_id, currentStepId)
+                break
+        }
+    }
+
     resizeCanvas();
 }
 

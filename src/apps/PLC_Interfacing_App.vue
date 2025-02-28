@@ -1,13 +1,13 @@
 <template>
-    <case-navbar app-name="caseStudy"></case-navbar>
+    <universal-navbar app-name="plcInterfacing"></universal-navbar>
     <RouterView v-if="isRouterAlive"/>
 
 </template>
 
 <script setup>
 import {RouterView} from 'vue-router';
-import CaseNavbar from '@/components/Navbar/universal_navbar.vue'
-import caseStepBar from "@/components/CaseStepBar/index.vue";
+import UniversalNavbar from '@/components/Navbar/universal_navbar.vue'
+
 import { ref, nextTick, provide } from "vue";
 const isRouterAlive = ref(true);
 const reload = () => {

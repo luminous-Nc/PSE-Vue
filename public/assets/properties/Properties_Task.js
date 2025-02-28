@@ -24,6 +24,8 @@ const P1Port = {
     "Key": [["", "SWL"], ["", "24VN"], ["SWR", "24VP"]]
 };
 
+
+
 const P2Port = {
     "PLCOutput": {
         x: 450, y: 100, Port: ["", ""],
@@ -1639,6 +1641,38 @@ const P26Port = {
     "Key": [["OUT-4", "RLCU"], ["DC-4", "24VP"], ["RLSWU", "MTR"], ["MTL", "5VP"], ["RLSWDR", "5VN"], ["RLCD", "24VN"]]
 };
 
+const PLCIN1 = {
+    "PLCInput": {
+        x: 150, y: 100, Scale: 1.2, Port: ["IN-0", "GNDPLCR"]
+    },
+
+    "24VDC": {
+        x: 650, y: 500, Port: ["24VP", "24VN"]
+    },
+
+    "Switch": {
+        x: 650, y: 200, Port: ["SWL", "SWR"]
+    },
+
+    "Key": [["IN-0", "SWL"], ["GNDPLCR", "24VN"], ["SWR", "24VP"]]
+};
+
+const PLCIN2 = {
+    "PLCInput": {
+        x: 150, y: 100, Scale: 1.2, Port: ["IN-0", "GNDPLCR"]
+    },
+
+    "24VDC": {
+        x: 650, y: 500, Port: ["24VP", "24VN"]
+    },
+
+    "Switch": {
+        x: 650, y: 200, Port: ["SWL", "SWR"]
+    },
+
+    "Key": [["IN-0", "SWL"], ["GNDPLCR", "24VN"], ["SWR", "24VP"]]
+};
+
 const DictModule = {
     P1: P1Port, P2: P2Port, P3: P3Port, P4: P4Port,
     P5: P5Port, P6: P6Port, P7: P7Port, P8: P8Port,
@@ -1653,6 +1687,7 @@ const DictModule = {
     P23: PIronBarkStage1,
     P24: PIronBarkStage2,
     P25: P25Port,
-    P26: P26Port
+    P26: P26Port,
+    P27: PLCIN1,
 };
 
