@@ -1612,8 +1612,7 @@ const PLCIN2 = {
         x: 400, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["IN-0", "SWL"], ["SWR", "24VP"], ["24VN", "GNDPLCR"],["IN-2","RLSWU"],["RLSWDR", "24VP"],
-        ["RLCU", "SL"], ["SR", "5VN"], ["5VP","RLCD"]]
+    "Key": [["24VP","SWL"],["SWR","IN-0"],["GNDPLCR","24VN"],["24VP", "RLSWU"], ["RLSWDR", "IN-2"], ["5VP","SL"],["SR","RLCU"],["RLCD","5VN"]]
 };
 
 
@@ -1638,7 +1637,7 @@ const PLCOUT2 = {
         x: 600, y: 700, Port: ["24VP", "24VN"]
     },
 
-    "Key": [["24VP", "DC-4"],["OUT-4", "RLCU"],  ["RLCD", "24VN"], ["5VP", "MTL"],["MTR", "RLSWU"], ["RLSWDR", "5VN"]]
+    "Key": [["24VP", "DC-4"],["OUT-4", "RLCU"],  ["RLCD", "24VN"], ["5VP", "RLSWU"],["RLSWDR", "MTR"], ["MTL", "5VN"]]
 };
 
 const PLCIN1 = {
@@ -1654,7 +1653,7 @@ const PLCIN1 = {
         x: 650, y: 200, Port: ["SWL", "SWR"]
     },
 
-    "Key": [["IN-0", "SWL"], ["SWR", "24VP"],["GNDPLCR", "24VN"]]
+    "Key": [["24VP", "SWL"], ["SWR", "IN-0"],["GNDPLCR", "24VN"]]
 };
 
 const PLCOUT1 = {
@@ -1687,9 +1686,9 @@ const DictModule = {
     P22: PEngineBlockStage2,
     P23: PIronBarkStage1,
     P24: PIronBarkStage2,
-    P25: PLCIN2,
-    P26: PLCOUT2,
-    P27: PLCIN1,
-    P28: PLCOUT1
+    P25: PLCIN1,
+    P26: PLCIN2,
+    P27: PLCOUT1,
+    P28: PLCOUT2
 };
 

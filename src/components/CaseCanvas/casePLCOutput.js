@@ -1,10 +1,6 @@
 import {apiBaseUrl, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {renderImage, renderText} from "@/components/CaseCanvas/konvaUtils.js";
-import {
-    animationStep3_1_1,
-    animationStep5_1_1,
-    animationStep7_1_1
-} from "@/components/CaseCanvas/caseStudy1Animation.js";
+
 
 export function renderCasePLCOutputStep(currentStepId) {
     // 根据 ID 调用对应的渲染函数
@@ -33,7 +29,7 @@ function renderStep1_1_1() {
         fontSize:20,
         padding:0,
         align: 'left',
-        text: 'In a widget assembly line, a PLC is used in the packaging process, ensuring that each box is packed with 5 widgets. A motor drives the conveyor. \n' +
+        text: 'In a widget assembly line, a PLC is used in the packaging process, ensuring that each box is packed with 5 widgets. A 24V motor drives the conveyor. \n' +
             '\nAssume that only one stack is on the conveyor at a time.'})
 
     renderImage({
@@ -59,7 +55,7 @@ function renderStep1_1_2() {
         maxWidth: stageInstance.getWidth() * 0.6,
         imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/output/table.png'
     }).then((imageObject) => {
-        let text2 = renderText({
+        renderText({
             x: 0,
             padding:0,
             fontSize:20,
@@ -71,7 +67,7 @@ function renderStep1_1_2() {
 
 function renderStep1_1_3() {
 
-    let text = renderText({
+    renderText({
         x: 0,
         y: 10,
         padding:0,
@@ -91,7 +87,7 @@ function renderStep1_2_1() {
         fontSize:20,
         padding:0,
         align: 'left',
-        text: 'In a widget assembly line, a PLC is used in the packaging process, ensuring that each box is packed with 5 widgets. A motor drives the conveyor. \n' +
+        text: 'In a widget assembly line, a PLC is used in the packaging process, ensuring that each box is packed with 5 widgets. A 120V motor drives the conveyor. \n' +
             '\nAssume that only one stack is on the conveyor at a time.'})
 
     renderImage({
@@ -100,12 +96,12 @@ function renderStep1_2_1() {
         maxWidth: stageInstance.getWidth() * 0.6,
         imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/output/demo2.png'
     }).then((imageObject) => {
-        let text = renderText({
+        renderText({
             x: 0,
             y: imageObject.y() +imageObject.height() + 20,
             padding:0,
             fontSize:20,
-            text: 'Since the motor\'s operating voltage has changed from 24V to 5V, it cannot be directly connected to the 24V circuit. Therefore, a relay is needed to allow the 24V output to control the motor.'
+            text: 'Since the motor\'s operating voltage has changed from 24V to 120V, it cannot be directly connected to the 24V circuit. Therefore, a relay is needed to allow the 24V output to control the motor.'
         })
     })
 

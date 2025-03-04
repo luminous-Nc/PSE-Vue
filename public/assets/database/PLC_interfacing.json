@@ -92,12 +92,12 @@
             },
             {
               "id": "PLC_OUT-1.2.2",
-              "title": "Learn the interfacing of 5VDC motor",
+              "title": "Learn the interfacing of 120VDC motor",
               "type": "schematic"
             },
             {
               "id": "PLC_OUT-1.2.3",
-              "title": "Complete the interfacing practice of 5VDC motor",
+              "title": "Complete the interfacing practice of 120VDC motor",
               "type": "practice"
             }
           ]
