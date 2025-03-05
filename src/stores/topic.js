@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 import {useRoute} from "vue-router";
 import {useStudentStore} from "@/stores/student.js";
-const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH;
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_PSE;
 export const useTopicsStore = defineStore('topics', {
     state: () => {
         return {

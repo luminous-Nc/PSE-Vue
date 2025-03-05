@@ -1,4 +1,4 @@
-import {apiBaseUrl, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {
     createCircle,
     createImage,
@@ -22,7 +22,7 @@ export async function animationStep3_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/background.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/background.png'
         })
 
         switchBase = await createImage({
@@ -30,7 +30,7 @@ export async function animationStep3_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         bulb = await createImage({
@@ -38,7 +38,7 @@ export async function animationStep3_1_1() {
             y: 300,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         clock1 = await createImage({
@@ -46,7 +46,7 @@ export async function animationStep3_1_1() {
                 y: 230,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -61,7 +61,7 @@ export async function animationStep3_1_1() {
                 y: 150,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -171,7 +171,7 @@ export async function animationStep3_1_1() {
                 y: 300,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             // PumpIn is energized when the system is on, will operate until the ingredient reach ULB
@@ -181,7 +181,7 @@ export async function animationStep3_1_1() {
                 y: 170,
                 targetHeight: 50,
                 targetWidth: 200,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/wave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/wave.png'
             })
 
             await moveObject(wave1, 0, -50, 1000);
@@ -234,7 +234,7 @@ export async function animationStep3_1_1() {
                 y: 390,
                 targetHeight: 50,
                 targetWidth: 150,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/wave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/wave.png'
             })
             await moveObject(wave1, 0, 20, 1000);
             await moveObject(wave2, 0, -20, 1000);
@@ -331,7 +331,7 @@ export async function animationStep5_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/background.jpg'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_2/background.jpg'
         })
 
         switchBase = await createImage({
@@ -339,7 +339,7 @@ export async function animationStep5_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         bulb = await createImage({
@@ -347,7 +347,7 @@ export async function animationStep5_1_1() {
             y: 405,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         clock1 = await createImage({
@@ -355,7 +355,7 @@ export async function animationStep5_1_1() {
                 y: 300,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -370,7 +370,7 @@ export async function animationStep5_1_1() {
                 y: 413,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -471,7 +471,7 @@ export async function animationStep5_1_1() {
             y: 315,
             targetHeight: 40,
             targetWidth: 40,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/cup.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_2/cup.png'
         })
 
         layerInstance.draw();
@@ -488,7 +488,7 @@ export async function animationStep5_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             // PumpD turns on until the ingredient reaches ULD.
@@ -506,7 +506,7 @@ export async function animationStep5_1_1() {
                 y: 285,
                 targetHeight: 20,
                 targetWidth: 80,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_2/wave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_2/wave.png'
             })
 
 
@@ -603,7 +603,7 @@ export async function animationStep5_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
             });
             upButton.changeBackgroundColor('grey')
             downButton.changeBackgroundColor('grey')
@@ -641,7 +641,7 @@ export async function animationStep7_1_1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/background.jpg'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/background.jpg'
         })
 
         switchBase = await createImage({
@@ -649,7 +649,7 @@ export async function animationStep7_1_1() {
             y: 400,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/switchBase.png'
         });
 
         bulb = await createImage({
@@ -657,7 +657,7 @@ export async function animationStep7_1_1() {
             y: 405,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/bulbOff.png'
         });
 
         upButton = createCircle({
@@ -756,7 +756,7 @@ export async function animationStep7_1_1() {
             y: 234,
             targetHeight: 40,
             targetWidth: 40,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/cup.png'
         })
 
         accLabel = createLabel(
@@ -773,7 +773,7 @@ export async function animationStep7_1_1() {
             y:383,
             targetWidth:50,
             targetHeight:50,
-            imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bump.png'
+            imageSrc:apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/bump.png'
         })
         layerInstance.draw();
     }
@@ -789,7 +789,7 @@ export async function animationStep7_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png'
             });
 
             //Conveyor Front turns on until the amount of the chocolate reaches ULP.
@@ -808,7 +808,7 @@ export async function animationStep7_1_1() {
                     y:307,
                     targetHeight:100,
                     targetWidth:100,
-                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_1.png'
+                    imageSrc:apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/coffee_1.png'
                 }
             )
 
@@ -817,7 +817,7 @@ export async function animationStep7_1_1() {
                 y: 234,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/cup.png'
             })
 
             await moveObject(cup,150,0,1000)
@@ -831,7 +831,7 @@ export async function animationStep7_1_1() {
                     y:293,
                     targetHeight:150,
                     targetWidth:180,
-                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_2.png'
+                    imageSrc:apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/coffee_2.png'
                 }
             )
 
@@ -842,7 +842,7 @@ export async function animationStep7_1_1() {
                 y: 230,
                 targetHeight: 40,
                 targetWidth: 40,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/cup.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/cup.png'
             })
 
             await moveObject(cup,150,0,1000)
@@ -857,7 +857,7 @@ export async function animationStep7_1_1() {
                     y:280,
                     targetHeight:150,
                     targetWidth:180,
-                    imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/coffee_3.png'
+                    imageSrc:apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/coffee_3.png'
                 }
             )
 
@@ -873,7 +873,7 @@ export async function animationStep7_1_1() {
                 y: 411,
                 targetHeight: 20,
                 targetWidth: 20,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_1.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/chocolate_1.png'
 
             })
             await waitAnimation(500)
@@ -888,7 +888,7 @@ export async function animationStep7_1_1() {
                 y: 401,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_2.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/chocolate_2.png'
             })
 
             await waitAnimation(500)
@@ -901,7 +901,7 @@ export async function animationStep7_1_1() {
                 y: 395,
                 targetHeight: 50,
                 targetWidth: 50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_3/chocolate_3.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/chocolate_3.png'
             })
 
             await waitAnimation(500)
@@ -930,7 +930,7 @@ export async function animationStep7_1_1() {
                 y:383,
                 targetWidth:50,
                 targetHeight:50,
-                imageSrc:apiBaseUrl + '/assets/images/caseStudy/1/animation_3/bump.png'
+                imageSrc:apiBaseUrlCase + '/assets/images/caseStudy/1/animation_3/bump.png'
             })
 
             accLabel.changeBackgroundColor('Yellow')
@@ -945,7 +945,7 @@ export async function animationStep7_1_1() {
                 y: 405,
                 targetHeight: 100,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
             });
             upButton.changeBackgroundColor('grey')
             downButton.changeBackgroundColor('grey')

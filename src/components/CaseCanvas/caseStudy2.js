@@ -1,4 +1,4 @@
-import {apiBaseUrl, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {renderImage, renderText} from "@/components/CaseCanvas/konvaUtils.js";
 import {
     animation1,
@@ -184,7 +184,7 @@ function renderStep1_1_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.1.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.1.1.jpg'
     })
 }
 
@@ -193,7 +193,7 @@ function renderStep1_1_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.1.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.1.2.png'
     })
 }
 
@@ -208,7 +208,7 @@ function renderStep1_2_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.2.1.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.2.1.png'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -229,7 +229,7 @@ function renderStep1_3_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.3.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/1.3.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -264,7 +264,7 @@ function renderStep2_1_1() {
         y: 0,
         maxWidth: stageInstance.getWidth() / 2,
         maxHeight: stageInstance.getHeight(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/2.1.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/2.1.1.jpg'
     })
 }
 
@@ -295,7 +295,7 @@ function renderStep4_1_1() {
         x: 0,
         y: text.y() + text.height() - 25,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/4.1.1.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/4.1.1.png'
     })
 }
 
@@ -304,7 +304,7 @@ function renderStep8_1_1() {
         x: stageInstance.getWidth()*0.1,
         y: 0,
         maxWidth:  stageInstance.getWidth()*0.6,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.1.jpg'
     })
 
 }
@@ -314,7 +314,7 @@ function renderStep8_1_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.2.png'
     })
 
 }
@@ -380,7 +380,7 @@ function renderProblemandSolution(stepID) {
         x: 0,
         y: text.y() + text.height() + 40,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/'+stepID+'.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/'+stepID+'.png'
     })
 }
 
@@ -391,7 +391,7 @@ function renderStep8_1_14() {
         x: stageInstance.getWidth()*0.2,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.14.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.14.png'
     })
 }
 
@@ -401,7 +401,7 @@ function renderStep8_1_15() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.15.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.1.15.png'
     })
 }
 
@@ -410,7 +410,7 @@ function renderStep8_2_1() {
         x: stageInstance.getWidth()*0.1,
         y: 0,
         maxWidth:  stageInstance.getWidth()*0.6,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.1.jpg'
     })
 }
 
@@ -419,7 +419,7 @@ function renderStep8_2_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.2.png'
     })
 
 }
@@ -455,7 +455,7 @@ function renderStep8_2_17() {
         x: stageInstance.getWidth()*0.2,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.17.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.17.jpg'
     })
 }
 
@@ -465,6 +465,6 @@ function renderStep8_2_18() {
         x: stageInstance.getWidth()*0.2,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.18.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/'+currentCaseStudyID+'/8.2.18.png'
     })
 }

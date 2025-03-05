@@ -7,9 +7,10 @@ import {useMemoryStore} from "@/stores/memory.js";
 import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
 import {renderCasePLCInputStep} from "@/components/CaseCanvas/casePLCInput.js";
 import {renderCasePLCOutputStep} from "@/components/CaseCanvas/casePLCOutput.js";
-export {apiBaseUrl,stageInstance, layerInstance,activeAnimations,developmentMode}
-const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
-console.log('apiBase',apiBaseUrl)
+export {apiBaseUrlCase,apiBaseUrlPLC,stageInstance, layerInstance,activeAnimations,developmentMode}
+const apiBaseUrlCase = import.meta.env.VITE_APP_BASE_PATH_CASE;
+const apiBaseUrlPLC = import.meta.env.VITE_APP_BASE_PATH_PLC;
+// console.log('apiBase',apiBaseUrlCase)
 
 let stageInstance = null;
 let layerInstance = null;

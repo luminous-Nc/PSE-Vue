@@ -1,4 +1,4 @@
-import {apiBaseUrl, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {renderImage, renderText} from "@/components/CaseCanvas/konvaUtils.js";
 import {
     animationStep3_1_1,
@@ -151,7 +151,7 @@ function renderStep1_1_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.1.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/1.1.1.jpg'
     })
 }
 
@@ -160,7 +160,7 @@ function renderStep1_1_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.1.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/1.1.2.png'
     })
 }
 
@@ -175,7 +175,7 @@ function renderStep1_2_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.2.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/1.2.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -196,7 +196,7 @@ function renderStep1_3_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.3.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/1.3.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -217,7 +217,7 @@ function renderStep1_4_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.4.1.jpg'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/1.4.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -247,7 +247,7 @@ function renderStep2_1_1() {
         y: 0,
         maxWidth: stageInstance.getWidth() / 2,
         maxHeight: stageInstance.getHeight(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/2.1.1.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/2.1.1.png'
     })
 }
 
@@ -274,7 +274,7 @@ function renderStep4_1_1() {
         x: stageInstance.getWidth() / 2,
         y: 10,
         maxWidth: stageInstance.getWidth() / 2,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/4.1.1.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/4.1.1.png'
     })
 }
 
@@ -300,7 +300,7 @@ function renderStep6_1_1() {
         x: text.x() + text.width(),
         y: 10,
         maxWidth: stageInstance.getWidth() / 2,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/6.1.1.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/6.1.1.png'
     })
 }
 
@@ -365,7 +365,7 @@ function renderStep8_1_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.2.png'
     })
 
 }
@@ -401,7 +401,7 @@ function renderStep8_1_4() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.4.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.4.png'
     })
 }
 
@@ -419,7 +419,7 @@ function renderStep8_1_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.5.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.5.png'
     })
 }
 
@@ -437,7 +437,7 @@ function renderStep8_1_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.6.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.6.png'
     })
 }
 
@@ -455,7 +455,7 @@ function renderStep8_1_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.7.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.7.png'
     })
 }
 
@@ -473,7 +473,7 @@ function renderStep8_1_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.8.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.8.png'
     })
 }
 
@@ -491,7 +491,7 @@ function renderStep8_1_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.9.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.9.png'
     })
 }
 
@@ -501,7 +501,7 @@ function renderStep8_1_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.1.10.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.1.10.png'
     })
 }
 
@@ -566,7 +566,7 @@ function renderStep8_2_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.2.png'
     })
 
 }
@@ -604,7 +604,7 @@ function renderStep8_2_4() {
         x: 0,
         y: text.y() + text.height() + 10, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.4.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.4.png'
     })
 }
 
@@ -622,7 +622,7 @@ function renderStep8_2_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.5.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.5.png'
     })
 }
 
@@ -640,7 +640,7 @@ function renderStep8_2_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.6.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.6.png'
     })
 }
 
@@ -658,7 +658,7 @@ function renderStep8_2_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.7.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.7.png'
     })
 }
 
@@ -676,7 +676,7 @@ function renderStep8_2_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.8.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.8.png'
     })
 }
 
@@ -694,7 +694,7 @@ function renderStep8_2_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.9.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.9.png'
     })
 }
 
@@ -704,7 +704,7 @@ function renderStep8_2_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.2.10.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.2.10.png'
     })
 }
 
@@ -768,7 +768,7 @@ function renderStep8_3_2() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.2.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.2.png'
     })
 
 }
@@ -805,7 +805,7 @@ function renderStep8_3_4() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.4.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.4.png'
     })
 }
 
@@ -823,7 +823,7 @@ function renderStep8_3_5() {
         x: 0,
         y: text.y() + text.height() + 50, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.5.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.5.png'
     })
 }
 
@@ -841,7 +841,7 @@ function renderStep8_3_6() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.6.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.6.png'
     })
 }
 
@@ -859,7 +859,7 @@ function renderStep8_3_7() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.7.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.7.png'
     })
 }
 
@@ -877,7 +877,7 @@ function renderStep8_3_8() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.8.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.8.png'
     })
 }
 
@@ -896,7 +896,7 @@ function renderStep8_3_9() {
         x: 0,
         y: text.y() + text.height() + 50,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.9.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.9.png'
     })
 }
 
@@ -905,6 +905,6 @@ function renderStep8_3_10() {
         x: 0,
         y: 0,
         maxWidth: stageInstance.getWidth(),
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/8.3.10.png'
+        imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/8.3.10.png'
     })
 }

@@ -1,4 +1,4 @@
-import {apiBaseUrl, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {
     createCircle,
     createImage, createKeyFrameFunction,
@@ -27,7 +27,7 @@ export async function animation1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/background.jpg'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/background.jpg'
         })
 
         switchBase = await createImage({
@@ -35,7 +35,7 @@ export async function animation1() {
             y: 74,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         upButton = createCircle({
@@ -54,7 +54,7 @@ export async function animation1() {
             y: 57,
             targetHeight: 80,
             targetWidth: 80,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         ULFLabel = createLabel({
@@ -211,7 +211,7 @@ export async function animation1() {
                 y: 441,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -246,7 +246,7 @@ export async function animation1() {
             downButton.changeBackgroundColor('red')
 
             await newKeyFrame("On button is pressed and released; the system light is on.",0);
-            await bulb.changeImage(apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
+            await bulb.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
             await waitAnimation(1000)
 
             await newKeyFrame("When the liquid metal reach ULF, ULF is triggered and energize control valve, filling the liquid metal into the tundish", 2000)
@@ -255,7 +255,7 @@ export async function animation1() {
                 y: 99,
                 targetHeight: 60,
                 targetWidth: 120,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/hotwave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/hotwave.png'
             })
 
             ULFPoint.activate()
@@ -284,7 +284,7 @@ export async function animation1() {
                 y: 178,
                 targetHeight: 50,
                 targetWidth: 100,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/tundish.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/tundish.png'
             })
 
 
@@ -293,7 +293,7 @@ export async function animation1() {
                 y: 249,
                 targetHeight: 25,
                 targetWidth: 40,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould1.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould1.png'
 
             })
 
@@ -303,7 +303,7 @@ export async function animation1() {
                 y: 344,
                 targetHeight: 100,
                 targetWidth: 220,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/fire.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/fire.png'
             })
             await waitAnimation(2000)
 
@@ -337,7 +337,7 @@ export async function animation1() {
                 y: 256,
                 targetHeight: 50,
                 targetWidth:50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould2.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould2.png'
 
             })
 
@@ -349,7 +349,7 @@ export async function animation1() {
                 y: 347,
                 targetHeight: 50,
                 targetWidth:50,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould3.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould3.png'
 
             })
             await waitAnimation(1500)
@@ -360,7 +360,7 @@ export async function animation1() {
                 y: 384,
                 targetHeight: 50,
                 targetWidth:70,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould4.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould4.png'
 
             })
 
@@ -394,7 +394,7 @@ export async function animation1() {
                 y: 369,
                 targetHeight: 50,
                 targetWidth:70,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould5.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould5.png'
 
             })
 
@@ -450,7 +450,7 @@ export async function animation2() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/background2.jpg'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/background2.jpg'
         })
 
         switchBase = await createImage({
@@ -458,7 +458,7 @@ export async function animation2() {
             y: 81,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         upButton = createCircle({
@@ -477,7 +477,7 @@ export async function animation2() {
             y: 65,
             targetHeight: 80,
             targetWidth: 80,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         finishingMill = createLabel({
@@ -595,7 +595,7 @@ export async function animation2() {
             y: 389,
             targetHeight: 50,
             targetWidth: 60,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/3/animation/mould6.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/3/animation/mould6.png'
 
         })
 
@@ -605,7 +605,7 @@ export async function animation2() {
                 y: 506,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -622,7 +622,7 @@ export async function animation2() {
                 y: 230,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -668,7 +668,7 @@ export async function animation2() {
             downButton.changeBackgroundColor('red')
 
             await newKeyFrame("On button is pressed and released; the system light is on.\nRolling, Milling machine, and ConveyorBack starts once the system is on.\n",0);
-            await bulb.changeImage(apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
+            await bulb.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
 
             finishingMill.activate()
             stripRolling.activate()

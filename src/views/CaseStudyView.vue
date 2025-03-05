@@ -44,7 +44,7 @@ import {computed, ref, onMounted, watch, nextTick} from 'vue';
 import caseStepBar from "@/components/CaseStepBar/index.vue";
 import caseStepButton from "@/components/CaseStepButton/index.vue";
 import {useCaseStore} from "@/stores/caseStudy.js";
-import {apiBaseUrl, initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
 import {Init_Canvas, Set_Page_ID, Set_Page_Name} from "../../public/assets/canvas/Canvas_Page.js";
 import {Load_Img} from "../../public/assets/canvas/Canvas_Image.js";
 
@@ -91,7 +91,7 @@ watch(
         if (newStep.type === "schematic" || newStep.type === "practice") {
           caseStudyStore.allow_next_step = false
           caseStudyStore.show_function_button = true
-          pseLeftTable.value = apiBaseUrl + '/assets/images/caseStudy/'+caseStudyStore.current_case_study.case_id+'/' + newStep.id + '.png'
+          pseLeftTable.value = apiBaseUrlCase + '/assets/images/caseStudy/'+caseStudyStore.current_case_study.case_id+'/' + newStep.id + '.png'
           if (newStep.type === "schematic") {
             caseStudyStore.function_key_name = 'start'
           } else if (newStep.type === "practice"){

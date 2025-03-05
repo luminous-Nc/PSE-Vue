@@ -39,7 +39,7 @@
 import {computed, ref, onMounted, watch, nextTick} from 'vue';
 import caseStepButton from "@/components/CaseStepButton/index.vue";
 import {usePLCInterfacingStore} from "@/stores/plcInterfacing.js";
-import {apiBaseUrl, initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlPLC, initializeKonvaCanvas, renderCanvasContent} from "@/components/CaseCanvas/konvaCore.js";
 import {Init_Canvas, Set_Page_ID, Set_Page_Name} from "../../public/assets/canvas/Canvas_Page.js";
 import {Load_Img} from "../../public/assets/canvas/Canvas_Image.js";
 import {useRoute} from "vue-router";
@@ -95,7 +95,7 @@ watch(
         if (newStep.type === "schematic" || newStep.type === "practice") {
           plcInterfacingStore.allow_next_step = false
           plcInterfacingStore.show_function_button = true
-          pseLeftTable.value = apiBaseUrl + '/assets/images/PLCInterfacing/'+plcInterfacingStore.current_case_study.case_path+'/' + newStep.id + '.png'
+          pseLeftTable.value = apiBaseUrlPLC + '/assets/images/PLCInterfacing/'+plcInterfacingStore.current_case_study.case_path+'/' + newStep.id + '.png'
           if (newStep.type === "schematic") {
             plcInterfacingStore.function_key_name = 'start'
           } else if (newStep.type === "practice"){

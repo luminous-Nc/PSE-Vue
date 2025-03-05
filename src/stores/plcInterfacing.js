@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 
-const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_PLC;
 
 export const usePLCInterfacingStore = defineStore('PLCInterfacing', {
     state: () => {

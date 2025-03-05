@@ -1,4 +1,4 @@
-import {apiBaseUrl, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlPLC, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {renderImage, renderText} from "@/components/CaseCanvas/konvaUtils.js";
 
 
@@ -36,7 +36,7 @@ function renderStep1_1_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height()+10, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/output/demo.png'
+        imageSrc: apiBaseUrlPLC + '/assets/images/PLCInterfacing/output/demo.png'
     })
 }
 
@@ -53,7 +53,7 @@ function renderStep1_1_2() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.6,
-        imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/output/table.png'
+        imageSrc: apiBaseUrlPLC + '/assets/images/PLCInterfacing/output/table.png'
     }).then((imageObject) => {
         renderText({
             x: 0,
@@ -94,7 +94,7 @@ function renderStep1_2_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text1.y() + text1.height() + 10, // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.6,
-        imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/output/demo2.png'
+        imageSrc: apiBaseUrlPLC + '/assets/images/PLCInterfacing/output/demo2.png'
     }).then((imageObject) => {
         renderText({
             x: 0,

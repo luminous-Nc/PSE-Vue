@@ -1,4 +1,4 @@
-import {apiBaseUrl, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlCase, clearCanvas, layerInstance, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {
     createCircle,
     createImage, createKeyFrameFunction,
@@ -26,7 +26,7 @@ export async function animation1() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/background.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/background.png'
         })
 
         switchBase = await createImage({
@@ -34,7 +34,7 @@ export async function animation1() {
             y: 100,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         bulb = await createImage({
@@ -42,7 +42,7 @@ export async function animation1() {
             y: 95,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         clock1 = await createImage({
@@ -50,7 +50,7 @@ export async function animation1() {
                 y: 221,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -67,7 +67,7 @@ export async function animation1() {
                 y: 280,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -225,7 +225,7 @@ export async function animation1() {
             y: 200,
             targetHeight: 150,
             targetWidth: 150,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/robot1.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/robot1.png'
         })
 
         layerInstance.draw();
@@ -240,7 +240,7 @@ export async function animation1() {
             downButton.changeBackgroundColor('red')
 
             await newKeyFrame("On button is pressed and released; the system light is on");
-            bulb.changeImage(apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
+            bulb.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
 
             await newKeyFrame("Pump is energized when the system is on, will operate until the ingredient reach ULF \nLadle and Oven heating are also on, because TSensor1 and TSensor2 is triggered by the lower temperature.",0)
             pumpLabel.activate()
@@ -268,7 +268,7 @@ export async function animation1() {
                 y: 192,
                 targetHeight: 50,
                 targetWidth: 93,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/hotwave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/hotwave.png'
             })
             await ScaleObjectSingleDirection(hotWave,1,-3,1000)
             LLFPoint.activate()
@@ -292,7 +292,7 @@ export async function animation1() {
                 y: 218,
                 targetHeight: 60,
                 targetWidth: 115,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/valve1.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/valve1.png'
             })
             ULFPoint.activate()
             ULFLabel.activate()
@@ -305,7 +305,7 @@ export async function animation1() {
                 y: 275,
                 targetHeight: 35,
                 targetWidth: 80,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/mold_empty.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/mold_empty.png'
 
             })
             valve2Label.activate()
@@ -318,7 +318,7 @@ export async function animation1() {
                 y: 302,
                 targetHeight: 10,
                 targetWidth: 60,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/yellowwave.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/yellowwave.png'
             })
             await Promise.all([
                 labelAnimation({
@@ -344,7 +344,7 @@ export async function animation1() {
                ]);
 
             yellowwave.destroy()
-            await moldImg.changeImage(apiBaseUrl + '/assets/images/caseStudy/2/animation/mold_after.png')
+            await moldImg.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/2/animation/mold_after.png')
             await moveObject(moldImg,167,0,2000)
 
             await newKeyFrame("After the mold went through the Oven become a block reaches Opt2, Conveyor1 stops, and triggers Robot1_DI1 to transfer the block to onto Conveyor2. \n")
@@ -354,10 +354,10 @@ export async function animation1() {
             await waitAnimation(1000)
             robotLabel.activate()
             await waitAnimation(1000)
-            await robotImage.changeImage(apiBaseUrl + '/assets/images/caseStudy/2/animation/robot2.png')
+            await robotImage.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/2/animation/robot2.png')
 
             await waitAnimation(1000)
-            await robotImage.changeImage(apiBaseUrl + '/assets/images/caseStudy/2/animation/robot3.png')
+            await robotImage.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/2/animation/robot3.png')
 
             moldImg.destroy()
             moldImg = await createImage({
@@ -365,7 +365,7 @@ export async function animation1() {
                 y: 320,
                 targetHeight: 35,
                 targetWidth: 80,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/mold_after.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/mold_after.png'
 
             })
 
@@ -414,7 +414,7 @@ export async function animation2() {
             y: 0,
             targetWidth: stageInstance.getWidth(),
             targetHeight: stageInstance.getHeight(),
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/background2.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/background2.png'
         })
 
         switchBase = await createImage({
@@ -422,7 +422,7 @@ export async function animation2() {
             y: 105,
             targetHeight: 100,
             targetWidth: 100,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/switchBase.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/switchBase.png'
         });
 
         upButton = createCircle({
@@ -441,7 +441,7 @@ export async function animation2() {
             y: 10,
             targetHeight: 80,
             targetWidth: 80,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOff.png'
         });
 
         conveyor2Label = createLabel({
@@ -525,7 +525,7 @@ export async function animation2() {
             y: 209,
             targetHeight: 25,
             targetWidth: 40,
-            imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/mold_after.png'
+            imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/mold_after.png'
 
         })
 
@@ -536,7 +536,7 @@ export async function animation2() {
                 y: 154,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -553,7 +553,7 @@ export async function animation2() {
                 y: 58,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -578,7 +578,7 @@ export async function animation2() {
                 y: 53,
                 targetHeight: 30,
                 targetWidth: 30,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/animation_1/clock1.svg'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/clock1.svg'
             }
         )
 
@@ -636,7 +636,7 @@ export async function animation2() {
             downButton.changeBackgroundColor('red')
 
             await newKeyFrame("On button is pressed and released; the system light is on.");
-            await bulb.changeImage(apiBaseUrl + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
+            await bulb.changeImage(apiBaseUrlCase + '/assets/images/caseStudy/1/animation_1/bulbOn.png')
 
             await newKeyFrame("Conveyor2 is energized when Opt3 is triggered.\n" +
                 "Conveyor4 and Conveyor6 are energized when system is on.",3000)
@@ -739,7 +739,7 @@ export async function animation2() {
                 y: 103,
                 targetHeight: 180,
                 targetWidth: 180,
-                imageSrc: apiBaseUrl + '/assets/images/caseStudy/2/animation/robot4.png'
+                imageSrc: apiBaseUrlCase + '/assets/images/caseStudy/2/animation/robot4.png'
             })
 
 

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import {useRoute} from "vue-router";
-const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH;
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_PSE;
 export const useQuestionnaireStore = defineStore('questionnaire', {
     state: () => ({
         questions: [],

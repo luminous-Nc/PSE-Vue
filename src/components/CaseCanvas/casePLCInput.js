@@ -1,10 +1,5 @@
-import {apiBaseUrl, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
+import {apiBaseUrlPLC, renderDefault, stageInstance} from "@/components/CaseCanvas/konvaCore.js";
 import {renderImage, renderText} from "@/components/CaseCanvas/konvaUtils.js";
-import {
-    animationStep3_1_1,
-    animationStep5_1_1,
-    animationStep7_1_1
-} from "@/components/CaseCanvas/caseStudy1Animation.js";
 
 export function renderCasePLCInputStep(currentStepId) {
     // 根据 ID 调用对应的渲染函数
@@ -43,7 +38,7 @@ function renderStep1_1_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.7,
-        imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/input/demo.png'
+        imageSrc: apiBaseUrlPLC + '/assets/images/PLCInterfacing/input/demo.png'
     })
 }
 
@@ -60,7 +55,7 @@ function renderStep1_1_2() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
         maxWidth: stageInstance.getWidth() * 0.6,
-        imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/input/table.png'
+        imageSrc: apiBaseUrlPLC + '/assets/images/PLCInterfacing/input/table.png'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
@@ -83,7 +78,7 @@ function renderStep1_2_1() {
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height() + 20,
         maxWidth: stageInstance.getWidth() * 0.8,
-        imageSrc: apiBaseUrl + '/assets/images/caseStudy/1/1.2.1.jpg'
+        imageSrc: apiBaseUrlPLC + '/assets/images/caseStudy/1/1.2.1.jpg'
     }).then((imageObject) => {
         let text2 = renderText({
             x: 0,
