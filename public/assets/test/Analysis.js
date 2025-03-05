@@ -211,6 +211,11 @@ function Init_Legend(){
 // display analysis on the textbox
 function Display_Analysis(){
 
+    if (stage.getChildByName("AnalysBox")) {
+        stage.removeChild(stage.getChildByName("AnalysBox"));
+    }
+
+
     const Attempt = Analysis.Correct.length + Analysis.Incorrect.length;
     const Correct = Analysis.Correct.length;
     const CorrectRate = (Analysis.CorrectRate * 100).toFixed(1);
@@ -222,6 +227,8 @@ function Display_Analysis(){
     const Str = Str1 + Str2 + Str3;
 
     let AnalysBox = new createjs.Text();
+
+    AnalysBox.name = "AnalysBox";
     AnalysBox.font = "bold 20px Arial";
     AnalysBox.color = "#000";
     AnalysBox.textAlign = "left";

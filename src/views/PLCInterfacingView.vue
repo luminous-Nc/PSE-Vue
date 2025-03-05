@@ -1,5 +1,5 @@
 <template>
-    <main class="flex h-screen w-screen flex-col items-center justify-start p-4 pt-[48px]">
+    <main class="flex h-screen w-screen flex-col items-center justify-start p-4 pt-[48px] overflow-y-hidden">
         <!--      -->
         <div class="mx-auto w-full max-w-[960px] mt-2" id="stepTitle">
             <div class="text-3xl font-bold text-blue-600">
@@ -18,7 +18,7 @@
                 class="caseStudyCanvas"
             ></div>
 
-            <div class="flex flex-row" v-show="!showKonvaCanvas">
+            <div class="flex flex-row max-h-screen" v-show="!showKonvaCanvas">
                 <div class="relative w-4/12 max-w-[400px] h-auto mr-5 mt-16">
                     <img
                         class="w-auto h-auto max-w-full max-h-full" :src="pseLeftTable">
@@ -27,7 +27,7 @@
                     ref="pseCanvas"
                     height="1000"
                     width="1000"
-                    class="w-auto h-auto border-gray-300 translate-y-[-50px] "
+                    class="w-auto h-full max-h-screen border-gray-300 translate-y-[-50px] "
                 ></canvas>
             </div>
         </div>

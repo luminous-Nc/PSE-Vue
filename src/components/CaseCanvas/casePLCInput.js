@@ -42,7 +42,7 @@ function renderStep1_1_1() {
     renderImage({
         x: 0.1 * stageInstance.getWidth(),
         y: text.y() + text.height(), // 放置在文本下方，间隔 10px
-        maxWidth: stageInstance.getWidth() * 0.8,
+        maxWidth: stageInstance.getWidth() * 0.7,
         imageSrc: apiBaseUrl + '/assets/images/PLCInterfacing/input/demo.png'
     })
 }
