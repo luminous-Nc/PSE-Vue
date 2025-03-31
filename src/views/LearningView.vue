@@ -1,67 +1,49 @@
 <template>
-    <main class="overflow-y-auto h-screen bg-gray-300">
-        <!-- <questionnaire @close-quiz-window="closeWindow" v-if="needStyleQuiz"></questionnaire> -->
-        <left-right-window></left-right-window>
-    </main>
+  <main class="overflow-y-auto h-screen bg-gray-300">
+    <left-right-window></left-right-window>
+  </main>
 </template>
 <script setup>
+import { computed, onMounted, watch } from "vue";
+import leftRightWindow from "@/components/LearningEnvironment/index.vue";
+import { useStudentStore } from "@/stores/student.js";
+import { useRoute } from "vue-router";
 
-import {computed, onMounted, reactive, ref, watch} from 'vue';
-import questionnaire from '@/components/Questionnaire/index.vue'
-import leftRightWindow from '@/components/LearningEnvironment/index.vue'
-import {useStudentStore} from "@/stores/student.js";
-import {useRoute} from 'vue-router';
-
-let needStyleQuiz = ref(false)
-const studentStore = useStudentStore()
+const studentStore = useStudentStore();
 const route = useRoute();
+let previousPath = ""; // 用于记录上一次的路径
 
-const currentLearningStyle = computed(() => studentStore.learningStyle)
+// 监听路由路径的变化
+watch(
+  () => route.path,
+  (newPath) => {
+    console.log("Current path:", newPath);
+    let learningStyle = "";
 
-watch(currentLearningStyle,(newLearningStyle)=> {
-  console.log(newLearningStyle)
-  if (newLearningStyle=== '' || newLearningStyle === null || newLearningStyle === 'null') {
-    needStyleQuiz.value = true
-  } else {
-    needStyleQuiz.value = false
-  }
-})
-
-onMounted(()=> {
-  // 检查URL参数中是否有style参数
-  const styleParam = route.query.style;
-  
-  if (styleParam) {
-    // 根据URL参数设置学习风格
-    let learningStyle = '';
-    if (styleParam.toLowerCase() === 'g') {
-      learningStyle = 'Global';
-    } else if (styleParam.toLowerCase() === 's') {
-      learningStyle = 'Sequential';
+    // 检查是否是学习风格切换（global 和 sequential 之间的切换）
+    if (
+      (previousPath === "/global" && newPath === "/sequential") ||
+      (previousPath === "/sequential" && newPath === "/global")
+    ) {
+      console.log("Learning style changed, resetting...");
+      studentStore.resetLearning();
     }
-    
+
+    if (newPath === "/sequential" || newPath === "/") {
+      learningStyle = "Sequential";
+    } else if (newPath === "/global") {
+      learningStyle = "Global";
+    }
+
     if (learningStyle) {
-      // 设置学习风格并初始化学习路径
       studentStore.setLearningStyle(learningStyle);
       studentStore.initLearningPath();
-      needStyleQuiz.value = false;
-      return;
     }
-  }
-  
-  // 如果没有有效的URL参数，则检查是否已有学习风格
-  if (studentStore.learningStyle === '' || studentStore.learningStyle === null || studentStore.learningStyle === 'null') {
-    needStyleQuiz.value = true
-  } else {
-    needStyleQuiz.value = false
-  }
-})
 
-const closeWindow = ()=> {
-    needStyleQuiz.value = false
-}
-
+    // 更新上一次的路径
+    previousPath = newPath;
+  },
+  { immediate: true }
+);
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
