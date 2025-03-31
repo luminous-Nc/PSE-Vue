@@ -167,7 +167,9 @@ function Init_Voice() {
 
     // load the audio
     const Path = AudioFolder + AudioFile;
+    console.log(Path);
     MyAudio = new Audio(Path);
+    console.log(MyAudio)
 
     // generate audio progress bar background
     AudioBarBg = new createjs.Shape();
@@ -197,7 +199,22 @@ function Init_Voice() {
     AudioToggle.addEventListener("click", Pause_Audio); // pause/play audio
     SpeakerToggle.addEventListener("click", Mute_Audio) // muted/unmuted speaker
     Draw_Pause_Toggle(AudioToggle);
-    MyAudio.play(); // issue on autoplaying audio //Works during test on my devices
+    const playPromise = MyAudio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // 自动播放成功
+            Draw_Pause_Toggle(AudioToggle);
+            console.log("Audio started playing automatically");
+        })
+        .catch(error => {
+            // 自动播放被阻止
+            console.warn("Auto-play was prevented:", error);
+            Draw_Play_Toggle(AudioToggle);
+            // 可以在这里显示一个提示，告诉用户点击播放按钮开始播放
+        });
+    }
+    
     stage.update();
 }
 

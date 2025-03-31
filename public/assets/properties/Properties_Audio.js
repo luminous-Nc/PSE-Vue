@@ -1,7 +1,8 @@
 export { AudioFolder, DictAudio };
 
 // audio folder
-const AudioFolder = "./assets/audio/";
+const apiBaseUrl = import.meta.env.VITE_APP_BASE_PATH_CASE;
+const AudioFolder = `${apiBaseUrl}/assets/audio/`;
 
 // audio files
 const DictAudio = {
